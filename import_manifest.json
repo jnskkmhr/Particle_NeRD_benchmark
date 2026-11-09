@@ -1,0 +1,37 @@
+{
+  "benchmark_date": "2026-10-28",
+  "source_directory": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/assets/g1-contact-loss-20261028",
+  "status": "Archived results imported without rerunning the benchmark.",
+  "files": [
+    {
+      "source_file": "validation-force.json",
+      "repository_file": "g1_humanoid/force_estimation/validation-force.json",
+      "sha256": "516cba36e4950f37b1a022331d33da72666635d5c12c1c99c3bd4f0186b186f0",
+      "bytes": 39844
+    },
+    {
+      "source_file": "validation-geometry.json",
+      "repository_file": "g1_humanoid/particle_prediction/validation-geometry.json",
+      "sha256": "02ea30733c571bd46ee3228eb517262f0cb9a81cf0f6b7965c35b2472209082c",
+      "bytes": 31505
+    },
+    {
+      "source_file": "validation-initial-direct.json",
+      "repository_file": "g1_humanoid/particle_prediction/validation-initial-direct.json",
+      "sha256": "073a8903e4d0200f5459992cf75a2599e240023a5a72d962b6c0341e71d6d849",
+      "bytes": 1156
+    },
+    {
+      "source_file": "validation-local-pilot-direct.json",
+      "repository_file": "g1_humanoid/particle_prediction/validation-local-pilot-direct.json",
+      "sha256": "bd9b9917a86c4d8c64517a96ccd56183117f7808ae0df12c513af0e55d8c7d93",
+      "bytes": 1155
+    },
+    {
+      "source_file": "provenance.json",
+      "repository_file": "g1_humanoid/provenance.json",
+      "sha256": "aeaaeb5739207c590c976e51419148d128f5d588515e936454e1c0bb39a96310",
+      "bytes": 656
+    }
+  ]
+}
