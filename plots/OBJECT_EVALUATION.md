@@ -23,6 +23,7 @@ uv run --no-project python /PATH/Particle_NeRD_benchmark/plots/build_object_repo
   --training PRIVATE_TRAINING_OUTPUT \
   --test-report PRIVATE_TRAINING_OUTPUT/test_evaluation/report.json \
   --references PRIVATE_REFERENCE_EVALUATIONS \
+  --holds PRIVATE_FIXED_HOLD_EVALUATIONS \
   --output NEW_STAGING_DIRECTORY
 ```
 
@@ -61,3 +62,33 @@ Inspect staged pages at desktop and mobile widths, check video playback and
 figure captions, then copy the verified staging contents to
 `benchmark_environment/object_prediction/` and add a link from the environment
 gallery. Do not publish local engineering checks as final model results.
+
+
+## Fixed-object consistency extension
+
+The report now includes measured core-metric tables and three 23-second fixed-object recordings.
+The object stops at 2 s. Temporal metrics compare each method to its own state at 3 s through 23 s,
+without resetting particles. The benchmark source provides:
+
+```bash
+PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.learning.collect \
+  --shape box --mode prescribed --reference fixed-hold --output /private/reference/box
+PYTHONPATH=examples uv run --no-sync --with scikit-image==0.27.0rc1 python \
+  -m particle_nerd_benchmark.learning.evaluate --data /private/reference \
+  --checkpoint /private/model/best.pt --output /private/evaluation
+PYTHONPATH=examples uv run --no-sync --with scikit-image==0.27.0rc1 python \
+  -m particle_nerd_benchmark.learning.consistency /private/evaluation/box-fixed-hold
+```
+
+Repeat collection for sphere and cylinder. Run the existing plot, video, and summarize modules on the
+completed evaluations. Build the public report with the new required `--holds /private/evaluation`
+argument in addition to `--training`, `--test-report`, `--references`, and `--output`.
+`object_metric_results.py` builds tables from actual measured JSON; it does not contain substituted results.
+Use the frozen evaluation source and checkpoint hashes recorded in the report; a newer model or evaluator
+is a different experiment. Do not expose private trajectories or checkpoints when reproducing the site.
+
+The MPM references are not perfect equilibrium targets: settling and floor leakage are retained and
+reported. All particles are included in the temporal metrics. The enlarged offline grid does not repair
+the original paired-field failures. See `metrics/README.md` and `consistency_results.json` for definitions.
+
+The public `plot_object_consistency.py CASE_PAGE_DIRECTORY --output NEW_PLOT_DIRECTORY` regenerates Figure 7 from published scalar time series without private particle trajectories.

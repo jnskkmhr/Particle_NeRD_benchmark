@@ -1,0 +1,105 @@
+{
+  "episode": "cylinder-fixed-hold",
+  "checkpoint_sha256": "e22f611d594449ba2eeb54ca7b21203e9ca856de82c8105de13f80190ef5ae0f",
+  "reference_sha256": "4b5c8019693d61e201a76c2c3bee4a16f88d3388b204ff31652a78ae5fa52e94",
+  "prediction_sha256": "20781382d7050d3e5ca36dfb733fcce2cabfd4c26dc3911ffd4aea103edc52f4",
+  "definition": "Each method is compared to its own state at the shared 3 s anchor; neither state is reset.",
+  "start_s": 3.0,
+  "end_s": 23.0,
+  "late_window_s": [
+    13.0,
+    23.0
+  ],
+  "native_dt_s": 0.005,
+  "field_interval_s": 0.1,
+  "surface_interval_s": 0.5,
+  "surface_grid_m": 0.02,
+  "surface_sigma_m": 0.032,
+  "surface_density_kg_m3": 800.0,
+  "surface_samples_per_direction": 4096,
+  "surface_seed": 42,
+  "floor_z_m": -0.3,
+  "floor_center_tolerance_m": 1e-06,
+  "maximum_grid_nodes": 100000000,
+  "below_body_region": "Horizontal rectangle enclosing the body's world x/y projection, from 0 to 0.10 m below its lowest world z; clipped at the rigid floor z = -0.30 m",
+  "surface_failures": [],
+  "source_sha256": "1876fed343912c46aa8707df2996c230ea631addc51ef55869d9b234fb395839",
+  "body_motion_check": {
+    "maximum_translation_m": 0.0,
+    "maximum_rotation_rad": 0.0,
+    "maximum_linear_speed_m_s": 0.0,
+    "maximum_angular_speed_rad_s": 0.0
+  },
+  "collider_input_check": {
+    "maximum_translation_m": 0.0,
+    "maximum_rotation_rad": 0.0,
+    "maximum_linear_speed_m_s": 0.0,
+    "maximum_angular_speed_rad_s": 0.0
+  },
+  "particle_count": 20646,
+  "physical_mass_kg": 1082.4450174495578,
+  "grid_lower_m": [
+    -1.26,
+    -0.8200000000000001,
+    -126.86
+  ],
+  "grid_shape": [
+    125,
+    84,
+    6352
+  ],
+  "reference": {
+    "final": {
+      "time_s": 23.0,
+      "rms_displacement_mm": 882.0058597188306,
+      "mean_vertical_change_mm": -60.72011512867398,
+      "kinetic_energy_j": 62.898444284862805,
+      "rms_speed_m_s": 0.3409039449337707,
+      "below_floor_mass_percent": 11.64874551971326,
+      "below_floor_1cm_mass_percent": 4.722464399883755,
+      "minimum_particle_z_m": -126.6710433959961,
+      "temporal_mass_discrepancy": 0.983530425732472,
+      "below_body_mass_kg": 5.452595263719559,
+      "surface_mean_mm": 45.88235999557177,
+      "surface_p95_mm": 86.52822023515903
+    },
+    "late_vertical_drift_rate_mm_s": -2.3537986598580245,
+    "late_mean_rms_speed_m_s": 0.08920443451256206,
+    "late_mean_kinetic_energy_j": 10.85395883049344,
+    "late_samples": 2001,
+    "initial_below_body_mass_kg": 7.916748892515898,
+    "final_below_body_mass_fraction": 0.6887417218543046,
+    "surface_final_30mm_grid": {
+      "surface_mean_mm": 46.51698309118427,
+      "surface_p95_mm": 85.26850639653223
+    }
+  },
+  "predicted": {
+    "final": {
+      "time_s": 23.0,
+      "rms_displacement_mm": 273.9099811420571,
+      "mean_vertical_change_mm": -270.23548430861615,
+      "kinetic_energy_j": 0.1392055291787142,
+      "rms_speed_m_s": 0.016037634727507494,
+      "below_floor_mass_percent": 99.8740676160031,
+      "below_floor_1cm_mass_percent": 94.82224159643515,
+      "minimum_particle_z_m": -0.6400562524795532,
+      "temporal_mass_discrepancy": 1.9307879083671717,
+      "below_body_mass_kg": 0.0,
+      "surface_mean_mm": 143.08825365291375,
+      "surface_p95_mm": 283.0279139245156
+    },
+    "late_vertical_drift_rate_mm_s": -15.832500809831348,
+    "late_mean_rms_speed_m_s": 0.016370372740378232,
+    "late_mean_kinetic_energy_j": 0.14507750146265885,
+    "late_samples": 2001,
+    "initial_below_body_mass_kg": 6.343884874135256,
+    "final_below_body_mass_fraction": 0.0,
+    "surface_final_30mm_grid": {
+      "surface_mean_mm": 145.25592110532975,
+      "surface_p95_mm": 280.03070775315314
+    }
+  },
+  "original_paired_field_failure": "Evaluation grid exceeds 20 million nodes; report rollout failure, not clipped mass",
+  "surface_seed_schedule": "42 + native frame index"
+}

@@ -1,0 +1,18 @@
+{
+  "checkpoint_sha256": "e22f611d594449ba2eeb54ca7b21203e9ca856de82c8105de13f80190ef5ae0f",
+  "reference_sha256": "4b5c8019693d61e201a76c2c3bee4a16f88d3388b204ff31652a78ae5fa52e94",
+  "prediction_sha256": "20781382d7050d3e5ca36dfb733fcce2cabfd4c26dc3911ffd4aea103edc52f4",
+  "source_sha256": "1876fed343912c46aa8707df2996c230ea631addc51ef55869d9b234fb395839",
+  "files_sha256": {
+    "consistency_summary.json": "773ee94b0e0f1602027cf5482c4b664531d6b80926310330745bbc3c39548a65",
+    "consistency_series.json": "8fee0f53f1626e92cc4af32a320bab41b6c50070ce53d23e94d09828ac35f1d1",
+    "spatiotemporal_consistency.png": "3ea1175640ca199ca5d32633f5d47831367d14a50ae31d12f0f060049f6d53f4",
+    "spatiotemporal_consistency.pdf": "9c18e5dc0378251a8d0ef70c261cec1ec6a3329b07174644bd403590ebb9999c",
+    "spatiotemporal_consistency.svg": "7b4fe12cb55465a07cc24996886142dfcb836b8b5cf3bee1797c0a60b2810540"
+  },
+  "measurement_source_sha256": "1876fed343912c46aa8707df2996c230ea631addc51ef55869d9b234fb395839",
+  "figure_source_sha256": "83161cd04b051ad2b90be76b4331a44469b1242569140ad298a2f55489d602dc",
+  "annotation_source_sha256": "47a1382785568edbcaca44f7b413bcccd9475e14393690e77aa098a81c45d79a",
+  "original_summary_sha256": "c7aabe53e00a691d91f837a0d042c2639be6e88f556c9af6e21ffd795c848212",
+  "annotation": "Added original paired-field failure and exact sampling-seed schedule; numerical metrics and scalar series unchanged. Re-rendered figures with explicit physical definitions."
+}

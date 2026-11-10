@@ -263,6 +263,17 @@ def main():
             axis.plot(fields["time_s"], fields["predicted_" + suffix], color=NERD, label="Particle NeRD")
             axis.set_ylabel(label)
             axis.legend(fontsize=9)
+    if not fields:
+        for axis in list(axes.flat)[1:]:
+            axis.text(
+                0.5,
+                0.5,
+                "Unavailable: paired field grid\nexceeded its node limit",
+                ha="center",
+                va="center",
+                transform=axis.transAxes,
+                fontsize=11,
+            )
     for index, axis in enumerate(axes.flat):
         axis.set_title(f"({chr(97 + index)})", loc="left")
         axis.set_xlabel("Simulation time (s)")

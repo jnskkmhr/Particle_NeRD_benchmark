@@ -1,0 +1,26 @@
+{
+  "checkpoint_sha256": "e22f611d594449ba2eeb54ca7b21203e9ca856de82c8105de13f80190ef5ae0f",
+  "reference_sha256": "4b5c8019693d61e201a76c2c3bee4a16f88d3388b204ff31652a78ae5fa52e94",
+  "prediction_sha256": "20781382d7050d3e5ca36dfb733fcce2cabfd4c26dc3911ffd4aea103edc52f4",
+  "inputs_sha256": {
+    "evaluation.json": "9a1a49559daa92e8e0ee3a61a798ffb2f166f4524214bb845c2d47262a81aa2d",
+    "prediction.h5": "20781382d7050d3e5ca36dfb733fcce2cabfd4c26dc3911ffd4aea103edc52f4",
+    "particle_metrics.csv": "05b52786d6aec21939cf729be3756d3b47914aca92fbe9dbadd204b402502b9b",
+    "field_metrics.csv": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+  },
+  "figures_sha256": {
+    "particle_evaluation.png": "0ec4c1e03d8e8be201d1a0ef04ce8ccd4784a7119812f14ee751a860753e279a",
+    "particle_evaluation.pdf": "742e4ce41058b7d857f19e8f84beb1ce8574f6daa52a8e8e3f24ea030eb0eea7",
+    "particle_evaluation.svg": "39273aa5212dcdd6a6ebe0b5af0bca35baf046d490cafc73bb85438acbca03ae",
+    "particle_region_counts.png": "65d2138ee42888c8cd7dcd1a152e7ae0b4150f83120794b8c34860ba58ee9a28",
+    "particle_region_counts.pdf": "0fb15f62160f05a6f7c397bdac941d738e5ecd4ac2f764cab04cce7ed19775a3",
+    "particle_region_counts.svg": "c6414cab33053227a49d61a5251a4f941e57ec2ea82af48b15c7f5f6feb166f7",
+    "forces.png": "8e64ffd7e39f566a6a52ec867e19851891217a6fa5ba236d39195b77cfda2cfa",
+    "forces.pdf": "b6bd37885b25007068ee5f56f015e15c6580e1034f687cc00347a056ec366b9a",
+    "forces.svg": "4efe7aa780d9715770044edb9b3f481c39a3a8d746b1db5126f9b481ccc54414",
+    "force_reconstruction.png": "9b57aa421277ae572cfa3ab8b8062180e961b02a5f83d72d024482dc040b075a",
+    "force_reconstruction.pdf": "23ee8a581151eff11215e559e1f12db13e8cb9a38eabebe2fb8ba27f43369a80",
+    "force_reconstruction.svg": "2b94cf42a210c27dd3e282c937691f5624f246367b13b655543f79e146d5530d"
+  },
+  "plot_source_sha256": "6298e3c7cdc862fecbfea157b981970e02b3217d2caa9589efe25476c4af2141"
+}

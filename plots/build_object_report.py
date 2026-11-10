@@ -7,6 +7,8 @@ import json
 import shutil
 from pathlib import Path
 
+from object_metric_results import HOLD_CASES, hold_results, metric_results
+
 CASES = {
     "box-horizontal-flat": "Box: horizontal motion on flat sand",
     "box-static-support": "Box: 20-second support test",
@@ -166,7 +168,12 @@ def verify_case(root, checkpoint):
             raise ValueError(f"Artifact changed after generation: {root / name}")
     if digest(root / "prediction.h5") != video["prediction_sha256"]:
         raise ValueError(f"Prediction mismatch: {root}")
-    for _, stem, _ in FIGURES:
+    required = (
+        FIGURES
+        if meta["episode"]["id"] not in HOLD_CASES
+        else [f for f in FIGURES if f[0] in (1, 2, 3, 6)]
+    )
+    for _, stem, _ in required:
         if stem + ".svg" not in plots["figures_sha256"]:
             raise ValueError(f"Missing required reference-case plot: {root / stem}")
     return meta, plots, video
@@ -249,17 +256,45 @@ def build_case(root, output, checkpoint):
         content += section(
             "Rollout failure", "<p>" + html.escape(json.dumps(meta["failure"])) + "</p>"
         )
+    if meta.get("field_failure"):
+        content += section(
+            "Paired field measurement unavailable",
+            "<p>"
+            + html.escape(meta["field_failure"])
+            + "</p><p>All particles remain in the position and force "
+            "measurements. Temporal metrics below use a larger grid and retain escaped particles.</p>",
+        )
     first, last = (video["state_indices"][i] * meta["native_dt_s"] for i in (0, -1))
     content += section(
         "2. Matched simulation video",
-        f'<figure class="video-figure"><video controls playsinline preload="metadata" poster="comparison_poster.png"><source src="comparison.mp4" type="video/mp4"></video><figcaption><strong>Video 1:</strong> Left: recorded implicit MPM. Right: recurrent Particle NeRD predictions. Both panels show the same recorded body poses; an object can therefore remain suspended when predicted sand loses support. These exact states supply the plots below. {len(video["state_indices"])} frames at 50 fps, simulation time {first:g}–{last:g} s.</figcaption></figure>',
+        f'<figure class="video-figure" id="hold-video"><video controls playsinline preload="metadata" poster="comparison_poster.png"><source src="comparison.mp4" type="video/mp4"></video><figcaption><strong>Video 1:</strong> Left: recorded implicit MPM. Right: recurrent Particle NeRD predictions. Both panels show the same recorded body poses; an object can therefore remain suspended when predicted sand loses support. These exact states supply the plots below. {len(video["state_indices"])} frames at 50 fps, simulation time {first:g}–{last:g} s.</figcaption></figure>',
     )
     figures = ""
     for number, stem, caption in FIGURES:
+        if stem + ".svg" not in plots["figures_sha256"]:
+            continue
+        if number == 1 and meta.get("field_failure"):
+            caption = "(a) Particle-position errors. Panels (b–f) are unavailable because the complete particle domain exceeded the paired field evaluator's grid limit; see the failure notice above. No particles were clipped."
         if number in (2, 3) and episode["id"].endswith("-static-support"):
             caption += " Panels (d), (e), and (f) show Fx, Fy, and Fz from 3 s onward with expanded force scales."
         figures += f'<figure class="result-figure"><div class="plot-scroll" tabindex="0"><a href="{stem}.svg"><img src="{stem}.svg" alt="{html.escape(caption)}" loading="lazy"></a></div><figcaption><strong>Figure {number}:</strong> {caption} <a href="{stem}.png">PNG</a> · <a href="{stem}.pdf">PDF</a></figcaption></figure>'
     content += section("3. Particle, material, and force measurements", figures)
+    if episode["id"] in HOLD_CASES:
+        content += section(
+            "Spatio-temporal consistency: 3–23 s",
+            "<p>The object is held at an exactly fixed pose after 2 s. Each method is measured relative to its own "
+            "3 s state, without reset or alignment. The reference bed also settles; escaped MPM particles are retained. "
+            "The video above includes insertion and this entire measurement interval. There is one run per shape.</p>"
+            '<figure class="result-figure"><div class="plot-scroll"><a href="spatiotemporal_consistency.svg">'
+            '<img src="spatiotemporal_consistency.svg" alt="Sand drift during the fixed-object hold"></a></div>'
+            "<figcaption><strong>Figure 7:</strong> (a) RMS particle drift; (b) signed mean vertical drift; "
+            "(c) mean and 95th-percentile surface change; (d) normalized grid-mass change; "
+            "(e) mass beneath the object; (f) mass below the tray floor. "
+            '<a href="spatiotemporal_consistency.png">PNG</a> · <a href="spatiotemporal_consistency.pdf">PDF</a>'
+            '</figcaption></figure><p><a href="consistency_summary.json">Measured results and settings</a> · '
+            '<a href="consistency_series.json">Scalar time series</a> · '
+            '<a href="consistency_provenance.json">Input and figure hashes</a></p>',
+        )
     rows = []
     for key, label in (
         ("force_predicted_particles", "Predicted particles"),
@@ -318,7 +353,9 @@ def build_case(root, output, checkpoint):
         + '<p>Each window uses every raw 200 Hz sample after its start through its end. The population standard deviation measures variation over time in this single recording, not uncertainty across repeated trials. Early, intermediate, and final windows are shown; <a href="force_windows.json">all one-second windows</a> and full force traces remain available.</p>'
         + '<p><a href="evaluation_settings.json">Evaluation settings and metrics</a> · <a href="plot_provenance.json">Plot hashes</a> · <a href="video_provenance.json">Video timestamps and hashes</a></p><p>Only figures, videos, settings, and result summaries are public. Raw trajectories and model weights remain private.</p>',
     )
-    (output / "index.html").write_text(page(CASES[episode["id"]], content, depth=3))
+    (output / "index.html").write_text(
+        page(({**CASES, **HOLD_CASES})[episode["id"]], content, depth=3)
+    )
     return public_meta
 
 
@@ -341,6 +378,12 @@ def main():
         type=Path,
         required=True,
         help="Four reference-case evaluation directories with matching plots and video",
+    )
+    parser.add_argument(
+        "--holds",
+        type=Path,
+        required=True,
+        help="Three completed fixed-hold evaluations with temporal metrics and matched video",
     )
     parser.add_argument(
         "--output",
@@ -395,9 +438,16 @@ def main():
                 raise ValueError(
                     f"Reference/test implementation mismatch in {case}: {key}"
                 )
+    for case in HOLD_CASES:
+        meta, _, _ = verify_case(args.holds / case, checkpoint)
+        for key in ("network_source_sha256", "evaluation_source_sha256"):
+            if meta[key] != report[key]:
+                raise ValueError(f"Hold/test implementation mismatch in {case}: {key}")
     args.output.mkdir(parents=True)
     for case in CASES:
         build_case(args.references / case, args.output / case, checkpoint)
+    for case in HOLD_CASES:
+        build_case(args.holds / case, args.output / case, checkpoint)
     rows = [
         (
             "Object geometry",
@@ -561,6 +611,10 @@ def main():
         "Body poses are prescribed from the MPM recording during evaluation; support loss does not change the replayed object motion. "
         "Fx and Fy, complete force traces, and estimator-only diagnostics appear on each case page.</p>",
     )
+    content += metric_results(
+        report, args.references, CASES, table, section, measurement
+    )
+    content += hold_results(args.holds, args.output, checkpoint, digest, table, section)
     (args.output / "index.html").write_text(
         page("Shared object-model prediction accuracy", content, depth=2)
     )
@@ -586,7 +640,7 @@ def main():
         + "\n"
     )
     print(
-        f"Built report and four matched case pages in {args.output}; no raw trajectories or weights copied."
+        f"Built report and seven matched case pages in {args.output}; no raw trajectories or weights copied."
     )
 
 
