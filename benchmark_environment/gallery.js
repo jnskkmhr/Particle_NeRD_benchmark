@@ -9,7 +9,7 @@ $('conditions').replaceChildren(...rows.map(([k,v])=>{const tr=document.createEl
 for(const [id,file] of [['metadata','metadata.json'],['validation','validation.json']])$(id).href=c.path+'/'+file;
 const local=['localhost','127.0.0.1','::1'].includes(location.hostname);const dataUrl=c.dataset_url||(local?c.path+'/trajectory.h5':null);
 $('dataset').textContent=dataUrl?'Dataset (HDF5) ↓':'Dataset retained locally';$('dataset').setAttribute('aria-disabled',String(!dataUrl));if(dataUrl)$('dataset').href=dataUrl;else $('dataset').removeAttribute('href');
-$('plot').src=c.path+'/forces.svg';$('command').textContent=c.command;
+$('plot').src=c.path+'/forces.svg';$('plot-link').href=c.path+'/forces.svg';$('command').textContent=c.command;
 [...$('cases').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===c.id));}
 function filter(){visible=BENCHMARK_CASES.filter(c=>(!$('family').value||c.family===$('family').value)&&(!$('terrain').value||c.terrain===$('terrain').value)&&(c.title+' '+c.terrain).toLowerCase().includes($('search').value.toLowerCase()));
 $('cases').replaceChildren(...visible.map(c=>{const b=document.createElement('button');b.dataset.id=c.id;b.textContent=c.title;const small=document.createElement('small');small.textContent=terrainNames[c.terrain];b.append(small);b.onclick=()=>choose(c.id);return b}));

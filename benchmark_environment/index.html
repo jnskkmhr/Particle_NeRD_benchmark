@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MPM benchmark environments · Particle NeRD</title><meta name="description" content="Reproducible manager-based Isaac Lab MPM benchmark scenes with paired videos and datasets.">
-<link rel="stylesheet" href="gallery.css"><script defer src="catalog.js"></script><script defer src="gallery.js"></script></head>
-<body><header><a href="../">Particle NeRD / Benchmarks</a><span>Native implicit MPM</span></header>
-<main><section class="intro"><p class="eyebrow">BENCHMARK ENVIRONMENTS</p><h1>Objects, terrain, and robot contacts.</h1>
+<link rel="stylesheet" href="../assets/slides.css?v=20261109-white"><link rel="stylesheet" href="gallery.css?v=20261109-nvidia"><script defer src="catalog.js"></script><script defer src="gallery.js"></script></head>
+<body class="benchmark-report benchmark-gallery"><header><a class="brand" href="../">Particle NeRD / Benchmarks</a><span class="archive">Native implicit MPM · Reference environments</span></header>
+<main><section class="report-heading"><p class="eyebrow">BENCHMARK ENVIRONMENTS</p><h1>Objects, terrain, and robot contacts.</h1>
 <p>Short, reproducible sand-interaction simulations built with Isaac Lab’s manager-based environments.
-Choose a motion to inspect its simulation, forces, settings, and recorded states.</p></section>
-<section class="protocol"><h2>Simulation conditions and recording</h2><p>Each clip is a fresh native implicit-MPM run.
+Choose a motion to inspect its simulation, forces, settings, and recorded states.</p><nav aria-label="Gallery sections"><a href="#protocol">Simulation conditions</a><a href="#gallery">Browse cases</a><a href="#recorded-cases">Recorded cases</a></nav></section>
+<section class="report-section" id="protocol"><h2>1. Simulation conditions and recording</h2><p>Each clip is a fresh native implicit-MPM run.
 Particles and body states are saved at 200 Hz; video frames are captured from those same states at 50 fps.
 The first second prepares the object scenes before intrusion. Robot controllers run from reset.</p>
 <p>The sand uses density 1,600 kg/m³, Young’s modulus 10¹⁵ Pa, Poisson’s ratio 0.3, material friction 0.48,
@@ -15,7 +15,7 @@ These are simulation parameters, not a calibration to a measured sand specimen.<
 <p>Validation checks particle containment, finite recorded states and forces, actual material contact,
 and video timestamps. Robot cases also check upright posture and forward motion.
 These reference rollouts do not measure Particle NeRD prediction accuracy or GPU scalability.</p></section>
-<div class="workspace"><aside><label for="family">Motion family</label><select id="family"><option value="">Every family</option>
+<section class="report-section" id="gallery"><h2>2. Benchmark cases</h2><div class="workspace"><aside><label for="family">Motion family</label><select id="family"><option value="">Every family</option>
 <option value="object">Elementary objects</option><option value="robot">Robots</option></select>
 <label for="terrain">Terrain</label><select id="terrain"><option value="">Every terrain</option><option>flat</option><option>ascend</option><option>descend</option><option>wave</option></select>
 <label for="search">Find a case</label><input id="search" type="search" placeholder="Box, sphere, G1…">
@@ -25,11 +25,11 @@ These reference rollouts do not measure Particle NeRD prediction accuracy or GPU
 <div class="video-controls"><button id="previous">← Previous</button><span id="duration"></span><button id="next">Next →</button></div>
 <p id="video-caption" class="caption"></p><h3>Run conditions</h3><table><tbody id="conditions"></tbody></table>
 <div class="downloads"><a id="dataset" download>Dataset (HDF5) ↓</a><a id="metadata">Run metadata ↗</a><a id="validation">Validation ↗</a></div>
-<h3>Measured sand reaction</h3><figure><img id="plot" alt="Signed world-frame Fx, Fy and Fz from this MPM simulation"><figcaption>
+<h3>Measured sand reaction</h3><figure class="result-figure"><div class="plot-scroll" tabindex="0" aria-label="Scrollable force plot"><a id="plot-link" target="_blank" rel="noopener"><img id="plot" alt="Signed world-frame Fx, Fy and Fz from this MPM simulation"></a></div><figcaption>
 Figure 1: Sand-on-collider forces from the video’s recorded run. (a) Fx; (b) Fy; (c) Fz.
 For robot cases, forces are summed over the reacting robot links listed in the validation file. Direct rigid tray contact is excluded.</figcaption></figure>
 <details><summary>Run this case</summary><pre id="command"></pre><p>Run from the IsaacLab-particle-nerd repository root.
 Scripts and standalone task configurations are in <code>examples/particle_nerd_benchmark/</code>.</p></details>
-</section></div><p id="empty" hidden>No completed cases match these filters.</p>
-<section class="catalog-table"><h2>Recorded cases</h2><table><thead><tr><th>Motion</th><th>Terrain</th><th>Controller</th><th>Duration</th><th>Video / data</th></tr></thead><tbody id="summary"></tbody></table></section>
-</main><footer>Native MPM reference environments · Videos, plots, and data share one run ID.</footer></body></html>
+</section></div><p id="empty" hidden>No completed cases match these filters.</p></section>
+<section class="report-section catalog-table" id="recorded-cases"><h2>3. Recorded cases</h2><div class="table-wrap"><table><thead><tr><th>Motion</th><th>Terrain</th><th>Controller</th><th>Duration</th><th>Video / data</th></tr></thead><tbody id="summary"></tbody></table></div></section>
+</main><footer class="site-footer"><span class="footer-brand">Particle NeRD</span><span>Native MPM reference environments · Paired videos and plots</span></footer></body></html>
