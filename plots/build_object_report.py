@@ -57,8 +57,15 @@ def digest(path):
 
 
 def table(caption, headings, rows):
-    head = "".join(f'<th scope="col">{html.escape(str(value))}</th>' for value in headings)
-    body = "".join("<tr>" + "".join(f"<td>{html.escape(str(value))}</td>" for value in row) + "</tr>" for row in rows)
+    head = "".join(
+        f'<th scope="col">{html.escape(str(value))}</th>' for value in headings
+    )
+    body = "".join(
+        "<tr>"
+        + "".join(f"<td>{html.escape(str(value))}</td>" for value in row)
+        + "</tr>"
+        for row in rows
+    )
     return f'<div class="table-wrap"><table><caption>{html.escape(caption)}</caption><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
@@ -104,13 +111,21 @@ def training_details(root, config, records, checkpoint):
             or snapshot.get("training_step_at_snapshot") != observed_step
             or snapshot.get("training_complete") != complete
         ):
-            raise ValueError("Frozen checkpoint metadata does not match the training log and weights")
+            raise ValueError(
+                "Frozen checkpoint metadata does not match the training log and weights"
+            )
         for key in ("selection", "source_workflow", "snapshot_utc"):
             if not snapshot.get(key):
                 raise ValueError(f"Frozen checkpoint metadata is missing {key}")
     elif not complete:
-        raise ValueError("In-progress evaluation requires an explicit frozen checkpoint snapshot")
-    horizons = [row["horizon"] for row in records if "loss" in row and row["step"] <= selected["step"]]
+        raise ValueError(
+            "In-progress evaluation requires an explicit frozen checkpoint snapshot"
+        )
+    horizons = [
+        row["horizon"]
+        for row in records
+        if "loss" in row and row["step"] <= selected["step"]
+    ]
     if not horizons:
         raise ValueError("No training-window records exist for the selected checkpoint")
     return {
@@ -126,7 +141,8 @@ def training_details(root, config, records, checkpoint):
 
 def verify_case(root, checkpoint):
     meta, plots, video = (
-        read(root / name) for name in ("evaluation.json", "plot_provenance.json", "video_provenance.json")
+        read(root / name)
+        for name in ("evaluation.json", "plot_provenance.json", "video_provenance.json")
     )
     if any(item["checkpoint_sha256"] != checkpoint for item in (meta, plots, video)):
         raise ValueError(f"Checkpoint mismatch: {root}")
@@ -140,7 +156,11 @@ def verify_case(root, checkpoint):
     expected_indices = list(range(4, meta["completed_steps"] + 1, 4))
     if video["state_indices"] != expected_indices:
         raise ValueError(f"Video does not cover the evaluated interval: {root}")
-    expected_hashes = {**plots["inputs_sha256"], **plots["figures_sha256"], "comparison.mp4": video["video_sha256"]}
+    expected_hashes = {
+        **plots["inputs_sha256"],
+        **plots["figures_sha256"],
+        "comparison.mp4": video["video_sha256"],
+    }
     for name, expected in expected_hashes.items():
         if digest(root / name) != expected:
             raise ValueError(f"Artifact changed after generation: {root / name}")
@@ -156,10 +176,16 @@ def build_case(root, output, checkpoint):
     meta, plots, video = verify_case(root, checkpoint)
     episode = meta["episode"]
     report = read(root.parent / "report.json")
-    for key in ("checkpoint_sha256", "network_source_sha256", "evaluation_source_sha256"):
+    for key in (
+        "checkpoint_sha256",
+        "network_source_sha256",
+        "evaluation_source_sha256",
+    ):
         if report[key] != meta[key]:
             raise ValueError(f"Force-window report identity mismatch: {root}")
-    summary = next(record for record in report["episodes"] if record["id"] == episode["id"])
+    summary = next(
+        record for record in report["episodes"] if record["id"] == episode["id"]
+    )
     output.mkdir(parents=True, exist_ok=True)
     for name in [*plots["figures_sha256"], "comparison.mp4", "comparison_poster.png"]:
         shutil.copy2(root / name, output / name)
@@ -178,7 +204,10 @@ def build_case(root, output, checkpoint):
             "Reference motion",
             f"{episode['shape'].capitalize()}, {episode['mode']}, {episode['motion']}; reference duration {episode['duration_s']:g} s",
         ),
-        ("Evaluated interval", f"0–{completed:g} s; {meta['completed_steps']}/{meta['expected_steps']} steps"),
+        (
+            "Evaluated interval",
+            f"0–{completed:g} s; {meta['completed_steps']}/{meta['expected_steps']} steps",
+        ),
         (
             "Particle initialization",
             "Identical initial MPM positions; repeated initial position supplies zero-velocity history. Subsequent predictions are never replaced by MPM positions.",
@@ -209,11 +238,17 @@ def build_case(root, output, checkpoint):
     content = section(
         "1. Simulation conditions and evaluation method",
         '<p><a href="../">Shared model, training conditions, and held-out test results</a></p>'
-        + table("Table 1: Conditions for this recorded-motion comparison.", ("Item", "Definition"), condition_rows)
+        + table(
+            "Table 1: Conditions for this recorded-motion comparison.",
+            ("Item", "Definition"),
+            condition_rows,
+        )
         + "<p>The reference body moves dynamically or follows its prescribed trajectory during MPM recording. During evaluation, its recorded poses and solver-entry free velocities are imposed on Particle NeRD. The recorded free velocities retain information from the MPM coupling. Estimated forces do not change body motion; these results do not establish closed-loop stability.</p>",
     )
     if meta["failure"]:
-        content += section("Rollout failure", "<p>" + html.escape(json.dumps(meta["failure"])) + "</p>")
+        content += section(
+            "Rollout failure", "<p>" + html.escape(json.dumps(meta["failure"])) + "</p>"
+        )
     first, last = (video["state_indices"][i] * meta["native_dt_s"] for i in (0, -1))
     content += section(
         "2. Matched simulation video",
@@ -231,7 +266,9 @@ def build_case(root, output, checkpoint):
         ("force_reference_particles", "Reference MPM particles"),
     ):
         force = meta[key]
-        for axis, rmse, bias in zip("xyz", force["component_rmse_n"], force["component_bias_n"], strict=True):
+        for axis, rmse, bias in zip(
+            "xyz", force["component_rmse_n"], force["component_bias_n"], strict=True
+        ):
             rows.append((label, "F" + axis, f"{rmse:.4g}", f"{bias:+.4g}"))
     window_rows = []
     for start in sorted({1.0, 3.0, completed - 1.0}):
@@ -240,17 +277,37 @@ def build_case(root, output, checkpoint):
             ("predicted_particles", "Estimator: predicted particles"),
             ("reference_particles", "Estimator: MPM particles"),
         ):
-            window = next(item for item in summary["force_windows"][source] if item["start_exclusive_s"] == start)
+            window = next(
+                item
+                for item in summary["force_windows"][source]
+                if item["start_exclusive_s"] == start
+            )
             values = [
                 f"{mean:.3g} ± {std:.3g}"
-                for mean, std in zip(window["mean_fx_fy_fz_n"], window["frame_std_fx_fy_fz_n"], strict=True)
+                for mean, std in zip(
+                    window["mean_fx_fy_fz_n"],
+                    window["frame_std_fx_fy_fz_n"],
+                    strict=True,
+                )
             ]
-            window_rows.append((f"({start:g}, {window['end_inclusive_s']:g}]", label, window["samples"], *values))
+            window_rows.append(
+                (
+                    f"({start:g}, {window['end_inclusive_s']:g}]",
+                    label,
+                    window["samples"],
+                    *values,
+                )
+            )
     content += section(
         "4. Force errors and provenance",
         table(
             "Table 2: Raw force-component errors against MPM over the evaluated interval.",
-            ("Estimator particle input", "Component", "RMSE (N)", "Signed mean error (N)"),
+            (
+                "Estimator particle input",
+                "Component",
+                "RMSE (N)",
+                "Signed mean error (N)",
+            ),
             rows,
         )
         + table(
@@ -274,7 +331,10 @@ def main():
         help="Downloaded private training output containing model/ and data_audit.json",
     )
     parser.add_argument(
-        "--test-report", type=Path, required=True, help="Aggregate report.json for all 60 held-out trajectories"
+        "--test-report",
+        type=Path,
+        required=True,
+        help="Aggregate report.json for all 60 held-out trajectories",
     )
     parser.add_argument(
         "--references",
@@ -301,21 +361,40 @@ def main():
         or audit["splits"] != {"train": 480, "validation": 60, "test": 60}
     ):
         raise ValueError("This report requires the completed 600-trajectory campaign")
-    records = [json.loads(line) for line in (args.training / "model/metrics.jsonl").read_text().splitlines()]
+    records = [
+        json.loads(line)
+        for line in (args.training / "model/metrics.jsonl").read_text().splitlines()
+    ]
     training = training_details(args.training, config, records, checkpoint)
-    if checkpoint != report["checkpoint_sha256"] or report["groups"]["combined"]["trajectories"] != 60:
-        raise ValueError("Test report must contain 60 trajectories evaluated with this checkpoint")
+    if (
+        checkpoint != report["checkpoint_sha256"]
+        or report["groups"]["combined"]["trajectories"] != 60
+    ):
+        raise ValueError(
+            "Test report must contain 60 trajectories evaluated with this checkpoint"
+        )
     if args.output.exists():
-        raise ValueError("Use a new staging directory; existing reports are never overwritten")
-    expected_test = {f"{shape}-{index:04d}" for shape in ("box", "sphere", "cylinder") for index in range(9, 200, 10)}
-    if len(report["episodes"]) != 60 or {episode["id"] for episode in report["episodes"]} != expected_test:
+        raise ValueError(
+            "Use a new staging directory; existing reports are never overwritten"
+        )
+    expected_test = {
+        f"{shape}-{index:04d}"
+        for shape in ("box", "sphere", "cylinder")
+        for index in range(9, 200, 10)
+    }
+    if (
+        len(report["episodes"]) != 60
+        or {episode["id"] for episode in report["episodes"]} != expected_test
+    ):
         raise ValueError("Report does not contain the exact 60 held-out test IDs")
     # Validate every input before producing a partial export.
     for case in CASES:
         meta, _, _ = verify_case(args.references / case, checkpoint)
         for key in ("network_source_sha256", "evaluation_source_sha256"):
             if meta[key] != report[key]:
-                raise ValueError(f"Reference/test implementation mismatch in {case}: {key}")
+                raise ValueError(
+                    f"Reference/test implementation mismatch in {case}: {key}"
+                )
     args.output.mkdir(parents=True)
     for case in CASES:
         build_case(args.references / case, args.output / case, checkpoint)
@@ -354,30 +433,45 @@ def main():
         ),
         (
             "Shared model",
-            f"One checkpoint from update {training['checkpoint_step']:,}, selected by the lowest validation loss "
-            "with equal weighting of moving and stationary particles. "
-            f"Its training windows reached {training['checkpoint_training_horizon']} steps. "
-            "Test trajectories are never used for selection.",
+            (
+                f"One checkpoint from update {training['checkpoint_step']:,}, selected by the lowest validation loss "
+                "with equal weighting of moving and stationary particles. "
+                f"Its training windows reached {training['checkpoint_training_horizon']} steps. "
+                "Test trajectories are never used for selection."
+            ),
         ),
         (
             "Model architecture",
-            f"Particle Transolver: {config['model']['layers']} attention blocks, hidden size {config['model']['hidden']}, "
-            f"{config['model']['heads']} heads, {config['model']['slices']} slices, "
-            f"{config['model']['history']} position-history frames; displacement scale {config['model']['displacement_scale']:g} m.",
+            (
+                f"Particle Transolver: {config['model']['layers']} attention blocks, hidden size {config['model']['hidden']}, "
+                f"{config['model']['heads']} heads, {config['model']['slices']} slices, "
+                f"{config['model']['history']} position-history frames; displacement scale {config['model']['displacement_scale']:g} m."
+            ),
         ),
         (
             "Checkpoint validation",
-            f"{training['selected_validation']['validation_trajectories']} of the 60 reserved validation trajectories; "
-            f"{training['selected_validation']['validation_windows']} windows of {config['validation_horizon'] * 0.005:g} s. "
-            "Each selected trajectory contributes initial settling and a motion-specific window. "
-            "The loss separates moving/stationary groups at 0.5 mm reference displacement per step; "
-            "this differs from the 0.01 m/s threshold used by the reported regional position metric.",
+            (
+                f"{training['selected_validation']['validation_trajectories']} of the 60 reserved validation trajectories; "
+                f"{training['selected_validation']['validation_windows']} windows of {config['validation_horizon'] * 0.005:g} s. "
+                "Each selected trajectory contributes initial settling and a motion-specific window. "
+                "The loss separates moving/stationary groups at 0.5 mm reference displacement per step; "
+                "this differs from the 0.01 m/s threshold used by the reported regional position metric."
+            ),
         ),
         (
             "Training progress when weights were frozen",
-            f"{training['training_step_at_snapshot']:,} of {training['planned_updates']:,} planned updates "
-            "had been recorded. All results on this page use the same frozen checkpoint; "
-            "subsequent training does not change them.",
+            (
+                f"{training['training_step_at_snapshot']:,} of {training['planned_updates']:,} planned updates "
+                "had been recorded. All results on this page use the same frozen checkpoint; "
+                "subsequent training does not change them."
+            ),
+        ),
+        (
+            "Time to evaluated checkpoint",
+            (
+                f"{training['selected_validation']['elapsed_s'] / 60:.1f} minutes through checkpoint validation "
+                f"on {config['world_size']} GPUs, excluding setup and data transfer."
+            ),
         ),
         (
             "Neural update",
@@ -430,7 +524,10 @@ def main():
     reference_report = read(args.references / "report.json")
     reference_rows = []
     for record in reference_report["episodes"]:
-        final_forces = [record["force_windows"][source][-1] for source in ("reference", "predicted_particles")]
+        final_forces = [
+            record["force_windows"][source][-1]
+            for source in ("reference", "predicted_particles")
+        ]
         reference_rows.append(
             (
                 CASES[record["id"]],
@@ -445,18 +542,28 @@ def main():
     content += section(
         "3. Detailed reference cases",
         "<p>These four additional recordings use the same trained checkpoint. The 20-second support tests extend beyond the six-second training recordings. Each case includes conditions, an exact matching 50 fps video, force traces, particle errors, and material-distribution measurements.</p><ul>"
-        + "".join(f'<li><a href="{case}/">{title}</a></li>' for case, title in CASES.items())
+        + "".join(
+            f'<li><a href="{case}/">{title}</a></li>' for case, title in CASES.items()
+        )
         + "</ul>"
         + table(
             "Table 3: Reference-case final position errors and material-on-object Fz during the last second.",
-            ("Case", "Duration (s)", "Final position RMSE (mm)", "MPM Fz (N)", "NeRD Fz (N)"),
+            (
+                "Case",
+                "Duration (s)",
+                "Final position RMSE (mm)",
+                "MPM Fz (N)",
+                "NeRD Fz (N)",
+            ),
             reference_rows,
         )
         + "<p>Force entries give the mean ± population standard deviation over time, not repeated-trial uncertainty. "
         "Body poses are prescribed from the MPM recording during evaluation; support loss does not change the replayed object motion. "
         "Fx and Fy, complete force traces, and estimator-only diagnostics appear on each case page.</p>",
     )
-    (args.output / "index.html").write_text(page("Shared object-model prediction accuracy", content, depth=2))
+    (args.output / "index.html").write_text(
+        page("Shared object-model prediction accuracy", content, depth=2)
+    )
     (args.output / "test_report.json").write_text(json.dumps(report, indent=2) + "\n")
     (args.output / "training_provenance.json").write_text(
         json.dumps(
@@ -464,15 +571,23 @@ def main():
                 "checkpoint_sha256": checkpoint,
                 "dataset_splits": audit["splits"],
                 "dataset_groups": audit["groups"],
-                "trajectory_hashes": {key: value["sha256"] for key, value in audit["files"].items()},
-                "training_config": {key: value for key, value in config.items() if key not in {"data", "output"}},
+                "trajectory_hashes": {
+                    key: value["sha256"] for key, value in audit["files"].items()
+                },
+                "training_config": {
+                    key: value
+                    for key, value in config.items()
+                    if key not in {"data", "output"}
+                },
                 "evaluated_training_state": training,
             },
             indent=2,
         )
         + "\n"
     )
-    print(f"Built report and four matched case pages in {args.output}; no raw trajectories or weights copied.")
+    print(
+        f"Built report and four matched case pages in {args.output}; no raw trajectories or weights copied."
+    )
 
 
 if __name__ == "__main__":
