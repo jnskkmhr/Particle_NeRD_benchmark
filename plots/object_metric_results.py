@@ -1,7 +1,10 @@
 """Expose measured metric results and fixed-object diagnostics in the public report."""
 
+import html
 import json
+import re
 import shutil
+from pathlib import Path
 
 from plot_object_metric_comparisons import PLOTS, figure_html
 
@@ -11,30 +14,72 @@ HOLD_CASES = {
 }
 
 
-def metric_results(report, references, cases, table, section, measurement):
-    """Present the same measured per-trajectory values as distribution plots."""
+METRIC_HEADINGS = dict(
+    (int(number), f"{number}. {title}")
+    for number, title in re.findall(
+        r"^## ([1-6])\. (.+)$",
+        (Path(__file__).resolve().parents[1] / "metrics/README.md").read_text(),
+        re.MULTILINE,
+    )
+)
+
+
+def metric_section(number, content, section, *, numbered=True):
+    """Use the canonical README heading and link to its definition."""
+    title = METRIC_HEADINGS[number]
+    anchor = re.sub(r"[^\w -]", "", title.lower()).replace(" ", "-")
+    definition = (
+        '<p><a href="https://github.com/jnskkmhr/Particle_NeRD_benchmark/blob/main/'
+        f'metrics/README.md#{anchor}">Definition in metrics/README.md</a></p>'
+    )
+    return section(title if numbered else title.split(". ", 1)[1], definition + content)
+
+
+def metric_results(report, section):
+    """Group measured plots under the corresponding README metric headings."""
     total = report["groups"]["combined"]
-    content = (
+    introduction = (
         f"<p>{total['complete_trajectories']}/{total['trajectories']} held-out six-second trajectories completed. "
         "Each dot is one trajectory summary. Boxes show median and interquartile range; diamonds mark means. "
         "Whiskers extend to 1.5 IQR and every measured value is plotted, including outliers. "
         "An empty particle region remains unavailable. No smoothing or time shifting is applied.</p>"
-    )
-    for stem in (
-        "test_particle_errors",
-        "test_regions_baseline",
-        "test_surface_errors",
-        "test_material_distribution",
-        "test_velocity_energy",
-    ):
-        content += "<h3>" + PLOTS[stem][1] + "</h3>" + figure_html(stem)
-    content += '<p><a href="test_report.json">Exact numerical results and availability counts</a> · '
-    content += (
+        '<p><a href="test_report.json">Exact numerical results and availability counts</a> · '
         '<a href="comparison_plot_provenance.json">Plot input and output hashes</a>. '
+        "Numerical completion does not establish physical accuracy. These are errors of one frozen object model "
+        "against MPM.</p>"
     )
-    content += "Numerical completion does not establish physical accuracy. These are errors of one frozen object model "
-    content += "against MPM, not multiple neural models.</p>"
-    return section("2. Held-out results for the proposed metrics", content)
+    groups = (
+        (1, ("test_particle_errors", "test_regions_baseline"), introduction),
+        (
+            2,
+            ("test_surface_errors",),
+            "<p>The mean and 95th-percentile symmetric surface distance measure the reconstructed sand shape. "
+            "The plotted measurements use a 0.02 m grid for reconstructing the sand surface from recorded particles. "
+            "This is a measurement setting, separate from the 0.04 m MPM simulation grid. "
+            "The README also requests a reconstruction-resolution sensitivity check: its 0.03 m results remain "
+            '<a href="test_report.json">in the downloadable results</a>, outside the main metric plot.</p>',
+        ),
+        (
+            3,
+            ("test_material_distribution",),
+            "<p>These object tests use the same material-mass discrepancy on a common grid. "
+            "For the local depletion diagnostic, the region is beneath the box, sphere, or cylinder; "
+            "these tests do not contain robot feet. Each case page defines the region.</p>",
+        ),
+        (4, ("test_velocity_energy",), ""),
+    )
+    return "".join(
+        metric_section(
+            number,
+            description
+            + "".join(
+                "<h3>" + html.escape(PLOTS[stem][1]) + "</h3>" + figure_html(stem)
+                for stem in stems
+            ),
+            section,
+        )
+        for number, stems, description in groups
+    )
 
 
 def hold_results(root, output, checkpoint, digest, table, section):
@@ -108,4 +153,4 @@ def hold_results(root, output, checkpoint, digest, table, section):
     )
     content += '<p><a href="consistency_results.json">Exact measured summaries and settings</a>. '
     content += "Full scalar time series, input hashes, and resolution sensitivity are linked on each case page.</p>"
-    return section("4. Spatio-temporal consistency with a stationary object", content)
+    return metric_section(6, content, section)

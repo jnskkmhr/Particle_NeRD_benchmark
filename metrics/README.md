@@ -145,7 +145,7 @@ The current experiment includes one box, sphere, and cylinder pair with particle
 | Metric | Measured population | Report location |
 |---|---|---|
 | Global, near-contact, and moving-particle position errors | 60 held-out, six-second trajectories | Figures 1–2; time curves on reference case pages |
-| Mean/p95 sand-surface distance and 0.02/0.03 m grid sensitivity | 60 held-out trajectories | Figure 3 |
+| Mean and 95th-percentile symmetric surface distance | 60 held-out trajectories | Figure 3; reconstruction-resolution sensitivity in the downloadable `test_report.json` |
 | Grid-mass discrepancy, beneath-object mass, penetration, and total represented mass | 60 held-out trajectories | Figure 4; maps and curves on reference pages |
 | Velocity RMSE, reference-mass coverage, and kinetic energy | 60 held-out trajectories | Figure 5 |
 | Fx/Fy/Fz and vector force errors, signed bias | Four dedicated reference recordings; no force references in the 60-test dataset | Figures 6–7; additional fixed-hold force traces on their pages |

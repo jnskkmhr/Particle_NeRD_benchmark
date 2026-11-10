@@ -7,7 +7,12 @@ import json
 import shutil
 from pathlib import Path
 
-from object_metric_results import HOLD_CASES, hold_results, metric_results
+from object_metric_results import (
+    HOLD_CASES,
+    hold_results,
+    metric_results,
+    metric_section,
+)
 from plot_object_metric_comparisons import figure_html, generate
 
 CASES = {
@@ -236,7 +241,7 @@ def build_case(root, output, checkpoint):
         ("Mass measurement beneath body", meta["below_body_region"]),
         (
             "Surface reconstruction",
-            f"Grid {meta['grid_spacing_m']:g} m; sensitivity grid {meta['surface_sensitivity_spacing_m']:g} m; Gaussian σ={meta['surface_kernel_sigma_m']:g} m; density threshold {meta['surface_density_threshold_kg_m3']:g} kg/m³; {meta['surface_samples_per_direction']} area-uniform samples per direction.",
+            f"Offline surface-reconstruction grid {meta['grid_spacing_m']:g} m; resolution-sensitivity check {meta['surface_sensitivity_spacing_m']:g} m (measurement settings, not simulation resolution); Gaussian σ={meta['surface_kernel_sigma_m']:g} m; density threshold {meta['surface_density_threshold_kg_m3']:g} kg/m³; {meta['surface_samples_per_direction']} area-uniform samples per direction.",
         ),
         (
             "Force reconstruction",
@@ -244,7 +249,7 @@ def build_case(root, output, checkpoint):
         ),
     ]
     content = section(
-        "1. Simulation conditions and evaluation method",
+        "Evaluation conditions",
         '<p><a href="../">Shared model, training conditions, and held-out test results</a></p>'
         + table(
             "Table 1: Conditions for this recorded-motion comparison.",
@@ -267,7 +272,7 @@ def build_case(root, output, checkpoint):
         )
     first, last = (video["state_indices"][i] * meta["native_dt_s"] for i in (0, -1))
     content += section(
-        "2. Matched simulation video",
+        "Matched simulation video",
         f'<figure class="video-figure" id="hold-video"><video controls playsinline preload="metadata" poster="comparison_poster.png"><source src="comparison.mp4" type="video/mp4"></video><figcaption><strong>Video 1:</strong> Left: recorded implicit MPM. Right: recurrent Particle NeRD predictions. Both panels show the same recorded body poses; an object can therefore remain suspended when predicted sand loses support. These exact states supply the plots below. {len(video["state_indices"])} frames at 50 fps, simulation time {first:g}–{last:g} s.</figcaption></figure>',
     )
     figures = ""
@@ -279,10 +284,10 @@ def build_case(root, output, checkpoint):
         if number in (2, 3) and episode["id"].endswith("-static-support"):
             caption += " Panels (d), (e), and (f) show Fx, Fy, and Fz from 3 s onward with expanded force scales."
         figures += f'<figure class="result-figure"><div class="plot-scroll" tabindex="0"><a href="{stem}.svg"><img src="{stem}.svg" alt="{html.escape(caption)}" loading="lazy"></a></div><figcaption><strong>Figure {number}:</strong> {caption} <a href="{stem}.png">PNG</a> · <a href="{stem}.pdf">PDF</a></figcaption></figure>'
-    content += section("3. Particle, material, and force measurements", figures)
+    content += section("Time series for metrics 1–5", figures)
     if episode["id"] in HOLD_CASES:
-        content += section(
-            "Spatio-temporal consistency: 3–23 s",
+        content += metric_section(
+            6,
             "<p>The object is held at an exactly fixed pose after 2 s. Each method is measured relative to its own "
             "3 s state, without reset or alignment. The reference bed also settles; escaped MPM particles are retained. "
             "The video above includes insertion and this entire measurement interval. There is one run per shape.</p>"
@@ -295,10 +300,12 @@ def build_case(root, output, checkpoint):
             '</figcaption></figure><p><a href="consistency_summary.json">Measured results and settings</a> · '
             '<a href="consistency_series.json">Scalar time series</a> · '
             '<a href="consistency_provenance.json">Input and figure hashes</a></p>',
+            section,
+            numbered=False,
         )
     first_number = 8 if episode["id"] in HOLD_CASES else 7
-    content += section(
-        "4. Force errors and provenance",
+    content += metric_section(
+        5,
         figure_html(
             "force_error_summary",
             first_number,
@@ -318,6 +325,8 @@ def build_case(root, output, checkpoint):
         '<a href="plot_provenance.json">Time-series plot hashes</a> · '
         '<a href="video_provenance.json">Video timestamps and hashes</a></p>'
         "<p>Only figures, videos, settings, and result summaries are public. Raw trajectories and weights remain private.</p>",
+        section,
+        numbered=False,
     )
     (output / "index.html").write_text(
         page(({**CASES, **HOLD_CASES})[episode["id"]], content, depth=3)
@@ -500,14 +509,12 @@ def main():
         ("Checkpoint SHA-256", checkpoint),
     ]
     content = section(
-        "1. Simulation conditions and evaluation method",
+        "Evaluation conditions",
         table("Table 1: Shared object-model experiment.", ("Item", "Condition"), rows),
     )
-    content += metric_results(
-        report, args.references, CASES, table, section, measurement
-    )
-    content += section(
-        "3. Dedicated reference recordings and force accuracy",
+    content += metric_results(report, section)
+    content += metric_section(
+        5,
         "<p>The 60 held-out dataset recordings have no reference forces. Force accuracy is measured on four "
         "dedicated recordings with the same checkpoint. Each includes an exact matching 50 fps video and full curves. "
         "Body poses are replayed from MPM; estimated forces do not change them.</p><ul>"
@@ -518,6 +525,7 @@ def main():
         + figure_html("reference_force_errors")
         + figure_html("reference_summary")
         + "<p>Chamfer and Wasserstein distances remain optional, unmeasured diagnostics.</p>",
+        section,
     )
     content += hold_results(args.holds, args.output, checkpoint, digest, table, section)
     (args.output / "index.html").write_text(

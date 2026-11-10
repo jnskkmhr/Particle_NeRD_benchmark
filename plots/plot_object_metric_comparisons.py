@@ -34,37 +34,37 @@ DISTRIBUTION = (
 PLOTS = {
     "test_particle_errors": (
         1,
-        "Particle-position accuracy",
-        "(a,b) Whole-bed position RMSE; (c,d) near-body RMSE; (e,f) moving-particle RMSE. Left: time mean over 0–6 s; right: final 6 s frame. NeRD errors use corresponding MPM particles. Near-body reference distance ≤0.05 m; moving reference speed >0.01 m/s. One final moving region is empty and remains unavailable. "
+        "Particle-position RMSE, globally and by region",
+        "(a,b) Whole-bed position RMSE; (c,d) near-contact particle RMSE; (e,f) moving-particle RMSE. Left: time mean over 0–6 s; right: final 6 s frame. NeRD errors use corresponding MPM particles. Near-contact reference distance ≤0.05 m; moving reference speed >0.01 m/s. One final moving region is empty and remains unavailable. "
         + DISTRIBUTION,
     ),
     "test_regions_baseline": (
         2,
         "Regional populations and unchanged-position baseline",
-        "(a,b) Time-mean reference populations near the body and moving faster than 0.01 m/s. (c,d) Whole-bed time-mean and final position errors of NeRD versus retaining initial particle positions. The unchanged-position baseline is not another trained model. "
+        "(a,b) Time-mean reference populations within 0.05 m of the interacting-body surface and moving faster than 0.01 m/s. (c,d) Whole-bed time-mean and final position errors of NeRD versus retaining initial particle positions. The unchanged-position baseline is not another trained model. "
         + DISTRIBUTION,
     ),
     "test_surface_errors": (
         3,
-        "Sand-surface accuracy",
-        "(a,b) Time-mean surface distance and spatial p95; (c,d) final surface distance and p95; (e,f) time-mean distance and p95 using the coarser 0.03 m reconstruction grid instead of 0.02 m. Distances are symmetric, area-sampled, and unaligned. Spatial p95 differs from variability across trajectories. "
+        "Mean and 95th-percentile symmetric surface distance",
+        "(a,b) Time means of the mean and 95th-percentile symmetric surface distance; (c,d) the same metrics at 6 s. Distances use area-uniform surface samples without alignment. The 95th percentile is taken over surface distances within a frame, not across trajectories. Sand surfaces are reconstructed on a 0.02 m measurement grid. "
         + DISTRIBUTION,
     ),
     "test_material_distribution": (
         4,
-        "Physical material distribution",
+        "Material-mass discrepancy on a common grid",
         "(a,b) Time-mean and final grid-mass discrepancy: sum of absolute cell-mass differences divided by total physical mass. (c,d) Final physical mass beneath and inside the body; (e) total represented mass at 6 s. Equal total mass does not imply correct distribution or confinement to the tray. "
         + DISTRIBUTION,
     ),
     "test_velocity_energy": (
         5,
-        "Material velocity and kinetic energy",
+        "Velocity fields and kinetic energy",
         "(a,b) Time-mean and final velocity-field RMSE; (c,d) corresponding fractions of reference mass covered by shared occupied cells; (e,f) time-mean and final particle kinetic energy. Velocities use matched consecutive-position differences. "
         + DISTRIBUTION,
     ),
     "reference_force_errors": (
         6,
-        "Force-component errors",
+        "Per-body force RMSE and signed mean error for Fx, Fy, Fz",
         "(a–c) Fx, Fy, Fz RMSE; (d–f) signed mean errors. Native MPM material force is the reference, excluding rigid-tray force. Signed error is estimate minus MPM. Each case is one raw 200 Hz recording. The gray series substitutes MPM particles into the same estimator; it is not a second network. No force reference exists for the 60-test dataset.",
     ),
     "reference_summary": (
@@ -74,7 +74,7 @@ PLOTS = {
     ),
     "hold_summary": (
         8,
-        "Spatio-temporal consistency",
+        "Spatio-temporal consistency under a stationary object",
         "One fixed-object run per shape; open circles mark measured zeros. (a) Mass-weighted mean particle displacement in world z at 23 s relative to 3 s; (b) its least-squares rate over 13–23 s; (c) RMS particle drift; (d) mean change of the material isosurface; (e) normalized absolute grid-mass redistribution; (f) mass remaining beneath the object relative to 3 s. Negative z means downward. Each solver is compared with its own 3 s state, without resetting particles. In (c), one escaped MPM particle dominates box/cylinder RMS (>99% of squared displacement); this does not describe bulk-bed drift.",
     ),
     "hold_material": (
@@ -249,36 +249,35 @@ def generate(root):
             (f"{region}_rmse_mm_{stat}", f"{label}\nposition RMSE (mm)")
             for region, label in (
                 ("global", "Whole bed"),
-                ("near_contact", "Near body"),
+                ("near_contact", "Near-contact particles"),
                 ("moving", "Moving particles"),
             )
             for stat in ("time_mean", "end")
         ],
         "test_regions_baseline": [
-            ("near_contact_count_time_mean", "Near-body particle count"),
+            ("near_contact_count_time_mean", "Near-contact particle count"),
             ("moving_count_time_mean", "Moving particle count"),
             ("global_rmse_mm_time_mean", "Time-mean position RMSE (mm)"),
             ("global_rmse_mm_end", "Final position RMSE (mm)"),
         ],
         "test_surface_errors": [
-            (f"surface_{stat}_mm{grid}_{when}", f"Surface {stat}\ndistance (mm)")
-            for grid, when in (
-                ("", "time_mean"),
-                ("", "end"),
-                ("_30mm_grid", "time_mean"),
+            (
+                f"surface_{stat}_mm_{when}",
+                f"{label} symmetric\nsurface distance (mm)",
             )
-            for stat in ("mean", "p95")
+            for when in ("time_mean", "end")
+            for stat, label in (("mean", "Mean"), ("p95", "95th-percentile"))
         ],
         "test_material_distribution": [
-            ("mass_discrepancy_time_mean", "Time-mean grid-mass discrepancy"),
-            ("mass_discrepancy_end", "Final grid-mass discrepancy"),
+            ("mass_discrepancy_time_mean", "Time-mean material-mass\ndiscrepancy"),
+            ("mass_discrepancy_end", "Final material-mass\ndiscrepancy"),
             ("predicted_below_body_mass_kg_end", "Mass beneath body (kg)"),
             ("predicted_inside_body_mass_kg_end", "Mass inside body (kg)"),
             ("predicted_mass_kg_end", "Total represented mass (kg)"),
         ],
         "test_velocity_energy": [
-            ("velocity_rmse_m_s_time_mean", "Time-mean velocity RMSE (m/s)"),
-            ("velocity_rmse_m_s_end", "Final velocity RMSE (m/s)"),
+            ("velocity_rmse_m_s_time_mean", "Time-mean velocity-field\nRMSE (m/s)"),
+            ("velocity_rmse_m_s_end", "Final velocity-field\nRMSE (m/s)"),
             (
                 "velocity_reference_mass_coverage_time_mean",
                 "Time-mean reference-mass coverage",

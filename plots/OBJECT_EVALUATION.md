@@ -114,3 +114,5 @@ The distribution plots show every available trajectory summary, median/IQR boxes
 and mean diamonds. Counts are explicit per shape. Fixed-object bars represent one paired recording
 per shape; no repeated-trial uncertainty is implied. Reference MPM leakage and the effect of escaped
 particles on RMS remain disclosed.
+
+The report reads its six numbered metric section titles directly from `metrics/README.md` and links each section to its definition. Figure 3 shows mean and 95th-percentile symmetric surface distances on the primary 0.02 m reconstruction grid. The auxiliary 0.03 m reconstruction-resolution check remains in `test_report.json`; these offline measurement grids do not change the simulation resolution.
