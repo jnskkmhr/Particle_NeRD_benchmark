@@ -10,24 +10,24 @@
     "mass_difference_maps.npz": "23efbef6bae73be1ebea6fa73636182e1f6132a259fdfd7642d097ce55594caf"
   },
   "figures_sha256": {
-    "particle_evaluation.png": "42bf63db374df3fa6b0ac4ab9555c1ebc4594b500ca4a91554af0224b435f236",
-    "particle_evaluation.pdf": "38b8ade25556224da94939eb1ab227979d6a8698f0171ebcbfa5dd5a682206bd",
-    "particle_evaluation.svg": "b14374d7ecbf03420f7edae6b3f4f44a741843640271844542436f7731ad1092",
-    "particle_region_counts.png": "4133b0b5de31eee3a6746a769bbe11ce13288eba222e216e62497d4ac9bbf2c1",
-    "particle_region_counts.pdf": "b6e1327032266b1b8f6b40b3277790104da58c66bca2740a66709fc83316284a",
-    "particle_region_counts.svg": "15fc02e5ecc9a0aaf801b43482dd8ac03bbf4625697b449539fea75dc0daa746",
-    "body_mass.png": "978c8c75f145b593feb80116a11ecf0850127b31fac7a344c349d3fc2795dcb7",
-    "body_mass.pdf": "602889827a7d37350b8b54e916aae98991b6cd44b78dc9ebfeda3afe978283b3",
-    "body_mass.svg": "4ec00c36ff653e567a935217f879d1d2da1aa5e79abfcda6fa1f6dee77b61418",
-    "mass_difference.png": "776a507d675da015fcebb0f137a234d061b4a25e7e9d7450c3c798d63f59b176",
-    "mass_difference.pdf": "e26a71e39741f1c6546458f3a9f26e8a002f705612914b69ddeb519d6fed41e7",
-    "mass_difference.svg": "ec7b1ccec03d849eda8140fb12aed915c9e68f3176d8d13d0a7ccdcc23ee212e",
-    "forces.png": "0baff696ec17c20a820e74bcb9310b3aa44878356fb6e6b5223e141a97b93ecd",
-    "forces.pdf": "d087db1c58b98b16e6d225e02baf0bff6802c82a60dae27bb3f26f72b25daa0c",
-    "forces.svg": "53a50860dc4bc8726240106165a61f393e955c3fa94f2032e082f719ac81e43f",
-    "force_reconstruction.png": "5b6b042cc760483acd7414abb21d5ac7fae671f53f25245e1795f329b4818d8a",
-    "force_reconstruction.pdf": "387f58cba60a661c0cfbde8940ff17912f2f2053a47693ae1908b98274c3875a",
-    "force_reconstruction.svg": "114a4fd2a607454397d43fae11ac135bfb368af3cfbb8b703aafd3f05c5ed3c5"
+    "particle_evaluation.png": "3a10cc05e730bb397889466aaa59f585ddd77e3d0437a5fe48736e70a0beecd5",
+    "particle_evaluation.pdf": "0791527fede5243cd0de9688f702f81155e6ad1c533b2221b0075e361d4191e9",
+    "particle_evaluation.svg": "255aee0e1fedc7291bce9cad0f960c6d75c9759f56cc7342b84c6a75923faac4",
+    "particle_region_counts.png": "a7d5145e6a7ed770bfda3627aacbda49204d4099b5af847cb46f18200aab5147",
+    "particle_region_counts.pdf": "28f8858af2dcd24077379e0159ab41d2c4dbdbd1a4c6038710f261be80f559db",
+    "particle_region_counts.svg": "a2e9a12faa91f38ccf31b5557ba927582f662f58e7fa97de2bb0ac27da41b0fa",
+    "body_mass.png": "919419b6c3d4ec1207778a970f6168b052a4926aa1f9858eefcf4575f3fc3516",
+    "body_mass.pdf": "0ffc541ac614fa1a7c5dd5a7c3d9d55d1cd0c150f3979a4d6e5130ad54bffe99",
+    "body_mass.svg": "1b9cd4e9a2252127159dfde43475d8dc98bad7fbc533a31b990b95bfddeedbd9",
+    "mass_difference.png": "6d8fbb7ee14d2b05c102b25389736aa5bdfce9c23e017b367b5db81e030b3c8e",
+    "mass_difference.pdf": "e6f4df29830fec65d3952c1b7c4e6317badad4fedbd72780dd14e1e7d21eb701",
+    "mass_difference.svg": "19f68437c5188b84169eab6fc9dca4bb25925edf1c0fceea7443148ad7efc32c",
+    "forces.png": "1c14acd7b6d647d5c4487d0ccdf409c00d6093340bcc81890fc54b5ad10e4e50",
+    "forces.pdf": "885e020a2473872e78a1f5234410d76280f0944c07e6508b22ae5d6ac59e6eb9",
+    "forces.svg": "f10e556ec6f8a587e925a613e8902905a5662a0334f74ca86f6e440ac9e8f35b",
+    "force_reconstruction.png": "b715170a2965c7d4490e2b63e39f406bdb765e853d97b8fb41a6cb7ebce52ff0",
+    "force_reconstruction.pdf": "204ff3e724ff1e8d62fec8247ac0e598822b902dc9b096d36c99df518e1bc615",
+    "force_reconstruction.svg": "39c4933c2e5e5c6022366dde91cb9e67dc68b0ea8bd3445b7be3dc3e736d6394"
   },
-  "plot_source_sha256": "40a3d1ec339ec392bd4e2134ee6b3e4b39cca82db29abed2ea46de6494268b88"
+  "plot_source_sha256": "5f34ad31d2550028b02c8e24be2d18c14725e5e3b967775b59511bc1db7d58ce"
 }

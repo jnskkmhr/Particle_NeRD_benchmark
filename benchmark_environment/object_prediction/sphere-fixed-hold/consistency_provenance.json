@@ -6,13 +6,13 @@
   "files_sha256": {
     "consistency_summary.json": "602d0c2fb7a5f0616ea90f7338fb67276398303f07b8f3cba74314817df7e87c",
     "consistency_series.json": "8e43fe13f4545baa0183d2cbd5c6099fe9153b1976849d0a0c8f0658eb615a3d",
-    "spatiotemporal_consistency.png": "eb5b25d0d3adaaa6db97066328a29e49180f846ae54d07d968248001b83b8d5d",
-    "spatiotemporal_consistency.pdf": "6a8b1172bab758861cc2e93ed1076756f596f63d8d998b721e201c6a691022f2",
-    "spatiotemporal_consistency.svg": "c3c0ff4604160cf538dc08ae16d19547d495d5e1d7b15f62a0cc44ee2a314c84"
+    "spatiotemporal_consistency.png": "a026320cc1289600521d3998c5712af2fbaf2b3d14e7ef537ff97674e2b7f276",
+    "spatiotemporal_consistency.pdf": "c49d024dc2c6f2755536003f45f71cd072bf4e86021922d03da5a81de5617f94",
+    "spatiotemporal_consistency.svg": "27fa03154200c97ea452bbdf2477c9eca4981e688e9c8fd6e0287130a5cddf48"
   },
   "measurement_source_sha256": "1876fed343912c46aa8707df2996c230ea631addc51ef55869d9b234fb395839",
-  "figure_source_sha256": "83161cd04b051ad2b90be76b4331a44469b1242569140ad298a2f55489d602dc",
+  "figure_source_sha256": "d38488413d7ea3462ffa5ffbcb835995f12579ffcd643dd43df1bbed3a21827d",
   "annotation_source_sha256": "47a1382785568edbcaca44f7b413bcccd9475e14393690e77aa098a81c45d79a",
   "original_summary_sha256": "8b60a4be625561b8450eadbb6567d1ff7c68765fb2f4227bda8359d2d04c354c",
-  "annotation": "Added original paired-field failure and exact sampling-seed schedule; numerical metrics and scalar series unchanged. Re-rendered figures with explicit physical definitions."
+  "annotation": "Added original paired-field failure and exact sampling-seed schedule; numerical metrics and scalar series unchanged. Re-rendered figures with explicit physical definitions. Removed panel letters; measured values and time samples unchanged."
 }

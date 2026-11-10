@@ -14,14 +14,14 @@ HOLD_CASES = {
 }
 
 
-METRIC_HEADINGS = dict(
-    (int(number), f"{number}. {title}")
+METRIC_HEADINGS = {
+    int(number): f"{number}. {title}"
     for number, title in re.findall(
         r"^## ([1-6])\. (.+)$",
         (Path(__file__).resolve().parents[1] / "metrics/README.md").read_text(),
         re.MULTILINE,
     )
-)
+}
 
 
 def metric_section(number, content, section, *, numbered=True):
@@ -49,22 +49,26 @@ def metric_results(report, section):
         "against MPM.</p>"
     )
     groups = (
-        (1, ("test_particle_errors", "test_regions_baseline"), introduction),
+        (1, ("test_particle_errors",), introduction),
         (
             2,
             ("test_surface_errors",),
-            "<p>The mean and 95th-percentile symmetric surface distance measure the reconstructed sand shape. "
-            "The plotted measurements use a 0.02 m grid for reconstructing the sand surface from recorded particles. "
-            "This is a measurement setting, separate from the 0.04 m MPM simulation grid. "
-            "The README also requests a reconstruction-resolution sensitivity check: its 0.03 m results remain "
-            '<a href="test_report.json">in the downloadable results</a>, outside the main metric plot.</p>',
+            (
+                "<p>The mean and 95th-percentile symmetric surface distance measure the reconstructed sand shape. "
+                "The plotted measurements use a 0.02 m grid for reconstructing the sand surface from recorded particles. "
+                "This is a measurement setting, separate from the 0.04 m MPM simulation grid. "
+                "The README also requests a reconstruction-resolution sensitivity check: its 0.03 m results remain "
+                '<a href="test_report.json">in the downloadable results</a>, outside the main metric plot.</p>'
+            ),
         ),
         (
             3,
             ("test_material_distribution",),
-            "<p>These object tests use the same material-mass discrepancy on a common grid. "
-            "For the local depletion diagnostic, the region is beneath the box, sphere, or cylinder; "
-            "these tests do not contain robot feet. Each case page defines the region.</p>",
+            (
+                "<p>These object tests use the same material-mass discrepancy on a common grid. "
+                "For the local depletion diagnostic, the region is beneath the box, sphere, or cylinder; "
+                "these tests do not contain robot feet. Each case page defines the region.</p>"
+            ),
         ),
         (4, ("test_velocity_energy",), ""),
     )
@@ -72,6 +76,7 @@ def metric_results(report, section):
         metric_section(
             number,
             description
+            + '<p><a href="#test-motion-videos">Watch the recorded motions used for metrics 1–4</a>.</p>'
             + "".join(
                 "<h3>" + html.escape(PLOTS[stem][1]) + "</h3>" + figure_html(stem)
                 for stem in stems

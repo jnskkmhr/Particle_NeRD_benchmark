@@ -35,52 +35,115 @@ PLOTS = {
     "test_particle_errors": (
         1,
         "Particle-position RMSE, globally and by region",
-        "(a,b) Whole-bed position RMSE; (c,d) near-contact particle RMSE; (e,f) moving-particle RMSE. Left: time mean over 0–6 s; right: final 6 s frame. NeRD errors use corresponding MPM particles. Near-contact reference distance ≤0.05 m; moving reference speed >0.01 m/s. One final moving region is empty and remains unavailable. "
-        + DISTRIBUTION,
-    ),
-    "test_regions_baseline": (
-        2,
-        "Regional populations and unchanged-position baseline",
-        "(a,b) Time-mean reference populations within 0.05 m of the interacting-body surface and moving faster than 0.01 m/s. (c,d) Whole-bed time-mean and final position errors of NeRD versus retaining initial particle positions. The unchanged-position baseline is not another trained model. "
-        + DISTRIBUTION,
+        (
+            "Rows show particle-position RMSE for the entire bed, near-contact "
+            "particles, and moving particles. Left column: time-mean over 0–6 s; "
+            "right column: terminal state at 6 s. NeRD errors use corresponding MPM "
+            "particles. Near-contact reference distance ≤0.05 m; moving reference "
+            "speed >0.01 m/s. One terminal-state moving region is empty and remains "
+            "unavailable. Each dot is one trajectory summary; boxes show the median "
+            "and interquartile range, whiskers extend to 1.5 IQR, diamonds mark "
+            "means. Twenty trajectories per shape unless labeled otherwise. Time "
+            "means use available samples; empty particle regions are not assigned "
+            "zero error."
+        ),
     ),
     "test_surface_errors": (
-        3,
+        2,
         "Mean and 95th-percentile symmetric surface distance",
-        "(a,b) Time means of the mean and 95th-percentile symmetric surface distance; (c,d) the same metrics at 6 s. Distances use area-uniform surface samples without alignment. The 95th percentile is taken over surface distances within a frame, not across trajectories. Sand surfaces are reconstructed on a 0.02 m measurement grid. "
-        + DISTRIBUTION,
+        (
+            "Rows show the mean and 95th-percentile symmetric surface distance. Left "
+            "column: time-mean over 0–6 s; right column: terminal state at 6 s. "
+            "Distances use area-uniform surface samples without alignment. The 95th "
+            "percentile is over surface distances within a frame, not across "
+            "trajectories. Sand surfaces use a 0.02 m measurement grid. Each dot is "
+            "one trajectory summary; boxes show the median and interquartile range, "
+            "whiskers extend to 1.5 IQR, diamonds mark means. Twenty trajectories per "
+            "shape unless labeled otherwise. Time means use available samples; empty "
+            "particle regions are not assigned zero error."
+        ),
     ),
     "test_material_distribution": (
-        4,
+        3,
         "Material-mass discrepancy on a common grid",
-        "(a,b) Time-mean and final grid-mass discrepancy: sum of absolute cell-mass differences divided by total physical mass. (c,d) Final physical mass beneath and inside the body; (e) total represented mass at 6 s. Equal total mass does not imply correct distribution or confinement to the tray. "
-        + DISTRIBUTION,
+        (
+            "The first row shows time-mean and terminal-state material-mass "
+            "discrepancy: sum of absolute cell-mass differences divided by "
+            "total physical mass. The second row shows terminal-state mass "
+            "beneath and inside the body; the last panel shows total "
+            "represented mass. Terminal state is 6 s. Equal total mass does "
+            "not imply correct distribution or confinement to the tray. Each "
+            "dot is one trajectory summary; boxes show the median and "
+            "interquartile range, whiskers extend to 1.5 IQR, diamonds mark "
+            "means. Twenty trajectories per shape unless labeled otherwise. "
+            "Time means use available samples; empty particle regions are not "
+            "assigned zero error."
+        ),
     ),
     "test_velocity_energy": (
-        5,
+        4,
         "Velocity fields and kinetic energy",
-        "(a,b) Time-mean and final velocity-field RMSE; (c,d) corresponding fractions of reference mass covered by shared occupied cells; (e,f) time-mean and final particle kinetic energy. Velocities use matched consecutive-position differences. "
-        + DISTRIBUTION,
+        (
+            "Rows show velocity-field RMSE, the fraction of reference mass covered "
+            "by shared occupied cells, and particle kinetic energy. Left column: "
+            "time-mean over 0–6 s; right column: terminal state at 6 s. Velocities "
+            "use matched consecutive-position differences. Each dot is one "
+            "trajectory summary; boxes show the median and interquartile range, "
+            "whiskers extend to 1.5 IQR, diamonds mark means. Twenty trajectories "
+            "per shape unless labeled otherwise. Time means use available samples; "
+            "empty particle regions are not assigned zero error."
+        ),
     ),
     "reference_force_errors": (
-        6,
+        5,
         "Per-body force RMSE and signed mean error for Fx, Fy, Fz",
-        "(a–c) Fx, Fy, Fz RMSE; (d–f) signed mean errors. Native MPM material force is the reference, excluding rigid-tray force. Signed error is estimate minus MPM. Each case is one raw 200 Hz recording. The gray series substitutes MPM particles into the same estimator; it is not a second network. No force reference exists for the 60-test dataset.",
+        (
+            "Columns show Fx, Fy, Fz. Top row: component RMSE; bottom row: signed "
+            "mean error (estimate minus native MPM material force). Direct "
+            "rigid-tray force is excluded. Each case is one raw 200 Hz recording. "
+            "The gray diagnostic supplies MPM particles to the same estimator. No "
+            "force reference exists for the 60-test dataset."
+        ),
     ),
     "reference_summary": (
-        7,
+        6,
         "Dedicated reference recordings",
-        "(a) Final particle-position RMSE; (b) force-vector RMSE without division by three; (c) mean Fz during the final second, with population standard deviation over time. Open circles mark measured zeros. Whiskers in (c) are temporal variation in one recording, not repeated-run uncertainty. The horizontal case lasts 6 s; support cases last 20 s. Body poses are replayed from MPM and do not respond to estimated force.",
+        (
+            "Left: terminal particle-position RMSE. Center: force-vector RMSE without "
+            "division by three. Right: mean Fz during the final second, with temporal "
+            "population standard deviation. Open circles mark measured zeros. Whiskers "
+            "describe temporal variation in one recording, not repeated-run "
+            "uncertainty. Horizontal motion lasts 6 s; support tests last 20 s. Body "
+            "poses are replayed from MPM and do not respond to estimated force."
+        ),
     ),
     "hold_summary": (
-        8,
+        7,
         "Spatio-temporal consistency under a stationary object",
-        "One fixed-object run per shape; open circles mark measured zeros. (a) Mass-weighted mean particle displacement in world z at 23 s relative to 3 s; (b) its least-squares rate over 13–23 s; (c) RMS particle drift; (d) mean change of the material isosurface; (e) normalized absolute grid-mass redistribution; (f) mass remaining beneath the object relative to 3 s. Negative z means downward. Each solver is compared with its own 3 s state, without resetting particles. In (c), one escaped MPM particle dominates box/cylinder RMS (>99% of squared displacement); this does not describe bulk-bed drift.",
+        (
+            "One fixed-object run per shape; open circles mark measured zeros. Top row: "
+            "mass-weighted mean change in world z at 23 s relative to 3 s, and its "
+            "least-squares rate over 13–23 s. Middle row: RMS particle drift and mean "
+            "material-isosurface change. Bottom row: normalized absolute grid-mass "
+            "redistribution and mass remaining beneath the object relative to 3 s. Negative "
+            "z means downward. Each solver is compared with its own 3 s state without reset. "
+            "One escaped MPM particle dominates box/cylinder RMS (>99% of squared "
+            "displacement); this does not describe bulk-bed drift."
+        ),
     ),
     "hold_material": (
-        9,
+        8,
         "Material beneath the fixed object and floor leakage",
-        "Open circles mark measured zeros. (a,b) Physical mass beneath the object at 3 and 23 s; the region is its world x/y bounding rectangle extending 0.10 m below the lowest body point, clipped above the floor. (c) Mass with centers below the z=−0.30 m floor, with 1 μm tolerance; (d) mass more than 1 cm below it; (e) lowest particle-center z at 23 s, with symmetric-log scale (linear within ±1 m). Percentages use total represented physical mass. One paired run per shape; all escaped particles are retained. MPM also settles and leaks.",
+        (
+            "Open circles mark measured zeros. Top row: physical mass beneath the object at "
+            "3 and 23 s. The region is its world x/y bounding rectangle extending 0.10 m "
+            "below the lowest body point, clipped above the floor. Middle row: mass with "
+            "centers below the z=−0.30 m floor (1 μm tolerance), and mass more than 1 cm "
+            "below it. Last panel: lowest particle-center z at 23 s, with symmetric-log "
+            "scale (linear within ±1 m). Percentages use total represented physical mass. "
+            "One paired run per shape; all escaped particles are retained. MPM also settles "
+            "and leaks."
+        ),
     ),
 }
 
@@ -112,9 +175,8 @@ def canvas(rows=2, cols=3):
 def finish(fig, axes, root, stem, caption, number):
     import textwrap
 
-    for i, ax in enumerate(axes):
+    for ax in axes:
         if ax.axison:
-            ax.set_title(f"({chr(97 + i)})", loc="left")
             ax.grid(axis="y", alpha=0.15)
             ax.tick_params(axis="x", labelsize=10)
     text = textwrap.fill(f"Figure {number}: {caption}", width=155)
@@ -254,26 +316,20 @@ def generate(root):
             )
             for stat in ("time_mean", "end")
         ],
-        "test_regions_baseline": [
-            ("near_contact_count_time_mean", "Near-contact particle count"),
-            ("moving_count_time_mean", "Moving particle count"),
-            ("global_rmse_mm_time_mean", "Time-mean position RMSE (mm)"),
-            ("global_rmse_mm_end", "Final position RMSE (mm)"),
-        ],
         "test_surface_errors": [
             (
                 f"surface_{stat}_mm_{when}",
                 f"{label} symmetric\nsurface distance (mm)",
             )
-            for when in ("time_mean", "end")
             for stat, label in (("mean", "Mean"), ("p95", "95th-percentile"))
+            for when in ("time_mean", "end")
         ],
         "test_material_distribution": [
             ("mass_discrepancy_time_mean", "Time-mean material-mass\ndiscrepancy"),
             ("mass_discrepancy_end", "Final material-mass\ndiscrepancy"),
-            ("predicted_below_body_mass_kg_end", "Mass beneath body (kg)"),
-            ("predicted_inside_body_mass_kg_end", "Mass inside body (kg)"),
-            ("predicted_mass_kg_end", "Total represented mass (kg)"),
+            ("predicted_below_body_mass_kg_end", "Terminal mass\nbeneath body (kg)"),
+            ("predicted_inside_body_mass_kg_end", "Terminal mass\ninside body (kg)"),
+            ("predicted_mass_kg_end", "Terminal total\nrepresented mass (kg)"),
         ],
         "test_velocity_energy": [
             ("velocity_rmse_m_s_time_mean", "Time-mean velocity-field\nRMSE (m/s)"),
@@ -295,18 +351,12 @@ def generate(root):
                 series.insert(
                     0, (key.replace("predicted_", "reference_"), "Implicit MPM", MPM)
                 )
-            if stem == "test_regions_baseline" and key.startswith("global_"):
-                series.insert(
-                    0,
-                    (
-                        key.replace("global_", "frozen_"),
-                        "Unchanged initial positions",
-                        DIAGNOSTIC,
-                    ),
-                )
             distribution(axes[index], records, series, label)
         for ax in axes[len(keys) :]:
             ax.set_axis_off()
+        if stem != "test_material_distribution":
+            axes[0].set_title("Time-mean (0–6 s)", pad=14)
+            axes[1].set_title("Terminal state (6 s)", pad=14)
         number, _, caption = PLOTS[stem]
         outputs.extend(save(fig, axes, root, stem, caption, number))
 
@@ -336,7 +386,7 @@ def generate(root):
             root,
             "reference_force_errors",
             PLOTS["reference_force_errors"][2],
-            6,
+            PLOTS["reference_force_errors"][0],
         )
     )
     fig, axes = canvas(1, 3)
@@ -373,7 +423,14 @@ def generate(root):
     )
     axes[2].legend(fontsize=8)
     outputs.extend(
-        save(fig, axes, root, "reference_summary", PLOTS["reference_summary"][2], 7)
+        save(
+            fig,
+            axes,
+            root,
+            "reference_summary",
+            PLOTS["reference_summary"][2],
+            PLOTS["reference_summary"][0],
+        )
     )
 
     summaries = read(root / "consistency_results.json")
@@ -454,7 +511,7 @@ def generate(root):
                 methods=estimation,
             )
         fig.legend(*axes[0].get_legend_handles_labels(), loc="upper center", ncol=2)
-        caption = "(a) Component RMSE; (b) signed mean error (estimate minus native MPM material force) over the full recording. World-frame forces, +z upward. Raw 200 Hz forces, no filtering or time shifts. The gray diagnostic uses the same estimator with MPM particles, not a second neural model."
+        caption = "Left: component RMSE; right: signed mean error (estimate minus native MPM material force) over the full recording. World-frame forces, +z upward. Raw 200 Hz forces, no filtering or time shifts. The gray diagnostic uses the same estimator with MPM particles, not a second neural model."
         outputs.extend(
             save(
                 fig,
@@ -515,7 +572,7 @@ def generate(root):
             ncol=3,
             fontsize=10,
         )
-        caption = "(a) Fx; (b) Fy; (c) Fz. Means and population standard deviations over the labeled one-second windows. Methods are offset horizontally within each window; force samples are not shifted in time. All raw 200 Hz samples are used. Whiskers show temporal variability in one recording, not repeated-trial uncertainty. Full force traces appear above."
+        caption = "Left to right: Fx, Fy, Fz. Means and population standard deviations over the labeled one-second windows. Methods are offset horizontally within each window; force samples are not shifted in time. All raw 200 Hz samples are used. Whiskers show temporal variability in one recording, not repeated-trial uncertainty. Full force traces appear above."
         outputs.extend(
             save(
                 fig,

@@ -24,6 +24,7 @@ uv run --no-project --with matplotlib --with numpy python /PATH/Particle_NeRD_be
   --test-report PRIVATE_TRAINING_OUTPUT/test_evaluation/report.json \
   --references PRIVATE_REFERENCE_EVALUATIONS \
   --holds PRIVATE_FIXED_HOLD_EVALUATIONS \
+  --test-videos PRIVATE_TEST_MOTION_VIDEOS \
   --output NEW_STAGING_DIRECTORY
 ```
 
@@ -96,7 +97,7 @@ The public `plot_object_consistency.py CASE_PAGE_DIRECTORY --output NEW_PLOT_DIR
 
 ## Graphical presentation of measured metrics
 
-The overview contains nine comparison figures instead of numerical result tables.
+The overview contains eight comparison figures instead of numerical result tables.
 Each detailed case also replaces force-error and selected-window tables with plots.
 Only simulation-condition tables remain. Exact numerical values remain in the same public JSON files.
 
@@ -115,4 +116,13 @@ and mean diamonds. Counts are explicit per shape. Fixed-object bars represent on
 per shape; no repeated-trial uncertainty is implied. Reference MPM leakage and the effect of escaped
 particles on RMS remain disclosed.
 
-The report reads its six numbered metric section titles directly from `metrics/README.md` and links each section to its definition. Figure 3 shows mean and 95th-percentile symmetric surface distances on the primary 0.02 m reconstruction grid. The auxiliary 0.03 m reconstruction-resolution check remains in `test_report.json`; these offline measurement grids do not change the simulation resolution.
+The report reads its six numbered metric section titles directly from `metrics/README.md` and links each section to its definition. Figure 2 shows mean and 95th-percentile symmetric surface distances on the primary 0.02 m reconstruction grid. The auxiliary 0.03 m reconstruction-resolution check remains in `test_report.json`; these offline measurement grids do not change the simulation resolution.
+
+
+## Videos and panel labels
+
+The motion gallery shows the first held-out episode in each shape/motion group (24 clips). Its manifest verifies the exact reference hash against `test_report.json`, the model checkpoint, prediction hash, and every video artifact. It copies only videos, posters, and provenance. The four force-reference videos are embedded in metric 5. No simulation or inference is rerun to make these videos.
+
+Render each downloaded saved evaluation with `uv run --no-sync python plots/render_object_motion_video.py PRIVATE_CASE --reference PRIVATE_REFERENCE.h5`; the reference's `manifest.json` must be beside that HDF5 file. Keep its original `evaluation.json`, `prediction.h5`, and reference file private. The gallery uses `motion_video_provenance.json` to record its deterministic selection rule and exact clip identities.
+
+Figures use descriptive labels without lettered panels. The particle-position, sand-surface, and velocity-field comparison columns are Time-mean (0–6 s) and Terminal state (6 s). The overview regional-population/unchanged-position-baseline figure is removed. Numerical inputs and the 60 evaluated trajectories are unchanged. Detailed plots can be regenerated with `plots/plot_recorded_object_case.py PRIVATE_CASE`, while temporal plots use `plot_object_consistency.py`.

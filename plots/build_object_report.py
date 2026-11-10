@@ -13,6 +13,7 @@ from object_metric_results import (
     metric_results,
     metric_section,
 )
+from object_motion_videos import install_test_videos, motion_gallery, reference_videos
 from plot_object_metric_comparisons import figure_html, generate
 
 CASES = {
@@ -25,32 +26,32 @@ FIGURES = (
     (
         1,
         "particle_evaluation",
-        "One paired rollout. (a) Particle-position RMSE for the whole bed, near-contact particles and moving particles, with a whole-bed unchanged-initial-position baseline; empty reference groups produce gaps (counts in Figure 6). (b) Symmetric sand-surface distance; (c) sum of absolute grid-mass differences divided by total reference mass; (d) reference-mass-weighted velocity RMSE in cells occupied by both methods, with their fraction of total reference mass; (e) particle kinetic energy; (f) material mass beneath the interacting body.",
+        "One paired rollout. Top row: particle-position RMSE for the whole bed, near-contact particles and moving particles; symmetric sand-surface distance. Middle row: material-mass discrepancy and velocity-field RMSE, with reference-mass coverage. Bottom row: particle kinetic energy and material mass beneath the interacting body. Empty reference groups produce gaps; Figure 6 shows counts.",
     ),
     (
         2,
         "forces",
-        "Raw material force on the interacting body: (a) Fx; (b) Fy; (c) Fz. Particle NeRD uses its recurrent particle predictions. Recorded MPM body motion and free velocities are imposed; estimated forces do not feed back to body motion. Direct rigid-tray forces are excluded.",
+        "Raw material force on the interacting body: Left to right: Fx, Fy, Fz. Particle NeRD uses its recurrent particle predictions. Recorded MPM body motion and free velocities are imposed; estimated forces do not feed back to body motion. Direct rigid-tray forces are excluded.",
     ),
     (
         3,
         "force_reconstruction",
-        "Force-reconstruction diagnostic: (a) Fx; (b) Fy; (c) Fz. Recorded MPM particles replace predicted particles in the same force estimator. This input substitution isolates the estimator; it is not a second neural model. Recorded MPM body motion and free velocities are imposed; estimated forces do not feed back to body motion.",
+        "Force-reconstruction diagnostic: Left to right: Fx, Fy, Fz. Recorded MPM particles replace predicted particles in the same force estimator. This input substitution isolates the estimator; it is not a second neural model. Recorded MPM body motion and free velocities are imposed; estimated forces do not feed back to body motion.",
     ),
     (
         4,
         "mass_difference",
-        "Predicted minus reference physical mass per projected grid column. (a–c) xy maps at the times printed above the panels; (d–f) xz maps at those same times. Green indicates excess predicted mass; navy indicates missing predicted mass. The shared color scale is symmetric logarithmic, linear within ±0.01 kg, with no clipping.",
+        "Predicted minus reference physical mass per projected grid column. Top row: xy maps at the printed times. Bottom row: xz maps at those same times. Green indicates excess predicted mass; navy indicates missing predicted mass. The shared color scale is symmetric logarithmic, linear within ±0.01 kg, with no clipping.",
     ),
     (
         5,
         "body_mass",
-        "(a) Change from initial material mass beneath the body; (b) mass of particle centers inside the body; (c) total represented particle mass. Physical particle masses are used throughout.",
+        "Left to right: change from initial material mass beneath the body; mass of particle centers inside the body; total represented particle mass. Physical particle masses are used throughout.",
     ),
     (
         6,
         "particle_region_counts",
-        "Reference particle populations: (a) particles within 0.05 m of the body surface; (b) particles moving faster than 0.01 m/s. Membership is recomputed each step. Zero count makes the corresponding regional position error undefined. Count axes are logarithmic above one particle and linear from zero to one.",
+        "Reference particle populations: Left: near-contact particles within 0.05 m of the body surface. Right: moving particles with speed above 0.01 m/s. Membership is recomputed each step. Zero count makes the corresponding regional position error undefined. Count axes are logarithmic above one particle and linear from zero to one.",
     ),
 )
 
@@ -77,11 +78,11 @@ def table(caption, headings, rows):
     return f'<div class="table-wrap"><table><caption>{html.escape(caption)}</caption><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
-def page(title, content, *, depth):
+def page(title, content, *, depth, extra_head=""):
     assets = "../" * depth
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(title)} · Particle NeRD</title><link rel="stylesheet" href="{assets}assets/slides.css"></head>
+<title>{html.escape(title)} · Particle NeRD</title><link rel="stylesheet" href="{assets}assets/slides.css">{extra_head}</head>
 <body class="benchmark-report"><header><a class="brand" href="{assets}index.html">Particle NeRD / Benchmarks</a><span class="archive">Shared object-model evaluation</span></header>
 <main><section class="report-heading"><p class="eyebrow">BOX · SPHERE · CYLINDER</p><h1>{html.escape(title)}</h1>
 <p>One shared particle model, evaluated against implicit MPM with the same recorded interacting-body motion.</p></section>{content}</main>
@@ -280,9 +281,9 @@ def build_case(root, output, checkpoint):
         if stem + ".svg" not in plots["figures_sha256"]:
             continue
         if number == 1 and meta.get("field_failure"):
-            caption = "(a) Particle-position errors. Panels (b–f) are unavailable because the complete particle domain exceeded the paired field evaluator's grid limit; see the failure notice above. No particles were clipped."
+            caption = "Particle-position errors. The remaining field measurements are unavailable because the complete particle domain exceeded the paired field evaluator's grid limit; see the failure notice above. No particles were clipped."
         if number in (2, 3) and episode["id"].endswith("-static-support"):
-            caption += " Panels (d), (e), and (f) show Fx, Fy, and Fz from 3 s onward with expanded force scales."
+            caption += " The bottom row shows Fx, Fy, and Fz from 3 s onward with expanded force scales."
         figures += f'<figure class="result-figure"><div class="plot-scroll" tabindex="0"><a href="{stem}.svg"><img src="{stem}.svg" alt="{html.escape(caption)}" loading="lazy"></a></div><figcaption><strong>Figure {number}:</strong> {caption} <a href="{stem}.png">PNG</a> · <a href="{stem}.pdf">PDF</a></figcaption></figure>'
     content += section("Time series for metrics 1–5", figures)
     if episode["id"] in HOLD_CASES:
@@ -293,9 +294,9 @@ def build_case(root, output, checkpoint):
             "The video above includes insertion and this entire measurement interval. There is one run per shape.</p>"
             '<figure class="result-figure"><div class="plot-scroll"><a href="spatiotemporal_consistency.svg">'
             '<img src="spatiotemporal_consistency.svg" alt="Sand drift during the fixed-object hold"></a></div>'
-            "<figcaption><strong>Figure 7:</strong> (a) RMS particle drift; (b) signed mean vertical drift; "
-            "(c) mean and 95th-percentile surface change; (d) normalized grid-mass change; "
-            "(e) mass beneath the object; (f) mass below the tray floor. "
+            "<figcaption><strong>Figure 7:</strong> Top row: RMS particle drift and signed mean vertical drift; "
+            "middle row: mean and 95th-percentile surface change and normalized grid-mass change; "
+            "bottom row: mass beneath the object and mass below the tray floor. "
             '<a href="spatiotemporal_consistency.png">PNG</a> · <a href="spatiotemporal_consistency.pdf">PDF</a>'
             '</figcaption></figure><p><a href="consistency_summary.json">Measured results and settings</a> · '
             '<a href="consistency_series.json">Scalar time series</a> · '
@@ -309,13 +310,13 @@ def build_case(root, output, checkpoint):
         figure_html(
             "force_error_summary",
             first_number,
-            "(a) Fx/Fy/Fz component RMSE; (b) signed mean error (estimate minus native MPM material force). "
+            "Left: Fx/Fy/Fz component RMSE; right: signed mean error (estimate minus native MPM material force). "
             "Raw 200 Hz forces over the full recording. The gray diagnostic supplies MPM particles to the same estimator.",
         )
         + figure_html(
             "force_window_summary",
             first_number + 1,
-            "(a) Fx; (b) Fy; (c) Fz. Means and temporal population standard deviations over one-second "
+            "Left to right: Fx, Fy, Fz. Means and temporal population standard deviations over one-second "
             "windows (1,2], (3,4], and the final second. Every raw 200 Hz sample is used. "
             "Whiskers describe variation within one recording, not repeated-trial uncertainty.",
         )
@@ -365,6 +366,12 @@ def main():
         type=Path,
         required=True,
         help="New staging directory; publish beneath benchmark_environment/object_prediction",
+    )
+    parser.add_argument(
+        "--test-videos",
+        type=Path,
+        required=True,
+        help="Verified videos of the first held-out episode in each shape/motion group",
     )
     args = parser.parse_args()
     config, audit, report = (
@@ -419,6 +426,7 @@ def main():
             if meta[key] != report[key]:
                 raise ValueError(f"Hold/test implementation mismatch in {case}: {key}")
     args.output.mkdir(parents=True)
+    motion_manifest = install_test_videos(args.test_videos, args.output, report, digest)
     for case in CASES:
         build_case(args.references / case, args.output / case, checkpoint)
     for case in HOLD_CASES:
@@ -512,6 +520,7 @@ def main():
         "Evaluation conditions",
         table("Table 1: Shared object-model experiment.", ("Item", "Condition"), rows),
     )
+    content += motion_gallery(motion_manifest)
     content += metric_results(report, section)
     content += metric_section(
         5,
@@ -522,6 +531,7 @@ def main():
             f'<li><a href="{case}/">{title}</a></li>' for case, title in CASES.items()
         )
         + "</ul>"
+        + reference_videos(CASES)
         + figure_html("reference_force_errors")
         + figure_html("reference_summary")
         + "<p>Chamfer and Wasserstein distances remain optional, unmeasured diagnostics.</p>",
@@ -529,7 +539,12 @@ def main():
     )
     content += hold_results(args.holds, args.output, checkpoint, digest, table, section)
     (args.output / "index.html").write_text(
-        page("Shared object-model prediction accuracy", content, depth=2)
+        page(
+            "Shared object-model prediction accuracy",
+            content,
+            depth=2,
+            extra_head='<link rel="stylesheet" href="../../assets/object-motion-gallery.css"><script src="../../assets/object-motion-gallery.js" defer></script>',
+        )
     )
     (args.output / "test_report.json").write_text(json.dumps(report, indent=2) + "\n")
     (args.output / "training_provenance.json").write_text(

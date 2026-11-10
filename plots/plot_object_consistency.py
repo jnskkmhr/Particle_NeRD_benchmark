@@ -18,7 +18,14 @@ import matplotlib.pyplot as plt
 
 def plot(root, data):
     """Plot both methods relative to their own state at the same measurement start."""
-    plt.rcParams.update({"font.family": "serif", "font.size": 12, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update(
+        {
+            "font.family": "serif",
+            "font.size": 12,
+            "axes.spines.top": False,
+            "axes.spines.right": False,
+        }
+    )
     figure, axes = plt.subplots(3, 2, figsize=(13.2, 11.1))
     figure.subplots_adjust(top=0.95, bottom=0.23, wspace=0.27, hspace=0.42)
     keys = (
@@ -29,12 +36,19 @@ def plot(root, data):
         ("fields", "below_body_mass_kg", "Sand mass beneath object (kg)"),
         ("particles", "below_floor_mass_percent", "Mass below rigid tray floor (%)"),
     )
-    for method, label, color in (("reference", "Implicit MPM", "#193c64"), ("predicted", "Particle NeRD", "#248044")):
+    for method, label, color in (
+        ("reference", "Implicit MPM", "#193c64"),
+        ("predicted", "Particle NeRD", "#248044"),
+    ):
         for axis, (kind, key, ylabel) in zip(axes.flat, keys, strict=True):
             rows = data[method][kind]
             selected = [r for r in rows if key in r]
             axis.plot(
-                [r["time_s"] for r in selected], [r[key] for r in selected], label=label, color=color, linewidth=1.3
+                [r["time_s"] for r in selected],
+                [r[key] for r in selected],
+                label=label,
+                color=color,
+                linewidth=1.3,
             )
             axis.set_ylabel(ylabel)
             if key == "surface_mean_mm":
@@ -45,23 +59,27 @@ def plot(root, data):
                     linestyle="--",
                     linewidth=1.1,
                 )
-    for index, axis in enumerate(axes.flat):
-        axis.set_title(f"({chr(97 + index)})", loc="left")
+    for axis in axes.flat:
         axis.set_xlabel("Simulation time (s)")
         axis.grid(alpha=0.15)
-    figure.legend(*axes[0, 0].get_legend_handles_labels(), loc="upper center", bbox_to_anchor=(0.5, 1.01), ncol=2)
+    figure.legend(
+        *axes[0, 0].get_legend_handles_labels(),
+        loc="upper center",
+        bbox_to_anchor=(0.5, 1.01),
+        ncol=2,
+    )
     figure.text(
         0.5,
         0.025,
         "Figure 7: Fixed-object hold, measured at 3–23 s. Both methods start from identical particles at 0 s.\n"
-        "(a) Mass-weighted RMS drift from each method's own 3 s state; (b) "
+        "Top row: mass-weighted RMS drift from each method's own 3 s state; and "
         "mass-weighted mean vertical drift (negative down).\n"
-        "(c) Distance to that method's 3 s material isosurface: solid mean, dashed "
+        "Middle row: distance to that method's 3 s material isosurface: solid mean, dashed "
         "95th percentile (includes sides/bottom).\n"
-        "(d) Sum of absolute grid-cell mass changes from 3 s, divided by total "
+        "and sum of absolute grid-cell mass changes from 3 s, divided by total "
         "physical mass; dimensionless, range 0–2.\n"
-        "(e) Absolute mass in the rectangle enclosing the object's world x/y projection, extending 0.10 m below its\n"
-        "lowest z and clipped above the tray floor at z = −0.30 m. (f) Absolute mass "
+        "Bottom row: absolute mass in the rectangle enclosing the object's world x/y projection, extending 0.10 m below its\n"
+        "lowest z and clipped above the tray floor at z = −0.30 m. and absolute mass "
         "fraction with centers below that floor.\n"
         "The object stops at 2 s. The 3 s anchor does not reset particles or assert "
         "equilibrium. One paired run per shape.\n"
@@ -70,7 +88,9 @@ def plot(root, data):
         fontsize=10,
     )
     for suffix in ("png", "pdf", "svg"):
-        figure.savefig(root / f"spatiotemporal_consistency.{suffix}", dpi=300, bbox_inches="tight")
+        figure.savefig(
+            root / f"spatiotemporal_consistency.{suffix}", dpi=300, bbox_inches="tight"
+        )
     plt.close(figure)
 
 
