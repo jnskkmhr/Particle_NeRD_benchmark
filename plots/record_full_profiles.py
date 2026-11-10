@@ -68,7 +68,6 @@ def make_config(backend, speed, duration, seed):
 def record(args):
     """Run one closed-loop policy episode and save forces before any environment reset."""
     task, cfg, agent = make_config(args.backend, args.speed, args.duration, args.seed)
-    assert args.backend == "nerd"
     cfg.scene.sand.spawn.lower = (-3.0, -3.0, -0.3)
     cfg.scene.sand.spawn.upper = (3.0, 3.0, 0.0)
     cfg.scene.__post_init__()
@@ -81,14 +80,18 @@ def record(args):
     visual = NewtonRTXVisualizerCfg(eye=(4.5, -6.0, 3.5), lookat=(0.0, 0.0, 0.0), origin_type="world", headless=True)
     visual.window.size = (1280, 720)
     cfg.sim.visualizer_cfgs = []
-    configure_fixed_bed(cfg)
+    if args.backend == "nerd":
+        configure_fixed_bed(cfg)
+    else:
+        configure_sparse_mpm_capacities(cfg)
     # Fail if this evaluation accidentally constructs any native MPM solver.
     import newton
 
     def forbid_mpm(*args, **kwargs):
         raise RuntimeError("Native MPM construction is forbidden in full NeRD evaluation")
 
-    newton.solvers.SolverImplicitMPM.__init__ = forbid_mpm
+    if args.backend == "nerd":
+        newton.solvers.SolverImplicitMPM.__init__ = forbid_mpm
 
     # Fixed proxy relaxation is an EMA of the complete sand-to-body wrench.
     # Keep this experiment opt-in; task and production solver defaults stay unchanged.
@@ -132,7 +135,7 @@ def record(args):
         "native_warmup_steps": 0,
         "force_frame": "world; force exerted on each foot; z points upwards",
         "comparison": (
-            "Full closed-loop Particle NeRD rollout; no reference robot motion or reference particle states"
+            f"Full closed-loop {args.backend} rollout; no reference robot motion or reference particle states"
         ),
     }
     rows = []
@@ -140,6 +143,7 @@ def record(args):
     frame_times = []
     particle_metrics = []
     writer = None
+    viewer = None
     snapshots = None
     with launch_simulation(cfg.sim, dict(headless=True, device="cuda:0", visualizer=[])):
         env = gym.make(task, cfg=cfg).unwrapped
@@ -174,20 +178,27 @@ def record(args):
                 wrench_order = [collider_names.index(name) for name in foot_names]
             metadata["outcome"] = "duration"
             metadata["evaluation"] = (
-                "Full closed-loop MJWarp + Particle NeRD; fresh grid; no reference robot or particle states"
+                f"Full closed-loop MJWarp + {args.backend}; fresh grid; no reference robot or particle states"
             )
             metadata["command_body_frame"] = {"vx_m_s": args.speed, "vy_m_s": args.vy, "wz_rad_s": args.wz}
-            metadata["nerd_checkpoint_sha256"] = hashlib.sha256(
-                Path(sand_solver.cfg.checkpoint).read_bytes()
-            ).hexdigest()
-            code_root = Path(
-                "/home/jkamohara/isaac/IsaacLab-particle-nerd/source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd"
-            )
+            if args.backend == "nerd":
+                metadata["nerd_checkpoint_sha256"] = hashlib.sha256(
+                    Path(sand_solver.cfg.checkpoint).read_bytes()
+                ).hexdigest()
+                code_root = Path(
+                    "/home/jkamohara/isaac/IsaacLab-particle-nerd/source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd"
+                )
+            else:
+                import inspect
+
+                code_root = Path(inspect.getfile(newton.solvers.SolverImplicitMPM)).parent
+            metadata["solver_class"] = type(sand_solver).__module__ + "." + type(sand_solver).__name__
             metadata["solver_code_sha256"] = {
                 str(p.relative_to(code_root)): hashlib.sha256(p.read_bytes()).hexdigest()
                 for p in code_root.rglob("*.py")
             }
-            metadata["argon_foot_speed_gate"] = True
+            metadata["argon_foot_speed_gate"] = args.backend == "nerd"
+            metadata["recorder_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
             metadata["video_fps"] = 50
             metadata["simulation_uses_mpm_reference"] = False
             metadata["simulation_uses_robot_reference"] = False
@@ -271,7 +282,12 @@ def record(args):
                 image = Image.new("RGB", (width, height + 44), "white")
                 image.paste(Image.fromarray(pixels).convert("RGB"), (0, 44))
                 draw = ImageDraw.Draw(image)
-                draw.text((18, 10), "Particle NeRD", font=font, fill="#187a3b")
+                draw.text(
+                    (18, 10),
+                    "Particle NeRD" if args.backend == "nerd" else "Implicit MPM",
+                    font=font,
+                    fill="#187a3b" if args.backend == "nerd" else "#17365d",
+                )
                 draw.text((width - 160, 10), f"t = {t:.2f} s", font=font, fill="#333333")
                 writer.stdin.write(np.asarray(image).tobytes())
                 if len(frame_times) == 0:
@@ -359,7 +375,8 @@ def record(args):
                 )
                 metadata["recorded_seconds"] = rows[-1]["time"]
             (args.output / "metadata.json").write_text(json.dumps(metadata, indent=2, default=str) + "\n")
-            viewer.close()
+            if viewer is not None:
+                viewer.close()
             env.close()
     print(f"SAVED {args.output}", flush=True)
 

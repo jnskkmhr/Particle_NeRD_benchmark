@@ -10,8 +10,11 @@ DATA = G1 / "data/full-20261109"
 PROFILES = ("forward", "backward", "left", "right", "forward_yaw_positive", "forward_yaw_negative")
 
 
-def load_profile(name):
-    folder = DATA / name
+MPM_DATA = G1 / "data/full-mpm-20261109"
+
+
+def load_profile(name, backend="nerd"):
+    folder = (DATA if backend == "nerd" else MPM_DATA) / name
     meta = read(folder / "metadata.json")
     data = np.load(folder / "trace.npz")
     assert not meta["simulation_uses_mpm_reference"] and not meta["simulation_uses_robot_reference"]
@@ -29,4 +32,7 @@ def selected():
     p = argparse.ArgumentParser()
     p.add_argument("--profile", choices=PROFILES)
     a = p.parse_args()
-    return (a.profile,) if a.profile else PROFILES
+    available = tuple(name for name in PROFILES if name in read(G1 / "data/full-comparison-20261109/summary.json"))
+    if a.profile and a.profile not in available:
+        p.error("No completed MPM reference is available for this profile")
+    return (a.profile,) if a.profile else available

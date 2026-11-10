@@ -220,5 +220,95 @@
     "bytes": 115156,
     "sha256": "4fe4cef176dd53a17afd15f76b6b9ba1d77baf58128abf3f88b1001c01acc9fa",
     "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/backward/particle_metrics.npz",
+    "bytes": 6530,
+    "sha256": "50ab8896646d61e98957c93ead31a284e22330fa2af8f32cb6c14cdde7e28766",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/backward/states.h5",
+    "bytes": 192399374,
+    "sha256": "e9880f9084a8d898183c40d1c8f2a5e5a91e741bb4a63a92873e197e8bbeadee",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/backward/trace.npz",
+    "bytes": 318357,
+    "sha256": "bc0417a96802039ea6f5ff2cbe39bb7c8137dbf495dc840ac9544a7c61657035",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/forward/particle_metrics.npz",
+    "bytes": 6618,
+    "sha256": "2c246d23354591ce5da025d15f0e57cf7a28bf1c16fee5e71db7cba2ba88d3f1",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/forward/states.h5",
+    "bytes": 192399374,
+    "sha256": "53d3dcf2fa9caf06e2744448681c5e2141074edefad72c89d1481e085fe59739",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/forward/trace.npz",
+    "bytes": 326643,
+    "sha256": "903b2a5eaf3e189734d094f042236e61cd842aebcc3b578e6ae318e074b2ab77",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/forward_yaw_positive/particle_metrics.npz",
+    "bytes": 6596,
+    "sha256": "4573933863d4ee446fa258ec4aff0bd52f095f196e31bbbdbc6b0a13d4d7e4b2",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/forward_yaw_positive/states.h5",
+    "bytes": 192399380,
+    "sha256": "c588a0c8f995e74fd50dbbb6dc223ffebaf512f2fb35009df62377a9c563deb3",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/forward_yaw_positive/trace.npz",
+    "bytes": 332033,
+    "sha256": "1ee222fda389db32d62f4aa825e0707cb0a1fd8528044fca49da315de41db5be",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/left/particle_metrics.npz",
+    "bytes": 6193,
+    "sha256": "d6b6819e482ad2768c217699524d88d9051992ce1cc91f4a44a6909b8c245b5f",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/left/states.h5",
+    "bytes": 192399372,
+    "sha256": "165c600db35d202362240e8fe7f15b14d700715cde61b968d81d77dcbdaa0883",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/left/trace.npz",
+    "bytes": 302740,
+    "sha256": "19868bbeb44c6df33cc473f35e51a00a272828da8329f6762fc3a530d7489b06",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/right/particle_metrics.npz",
+    "bytes": 6431,
+    "sha256": "126d814693d4a653a4d8aafb2d41b682922c68e6b9978f206c5e451233e3ae61",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/right/states.h5",
+    "bytes": 192399375,
+    "sha256": "1b901f81f64ba7d0edfa38f6935c299fc54a92c5a494b3f4671b65e2c6c1a053",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-mpm-20261109/right/trace.npz",
+    "bytes": 317178,
+    "sha256": "c216df5323fc3b93743ddbb2a8ae207d18912fa342d4d2c692b985890c04f8dc",
+    "published": false
   }
 ]

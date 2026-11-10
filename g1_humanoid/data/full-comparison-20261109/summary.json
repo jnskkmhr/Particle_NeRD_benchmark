@@ -1,0 +1,722 @@
+{
+  "forward": {
+    "common_measurement_end_s": 6.0,
+    "profiles": {
+      "nerd": {
+        "duration_s": 6.0,
+        "outcome": "duration",
+        "terminal_terms": [],
+        "physics_samples": 1200,
+        "common_samples": 1200,
+        "mean_body_velocity": [
+          0.4132802188396454,
+          -0.022115647792816162,
+          -0.004897776525467634
+        ],
+        "tracking_rmse": [
+          0.1413820496481434,
+          0.04919196112421697,
+          0.2826083765331733
+        ],
+        "mean_foot_force_N": [
+          [
+            -1.7737568616867065,
+            -11.459152221679688,
+            162.8882598876953
+          ],
+          [
+            3.8531603813171387,
+            11.245970726013184,
+            165.25820922851562
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            38.62131118774414,
+            19.15450668334961,
+            140.0918731689453
+          ],
+          [
+            40.472511291503906,
+            21.460649490356445,
+            148.97402954101562
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          2.4790029525756836,
+          -0.17286093533039093,
+          0.7184116244316101
+        ]
+      },
+      "mpm": {
+        "duration_s": 6.0,
+        "outcome": "duration",
+        "terminal_terms": [],
+        "physics_samples": 1200,
+        "common_samples": 1200,
+        "mean_body_velocity": [
+          0.40165337920188904,
+          0.001974379876628518,
+          -0.010082372464239597
+        ],
+        "tracking_rmse": [
+          0.1745415541196389,
+          0.04534016261800891,
+          0.2894558933177717
+        ],
+        "mean_foot_force_N": [
+          [
+            -2.687561511993408,
+            -12.129072189331055,
+            170.96946716308594
+          ],
+          [
+            5.407763481140137,
+            11.944043159484863,
+            156.3134002685547
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            32.377811431884766,
+            17.41427230834961,
+            154.31979370117188
+          ],
+          [
+            30.680625915527344,
+            18.17310905456543,
+            147.01673889160156
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          2.4145755767822266,
+          -0.05242440849542618,
+          0.5959240794181824
+        ]
+      }
+    },
+    "video_frames": 300,
+    "video_fps": 50,
+    "last_video_state_s": 5.98,
+    "encoded_video_duration_s": 6.0,
+    "verification": {
+      "matched_metadata": [
+        "seed",
+        "checkpoint_sha256",
+        "initial_particles_sha256",
+        "material",
+        "particle_grid",
+        "robot_mass_kg",
+        "particle_mass_kg",
+        "particle_count",
+        "command_body_frame",
+        "physics_dt_s",
+        "control_dt_s",
+        "foot_names",
+        "initial_root_position_m",
+        "native_warmup_steps"
+      ],
+      "initial_states": "Bit-identical particle positions and rigid-body poses before the first step",
+      "rigid_physics": "Identical rigid solver entry, proxy mapping, collision pipeline, default joint and shape settings",
+      "video": "MPM left, NeRD right; matching simulation timestamps; stops at shorter recording, no frozen-frame extension",
+      "snapshot_checks": "1 Hz saved particle states reproduce displacement statistics; body positions match force trace timestamps",
+      "trace_checks": "200 Hz finite samples, constant command, force = sand force + rigid-geometry force",
+      "interpretation": "Independent closed-loop trajectories; curve differences include changed robot motion and are not isolated force-estimator errors",
+      "source_artifacts_sha256": {
+        "nerd": {
+          "metadata.json": "16afc70f0a46e2df9fbb9e49b1de0b69b912e0d84a21513d820965b6f73c2e5d",
+          "trace.npz": "48c8556e312a847aae4dad988cecb53535ba5048c66a4415bdd1437536a399db",
+          "particle_metrics.npz": "c193e97950c70357450db4165c3444f0472b6dd3b188f7de6b830729ceef75a9",
+          "states.h5": "1e5ee27320e249612b625018781bcfa222f5ef810dfe35cae7c6fcfd077c11ec",
+          "simulation.mp4": "7186e51108487b7340b499a953598b8269e028e6b8bc05d63a74546c53d47238"
+        },
+        "mpm": {
+          "metadata.json": "8bd06eae80171daf341ad5e1f708ad652c79abe2f85c6a8df7839619b8387380",
+          "trace.npz": "903b2a5eaf3e189734d094f042236e61cd842aebcc3b578e6ae318e074b2ab77",
+          "particle_metrics.npz": "2c246d23354591ce5da025d15f0e57cf7a28bf1c16fee5e71db7cba2ba88d3f1",
+          "states.h5": "53d3dcf2fa9caf06e2744448681c5e2141074edefad72c89d1481e085fe59739",
+          "simulation.mp4": "640afa9d24d2e66c7b58c363f384918e91f66a3561f7767562007bca718f97f0"
+        }
+      },
+      "comparison_video_sha256": "b7300e9dfb2b441bd162d982611e549f3204cd887aef31cac6d5286d187f6a0a"
+    }
+  },
+  "backward": {
+    "common_measurement_end_s": 5.46,
+    "profiles": {
+      "nerd": {
+        "duration_s": 5.46,
+        "outcome": "reached_sand_bed_edge",
+        "terminal_terms": [],
+        "physics_samples": 1092,
+        "common_samples": 1092,
+        "mean_body_velocity": [
+          -0.47795429825782776,
+          -0.011631288565695286,
+          0.01303019467741251
+        ],
+        "tracking_rmse": [
+          0.1233699649644515,
+          0.050177918023798104,
+          0.3428267176001102
+        ],
+        "mean_foot_force_N": [
+          [
+            1.8473745584487915,
+            -9.779876708984375,
+            167.80319213867188
+          ],
+          [
+            -4.727393627166748,
+            9.847994804382324,
+            158.541259765625
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            39.657318115234375,
+            19.795379638671875,
+            164.36012268066406
+          ],
+          [
+            35.4484977722168,
+            18.164451599121094,
+            153.72628784179688
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          -2.607618808746338,
+          -0.14509782195091248,
+          0.6687817573547363
+        ]
+      },
+      "mpm": {
+        "duration_s": 5.88,
+        "outcome": "reached_sand_bed_edge",
+        "terminal_terms": [],
+        "physics_samples": 1176,
+        "common_samples": 1092,
+        "mean_body_velocity": [
+          -0.4399172067642212,
+          -0.0034138348419219255,
+          3.3135733247036114e-05
+        ],
+        "tracking_rmse": [
+          0.12377866592012475,
+          0.04423266290244497,
+          0.2680674189092363
+        ],
+        "mean_foot_force_N": [
+          [
+            -0.197151318192482,
+            -9.616606712341309,
+            171.2786865234375
+          ],
+          [
+            -2.3678431510925293,
+            9.552828788757324,
+            156.24481201171875
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            30.182214736938477,
+            15.603336334228516,
+            147.94390869140625
+          ],
+          [
+            31.413564682006836,
+            13.968401908874512,
+            145.32669067382812
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          -2.6016595363616943,
+          -0.032995060086250305,
+          0.6012598872184753
+        ]
+      }
+    },
+    "video_frames": 274,
+    "video_fps": 50,
+    "last_video_state_s": 5.46,
+    "encoded_video_duration_s": 5.48,
+    "verification": {
+      "matched_metadata": [
+        "seed",
+        "checkpoint_sha256",
+        "initial_particles_sha256",
+        "material",
+        "particle_grid",
+        "robot_mass_kg",
+        "particle_mass_kg",
+        "particle_count",
+        "command_body_frame",
+        "physics_dt_s",
+        "control_dt_s",
+        "foot_names",
+        "initial_root_position_m",
+        "native_warmup_steps"
+      ],
+      "initial_states": "Bit-identical particle positions and rigid-body poses before the first step",
+      "rigid_physics": "Identical rigid solver entry, proxy mapping, collision pipeline, default joint and shape settings",
+      "video": "MPM left, NeRD right; matching simulation timestamps; stops at shorter recording, no frozen-frame extension",
+      "snapshot_checks": "1 Hz saved particle states reproduce displacement statistics; body positions match force trace timestamps",
+      "trace_checks": "200 Hz finite samples, constant command, force = sand force + rigid-geometry force",
+      "interpretation": "Independent closed-loop trajectories; curve differences include changed robot motion and are not isolated force-estimator errors",
+      "source_artifacts_sha256": {
+        "nerd": {
+          "metadata.json": "726b93ca8ade7544e74fcde46e52ff9b776cb07f6dfd18cc30985019cd2f260e",
+          "trace.npz": "c41dcbe971ab787c07f1fcb7dbc14a10056d120a3bd5ebe9473a621e207d0cde",
+          "particle_metrics.npz": "2d072898ddb03ba5a751572e4a4a06495076ee444b96f97ab351b44d80e2513d",
+          "states.h5": "429d1ef604640cd4773348ff6c5032151ddf9f856b852cfb389fd724083ceb30",
+          "simulation.mp4": "b73f77d25a9d7fb93b05462873c4ce596ff23c1255e59c5c535becbb3ab75b00"
+        },
+        "mpm": {
+          "metadata.json": "8f913f71b8554c17bebc8e4c5817d2a400bf1e9834dd4b29cd8c143850a4af28",
+          "trace.npz": "bc0417a96802039ea6f5ff2cbe39bb7c8137dbf495dc840ac9544a7c61657035",
+          "particle_metrics.npz": "50ab8896646d61e98957c93ead31a284e22330fa2af8f32cb6c14cdde7e28766",
+          "states.h5": "e9880f9084a8d898183c40d1c8f2a5e5a91e741bb4a63a92873e197e8bbeadee",
+          "simulation.mp4": "bca0b10cfed35b3c094f42e8fba9cd312b0fb7e7df31a7b9fbe0c07d25375687"
+        }
+      },
+      "comparison_video_sha256": "624b9732d9a9a318ac3a551c4b525f57028691dd7ca801ffb97cefa5d3603579"
+    }
+  },
+  "left": {
+    "common_measurement_end_s": 5.58,
+    "profiles": {
+      "nerd": {
+        "duration_s": 5.58,
+        "outcome": "reached_sand_bed_edge",
+        "terminal_terms": [],
+        "physics_samples": 1116,
+        "common_samples": 1116,
+        "mean_body_velocity": [
+          -0.014191142283380032,
+          0.462655246257782,
+          -0.008441445417702198
+        ],
+        "tracking_rmse": [
+          0.05844977191329156,
+          0.09010375047957775,
+          0.29649843730177333
+        ],
+        "mean_foot_force_N": [
+          [
+            -3.7657957077026367,
+            -16.493688583374023,
+            146.1387481689453
+          ],
+          [
+            4.2671403884887695,
+            19.376747131347656,
+            182.20379638671875
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            23.01018714904785,
+            28.694313049316406,
+            179.4844512939453
+          ],
+          [
+            32.76579284667969,
+            30.692657470703125,
+            184.9654541015625
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          -0.0057092951610684395,
+          2.6006217002868652,
+          0.7349698543548584
+        ]
+      },
+      "mpm": {
+        "duration_s": 5.6000000000000005,
+        "outcome": "reached_sand_bed_edge",
+        "terminal_terms": [],
+        "physics_samples": 1120,
+        "common_samples": 1116,
+        "mean_body_velocity": [
+          -0.009501265361905098,
+          0.4605117440223694,
+          0.0004892639699392021
+        ],
+        "tracking_rmse": [
+          0.03786912882292959,
+          0.10096368318790944,
+          0.25944179583671473
+        ],
+        "mean_foot_force_N": [
+          [
+            -1.0229955911636353,
+            -19.06253433227539,
+            151.96026611328125
+          ],
+          [
+            1.1427935361862183,
+            21.33902931213379,
+            175.55816650390625
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            20.390026092529297,
+            19.43789291381836,
+            161.34828186035156
+          ],
+          [
+            23.83915901184082,
+            35.36545181274414,
+            169.90538024902344
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          0.003927342593669891,
+          2.604569911956787,
+          0.5915624499320984
+        ]
+      }
+    },
+    "video_frames": 280,
+    "video_fps": 50,
+    "last_video_state_s": 5.58,
+    "encoded_video_duration_s": 5.6,
+    "verification": {
+      "matched_metadata": [
+        "seed",
+        "checkpoint_sha256",
+        "initial_particles_sha256",
+        "material",
+        "particle_grid",
+        "robot_mass_kg",
+        "particle_mass_kg",
+        "particle_count",
+        "command_body_frame",
+        "physics_dt_s",
+        "control_dt_s",
+        "foot_names",
+        "initial_root_position_m",
+        "native_warmup_steps"
+      ],
+      "initial_states": "Bit-identical particle positions and rigid-body poses before the first step",
+      "rigid_physics": "Identical rigid solver entry, proxy mapping, collision pipeline, default joint and shape settings",
+      "video": "MPM left, NeRD right; matching simulation timestamps; stops at shorter recording, no frozen-frame extension",
+      "snapshot_checks": "1 Hz saved particle states reproduce displacement statistics; body positions match force trace timestamps",
+      "trace_checks": "200 Hz finite samples, constant command, force = sand force + rigid-geometry force",
+      "interpretation": "Independent closed-loop trajectories; curve differences include changed robot motion and are not isolated force-estimator errors",
+      "source_artifacts_sha256": {
+        "nerd": {
+          "metadata.json": "cc9d608e42cce44e5d22f69b2266f4fd575bcb56f57e2663183df7c0f85c1e17",
+          "trace.npz": "fdec2be503abaaaab46be1bae214c3e8e626051c680b4860d0120f4a255766c1",
+          "particle_metrics.npz": "86a474288de219d7330f7e7f2380f985a900883b4c4026457b622f3e0e149091",
+          "states.h5": "fd7960f9a634467d9b76bacf9aefa6f2f0799131b3a78e0f0dab07028a15839f",
+          "simulation.mp4": "44d669f3891643ac2a521458f2a6a30855039e59d0bafc524399d10635c44eda"
+        },
+        "mpm": {
+          "metadata.json": "ff4cae3337790e12be968b20b5649996f68595ffd9d103199650fb7b36939e6d",
+          "trace.npz": "19868bbeb44c6df33cc473f35e51a00a272828da8329f6762fc3a530d7489b06",
+          "particle_metrics.npz": "d6b6819e482ad2768c217699524d88d9051992ce1cc91f4a44a6909b8c245b5f",
+          "states.h5": "165c600db35d202362240e8fe7f15b14d700715cde61b968d81d77dcbdaa0883",
+          "simulation.mp4": "bf78e10fcd46a6374960e4abfaab9303bc064eb6efa15ace17206287119ab23e"
+        }
+      },
+      "comparison_video_sha256": "59f68ea6123ffce3c789eb9c89606cedbfe7587cf4a8e6b9a825e9730c9f8fa6"
+    }
+  },
+  "right": {
+    "common_measurement_end_s": 5.22,
+    "profiles": {
+      "nerd": {
+        "duration_s": 5.22,
+        "outcome": "reached_sand_bed_edge",
+        "terminal_terms": [],
+        "physics_samples": 1044,
+        "common_samples": 1044,
+        "mean_body_velocity": [
+          -0.04252239316701889,
+          -0.4966117739677429,
+          -0.019184760749340057
+        ],
+        "tracking_rmse": [
+          0.08311659250391908,
+          0.08703446867589898,
+          0.40546834892812583
+        ],
+        "mean_foot_force_N": [
+          [
+            -4.923553466796875,
+            -19.88710594177246,
+            176.17092895507812
+          ],
+          [
+            4.610659599304199,
+            16.806236267089844,
+            152.50558471679688
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            36.6805305480957,
+            35.845272064208984,
+            178.17965698242188
+          ],
+          [
+            40.522281646728516,
+            38.854671478271484,
+            190.9660186767578
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          -0.31588929891586304,
+          -2.603163957595825,
+          0.6971353888511658
+        ]
+      },
+      "mpm": {
+        "duration_s": 5.86,
+        "outcome": "reached_sand_bed_edge",
+        "terminal_terms": [],
+        "physics_samples": 1172,
+        "common_samples": 1044,
+        "mean_body_velocity": [
+          -0.005523108411580324,
+          -0.4387684464454651,
+          -0.01692427136003971
+        ],
+        "tracking_rmse": [
+          0.031903856269458464,
+          0.1092410064813587,
+          0.34760556800064957
+        ],
+        "mean_foot_force_N": [
+          [
+            -3.9446933269500732,
+            -21.305452346801758,
+            176.26217651367188
+          ],
+          [
+            3.3157989978790283,
+            17.30365753173828,
+            150.15162658691406
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            24.17827606201172,
+            35.803932189941406,
+            166.23062133789062
+          ],
+          [
+            19.186233520507812,
+            20.519493103027344,
+            159.79144287109375
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          -0.14802798628807068,
+          -2.6047720909118652,
+          0.5782466530799866
+        ]
+      }
+    },
+    "video_frames": 262,
+    "video_fps": 50,
+    "last_video_state_s": 5.22,
+    "encoded_video_duration_s": 5.24,
+    "verification": {
+      "matched_metadata": [
+        "seed",
+        "checkpoint_sha256",
+        "initial_particles_sha256",
+        "material",
+        "particle_grid",
+        "robot_mass_kg",
+        "particle_mass_kg",
+        "particle_count",
+        "command_body_frame",
+        "physics_dt_s",
+        "control_dt_s",
+        "foot_names",
+        "initial_root_position_m",
+        "native_warmup_steps"
+      ],
+      "initial_states": "Bit-identical particle positions and rigid-body poses before the first step",
+      "rigid_physics": "Identical rigid solver entry, proxy mapping, collision pipeline, default joint and shape settings",
+      "video": "MPM left, NeRD right; matching simulation timestamps; stops at shorter recording, no frozen-frame extension",
+      "snapshot_checks": "1 Hz saved particle states reproduce displacement statistics; body positions match force trace timestamps",
+      "trace_checks": "200 Hz finite samples, constant command, force = sand force + rigid-geometry force",
+      "interpretation": "Independent closed-loop trajectories; curve differences include changed robot motion and are not isolated force-estimator errors",
+      "source_artifacts_sha256": {
+        "nerd": {
+          "metadata.json": "b4b41de0f9ef55b4c035cba99e8ec2cba6a60a2783725ec058c9bdc688379bc0",
+          "trace.npz": "9a483bd016c9396c0ebc25fa5847aae7b997a46c6b42fcfc5833340c394e66d6",
+          "particle_metrics.npz": "6fdfce6e318db79cffd42ce8306c6897477171848260fa6421bff98d70cc22e5",
+          "states.h5": "adb068f6630661f981cda69284cec2aa073e5347450ea4729ac66b21c9a23e66",
+          "simulation.mp4": "53eb254c3418d65f2de0ad8ca3bbef689c6224cc1a674dd26e6ee9ab41560b13"
+        },
+        "mpm": {
+          "metadata.json": "0f9e57eea6b7072110d65ba7aa13d23e501c2b641b35ed5b0b51711f6203e0fb",
+          "trace.npz": "c216df5323fc3b93743ddbb2a8ae207d18912fa342d4d2c692b985890c04f8dc",
+          "particle_metrics.npz": "126d814693d4a653a4d8aafb2d41b682922c68e6b9978f206c5e451233e3ae61",
+          "states.h5": "1b901f81f64ba7d0edfa38f6935c299fc54a92c5a494b3f4671b65e2c6c1a053",
+          "simulation.mp4": "fc6c345b9006a44bb7458a8393c82219f8b142bccd619c68405ff1251b14f402"
+        }
+      },
+      "comparison_video_sha256": "bc15e3171b6330e9d09b95b8b96b3c29ef67465f0ffa555014817b34ea796efe"
+    }
+  },
+  "forward_yaw_positive": {
+    "common_measurement_end_s": 6.0,
+    "profiles": {
+      "nerd": {
+        "duration_s": 6.0,
+        "outcome": "duration",
+        "terminal_terms": [],
+        "physics_samples": 1200,
+        "common_samples": 1200,
+        "mean_body_velocity": [
+          0.4292593002319336,
+          -0.00948035903275013,
+          0.9866217970848083
+        ],
+        "tracking_rmse": [
+          0.13622351734358204,
+          0.045061864010201236,
+          0.2971753260211131
+        ],
+        "mean_foot_force_N": [
+          [
+            2.444253444671631,
+            0.6831647157669067,
+            170.60467529296875
+          ],
+          [
+            -0.3180709779262543,
+            -1.273064374923706,
+            158.05003356933594
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            23.040063858032227,
+            27.431644439697266,
+            157.05519104003906
+          ],
+          [
+            29.735280990600586,
+            32.79524612426758,
+            154.4227752685547
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          -0.40559881925582886,
+          0.009161357767879963,
+          0.7358539700508118
+        ]
+      },
+      "mpm": {
+        "duration_s": 6.0,
+        "outcome": "duration",
+        "terminal_terms": [],
+        "physics_samples": 1200,
+        "common_samples": 1200,
+        "mean_body_velocity": [
+          0.3999071419239044,
+          -0.0025001903995871544,
+          0.9947018623352051
+        ],
+        "tracking_rmse": [
+          0.1522278724637848,
+          0.03479144609886864,
+          0.267902752536104
+        ],
+        "mean_foot_force_N": [
+          [
+            1.5621556043624878,
+            0.6205685138702393,
+            167.14610290527344
+          ],
+          [
+            -0.1004842147231102,
+            -1.3885653018951416,
+            160.25103759765625
+          ]
+        ],
+        "std_foot_force_N": [
+          [
+            22.470905303955078,
+            23.921546936035156,
+            155.10374450683594
+          ],
+          [
+            31.696277618408203,
+            32.36224365234375,
+            152.20965576171875
+          ]
+        ],
+        "max_abs_rigid_force_N": 0.0,
+        "final_base_position_m": [
+          -0.2803567051887512,
+          -0.028853880241513252,
+          0.5857223868370056
+        ]
+      }
+    },
+    "video_frames": 300,
+    "video_fps": 50,
+    "last_video_state_s": 5.98,
+    "encoded_video_duration_s": 6.0,
+    "verification": {
+      "matched_metadata": [
+        "seed",
+        "checkpoint_sha256",
+        "initial_particles_sha256",
+        "material",
+        "particle_grid",
+        "robot_mass_kg",
+        "particle_mass_kg",
+        "particle_count",
+        "command_body_frame",
+        "physics_dt_s",
+        "control_dt_s",
+        "foot_names",
+        "initial_root_position_m",
+        "native_warmup_steps"
+      ],
+      "initial_states": "Bit-identical particle positions and rigid-body poses before the first step",
+      "rigid_physics": "Identical rigid solver entry, proxy mapping, collision pipeline, default joint and shape settings",
+      "video": "MPM left, NeRD right; matching simulation timestamps; stops at shorter recording, no frozen-frame extension",
+      "snapshot_checks": "1 Hz saved particle states reproduce displacement statistics; body positions match force trace timestamps",
+      "trace_checks": "200 Hz finite samples, constant command, force = sand force + rigid-geometry force",
+      "interpretation": "Independent closed-loop trajectories; curve differences include changed robot motion and are not isolated force-estimator errors",
+      "source_artifacts_sha256": {
+        "nerd": {
+          "metadata.json": "3f7133fdc09b8cdf63ecb09dd04291907ee0b7e3046033e86285b3346b1727a5",
+          "trace.npz": "eabe2043ea65ec5bf8ca0e2ce695365166da00ad3dfb526374daae3a9e17dba7",
+          "particle_metrics.npz": "1044eef48958b400ed017e2b9d26a55cd1deff38e49b4c283635adb11d7543c6",
+          "states.h5": "f29ba59bd4931d149f43be91f06a83743235d5ad459eba567e2847f85ca3732b",
+          "simulation.mp4": "dc58de414fc17681718e3fde9264d8775fa064fb2a9bbce4a4b6815e4637a167"
+        },
+        "mpm": {
+          "metadata.json": "8acd4552b6309094aab3abae41feb45eeafbf9a27b19cdde6adf82dcf35f408d",
+          "trace.npz": "1ee222fda389db32d62f4aa825e0707cb0a1fd8528044fca49da315de41db5be",
+          "particle_metrics.npz": "4573933863d4ee446fa258ec4aff0bd52f095f196e31bbbdbc6b0a13d4d7e4b2",
+          "states.h5": "c588a0c8f995e74fd50dbbb6dc223ffebaf512f2fb35009df62377a9c563deb3",
+          "simulation.mp4": "6c93c248e992b74a97e04cb66f86bb3c5c94f86785291ae9af15efc410cd8118"
+        }
+      },
+      "comparison_video_sha256": "b1b93a9548a61b3e1b828cfdb28e71002b0a7b1d9262eff4c8329bd58bf638c5"
+    }
+  }
+}

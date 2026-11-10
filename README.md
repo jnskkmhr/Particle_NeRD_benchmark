@@ -4,14 +4,14 @@ The local G1 reports separate three evaluations of the installed Particle NeRD m
 
 1. Prescribed MPM robot and particle motion → force reconstruction: force-vector RMSE **32.66 N**.
 2. Prescribed MPM robot motion → recurrent NeRD particles and force reconstruction: force-vector RMSE **83.60 N**, final particle-position RMSE **19.29 mm**.
-3. Full closed-loop policy + rigid dynamics + NeRD: six command profiles with policy **jqur5jhm**, matched force/tracking/deformation plots and 50 fps videos. No MPM or robot reference is supplied to the full simulation.
+3. Full closed-loop simulation: six Particle NeRD command profiles, five with independent **implicit MPM** reference runs using policy **jqur5jhm**. Each completed pair starts from bit-identical robot poses and particle positions. Negative yaw remains NeRD only; its MPM reference was omitted. Overlaid force/tracking/deformation plots and synchronized 50 fps videos compare the complete simulations. No MPM or robot-reference state is supplied to the NeRD simulation.
 
-Both replay tests use the previous recorded MPM wrench to reconstruct the proxy free velocity. They share one five-second recorded trajectory; they are conditional replay tests. Full runs start from a fresh grid with zero native MPM steps. Their different bed size, resolution and initialization are documented separately. Full-run particle displacement is not an MPM prediction-error metric.
+Both replay tests use the previous recorded MPM wrench to reconstruct the proxy free velocity. They share one five-second recorded trajectory; they are conditional replay tests. Both full-simulation solvers start from the same fresh grid without settling warm-up; the NeRD runs use zero native MPM steps. Their different bed size, resolution and initialization are documented separately. Full-run particle displacement is not an MPM prediction-error metric.
 
 - [Force report](g1_humanoid/force_estimation/index.html)
 - [Particle report](g1_humanoid/particle_prediction/index.html)
 - [Conditions and reproduction](plots/DECOUPLED_EVALUATION.md)
-- [Full-run summaries](g1_humanoid/data/full-20261109/summary.json)
+- [Full-run summaries](g1_humanoid/data/full-comparison-20261109/summary.json)
 
 Serve with `python3 -m http.server 8765 --bind 127.0.0.1`, then open http://localhost:8765/. Forward port 8765 when using remote SSH. Large raw arrays are local artifacts and remain excluded from published Git history.
 

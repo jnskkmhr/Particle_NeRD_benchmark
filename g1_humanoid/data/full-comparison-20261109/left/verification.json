@@ -1,0 +1,41 @@
+{
+  "matched_metadata": [
+    "seed",
+    "checkpoint_sha256",
+    "initial_particles_sha256",
+    "material",
+    "particle_grid",
+    "robot_mass_kg",
+    "particle_mass_kg",
+    "particle_count",
+    "command_body_frame",
+    "physics_dt_s",
+    "control_dt_s",
+    "foot_names",
+    "initial_root_position_m",
+    "native_warmup_steps"
+  ],
+  "initial_states": "Bit-identical particle positions and rigid-body poses before the first step",
+  "rigid_physics": "Identical rigid solver entry, proxy mapping, collision pipeline, default joint and shape settings",
+  "video": "MPM left, NeRD right; matching simulation timestamps; stops at shorter recording, no frozen-frame extension",
+  "snapshot_checks": "1 Hz saved particle states reproduce displacement statistics; body positions match force trace timestamps",
+  "trace_checks": "200 Hz finite samples, constant command, force = sand force + rigid-geometry force",
+  "interpretation": "Independent closed-loop trajectories; curve differences include changed robot motion and are not isolated force-estimator errors",
+  "source_artifacts_sha256": {
+    "nerd": {
+      "metadata.json": "cc9d608e42cce44e5d22f69b2266f4fd575bcb56f57e2663183df7c0f85c1e17",
+      "trace.npz": "fdec2be503abaaaab46be1bae214c3e8e626051c680b4860d0120f4a255766c1",
+      "particle_metrics.npz": "86a474288de219d7330f7e7f2380f985a900883b4c4026457b622f3e0e149091",
+      "states.h5": "fd7960f9a634467d9b76bacf9aefa6f2f0799131b3a78e0f0dab07028a15839f",
+      "simulation.mp4": "44d669f3891643ac2a521458f2a6a30855039e59d0bafc524399d10635c44eda"
+    },
+    "mpm": {
+      "metadata.json": "ff4cae3337790e12be968b20b5649996f68595ffd9d103199650fb7b36939e6d",
+      "trace.npz": "19868bbeb44c6df33cc473f35e51a00a272828da8329f6762fc3a530d7489b06",
+      "particle_metrics.npz": "d6b6819e482ad2768c217699524d88d9051992ce1cc91f4a44a6909b8c245b5f",
+      "states.h5": "165c600db35d202362240e8fe7f15b14d700715cde61b968d81d77dcbdaa0883",
+      "simulation.mp4": "bf78e10fcd46a6374960e4abfaab9303bc064eb6efa15ace17206287119ab23e"
+    }
+  },
+  "comparison_video_sha256": "59f68ea6123ffce3c789eb9c89606cedbfe7587cf4a8e6b9a825e9730c9f8fa6"
+}

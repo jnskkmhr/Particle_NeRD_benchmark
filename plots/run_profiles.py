@@ -6,6 +6,7 @@ import subprocess
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--backend", choices=("nerd", "mpm"), default="nerd")
 parser.add_argument("--output", type=Path, required=True)
 parser.add_argument("--checkpoint", type=Path, required=True)
 args = parser.parse_args()
@@ -30,7 +31,7 @@ for name, vx, vy, wz in profiles:
         "python",
         str(Path(__file__).with_name("record_full_profiles.py")),
         "--backend",
-        "nerd",
+        args.backend,
         "--checkpoint",
         str(args.checkpoint),
         "--speed",
