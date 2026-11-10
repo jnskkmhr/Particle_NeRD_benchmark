@@ -1,0 +1,366 @@
+[
+  {
+    "id": "horizontal-flat",
+    "title": "Horizontal box push",
+    "description": "A 0.24 \u00d7 0.18 \u00d7 0.12 m box enters the sand, then follows a prescribed 1.30 m horizontal path.",
+    "motion": "horizontal",
+    "terrain": "flat",
+    "family": "object",
+    "path": "runs/horizontal-flat",
+    "duration": 6.0,
+    "particles": 20646,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion horizontal --terrain flat --duration 6 --output /tmp/horizontal-flat-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "bb9d25124b4c92230b7b1feed64a646f82d6b552138707ced451ec8da19a8143",
+      "simulation.mp4": "ec0528256c8c4a5a4187d7b4739693d5bee46a98269963e7f3036960189e0542"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "horizontal-ascend",
+    "title": "Horizontal box push",
+    "description": "A 0.24 \u00d7 0.18 \u00d7 0.12 m box enters the sand, then follows a prescribed 1.30 m horizontal path.",
+    "motion": "horizontal",
+    "terrain": "ascend",
+    "family": "object",
+    "path": "runs/horizontal-ascend",
+    "duration": 6.0,
+    "particles": 21460,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion horizontal --terrain ascend --duration 6 --output /tmp/horizontal-ascend-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "951489b929b0b37b083364e9d6a866c216f7ea01a11f030b7d74c9159f860dfb",
+      "simulation.mp4": "8f91d9839348637bea3a5c14bfa02ba4c65ee42d2701e9d7c5a4d55c534fcd8c"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "horizontal-descend",
+    "title": "Horizontal box push",
+    "description": "A 0.24 \u00d7 0.18 \u00d7 0.12 m box enters the sand, then follows a prescribed 1.30 m horizontal path.",
+    "motion": "horizontal",
+    "terrain": "descend",
+    "family": "object",
+    "path": "runs/horizontal-descend",
+    "duration": 6.0,
+    "particles": 21608,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion horizontal --terrain descend --duration 6 --output /tmp/horizontal-descend-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "bd77a5e315a6ba22ba12649d641fa1e1f3234d397db97f1601005e61de9dcdc4",
+      "simulation.mp4": "198c53a30e991994fe0cd12c0fcb7c3c19a7c236c9cab442cb0afb2e6c1d159a"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "horizontal-wave",
+    "title": "Horizontal box push",
+    "description": "A 0.24 \u00d7 0.18 \u00d7 0.12 m box enters the sand, then follows a prescribed 1.30 m horizontal path.",
+    "motion": "horizontal",
+    "terrain": "wave",
+    "family": "object",
+    "path": "runs/horizontal-wave",
+    "duration": 6.0,
+    "particles": 21682,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion horizontal --terrain wave --duration 6 --output /tmp/horizontal-wave-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "6eedd5bd49b809a44432d7717ddf831779b6147d9bd3d395ec13d373592bfa5c",
+      "simulation.mp4": "813da9e56b055640ba5e8bb17dca4c7e4c8f930880ef7c94fde4fb4ed81941fc"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "vertical-flat",
+    "title": "Vertical box intrusion",
+    "description": "The box enters the sand and continues downward by 0.12 m; its pose and velocity are prescribed.",
+    "motion": "vertical",
+    "terrain": "flat",
+    "family": "object",
+    "path": "runs/vertical-flat",
+    "duration": 6.0,
+    "particles": 20646,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion vertical --terrain flat --duration 6 --output /tmp/vertical-flat-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "c8bbb74cd0f94cc4be5b541b535ab07b0c57b722fbca840729302632943b1d31",
+      "simulation.mp4": "0f70818bbab8317f577bb83201320316812b86e3da01fcc8be5bdc46e1f87153"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "circle-flat",
+    "title": "Box circling",
+    "description": "The box follows a prescribed circle of radius 0.35 m while immersed in the material.",
+    "motion": "circle",
+    "terrain": "flat",
+    "family": "object",
+    "path": "runs/circle-flat",
+    "duration": 6.0,
+    "particles": 20646,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion circle --terrain flat --duration 6 --output /tmp/circle-flat-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "e17c791c701bb4af9fb894c948658015cff72c08ecd839f7454c2d4b42cc995a",
+      "simulation.mp4": "d6c5527f070cf3c05645d5819d98dee73f018afc34cbea54c20ee6586734a218"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "rolling-flat",
+    "title": "Sphere rolling",
+    "description": "A sphere of radius 0.10 m translates with prescribed spin. Sand reacts to the imposed motion; this is not a freely rolling sphere.",
+    "motion": "rolling",
+    "terrain": "flat",
+    "family": "object",
+    "path": "runs/rolling-flat",
+    "duration": 6.0,
+    "particles": 20646,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion rolling --terrain flat --duration 6 --output /tmp/rolling-flat-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "a5c04c43748cb4d4d5d49ceb7d6e3741e24c2b1d01855ae8b2b6c4cf0e1c9e70",
+      "simulation.mp4": "da6ebee25df429cd4aaa0cb1d8ac6debd6c5c9507dc1d52f626aca787313f63c"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "rolling-ascend",
+    "title": "Sphere rolling",
+    "description": "A sphere of radius 0.10 m translates with prescribed spin. Sand reacts to the imposed motion; this is not a freely rolling sphere.",
+    "motion": "rolling",
+    "terrain": "ascend",
+    "family": "object",
+    "path": "runs/rolling-ascend",
+    "duration": 6.0,
+    "particles": 21460,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion rolling --terrain ascend --duration 6 --output /tmp/rolling-ascend-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "56e5db12aa947361b252d43edca533d0a728f6a9406d701814d7b58487668698",
+      "simulation.mp4": "c1c0be9fc7a622d94a1bb7990a39cc08128a2cf9fc8119c056c38ce701a60e0a"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "rolling-descend",
+    "title": "Sphere rolling",
+    "description": "A sphere of radius 0.10 m translates with prescribed spin. Sand reacts to the imposed motion; this is not a freely rolling sphere.",
+    "motion": "rolling",
+    "terrain": "descend",
+    "family": "object",
+    "path": "runs/rolling-descend",
+    "duration": 6.0,
+    "particles": 21608,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion rolling --terrain descend --duration 6 --output /tmp/rolling-descend-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "491224f5c2cab3c2584524d694c4208fde0958b7e7adefcaaf1dece8bc5785da",
+      "simulation.mp4": "0bc2bd1453408eda840b152df6de2b933a4c954f9a28dc25a1cfcbfe3e91b75e"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "rolling-wave",
+    "title": "Sphere rolling",
+    "description": "A sphere of radius 0.10 m translates with prescribed spin. Sand reacts to the imposed motion; this is not a freely rolling sphere.",
+    "motion": "rolling",
+    "terrain": "wave",
+    "family": "object",
+    "path": "runs/rolling-wave",
+    "duration": 6.0,
+    "particles": 21682,
+    "controller": "Prescribed kinematic collider",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion rolling --terrain wave --duration 6 --output /tmp/rolling-wave-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "af795363d85cf26e7ece46c04d7c12e0f0927ef42353f522d40a49b2203d32e9",
+      "simulation.mp4": "9e89ba003be582f8b67523a22d1abe5670d624cad3e14ac756ddebb00d76d81e"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "projectile-flat",
+    "title": "Shallow box projectile",
+    "description": "A 2 kg shallow box (0.26 \u00d7 0.18 \u00d7 0.05 m) is released after one second with velocity (1, 0, 0.4) m/s and angular velocity (0, 1, 0) rad/s. Its subsequent motion is dynamic.",
+    "motion": "projectile",
+    "terrain": "flat",
+    "family": "object",
+    "path": "runs/projectile-flat",
+    "duration": 6.0,
+    "particles": 20646,
+    "controller": "Free projectile after release",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.3
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion projectile --terrain flat --duration 6 --output /tmp/projectile-flat-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "1a437c1e06600dfdb350a2d36f4f900b792871b1b1e5fb7e12e6777e0031d935",
+      "simulation.mp4": "c5213a985dc64fe3c50c894c74afb83c32e43da58da4bfc7e92981753cb0701b"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "franka-flat",
+    "title": "Franka sand pushing",
+    "description": "A fixed-base Franka arm uses damped least-squares IK and joint drives to push its closed gripper through the sand. The dataset stores the achieved motion.",
+    "motion": "franka",
+    "terrain": "flat",
+    "family": "robot",
+    "path": "runs/franka-flat",
+    "duration": 6.0,
+    "particles": 9176,
+    "controller": "Franka damped least-squares IK",
+    "control_hz": 200,
+    "bed": [
+      1.2,
+      1.0,
+      0.25
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion franka --terrain flat --duration 6 --output /tmp/franka-flat-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "dcdfb76725a73b84b5eb0e3dceb6fec743ae5db5b580ae4c8bc175b2163cc8ad",
+      "simulation.mp4": "f2727d468bd3b230ee0fc1efb8bfa986ca245e8973b2c5b0d3db40b9052a9f31"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "quadruped-flat",
+    "title": "Go2 crawl (leg IK)",
+    "description": "A freely balancing Unitree Go2 follows a slow crawl with leg IK and PD drives. The 0.12 m sand layer lies on a rigid tray; feet may also contact its floor. No base pose or external support wrench is prescribed.",
+    "motion": "quadruped",
+    "terrain": "flat",
+    "family": "robot",
+    "path": "runs/quadruped-flat",
+    "duration": 6.0,
+    "particles": 9176,
+    "controller": "Go2 free-base crawl with leg IK and PD joint drives",
+    "control_hz": 200,
+    "bed": [
+      2.0,
+      1.2,
+      0.12
+    ],
+    "policy": null,
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion quadruped --terrain flat --duration 6 --output /tmp/quadruped-flat-new",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "db2495e6c20174c592e9bcdb912580485a25da70f198ce1493d09657ecec78a2",
+      "simulation.mp4": "1a1b4e1b9e145d54560e394e39adb5e3666af78ad26a80936b1eaea6adc298c5"
+    },
+    "dataset_url": null
+  },
+  {
+    "id": "g1-flat",
+    "title": "G1 walking (RL)",
+    "description": "The MPM-trained G1 policy jqur5jhm (iteration 19,999) controls the humanoid at 50 Hz, with a 0.35 m/s forward command. Physics runs at 200 Hz.",
+    "motion": "g1",
+    "terrain": "flat",
+    "family": "robot",
+    "path": "runs/g1-flat",
+    "duration": 6.0,
+    "particles": 50400,
+    "controller": "G1 closed-loop MPM-trained RL policy",
+    "control_hz": 50,
+    "bed": [
+      3.6,
+      1.6,
+      0.3
+    ],
+    "policy": "jqur5jhm \u00b7 iteration 19,999",
+    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion g1 --terrain flat --duration 6 --output /tmp/g1-flat-new --checkpoint /home/jkamohara/isaac/particle_nerd/Particle_NeRD_benchmark/benchmark_environment/checkpoints/jqur5jhm/model_19999.pt",
+    "date": "2026-11-09",
+    "artifacts": {
+      "trajectory.h5": "f49fc50bd4fc20de5dd7a20a504af20318da8ea8fa762679e042417ec1218995",
+      "simulation.mp4": "2cae58e5e061cbe36451819ff51dffd5d18445d24e06b73748a6f72a64501579"
+    },
+    "dataset_url": null
+  }
+]

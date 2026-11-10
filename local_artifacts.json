@@ -1,0 +1,98 @@
+[
+  {
+    "path": "benchmark_environment/runs/circle-flat/trajectory.h5",
+    "bytes": 594528645,
+    "sha256": "e17c791c701bb4af9fb894c948658015cff72c08ecd839f7454c2d4b42cc995a",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/franka-flat/trajectory.h5",
+    "bytes": 264339071,
+    "sha256": "dcdfb76725a73b84b5eb0e3dceb6fec743ae5db5b580ae4c8bc175b2163cc8ad",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/g1-flat/trajectory.h5",
+    "bytes": 1428421252,
+    "sha256": "f49fc50bd4fc20de5dd7a20a504af20318da8ea8fa762679e042417ec1218995",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/horizontal-ascend/trajectory.h5",
+    "bytes": 618428492,
+    "sha256": "951489b929b0b37b083364e9d6a866c216f7ea01a11f030b7d74c9159f860dfb",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/horizontal-descend/trajectory.h5",
+    "bytes": 622607309,
+    "sha256": "bd77a5e315a6ba22ba12649d641fa1e1f3234d397db97f1601005e61de9dcdc4",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/horizontal-flat/trajectory.h5",
+    "bytes": 594512916,
+    "sha256": "bb9d25124b4c92230b7b1feed64a646f82d6b552138707ced451ec8da19a8143",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/horizontal-wave/trajectory.h5",
+    "bytes": 624896412,
+    "sha256": "6eedd5bd49b809a44432d7717ddf831779b6147d9bd3d395ec13d373592bfa5c",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/projectile-flat/trajectory.h5",
+    "bytes": 590423137,
+    "sha256": "1a437c1e06600dfdb350a2d36f4f900b792871b1b1e5fb7e12e6777e0031d935",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/quadruped-flat/trajectory.h5",
+    "bytes": 263701168,
+    "sha256": "db2495e6c20174c592e9bcdb912580485a25da70f198ce1493d09657ecec78a2",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/rolling-ascend/trajectory.h5",
+    "bytes": 618432748,
+    "sha256": "56e5db12aa947361b252d43edca533d0a728f6a9406d701814d7b58487668698",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/rolling-descend/trajectory.h5",
+    "bytes": 622598555,
+    "sha256": "491224f5c2cab3c2584524d694c4208fde0958b7e7adefcaaf1dece8bc5785da",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/rolling-flat/trajectory.h5",
+    "bytes": 594353556,
+    "sha256": "a5c04c43748cb4d4d5d49ceb7d6e3741e24c2b1d01855ae8b2b6c4cf0e1c9e70",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/rolling-wave/trajectory.h5",
+    "bytes": 624903554,
+    "sha256": "af795363d85cf26e7ece46c04d7c12e0f0927ef42353f522d40a49b2203d32e9",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/runs/vertical-flat/trajectory.h5",
+    "bytes": 594367419,
+    "sha256": "c8bbb74cd0f94cc4be5b541b535ab07b0c57b722fbca840729302632943b1d31",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/current-20261109/states.h5",
+    "bytes": 532566160,
+    "sha256": "4ef3438e48ecd8cf6a0783b85400be4b615766823703acfd14887cbb8a383da5",
+    "published": false
+  },
+  {
+    "path": "benchmark_environment/checkpoints/jqur5jhm/model_19999.pt",
+    "bytes": 16579519,
+    "sha256": "0852d6160c916f5f2c1bd873288657ecfb414b4fb76268d7314ab6f6ca6e7f44",
+    "published": false
+  }
+]

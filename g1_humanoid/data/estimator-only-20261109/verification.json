@@ -1,0 +1,11 @@
+{
+  "reference_time_and_forces": "Exact equality with current-20261109 for all 1000 samples",
+  "prescribed_states": "Exact equality at all 251 saved snapshots; particle positions prescribed from MPM",
+  "native_neural_forward_calls": 0,
+  "artifacts_sha256": {
+    "metadata.json": "98bcc8b240898e7d331398d752677e45886fe3832635e81d3d87a55853bfac43",
+    "prescribed-input.mp4": "a73ebb225bc5ccd38a05f280db293e1f5debce34e402252b3bf11810a359a6cf",
+    "prescribed-input.jpg": "be706999e9e562dc47557067cced77553b758d42a0723d61d046f64ad014aa31",
+    "trace.npz": "187c999112f8f6d969182782436f9168580f9963954b0f888659a491fcb3f739"
+  }
+}

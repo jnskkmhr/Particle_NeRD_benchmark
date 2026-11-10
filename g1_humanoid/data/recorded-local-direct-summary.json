@@ -1,0 +1,13 @@
+{
+  "recorded-local-direct": {
+    "boundary_features": true,
+    "displacement_taper": true,
+    "active_k": "auto",
+    "final_position_rmse_m": 0.0203884057700634,
+    "mean_near_foot_vertical_error_m": -0.000635352923627579,
+    "mean_total_sand_Fz_N": 325.5941162109375,
+    "reference_mean_total_sand_Fz_N": 328.81884765625,
+    "force_vector_rmse_N": 36.50233840942383,
+    "converged_fraction": 1.0
+  }
+}

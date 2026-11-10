@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G1 sand-particle prediction · Particle NeRD</title><link rel="stylesheet" href="../../assets/slides.css?v=20261109-white"></head>
+<body class="benchmark-report"><header><a class="brand" href="../../index.html">Particle NeRD / Benchmarks</a>
+<span class="archive">Current solver evaluation · 9 November 2026</span></header><main><div class="report-heading"><div class="eyebrow">G1 humanoid · one current solver</div><h1>G1 sand-particle prediction</h1>
+<p>Current Particle NeRD against the matching MPM reference, with the same recorded motion in the plots and video.</p>
+<nav aria-label="Report sections"><a href="#conditions">Simulation conditions</a><a href="#evaluation">Evaluation method</a>
+<a href="#results">Results</a><a href="#video">Matching video</a><a href="#sources">Data</a></nav></div><section class="report-section" id="conditions"><h2>1. Simulation conditions</h2>
+<p>This is a new evaluation of the <strong>currently installed Particle NeRD solver and checkpoint</strong>.
+The reference is an existing implicit-MPM recording of G1 walking on a fixed sand bed.
+Particle NeRD predicts the sand motion while following that same recorded robot motion.</p><div class="table-wrap"><table><caption>Table 1: Conditions of this five-second replay.</caption><tbody><tr><th scope="row">Neural checkpoint</th><td><code>particle_nerd/checkpoint/best.pt</code>; SHA-256 <code>7eee570d75d0…</code></td></tr><tr><th scope="row">Sand bed / particle resolution</th><td>3 m × 3 m × 0.3 m; 88,360 particles; reference MPM voxel size 0.04 m; particle radius 15.63 mm</td></tr><tr><th scope="row">Material</th><td>Density 1,600 kg/m³; friction 0.48; Young’s modulus 10¹⁵ Pa; Poisson ratio 0.3; yield pressure 10¹⁵ Pa</td></tr><tr><th scope="row">Particle selection</th><td>5,312 active particles and 512 background samples; active selection refreshed every four physics steps</td></tr><tr><th scope="row">Argon’s displacement scaling</th><td><strong>Enabled.</strong> The current solver scales predicted displacement using foot speed and a particle-height threshold.</td></tr><tr><th scope="row">Force reconstruction factors</th><td>Normal 100; tangential 40; horizontal 8; upward 2; normal exponent 3. These are effective material-response factors.</td></tr><tr><th scope="row">Contact solver</th><td>200 iterations; relaxation 0.02; gradient radius 0.065 m; contact band 0.08 m; stabilization 0.01; contact offset 0 m</td></tr><tr><th scope="row">Sampling and duration</th><td>200 Hz physics; 1,000 prediction steps = 5 s; video at 50 fps</td></tr><tr><th scope="row">Initial particle state</th><td>Three recorded MPM particle-position frames, ending at recording frame 60 (0.300 s)</td></tr><tr><th scope="row">Evaluation size</th><td>One recorded trajectory (episode 0002); both feet; no new training</td></tr></tbody></table></div><p>The replay uses the recorded 0.04 m bed to keep particle identities and geometry aligned with MPM.
+It does not use the live fixed-bed task’s 0.02 m spawn resolution. No native MPM warm-up is executed inside the NeRD replay;
+however, the initial particle state comes from the MPM recording, so this does not test an initially unsettled bed.</p></section><section class="report-section" id="evaluation"><h2>2. Evaluation method</h2>
+<p>At each 0.005 s step, the solver receives the recorded collider poses and velocities and its own predicted particle history.
+The force estimator also receives the recorded proxy free velocity, reconstructed by removing the previous material-force impulse from the advanced body velocity.
+Particle predictions are carried forward for the entire five seconds, without replacing them with MPM particles.</p>
+<p><strong>The robot follows prescribed motion.</strong> It does not respond to the newly estimated NeRD forces.
+Both video panels therefore show identical recorded G1 poses; their particle states differ.
+The video uses saved states from this evaluation, and its time label uses the same elapsed time as the plots.
+Elapsed 0 s corresponds to recording time 0.300 s.</p><p>Match each predicted particle to the same particle ID in the MPM recording.
+At every timestep, compute the square root of the mean squared 3D position distance over 88,360 particles.
+The signed z error is the mean of predicted z minus MPM z over those same particles: negative means particles are lower than their MPM counterparts.</p>
+<p>These are errors of the complete current solver, including active selection, background motion, displacement scaling,
+and boundary handling. They are not errors of the raw neural-network output alone. A bed-wide average can hide larger local errors near the feet.</p></section><section class="report-section" id="results"><h2>3. Particle-position results</h2><figure class="result-figure"><div class="plot-scroll" tabindex="0" aria-label="Scrollable plot">
+<a href="figures/current_particle_error.svg" target="_blank" rel="noopener"><img src="figures/current_particle_error.svg" alt="Current Particle NeRD position RMSE and mean signed z error against recorded MPM particles."></a></div>
+<figcaption><strong>Figure 1:</strong> (a) Root-mean-square 3D particle-position error. (b) Mean signed particle z error. Each value compares the same 88,360 particle IDs with the recorded MPM state. One trajectory, 1,000 timesteps; no temporal smoothing. Argon’s foot-speed displacement scaling is enabled throughout. <a href="figures/current_particle_error.pdf">PDF</a> · <a href="figures/current_particle_error.png">PNG</a> · Tap to enlarge.</figcaption></figure><div class="table-wrap"><table><caption>Table 2: Particle errors at the final elapsed time of 5.00 s.</caption><tbody><tr><th scope="row">3D particle-position RMSE</th><td>19.29 mm</td></tr><tr><th scope="row">Mean signed particle z error</th><td>11.82 mm</td></tr></tbody></table></div><p>The final position RMSE is 19.29 mm. This is a measured error for the current solver on this trajectory; enabling the displacement rule does not eliminate prediction error.</p></section><section class="report-section" id="video"><h2>4. Matching recorded-state video</h2>
+<p><strong>Recorded robot motion; recurrently predicted NeRD particles.</strong> The MPM panel replays recorded robot and particle states. The NeRD panel uses the same recorded robot poses with newly predicted particle states. NeRD forces do not drive the robot in this video.</p>
+<figure class="video-figure"><video controls playsinline preload="metadata" poster="../data/current-20261109/comparison.jpg">
+<source src="../data/current-20261109/comparison.mp4" type="video/mp4">
+<a href="../data/current-20261109/comparison.mp4">Download video</a></video>
+<figcaption><strong>Video 1:</strong> Left: recorded implicit-MPM particles. Right: current Particle NeRD predictions, with Argon’s displacement scaling enabled.
+Both panels use the same recorded G1 poses and timestamps. Playback is 50 fps at simulation speed; displayed states cover elapsed 0–4.98 s.
+The final 5.00 s state is retained in the data. <a href="../data/current-20261109/comparison.mp4">Download MP4</a>.</figcaption></figure></section><section class="report-section" id="sources"><h2>5. Data and reproducibility</h2>
+<p>The checkpoint and solver source hashes, configuration, raw force trace, and 251 matched particle snapshots are saved with this report.
+The MPM reference was recorded previously; the NeRD predictions and the matching video were generated on 9 November 2026.</p>
+<p><a href="../data/current-20261109/metadata.json">Run settings and code hashes</a> ·
+<a href="../data/current-20261109/reference-body-properties.json">Reference foot mass and inertia</a> ·
+<span>Raw measurements (NPZ) retained locally</span> ·
+<span>Matched states (HDF5, 508 MiB) retained locally</span> ·
+<a href="../data/current-20261109/verification.json">Alignment checks and artifact hashes</a> ·
+<a href="../../plots/CURRENT_REPLAY.md">Reproduction instructions</a></p>
+<p>This one-trajectory replay measures agreement with MPM under prescribed motion. It does not establish closed-loop standing stability,
+moving-patch performance, or generalization across terrains.</p></section></main><footer class="site-footer"><span class="footer-brand">Particle NeRD</span><span>G1 humanoid benchmarks · 11/09/2026</span></footer></body></html>

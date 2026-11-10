@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480">
+  <defs>
+    <pattern id="facets" width="112" height="84" patternUnits="userSpaceOnUse" patternTransform="skewY(-12)">
+      <path d="M0 0H112L68 47Z" fill="#f3f3f3"/>
+      <path d="M112 0V84L68 47Z" fill="#e8e9e8"/>
+      <path d="M0 84H112L68 47Z" fill="#fafafa"/>
+      <path d="M0 0V84L68 47Z" fill="#fff"/>
+      <path d="M0 0H112V84H0Z M0 0L68 47L112 84 M0 84L68 47L112 0" fill="none" stroke="#e5e6e5" stroke-width=".8"/>
+    </pattern>
+    <linearGradient id="fade"><stop stop-color="#fff"/><stop offset=".52" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <path fill="url(#facets)" d="M0 0h900v480H0z"/>
+  <path fill="url(#fade)" d="M0 0h900v480H0z"/>
+</svg>

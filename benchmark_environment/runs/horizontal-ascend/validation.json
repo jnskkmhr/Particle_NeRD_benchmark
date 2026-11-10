@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "finite_saved_forces": true,
+    "particles_below_tray_floor": 0,
+    "particles_below_tray_floor_pass": true,
+    "material_contact_present": true,
+    "initial_and_final_particle_counts_match": true,
+    "video_matches_recorded_states": true
+  },
+  "measurements": {
+    "max_particle_displacement_m": 1.348833441734314,
+    "mean_particle_displacement_m": 0.0328943245112896,
+    "reacting_body_names": [
+      "/World/envs/env_0/Object"
+    ],
+    "peak_total_material_force_N": 1284.906005859375
+  },
+  "passed": true
+}

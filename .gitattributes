@@ -1,0 +1,4 @@
+# Preserve plot-generator output without whitespace diagnostics.
+*.svg -whitespace
+# Executed source snapshots retain their original bytes and hashes.
+benchmark_environment/runs/*/source/** -whitespace

@@ -1,0 +1,96 @@
+# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
+# All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+"""Finite sand beds with a rigid floor and retaining walls, in metres."""
+
+import numpy as np
+from isaaclab_newton.assets import MPMObjectCfg
+from isaaclab_newton.sim.schemas import NewtonCollisionCfg
+from isaaclab_newton.sim.spawners.mpm import MPMParticleMaterialCfg, MPMPointsCfg
+
+import isaaclab.sim as sim
+from isaaclab.assets import AssetBaseCfg
+
+VOXEL_SIZE = 0.04
+SPACING = VOXEL_SIZE / 1.25
+DENSITY = 1600.0
+
+
+def surface_height(x, terrain):
+    """Initial particle free-surface height relative to the tray centre."""
+    if terrain == "flat":
+        return np.zeros_like(x)
+    if terrain == "ascend":
+        return 0.12 * np.asarray(x)
+    if terrain == "descend":
+        return -0.12 * np.asarray(x)
+    if terrain == "wave":
+        return 0.06 * np.sin(2 * np.pi * np.asarray(x) / 1.2)
+    raise ValueError(f"Unknown terrain: {terrain}")
+
+
+def sand_cfg(terrain="flat", size=(2.0, 1.2, 0.30)):
+    """Sample a uniform lattice below the specified initial surface."""
+    length, width, depth = size
+    axes = [
+        np.arange(-length / 2 + SPACING / 2, length / 2, SPACING),
+        np.arange(-width / 2 + SPACING / 2, width / 2, SPACING),
+        np.arange(-depth + SPACING / 2, 0.2, SPACING),
+    ]
+    points = np.stack(np.meshgrid(*axes, indexing="ij"), axis=-1).reshape(-1, 3)
+    points = points[points[:, 2] < surface_height(points[:, 0], terrain)]
+    return MPMObjectCfg(
+        prim_path="{ENV_REGEX_NS}/Sand",
+        spawn=MPMPointsCfg(
+            positions=points.tolist(),
+            radius=SPACING / 2,
+            mass=DENSITY * SPACING**3,
+            visual_color=(0.72, 0.59, 0.36),
+            material=MPMParticleMaterialCfg(
+                density=DENSITY,
+                young_modulus=1e15,
+                poisson_ratio=0.3,
+                friction=0.48,
+                yield_pressure=1e15,
+                tensile_yield_ratio=0.0,
+                yield_stress=0.0,
+                hardening=0.0,
+                dilatancy=0.0,
+                viscosity=0.0,
+            ),
+        ),
+    )
+
+
+def tray_box(name, size, position):
+    """Static collision geometry visible in both rigid and particle solvers."""
+    return AssetBaseCfg(
+        prim_path="{ENV_REGEX_NS}/" + name,
+        spawn=sim.CuboidCfg(
+            size=size,
+            collision_props=NewtonCollisionCfg(contact_margin=0.016),
+            visual_material=sim.PreviewSurfaceCfg(diffuse_color=(0.25, 0.30, 0.33)),
+        ),
+        init_state=AssetBaseCfg.InitialStateCfg(pos=position),
+    )
+
+
+def configure_terrain(scene, terrain, size=(2.0, 1.2, 0.30)):
+    """Assign the particle bed and five static retaining boxes."""
+    length, width, depth = size
+    scene.sand = sand_cfg(terrain, size)
+    scene.floor = tray_box("Floor", (length + 0.2, width + 0.2, 0.20), (0.0, 0.0, -depth - 0.10))
+    scene.wall_x0 = tray_box("WallX0", (0.10, width + 0.2, depth + 0.20), (-length / 2 - 0.05, 0.0, 0.10 - depth / 2))
+    scene.wall_x1 = tray_box("WallX1", (0.10, width + 0.2, depth + 0.20), (length / 2 + 0.05, 0.0, 0.10 - depth / 2))
+    scene.wall_y0 = tray_box("WallY0", (length, 0.10, depth + 0.20), (0.0, -width / 2 - 0.05, 0.10 - depth / 2))
+    scene.wall_y1 = tray_box("WallY1", (length, 0.10, depth + 0.20), (0.0, width / 2 + 0.05, 0.10 - depth / 2))
+    # Separate static-shape ownership: each solver receives its own coincident collider.
+    from copy import deepcopy
+
+    for name in ("floor", "wall_x0", "wall_x1", "wall_y0", "wall_y1"):
+        mirror = deepcopy(getattr(scene, name))
+        mirror.prim_path = mirror.prim_path.replace("}/", "}/Rigid")
+        mirror.spawn.visible = False
+        setattr(scene, "rigid_" + name, mirror)

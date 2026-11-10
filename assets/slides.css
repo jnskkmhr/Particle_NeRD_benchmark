@@ -1,0 +1,117 @@
+/* White presentation theme based on the supplied NVIDIA slide references. */
+:root {
+  color-scheme: light;
+  --bg: #fff;
+  --text: #111;
+  --muted: #666;
+  --accent: #76b900;
+  --link: #426800;
+  --border: #dedede;
+  --gutter: clamp(22px, 5.6vw, 110px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 20px/1.55 Arial, Helvetica, sans-serif; }
+a { color: var(--link); text-underline-offset: .2em; }
+a:hover { color: #111; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+header { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px var(--gutter); font-size: 14px; }
+.brand { color: #111; font-weight: 700; text-decoration: none; }
+.brand::before { content: ""; display: inline-block; width: 9px; height: 9px; margin-right: 12px; background: var(--accent); }
+.archive { color: #777; font-size: 14px; }
+.benchmark-report main { max-width: 1920px; margin: auto; padding: 0 var(--gutter) 30px; }
+h1, h2, h3 { color: #000; line-height: 1.15; font-weight: 700; }
+h1 { font-size: clamp(36px, 4.2vw, 68px); letter-spacing: -.025em; margin: 18px 0 24px; max-width: 1250px; }
+h2 { font-size: clamp(28px, 2.5vw, 42px); letter-spacing: -.015em; margin: 0 0 28px; }
+h3 { font-size: 25px; margin: 0 0 14px; }
+p { max-width: 1190px; margin: 0 0 22px; }
+strong { font-weight: 700; }
+.muted, .caption { color: var(--muted); }
+.eyebrow { color: #777; font-size: 16px; letter-spacing: .01em; font-weight: 400; }
+code { font-size: .84em; overflow-wrap: anywhere; }
+li { margin-bottom: 10px; padding-left: 5px; }
+li::marker { color: var(--accent); }
+
+/* Continuous presentation sections retain full-size plots and videos. */
+.report-heading { position: relative; isolation: isolate; padding: 55px 0 35px; }
+.report-heading::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; right: calc(-1 * var(--gutter)); width: 42%; background: url("slide-facets.svg") right center / cover no-repeat; opacity: .65; pointer-events: none; }
+.report-heading p { max-width: 1100px; }
+.report-heading nav { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 32px; font-size: 16px; }
+.report-heading nav a { color: #333; text-decoration: none; border-bottom: 3px solid var(--accent); padding: 5px 0; }
+.report-heading nav a:hover { color: var(--link); }
+.report-section { padding: 55px 0 60px; border-top: 1px solid #e6e6e6; scroll-margin-top: 20px; }
+.report-section p { max-width: 1260px; }
+.report-section h2::before { content: ""; display: block; width: 42px; height: 5px; margin-bottom: 20px; background: var(--accent); }
+.table-wrap { overflow-x: auto; margin: 28px 0; }
+table { border-collapse: collapse; width: 100%; max-width: 1450px; font-size: 18px; margin: 0; }
+caption { text-align: left; color: #666; font-size: 16px; padding-bottom: 15px; }
+th, td { padding: 16px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+th { color: #111; font-weight: 600; }
+tbody th[scope="row"] { width: 29%; }
+tbody tr:first-child th, tbody tr:first-child td { border-top: 2px solid #111; }
+tbody tr:nth-child(even) { background: #f7f7f7; }
+td { color: #333; font-variant-numeric: tabular-nums; }
+#results td { text-align: right; }
+.result-figure { margin: 35px 0 48px; }
+.plot-scroll { overflow-x: auto; }
+.result-figure img { display: block; width: 100%; height: auto; max-height: none; object-fit: contain; background: #fff; }
+.result-figure figcaption, .video-figure figcaption { color: #555; font-size: 17px; line-height: 1.55; margin-top: 18px; max-width: 1450px; }
+.result-figure figcaption strong, .video-figure figcaption strong { color: #111; }
+.video-figure { margin: 30px 0 0; }
+.video-figure video { display: block; width: 100%; height: auto; background: #000; }
+.sources { font-size: 16px; }
+
+/* Cover pages echo the faceted texture of the reference title slide. */
+.landing { position: relative; isolation: isolate; padding: 65px 0 50px; min-height: 80vh; }
+.landing::before { content: ""; position: absolute; z-index: -1; top: 0; right: calc(-1 * var(--gutter)); width: 60%; height: 390px; background: url("slide-facets.svg") right top / cover no-repeat; pointer-events: none; }
+.landing h1 { max-width: 900px; }
+.landing > p { max-width: 1050px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 45px; margin: 55px 0 40px; }
+.card { display: block; min-width: 0; padding: 24px 0 0; border-top: 5px solid var(--accent); color: #111; text-decoration: none; }
+.card h2 { font-size: 30px; margin-bottom: 25px; }
+.card:hover h2 { color: var(--link); }
+.card p { color: #555; font-size: 18px; margin-top: 25px; }
+.preview { display: block; width: 100%; height: 280px; object-fit: contain; object-position: left top; background: #fff; }
+.caption { font-size: 17px; }
+.site-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 25px var(--gutter) 35px; color: #777; font-size: 13px; }
+.site-footer .footer-brand { color: #111; font-size: 18px; font-weight: 700; }
+.footer-brand::before { content: ""; display: inline-block; width: 19px; height: 19px; margin-right: 10px; vertical-align: -3px; background: var(--accent); }
+
+@media (max-width: 700px) {
+  body { font-size: 17px; }
+  header { align-items: flex-start; font-size: 12px; }
+  .archive { max-width: 150px; font-size: 12px; text-align: right; }
+  .report-heading, .landing { padding-top: 35px; }
+  .report-heading::before { width: 55%; opacity: .35; }
+  .landing::before { width: 80%; opacity: .45; }
+  .report-section { padding: 35px 0 40px; }
+  .report-heading nav { gap: 12px 20px; font-size: 14px; }
+  .grid { grid-template-columns: 1fr; gap: 30px; margin-top: 35px; }
+  .card h2 { font-size: 27px; }
+  .preview { height: auto; max-height: 310px; }
+  table { font-size: 15px; }
+  th, td { padding: 12px 10px; }
+  tbody th[scope="row"] { width: 34%; }
+  caption, .result-figure figcaption, .video-figure figcaption { font-size: 14px; }
+  .plot-scroll img { min-width: 800px; }
+  .result-figure::before { content: "Swipe the plot horizontally, or tap to enlarge."; display: block; font-size: 12px; color: #666; margin-bottom: 12px; }
+  .site-footer { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  @page { margin: 16mm; }
+  body { color: #000; background: #fff; font-size: 11pt; }
+  header, .report-heading nav, .site-footer, .result-figure::before { display: none; }
+  .benchmark-report main { padding: 0; max-width: none; }
+  .report-heading, .landing { padding: 0 0 20px; }
+  .report-heading::before, .landing::before { display: none; }
+  h1 { font-size: 30pt; }
+  h2 { font-size: 22pt; }
+  .report-section { break-before: page; border: 0; padding: 0; }
+  .result-figure, .video-figure { break-inside: avoid; }
+  .plot-scroll { overflow: visible; }
+  .plot-scroll img { min-width: 0; max-height: 180mm; }
+  table { font-size: 10pt; }
+  th, td { padding: 9px; }
+  .report-section h2::before, .card { print-color-adjust: exact; }
+}

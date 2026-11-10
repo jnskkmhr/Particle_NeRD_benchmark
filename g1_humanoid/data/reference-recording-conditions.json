@@ -1,0 +1,54 @@
+{
+  "source_recording": "/home/jkamohara/isaac/particle_nerd/experiments/g1-evaluation-20s-mass50/reference-recordings/episode-0002.hdf5",
+  "source_manifest_sha256": "20edf1da20f6f7f4d13b4149e1aeeb0213c976f192a2b231f4afda8617b5d348",
+  "conditions": {
+    "trial": {
+      "trial_id": 2,
+      "group": "straight",
+      "mode": "policy",
+      "split": "test",
+      "simulation_seed": 120001,
+      "initial_x_m": 0.025666121547348777,
+      "initial_y_m": -0.008432347258158356,
+      "initial_yaw_rad": -2.641616726535483,
+      "switch_time_s": 3.42,
+      "command_start": [
+        0.09616759730536958,
+        0.0,
+        0.0
+      ],
+      "command_end": [
+        0.09616759730536958,
+        0.0,
+        0.0
+      ],
+      "duration_s": 20.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "physics_dt_s": 0.005,
+    "policy_dt_s": 0.02,
+    "record_hz": 200,
+    "material": {
+      "density": 1600.0,
+      "young_modulus": 1000000000000000.0,
+      "poisson_ratio": 0.3,
+      "friction": 0.48,
+      "yield_pressure": 1000000000000000.0,
+      "tensile_yield_ratio": 0.0,
+      "yield_stress": 0.0,
+      "hardening": 0.0,
+      "dilatancy": 0.0,
+      "viscosity": 0.0
+    },
+    "bed_dimensions_m": [
+      3,
+      3,
+      0.3
+    ],
+    "grid_spacing_m": 0.04,
+    "coordinates": "Positions relative to environment origin; world-axis vectors; quaternion xyzw"
+  },
+  "particle_count": 88360,
+  "particle_radius_m": 0.015631694346666336
+}

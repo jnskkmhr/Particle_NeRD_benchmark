@@ -1,0 +1,78 @@
+[
+  {
+    "file": "standing-comparison.mp4",
+    "source": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/validation-standing-rtx.mp4",
+    "sha256": "b1e7f69085c511d2cefb4af7e6117f55659e89b0cae17375b890ae1946f672a8",
+    "evaluation": "Independent closed-loop robot simulations; not the prescribed-motion replay used for the error plots.",
+    "prediction_metadata": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/validation-430-direct/metadata.json",
+    "trial": {
+      "trial_id": 430,
+      "group": "standing",
+      "mode": "policy",
+      "split": "validation",
+      "simulation_seed": 120429,
+      "initial_x_m": -0.02487873923193411,
+      "initial_y_m": -0.033168249374000675,
+      "initial_yaw_rad": -0.9506529540733251,
+      "switch_time_s": 3.04,
+      "command_start": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_end": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "duration_s": 20.0,
+    "physics_hz": 200,
+    "policy_hz": 50,
+    "snapshots_hz": 25,
+    "checkpoint": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/local-direct-contact/step-100.pt",
+    "termination_terms": []
+  },
+  {
+    "file": "walking-comparison.mp4",
+    "source": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/direct-straight-rtx.mp4",
+    "sha256": "4e3a1c2ea7eacd45c026515436c4c7d08125905cc1c026110e487b84c501d399",
+    "evaluation": "Independent closed-loop robot simulations; not the prescribed-motion replay used for the error plots.",
+    "prediction_metadata": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/direct-20s-2/metadata.json",
+    "trial": {
+      "trial_id": 2,
+      "group": "straight",
+      "mode": "policy",
+      "split": "test",
+      "simulation_seed": 120001,
+      "initial_x_m": 0.025666121547348777,
+      "initial_y_m": -0.008432347258158356,
+      "initial_yaw_rad": -2.641616726535483,
+      "switch_time_s": 3.42,
+      "command_start": [
+        0.09616759730536958,
+        0.0,
+        0.0
+      ],
+      "command_end": [
+        0.09616759730536958,
+        0.0,
+        0.0
+      ],
+      "duration_s": 20.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "duration_s": 19.44,
+    "physics_hz": 200,
+    "policy_hz": 50,
+    "snapshots_hz": 25,
+    "checkpoint": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/local-direct-contact/step-100.pt",
+    "termination_terms": [
+      "outside_workspace"
+    ]
+  }
+]

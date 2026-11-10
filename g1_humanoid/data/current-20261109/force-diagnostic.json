@@ -1,0 +1,1336 @@
+{
+  "parent_trace_sha256": "cb2dd1d5b11cb3813181120345a09757870a46028c51c3a1849d80c78564994a",
+  "diagnostic_steps": 600,
+  "diagnostic_reproduces_parent_first_600_steps_exactly": true,
+  "reference_particle_control": "Same recorded body poses and rewound free velocities, same estimator settings; replace captured particle positions and next particle velocities with recorded MPM positions and position differences. Evaluate both the original active particle IDs and every particle. These are isolated force probes, not closed-loop rollouts.",
+  "particle_geometry_measurement": "Particle centers inside the foot box horizontal footprint. Distance below the sole is measured in the foot box local z direction; this is not a particle-surface clearance.",
+  "force_probes": [
+    {
+      "t": 0.2,
+      "nerd_Fz": [
+        110.21649169921875,
+        160.7182159423828
+      ],
+      "mpm_Fz": [
+        136.69715881347656,
+        184.00318908691406
+      ],
+      "nerd_contact_stats": [
+        [
+          18.0,
+          1.0,
+          4.2676790263620937e-13
+        ],
+        [
+          18.0,
+          1.0,
+          4.534634624412372e-13
+        ]
+      ],
+      "foot_speed": [
+        0.04398619383573532,
+        0.02842404507100582
+      ],
+      "gate_multiplier": [
+        1.0,
+        1.0
+      ],
+      "free_velocity": [
+        [
+          0.02519986405968666,
+          -0.07630319893360138,
+          -0.3801310062408447,
+          -0.16764354705810547,
+          0.006980769336223602,
+          0.08219654113054276
+        ],
+        [
+          -0.016336720436811447,
+          0.08886457234621048,
+          -0.49604088068008423,
+          0.3633284270763397,
+          -0.06913396716117859,
+          0.41842198371887207
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          134.8972625732422,
+          178.4734344482422
+        ],
+        "contact_stats": [
+          [
+            31.0,
+            1.0,
+            1.6678264915399814e-13
+          ],
+          [
+            31.0,
+            1.0,
+            1.9413309132525458e-13
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          134.8972625732422,
+          178.4734344482422
+        ],
+        "contact_stats": [
+          [
+            31.0,
+            1.0,
+            1.6678264915399814e-13
+          ],
+          [
+            31.0,
+            1.0,
+            1.9413309132525458e-13
+          ]
+        ]
+      }
+    },
+    {
+      "t": 0.5,
+      "nerd_Fz": [
+        108.46076202392578,
+        106.72554779052734
+      ],
+      "mpm_Fz": [
+        174.5985870361328,
+        150.35076904296875
+      ],
+      "nerd_contact_stats": [
+        [
+          6.0,
+          1.0,
+          2.8266793202555403e-13
+        ],
+        [
+          7.0,
+          1.0,
+          9.662852969759676e-15
+        ]
+      ],
+      "foot_speed": [
+        0.03430251032114029,
+        0.022125404328107834
+      ],
+      "gate_multiplier": [
+        1.0,
+        0.7571282982826233
+      ],
+      "free_velocity": [
+        [
+          0.07121041417121887,
+          -0.12271785736083984,
+          -0.4803333878517151,
+          0.15024079382419586,
+          -0.6438654661178589,
+          -0.11649198830127716
+        ],
+        [
+          -0.06032882258296013,
+          0.10795953869819641,
+          -0.3990640640258789,
+          0.5794562101364136,
+          -0.5172961950302124,
+          0.21171322464942932
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          171.21975708007812,
+          147.83885192871094
+        ],
+        "contact_stats": [
+          [
+            32.0,
+            1.0,
+            7.698609093939433e-14
+          ],
+          [
+            31.0,
+            1.0,
+            6.840278448206156e-14
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          171.21975708007812,
+          147.83885192871094
+        ],
+        "contact_stats": [
+          [
+            32.0,
+            1.0,
+            7.698609093939433e-14
+          ],
+          [
+            31.0,
+            1.0,
+            6.840278448206156e-14
+          ]
+        ]
+      }
+    },
+    {
+      "t": 0.8,
+      "nerd_Fz": [
+        2.4066379070281982,
+        121.696044921875
+      ],
+      "mpm_Fz": [
+        173.28396606445312,
+        156.07931518554688
+      ],
+      "nerd_contact_stats": [
+        [
+          6.0,
+          1.0,
+          1.6068513161896703e-14
+        ],
+        [
+          10.0,
+          1.0,
+          3.920877270483274e-14
+        ]
+      ],
+      "foot_speed": [
+        0.02699524164199829,
+        0.019228313118219376
+      ],
+      "gate_multiplier": [
+        1.0,
+        0.30598685145378113
+      ],
+      "free_velocity": [
+        [
+          0.05077040195465088,
+          -0.08479698747396469,
+          -0.4640641510486603,
+          0.10040439665317535,
+          -0.8412215709686279,
+          0.1289958357810974
+        ],
+        [
+          -0.042175911366939545,
+          0.08332258462905884,
+          -0.41014087200164795,
+          0.6935036778450012,
+          -0.44509923458099365,
+          -0.07345782965421677
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          170.19613647460938,
+          153.79763793945312
+        ],
+        "contact_stats": [
+          [
+            33.0,
+            1.0,
+            4.802979367399634e-13
+          ],
+          [
+            33.0,
+            1.0,
+            2.8513113440094346e-14
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          170.19613647460938,
+          153.79763793945312
+        ],
+        "contact_stats": [
+          [
+            33.0,
+            1.0,
+            4.802979367399634e-13
+          ],
+          [
+            33.0,
+            1.0,
+            2.8513113440094346e-14
+          ]
+        ]
+      }
+    },
+    {
+      "t": 1.0,
+      "nerd_Fz": [
+        0.9882425665855408,
+        145.03955078125
+      ],
+      "mpm_Fz": [
+        173.74725341796875,
+        153.99818420410156
+      ],
+      "nerd_contact_stats": [
+        [
+          6.0,
+          1.0,
+          5.481406687886786e-18
+        ],
+        [
+          14.0,
+          1.0,
+          1.2234407728962156e-13
+        ]
+      ],
+      "foot_speed": [
+        0.01939825527369976,
+        0.011548704467713833
+      ],
+      "gate_multiplier": [
+        0.33172693848609924,
+        0.0
+      ],
+      "free_velocity": [
+        [
+          0.016453837975859642,
+          -0.011760206893086433,
+          -0.4568631947040558,
+          0.18077413737773895,
+          -0.6792432069778442,
+          0.12391296029090881
+        ],
+        [
+          -0.002916212659329176,
+          0.016007188707590103,
+          -0.4023054838180542,
+          0.6333956122398376,
+          -0.5992680788040161,
+          -0.10622795671224594
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          171.01318359375,
+          152.20216369628906
+        ],
+        "contact_stats": [
+          [
+            34.0,
+            1.0,
+            5.313607921256253e-13
+          ],
+          [
+            32.0,
+            1.0,
+            2.6398845033693517e-13
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          171.01318359375,
+          152.20216369628906
+        ],
+        "contact_stats": [
+          [
+            34.0,
+            1.0,
+            5.313607921256253e-13
+          ],
+          [
+            32.0,
+            1.0,
+            2.6398845033693517e-13
+          ]
+        ]
+      }
+    },
+    {
+      "t": 1.5,
+      "nerd_Fz": [
+        0.0,
+        165.1194610595703
+      ],
+      "mpm_Fz": [
+        155.74794006347656,
+        170.69432067871094
+      ],
+      "nerd_contact_stats": [
+        [
+          5.0,
+          1.0,
+          0.0
+        ],
+        [
+          17.0,
+          1.0,
+          3.010235451196713e-13
+        ]
+      ],
+      "foot_speed": [
+        0.012647029012441635,
+        0.019378509372472763
+      ],
+      "gate_multiplier": [
+        0.0,
+        0.32871124148368835
+      ],
+      "free_velocity": [
+        [
+          -0.0038274480029940605,
+          0.004750710446387529,
+          -0.4028397500514984,
+          0.4332379996776581,
+          -0.787056565284729,
+          0.04282354190945625
+        ],
+        [
+          0.00889147911220789,
+          0.007276436313986778,
+          -0.444288432598114,
+          0.9261009693145752,
+          -1.1693826913833618,
+          0.03330996632575989
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          153.902587890625,
+          168.18467712402344
+        ],
+        "contact_stats": [
+          [
+            35.0,
+            1.0,
+            6.329877526473273e-14
+          ],
+          [
+            31.0,
+            1.0,
+            2.4142375198214355e-13
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          153.902587890625,
+          168.18467712402344
+        ],
+        "contact_stats": [
+          [
+            35.0,
+            1.0,
+            6.329877526473273e-14
+          ],
+          [
+            31.0,
+            1.0,
+            2.4142375198214355e-13
+          ]
+        ]
+      }
+    },
+    {
+      "t": 2.0,
+      "nerd_Fz": [
+        2.3751182556152344,
+        143.9254150390625
+      ],
+      "mpm_Fz": [
+        158.40553283691406,
+        166.00001525878906
+      ],
+      "nerd_contact_stats": [
+        [
+          7.0,
+          1.0,
+          1.5846530750976879e-15
+        ],
+        [
+          15.0,
+          1.0,
+          6.023078652440523e-13
+        ]
+      ],
+      "foot_speed": [
+        0.03846606984734535,
+        0.03431000933051109
+      ],
+      "gate_multiplier": [
+        1.0,
+        1.0
+      ],
+      "free_velocity": [
+        [
+          -0.0065550422295928,
+          0.008807094767689705,
+          -0.41440820693969727,
+          0.9173588156700134,
+          -1.4904202222824097,
+          -0.04676996171474457
+        ],
+        [
+          0.010148009285330772,
+          -0.0016986234113574028,
+          -0.4256725311279297,
+          1.223586082458496,
+          -1.7958629131317139,
+          0.08267278969287872
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          154.00706481933594,
+          164.3532257080078
+        ],
+        "contact_stats": [
+          [
+            30.0,
+            1.0,
+            3.8938910622625456e-13
+          ],
+          [
+            31.0,
+            1.0,
+            1.9025682239288988e-13
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          154.00706481933594,
+          164.3532257080078
+        ],
+        "contact_stats": [
+          [
+            30.0,
+            1.0,
+            3.8938910622625456e-13
+          ],
+          [
+            31.0,
+            1.0,
+            1.9025682239288988e-13
+          ]
+        ]
+      }
+    },
+    {
+      "t": 2.2,
+      "nerd_Fz": [
+        344.1453857421875,
+        -40.595664978027344
+      ],
+      "mpm_Fz": [
+        398.0897216796875,
+        -41.6799430847168
+      ],
+      "nerd_contact_stats": [
+        [
+          18.0,
+          1.0,
+          1.0271427578343348e-12
+        ],
+        [
+          11.0,
+          1.0,
+          1.0890457312304605e-12
+        ]
+      ],
+      "foot_speed": [
+        0.3052029311656952,
+        0.3420771062374115
+      ],
+      "gate_multiplier": [
+        1.0,
+        1.0
+      ],
+      "free_velocity": [
+        [
+          0.1383059322834015,
+          -0.016950048506259918,
+          -1.1548783779144287,
+          2.726386308670044,
+          -6.161441802978516,
+          -0.626716136932373
+        ],
+        [
+          -0.1617821305990219,
+          -0.34054526686668396,
+          0.17473818361759186,
+          -3.032310724258423,
+          4.071828365325928,
+          -0.1295040249824524
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          382.0595397949219,
+          -21.766357421875
+        ],
+        "contact_stats": [
+          [
+            30.0,
+            1.0,
+            1.7593372182489665e-12
+          ],
+          [
+            20.0,
+            1.0,
+            1.5217753006680492e-14
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          382.0595397949219,
+          -21.766357421875
+        ],
+        "contact_stats": [
+          [
+            30.0,
+            1.0,
+            1.7593372182489665e-12
+          ],
+          [
+            20.0,
+            1.0,
+            1.5217753006680492e-14
+          ]
+        ]
+      }
+    },
+    {
+      "t": 2.5,
+      "nerd_Fz": [
+        370.9566345214844,
+        -37.7343864440918
+      ],
+      "mpm_Fz": [
+        404.1895751953125,
+        -12.222452163696289
+      ],
+      "nerd_contact_stats": [
+        [
+          26.0,
+          1.0,
+          4.814164539704706e-13
+        ],
+        [
+          6.0,
+          1.0,
+          1.2600435243012901e-14
+        ]
+      ],
+      "foot_speed": [
+        0.24125178158283234,
+        1.5929009914398193
+      ],
+      "gate_multiplier": [
+        1.0,
+        1.0
+      ],
+      "free_velocity": [
+        [
+          0.1290396898984909,
+          0.14562463760375977,
+          -1.121450424194336,
+          -1.947226643562317,
+          -2.423182487487793,
+          -0.8627147674560547
+        ],
+        [
+          -0.9497034549713135,
+          -1.1884938478469849,
+          0.8873778581619263,
+          -1.225205659866333,
+          -0.5001535415649414,
+          -0.9027348160743713
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          384.5736389160156,
+          -2.566901683807373
+        ],
+        "contact_stats": [
+          [
+            23.0,
+            1.0,
+            3.4179060969661937e-13
+          ],
+          [
+            3.0,
+            1.0,
+            7.040708187122245e-15
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          384.5736389160156,
+          -2.566901683807373
+        ],
+        "contact_stats": [
+          [
+            23.0,
+            1.0,
+            3.4179060969661937e-13
+          ],
+          [
+            3.0,
+            1.0,
+            7.040708187122245e-15
+          ]
+        ]
+      }
+    },
+    {
+      "t": 3.0,
+      "nerd_Fz": [
+        294.2981872558594,
+        -9.935011863708496
+      ],
+      "mpm_Fz": [
+        413.9752197265625,
+        -18.210407257080078
+      ],
+      "nerd_contact_stats": [
+        [
+          7.0,
+          1.0,
+          2.664432169955156e-12
+        ],
+        [
+          9.0,
+          1.0,
+          2.701070339736137e-14
+        ]
+      ],
+      "foot_speed": [
+        0.2820000648498535,
+        1.1163105964660645
+      ],
+      "gate_multiplier": [
+        1.0,
+        1.0
+      ],
+      "free_velocity": [
+        [
+          0.04236668720841408,
+          -0.033726245164871216,
+          -1.2866368293762207,
+          2.3556509017944336,
+          0.25580233335494995,
+          -0.40629589557647705
+        ],
+        [
+          0.24155573546886444,
+          -0.05487766116857529,
+          1.1340587139129639,
+          2.5971126556396484,
+          -3.1787257194519043,
+          0.3528956174850464
+        ]
+      ],
+      "reference_particles_same_selection": {
+        "Fz": [
+          377.25494384765625,
+          -18.049964904785156
+        ],
+        "contact_stats": [
+          [
+            26.0,
+            1.0,
+            2.2027230863999603e-12
+          ],
+          [
+            9.0,
+            1.0,
+            1.2929122662490685e-13
+          ]
+        ]
+      },
+      "reference_particles_every_particle": {
+        "Fz": [
+          377.25494384765625,
+          -18.049964904785156
+        ],
+        "contact_stats": [
+          [
+            26.0,
+            1.0,
+            2.2027230863999603e-12
+          ],
+          [
+            9.0,
+            1.0,
+            1.2929122662490685e-13
+          ]
+        ]
+      }
+    }
+  ],
+  "saved_state_geometry": [
+    {
+      "t": 0,
+      "feet": [
+        {
+          "center_z": -0.12926910817623138,
+          "speed": 0.03828112408518791,
+          "vz": -0.026617381721735,
+          "particle_position": {
+            "under_count": 73,
+            "under_within_margin": 7,
+            "over_within_margin": 0,
+            "inside_box": 1,
+            "nearest_below_gap_mm": 0.09596766531467438
+          },
+          "reference_position": {
+            "under_count": 73,
+            "under_within_margin": 7,
+            "over_within_margin": 0,
+            "inside_box": 1,
+            "nearest_below_gap_mm": 0.09596766531467438
+          }
+        },
+        {
+          "center_z": -0.13675479590892792,
+          "speed": 0.1947549432516098,
+          "vz": -0.1832955926656723,
+          "particle_position": {
+            "under_count": 77,
+            "under_within_margin": 9,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 2.6746020317077637
+          },
+          "reference_position": {
+            "under_count": 77,
+            "under_within_margin": 9,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 2.6746020317077637
+          }
+        }
+      ]
+    },
+    {
+      "t": 0.2,
+      "feet": [
+        {
+          "center_z": -0.13385307788848877,
+          "speed": 0.040936071425676346,
+          "vz": -0.03839866816997528,
+          "nerd_Fz": 110.21649169921875,
+          "mpm_Fz": 136.69715881347656,
+          "particle_position": {
+            "under_count": 70,
+            "under_within_margin": 2,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 4.615429878234863
+          },
+          "reference_position": {
+            "under_count": 70,
+            "under_within_margin": 7,
+            "over_within_margin": 2,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 0.19724620878696442
+          }
+        },
+        {
+          "center_z": -0.15415433049201965,
+          "speed": 0.031177956610918045,
+          "vz": -0.026983363553881645,
+          "nerd_Fz": 160.7182159423828,
+          "mpm_Fz": 184.00318908691406,
+          "particle_position": {
+            "under_count": 71,
+            "under_within_margin": 6,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 5.1001152992248535
+          },
+          "reference_position": {
+            "under_count": 67,
+            "under_within_margin": 8,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 4.336689472198486
+          }
+        }
+      ]
+    },
+    {
+      "t": 0.5,
+      "feet": [
+        {
+          "center_z": -0.145187109708786,
+          "speed": 0.03566816821694374,
+          "vz": -0.031295787543058395,
+          "nerd_Fz": 108.46076202392578,
+          "mpm_Fz": 174.5985870361328,
+          "particle_position": {
+            "under_count": 74,
+            "under_within_margin": 1,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 14.64199161529541
+          },
+          "reference_position": {
+            "under_count": 72,
+            "under_within_margin": 7,
+            "over_within_margin": 2,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 0.13219238817691803
+          }
+        },
+        {
+          "center_z": -0.15943020582199097,
+          "speed": 0.020706098526716232,
+          "vz": -0.017314964905381203,
+          "nerd_Fz": 106.72554779052734,
+          "mpm_Fz": 150.35076904296875,
+          "particle_position": {
+            "under_count": 69,
+            "under_within_margin": 1,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 13.279956817626953
+          },
+          "reference_position": {
+            "under_count": 62,
+            "under_within_margin": 9,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 4.625356674194336
+          }
+        }
+      ]
+    },
+    {
+      "t": 0.8,
+      "feet": [
+        {
+          "center_z": -0.15337935090065002,
+          "speed": 0.026827480643987656,
+          "vz": -0.021491441875696182,
+          "nerd_Fz": 2.4066379070281982,
+          "mpm_Fz": 173.28396606445312,
+          "particle_position": {
+            "under_count": 75,
+            "under_within_margin": 0,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 25.2608585357666
+          },
+          "reference_position": {
+            "under_count": 72,
+            "under_within_margin": 6,
+            "over_within_margin": 2,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 1.5015136003494263
+          }
+        },
+        {
+          "center_z": -0.16424289345741272,
+          "speed": 0.019033269956707954,
+          "vz": -0.01432760152965784,
+          "nerd_Fz": 121.696044921875,
+          "mpm_Fz": 156.07931518554688,
+          "particle_position": {
+            "under_count": 66,
+            "under_within_margin": 1,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 14.570516586303711
+          },
+          "reference_position": {
+            "under_count": 65,
+            "under_within_margin": 10,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 4.312022686004639
+          }
+        }
+      ]
+    },
+    {
+      "t": 1,
+      "feet": [
+        {
+          "center_z": -0.15740743279457092,
+          "speed": 0.01757468655705452,
+          "vz": -0.01233796589076519,
+          "nerd_Fz": 0.9882425665855408,
+          "mpm_Fz": 173.74725341796875,
+          "particle_position": {
+            "under_count": 80,
+            "under_within_margin": 0,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 29.470041275024414
+          },
+          "reference_position": {
+            "under_count": 74,
+            "under_within_margin": 6,
+            "over_within_margin": 3,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 1.6552945375442505
+          }
+        },
+        {
+          "center_z": -0.16674502193927765,
+          "speed": 0.01140693947672844,
+          "vz": -0.0073606944642961025,
+          "nerd_Fz": 145.03955078125,
+          "mpm_Fz": 153.99818420410156,
+          "particle_position": {
+            "under_count": 65,
+            "under_within_margin": 3,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 13.266261100769043
+          },
+          "reference_position": {
+            "under_count": 64,
+            "under_within_margin": 9,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 4.438464641571045
+          }
+        }
+      ]
+    },
+    {
+      "t": 1.5,
+      "feet": [
+        {
+          "center_z": -0.1625688672065735,
+          "speed": 0.013482095673680305,
+          "vz": -0.0057499948889017105,
+          "nerd_Fz": 0.0,
+          "mpm_Fz": 155.74794006347656,
+          "particle_position": {
+            "under_count": 85,
+            "under_within_margin": 0,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 26.472061157226562
+          },
+          "reference_position": {
+            "under_count": 78,
+            "under_within_margin": 7,
+            "over_within_margin": 2,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 1.7761383056640625
+          }
+        },
+        {
+          "center_z": -0.1714869886636734,
+          "speed": 0.02120492421090603,
+          "vz": -0.008575262501835823,
+          "nerd_Fz": 165.1194610595703,
+          "mpm_Fz": 170.69432067871094,
+          "particle_position": {
+            "under_count": 68,
+            "under_within_margin": 4,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 10.066092491149902
+          },
+          "reference_position": {
+            "under_count": 65,
+            "under_within_margin": 9,
+            "over_within_margin": 2,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 4.966759204864502
+          }
+        }
+      ]
+    },
+    {
+      "t": 2,
+      "feet": [
+        {
+          "center_z": -0.16708903014659882,
+          "speed": 0.03538097068667412,
+          "vz": -0.01199545431882143,
+          "nerd_Fz": 2.3751182556152344,
+          "mpm_Fz": 158.40553283691406,
+          "particle_position": {
+            "under_count": 83,
+            "under_within_margin": 0,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 28.82855796813965
+          },
+          "reference_position": {
+            "under_count": 77,
+            "under_within_margin": 7,
+            "over_within_margin": 2,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 2.513201951980591
+          }
+        },
+        {
+          "center_z": -0.17471304535865784,
+          "speed": 0.034167662262916565,
+          "vz": -0.0024253400042653084,
+          "nerd_Fz": 143.9254150390625,
+          "mpm_Fz": 166.00001525878906,
+          "particle_position": {
+            "under_count": 73,
+            "under_within_margin": 1,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 15.466901779174805
+          },
+          "reference_position": {
+            "under_count": 68,
+            "under_within_margin": 7,
+            "over_within_margin": 3,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 5.451740741729736
+          }
+        }
+      ]
+    },
+    {
+      "t": 2.2,
+      "feet": [
+        {
+          "center_z": -0.1772310733795166,
+          "speed": 0.326072096824646,
+          "vz": -0.12101371586322784,
+          "nerd_Fz": 344.1453857421875,
+          "mpm_Fz": 398.0897216796875,
+          "particle_position": {
+            "under_count": 81,
+            "under_within_margin": 0,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 21.239702224731445
+          },
+          "reference_position": {
+            "under_count": 74,
+            "under_within_margin": 10,
+            "over_within_margin": 1,
+            "inside_box": 1,
+            "nearest_below_gap_mm": 2.0786235332489014
+          }
+        },
+        {
+          "center_z": -0.1703646183013916,
+          "speed": 0.3571440577507019,
+          "vz": 0.06493425369262695,
+          "nerd_Fz": -40.595664978027344,
+          "mpm_Fz": -41.6799430847168,
+          "particle_position": {
+            "under_count": 71,
+            "under_within_margin": 0,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 32.15904998779297
+          },
+          "reference_position": {
+            "under_count": 64,
+            "under_within_margin": 1,
+            "over_within_margin": 5,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 12.861481666564941
+          }
+        }
+      ]
+    },
+    {
+      "t": 2.5,
+      "feet": [
+        {
+          "center_z": -0.197280153632164,
+          "speed": 0.11566663533449173,
+          "vz": -0.07078171521425247,
+          "nerd_Fz": 370.9566345214844,
+          "mpm_Fz": 404.1895751953125,
+          "particle_position": {
+            "under_count": 65,
+            "under_within_margin": 4,
+            "over_within_margin": 2,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 8.497160911560059
+          },
+          "reference_position": {
+            "under_count": 49,
+            "under_within_margin": 10,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 9.10755729675293
+          }
+        },
+        {
+          "center_z": -0.07022543251514435,
+          "speed": 1.6823512315750122,
+          "vz": 0.8572156429290771,
+          "nerd_Fz": -37.7343864440918,
+          "mpm_Fz": -12.222452163696289,
+          "particle_position": {
+            "under_count": 74,
+            "under_within_margin": 0,
+            "over_within_margin": 3,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 71.86302947998047
+          },
+          "reference_position": {
+            "under_count": 61,
+            "under_within_margin": 0,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 97.45576477050781
+          }
+        }
+      ]
+    },
+    {
+      "t": 3,
+      "feet": [
+        {
+          "center_z": -0.17742189764976501,
+          "speed": 0.25924643874168396,
+          "vz": -0.25759366154670715,
+          "nerd_Fz": 294.2981872558594,
+          "mpm_Fz": 413.9752197265625,
+          "particle_position": {
+            "under_count": 64,
+            "under_within_margin": 1,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 3.409477949142456
+          },
+          "reference_position": {
+            "under_count": 60,
+            "under_within_margin": 6,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 12.425163269042969
+          }
+        },
+        {
+          "center_z": -0.11437308043241501,
+          "speed": 1.1189900636672974,
+          "vz": 1.0428416728973389,
+          "nerd_Fz": -9.935011863708496,
+          "mpm_Fz": -18.210407257080078,
+          "particle_position": {
+            "under_count": 82,
+            "under_within_margin": 0,
+            "over_within_margin": 1,
+            "inside_box": 1,
+            "nearest_below_gap_mm": 36.815208435058594
+          },
+          "reference_position": {
+            "under_count": 67,
+            "under_within_margin": 0,
+            "over_within_margin": 3,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 54.82579040527344
+          }
+        }
+      ]
+    },
+    {
+      "t": 4,
+      "feet": [
+        {
+          "center_z": -0.15813711285591125,
+          "speed": 0.05215352401137352,
+          "vz": -0.03393230214715004,
+          "nerd_Fz": 274.3776550292969,
+          "mpm_Fz": 321.7977600097656,
+          "particle_position": {
+            "under_count": 85,
+            "under_within_margin": 6,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 8.522833824157715
+          },
+          "reference_position": {
+            "under_count": 80,
+            "under_within_margin": 6,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 13.91388988494873
+          }
+        },
+        {
+          "center_z": -0.05123458057641983,
+          "speed": 1.009628176689148,
+          "vz": -0.8653231263160706,
+          "nerd_Fz": 41.52492141723633,
+          "mpm_Fz": 0.0,
+          "particle_position": {
+            "under_count": 108,
+            "under_within_margin": 1,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 10.910331726074219
+          },
+          "reference_position": {
+            "under_count": 101,
+            "under_within_margin": 0,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 41.79736328125
+          }
+        }
+      ]
+    },
+    {
+      "t": 5,
+      "feet": [
+        {
+          "center_z": -0.15592873096466064,
+          "speed": 0.4505131244659424,
+          "vz": 0.12880511581897736,
+          "nerd_Fz": 278.4421691894531,
+          "mpm_Fz": 262.3731994628906,
+          "particle_position": {
+            "under_count": 97,
+            "under_within_margin": 16,
+            "over_within_margin": 0,
+            "inside_box": 2,
+            "nearest_below_gap_mm": 5.383120059967041
+          },
+          "reference_position": {
+            "under_count": 77,
+            "under_within_margin": 6,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 14.651459693908691
+          }
+        },
+        {
+          "center_z": -0.09959255158901215,
+          "speed": 0.4902645945549011,
+          "vz": -0.4638248383998871,
+          "nerd_Fz": 242.51454162597656,
+          "mpm_Fz": 259.47894287109375,
+          "particle_position": {
+            "under_count": 113,
+            "under_within_margin": 7,
+            "over_within_margin": 0,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 12.034268379211426
+          },
+          "reference_position": {
+            "under_count": 100,
+            "under_within_margin": 6,
+            "over_within_margin": 1,
+            "inside_box": 0,
+            "nearest_below_gap_mm": 14.576217651367188
+          }
+        }
+      ]
+    }
+  ]
+}

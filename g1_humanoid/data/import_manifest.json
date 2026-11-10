@@ -1,0 +1,18 @@
+{
+  "source_directory": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028",
+  "scope": "One archived recorded-motion replay of episode-0002; distinct from the 50 validation windows.",
+  "files": [
+    {
+      "name": "recorded-local-direct.npz",
+      "sha256": "4fe4cef176dd53a17afd15f76b6b9ba1d77baf58128abf3f88b1001c01acc9fa"
+    },
+    {
+      "name": "recorded-local-direct-provenance.json",
+      "sha256": "7128f495194083d598d45eb4e3874b3088a3c44e1481d9c7886e209636d8bd5f"
+    },
+    {
+      "name": "recorded-local-direct-summary.json",
+      "sha256": "c2116869efa91a1134de8942c3114fc595cef132820c63dc10f5c999da5e8411"
+    }
+  ]
+}

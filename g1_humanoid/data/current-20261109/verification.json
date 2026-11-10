@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "reference_body_and_particle_snapshots_checked": 251,
+  "reference_force_samples_per_foot_checked": 1000,
+  "particle_snapshots_matched_to_trace": 250,
+  "maximum_snapshot_rmse_difference_m": 1.862645149230957e-09,
+  "maximum_snapshot_mean_z_difference_m": 1.862645149230957e-09,
+  "force_vector_rmse_N": 83.60172271728516,
+  "video": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 3840,
+        "height": 1140,
+        "r_frame_rate": "50/1",
+        "nb_frames": "250"
+      }
+    ],
+    "format": {
+      "duration": "5.000000"
+    }
+  },
+  "video_scope": "Renderer uses saved particles and identical recorded body poses for both panels; no simulation advancement.",
+  "artifact_sha256": {
+    "g1_humanoid/data/current-20261109/comparison.jpg": "a77aa523ec97826ebaf58b30ebac3294244b4e74379938ef5dba3020e2d6940a",
+    "g1_humanoid/data/current-20261109/comparison.mp4": "9ab73164e06ddfa9e8e32b189e665f801f32a21c1746419e791d26e7ac51fc94",
+    "g1_humanoid/data/current-20261109/metadata.json": "bf97db4271152d80173fc847133d9e9bd2224d10c6dd14c58337ff7a6f8777a9",
+    "g1_humanoid/data/current-20261109/reference-body-properties.json": "d0b5691fa700a3c0e54df6bd2b798df5946b6c1b635efca239a484d1f518f879",
+    "g1_humanoid/data/current-20261109/states.h5": "4ef3438e48ecd8cf6a0783b85400be4b615766823703acfd14887cbb8a383da5",
+    "g1_humanoid/data/current-20261109/trace.npz": "cb2dd1d5b11cb3813181120345a09757870a46028c51c3a1849d80c78564994a",
+    "g1_humanoid/force_estimation/figures/current_force_components.pdf": "edf087b3aeeb0f03fc25d0647d47b4d4f9e56b73b7ce50d034ce0f06de77d493",
+    "g1_humanoid/force_estimation/figures/current_force_components.png": "0fa14ded7ca423d39d1f279509e72492dc9eb4890e2ad024e062b2b2c0fe8382",
+    "g1_humanoid/force_estimation/figures/current_force_components.svg": "2dc7af0b5e08d0658009494fe86618048f360c13deca0c643b014420c3249913",
+    "g1_humanoid/particle_prediction/figures/current_particle_error.pdf": "7a658f46e024d54227a255634306786494057811b13aeeea81b320a72f6e43fe",
+    "g1_humanoid/particle_prediction/figures/current_particle_error.png": "29dcfbe55571efd80416de97f0de2bfe92cc8df242a240a8376bc28123bfdcdd",
+    "g1_humanoid/particle_prediction/figures/current_particle_error.svg": "2b9d0d55788d6bf4f77ef2ced60a5e8e13cced09e76840847a000791bc28064f",
+    "plots/current_common.py": "1401533b9b5464c464f0515f0991cb7a15378e8ee367a32f78453d21d9faa9f1",
+    "plots/current_force.py": "d00b5b89ff48f84f5a0b25e8b18f50bafa91945d1c258ab9558cfcd0aa26b119",
+    "plots/current_particles.py": "9c71ef06916f47f410169de69a566d0d96b582fddd98f2fbe8c00056eb07163c",
+    "plots/record_current_replay.py": "4333b1f38bc704a6cd8cc86b11679754e63cc7c1b2f2cd9dbbc8bd90e08b614f",
+    "plots/render_current_replay.py": "974d831ae5e512f27a03d1d48bdf4eb3b1d711031e684f827ed5bf557469af7b",
+    "plots/verify_current_replay.py": "235b73c93ae33088f288775e420066c35cd138d731bf338afc31aac761b03529"
+  },
+  "browser_checks": [
+    {
+      "category": "force_estimation",
+      "mobile": false,
+      "figure_width_px": 1324.8125,
+      "video": {
+        "duration": 5,
+        "width": 3840,
+        "height": 1140,
+        "source": "http://127.0.0.1:8765/g1_humanoid/data/current-20261109/comparison.mp4"
+      },
+      "overflow": false
+    },
+    {
+      "category": "force_estimation",
+      "mobile": true,
+      "figure_width_px": 800,
+      "video": {
+        "duration": 5,
+        "width": 3840,
+        "height": 1140,
+        "source": "http://127.0.0.1:8765/g1_humanoid/data/current-20261109/comparison.mp4"
+      },
+      "overflow": false
+    },
+    {
+      "category": "particle_prediction",
+      "mobile": false,
+      "figure_width_px": 1324.8125,
+      "video": {
+        "duration": 5,
+        "width": 3840,
+        "height": 1140,
+        "source": "http://127.0.0.1:8765/g1_humanoid/data/current-20261109/comparison.mp4"
+      },
+      "overflow": false
+    },
+    {
+      "category": "particle_prediction",
+      "mobile": true,
+      "figure_width_px": 800,
+      "video": {
+        "duration": 5,
+        "width": 3840,
+        "height": 1140,
+        "source": "http://127.0.0.1:8765/g1_humanoid/data/current-20261109/comparison.mp4"
+      },
+      "overflow": false
+    }
+  ]
+}

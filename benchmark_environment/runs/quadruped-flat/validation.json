@@ -1,0 +1,31 @@
+{
+  "checks": {
+    "finite_saved_forces": true,
+    "particles_below_tray_floor": 0,
+    "particles_below_tray_floor_pass": true,
+    "material_contact_present": true,
+    "initial_and_final_particle_counts_match": true,
+    "robot_remains_upright": true,
+    "robot_moves_forward": true,
+    "video_matches_recorded_states": true
+  },
+  "measurements": {
+    "max_particle_displacement_m": 0.09777593612670898,
+    "mean_particle_displacement_m": 0.0030215783044695854,
+    "reacting_body_names": [
+      "/World/envs/env_0/Robot/FL_foot",
+      "/World/envs/env_0/Robot/FR_foot",
+      "/World/envs/env_0/Robot/RL_foot",
+      "/World/envs/env_0/Robot/RR_foot"
+    ],
+    "peak_total_material_force_N": 229.21914672851562,
+    "base_displacement_m": [
+      0.11053283512592316,
+      0.02523387037217617,
+      -0.19046863913536072
+    ],
+    "minimum_base_height_m": 0.1899341493844986,
+    "minimum_base_up_z": 0.99007248878479
+  },
+  "passed": true
+}

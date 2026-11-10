@@ -1,0 +1,22 @@
+{
+  "checkpoint": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/local-direct-contact/step-100.pt",
+  "checkpoint_sha256": "48e250d276aa2ace7ca4b724df63424f29fe2077ecb4b44d290fc3ce3160c1e8",
+  "source": {
+    "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/run_recorded.py": "dbab5125d3a7e692ed82a3a8cf17a9fd967860a9519e44629035b6919bf4c4c5",
+    "/home/jkamohara/isaac/particle_nerd/experiments/g1-selection-ablation-20261028/variants.py": "20a4441010a1651ce33d5a7f64b5fc5edefbc6287a054d934f949d6b87e72665",
+    "/home/jkamohara/isaac/IsaacLab-particle-nerd/examples/particle_nerd/g1/data.py": "731b1d037419e9339ad0b46fbf8c8ee994afd68afb4a944fc34b29c5d9019ea3"
+  },
+  "episode": "/home/jkamohara/isaac/particle_nerd/experiments/g1-evaluation-20s-mass50/reference-recordings/episode-0002.hdf5",
+  "start_frame": 60,
+  "steps": 1000,
+  "dt": 0.005,
+  "force_parameters": {
+    "solver": "rft_body_velocity",
+    "normal": 100,
+    "horizontal": 8,
+    "upward": 2,
+    "tangent": 4,
+    "iterations": 200,
+    "relaxation": 0.02
+  }
+}

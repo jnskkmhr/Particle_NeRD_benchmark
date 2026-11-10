@@ -1,0 +1,91 @@
+{
+  "evaluation": "Force estimator only: prescribed MPM particles and recorded G1 motion; no neural prediction and no robot-force feedback",
+  "checkpoint": "/home/jkamohara/isaac/IsaacLab-particle-nerd/source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/checkpoint/best.pt",
+  "checkpoint_sha256": "7eee570d75d00b4a09006e4ffd15a241510c3fd3ba74295d0396254187d00633",
+  "code_sha256": {
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/solver_cfg.py": "5706da04fd9202cfce7b056c608d072be012145abd6857eebaa3bec6bbd0336f",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/__init__.py": "bc387fb4f244efa1f09b2d249904e9f8f0157e1d1a32b2addf3e37ed0b01140c",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/kernels.py": "9c5af9c1d24c34daf6b931c10255026c92ef8ffa999a1e0903d57c5f6871879a",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/solver.py": "2516bd4093a264baf6014a248d8896deab885b23d2f97abd7374a852e8ae6159",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/manager.py": "70e3331c2a4d998f9ee6b82b533a6af47d9800f8dd3f8d3c5be2889e53340da2",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/fixed_bed.py": "1482324d7f1b25e61d5693d2de8e8fd5905d1bcb1a0d76344be2021122971153",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/network/features.py": "fded276b857e934cb0ac834efd63252da5d941be219849909d60306a82f117ec",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/network/sdf.py": "95d584252ad766b1b498944a646a0d1a625678b510cea38df2459474ae239db2",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/network/geometry.py": "8d82679f8e857b8afcb615243ea6e00ce661ab2d18005484415235cdfdc855a0",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/network/model.py": "adc8a5ce660993251ff1e3e625a8955eae0cd8e58dfee5bd2f95c3707472d5f7",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/network/__init__.py": "3be19bd191a2d8780967a91b0d6e6fe4c6d74ad8b54efef94c33f6c2ebd6078b",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/network/inference.py": "334fb6211eb31e77ad66842931372f7a7a2df8932b541d1f847e4a7477b4e1ea",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/patch/particles.py": "e8b7d2a05c6905ba5772aa857af8a23b80e221a3bc7ac78d2abcb588878f8dd9",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/patch/__init__.py": "3be19bd191a2d8780967a91b0d6e6fe4c6d74ad8b54efef94c33f6c2ebd6078b",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/patch/kernels.py": "295fadf0eee1f1379bf02ceaa04df77a9be131375397f9af3ddc1045de1fbfd1",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/contact/body_velocity.py": "0db35deb11282d66d0effa4f71ffd2209c048e69c2f0b1c04f5b16e5a0863fa0",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/contact/proxy.py": "d641b5fcb015cb71f2fb6753fe9b94e3773e6b838ecae801fa1bce13136155a8",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/contact/batch.py": "97d71fca6b23983def7ba5a686e53a73f28687ab4559b5bac28f0dc7978d50b3",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/contact/__init__.py": "3be19bd191a2d8780967a91b0d6e6fe4c6d74ad8b54efef94c33f6c2ebd6078b",
+    "source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/contact/kernels.py": "e2917630ab4e3d23c8aeed54db42190b45d9363853f94bd06f7bab219f70d95e"
+  },
+  "source_recording": "/home/jkamohara/isaac/particle_nerd/experiments/g1-evaluation-20s-mass50/reference-recordings/episode-0002.hdf5",
+  "start_frame": 60,
+  "dt_s": 0.005,
+  "steps": 1000,
+  "video_hz": 50,
+  "particle_count": 88360,
+  "active_k": [
+    5312
+  ],
+  "anchor_particles": 512,
+  "selection_interval": 4,
+  "argon_foot_speed_gate": false,
+  "network_forward_calls": 0,
+  "particle_input": "Recorded MPM positions; velocity = consecutive recorded position difference / dt; current Top-K selection on prescribed history",
+  "compile_model": false,
+  "cuda_graph_capture": false,
+  "material": {
+    "density": 1600.0,
+    "young_modulus": 1000000000000000.0,
+    "poisson_ratio": 0.3,
+    "friction": 0.48,
+    "yield_pressure": 1000000000000000.0,
+    "tensile_yield_ratio": 0.0,
+    "yield_stress": 0.0,
+    "hardening": 0.0,
+    "dilatancy": 0.0,
+    "viscosity": 0.0
+  },
+  "bed_dimensions_m": [
+    3,
+    3,
+    0.3
+  ],
+  "reference_voxel_size_m": 0.04,
+  "force_parameters": {
+    "effective_mass_scale": 100.0,
+    "tangent_mass_scale": 40.0,
+    "horizontal_mass_scale": 8.0,
+    "upward_mass_scale": 2.0,
+    "normal_power": 3.0,
+    "contact_iterations": 200,
+    "contact_relaxation": 0.02,
+    "gradient_radius": 0.065,
+    "gradient_contact_band": 0.08,
+    "contact_stabilization": 0.01,
+    "contact_offset": 0.0
+  },
+  "force_vector_rmse_N": 32.664371490478516,
+  "snapshots": "../current-20261109/states.h5: reference_position, body_pose, time_s",
+  "snapshot_time_reference": "Elapsed replay time; source recording time = replay time + 0.300 s",
+  "reference_initialization": "Three recorded MPM particle-position frames; not an un-settled zero-warmup test",
+  "video": "prescribed-input.mp4; crop of the matching reference panel; no NeRD particle prediction",
+  "metrics": {
+    "force_vector_rmse_N": 32.664371490478516,
+    "component_rmse_N": [
+      16.929203033447266,
+      10.632346153259277,
+      25.83246612548828
+    ],
+    "per_foot_vector_rmse_N": [
+      34.59991455078125,
+      30.606658935546875
+    ]
+  }
+}

@@ -1,17 +1,9 @@
-# G1 force estimation
+# G1 foot-force estimation
 
-Archived October 28, 2026 validation results: 50 windows, each 100 steps / 0.5 seconds. The analytical estimator is identified as `rft_body_velocity` in the original provenance.
+[Open the current report](index.html). It evaluates the currently installed Particle NeRD solver on one five-second recorded G1 trajectory against implicit MPM. Argon’s foot-speed displacement scaling is enabled. The plots and 50 fps video use the same saved run.
 
-Forces are sand-on-foot forces compared with MPM reference forces. Force-vector RMSE is aggregated across individual feet and timesteps. Upward force is summed over both feet and then averaged; it is not the same quantity as per-foot force error.
+Force-vector RMSE is **83.60 N**, averaged over both feet and 1,000 steps at 200 Hz. Forces are expressed in the world frame and measured in newtons. The robot follows prescribed recorded motion; the predicted forces do not drive the robot.
 
-| Particle motion supplied to estimator | Force-vector RMSE per foot (N) | Mean total upward force (N) | MPM mean total upward force (N) |
-|---|---:|---:|---:|
-| Reference MPM particle motion | 40.92 | 319.99 | 330.19 |
-| Initial Transolver | 81.45 | 255.07 | 330.19 |
-| Contact-loss fine-tuned Transolver (local pilot) | 46.31 | 329.50 | 330.19 |
+See [run metadata](../data/current-20261109/metadata.json), [alignment verification](../data/current-20261109/verification.json), and [reproduction instructions](../../plots/CURRENT_REPLAY.md).
 
-[Raw measurements and per-trajectory records](validation-force.json)
-
-The reference-particle row isolates force reconstruction error. The learned-particle rows also include particle prediction error under recorded rigid-body motion. These measurements do not establish closed-loop locomotion accuracy. Torque accuracy is not reported in this artifact.
-
-The pilot improves force error but is not the current installed checkpoint. Checkpoint hashes and the shared validation IDs are in [particle prediction](../particle_prediction/README.md); training details are in [provenance](../provenance.json).
+`validation-force.json` is a separate historical October 28 archive, not the data displayed in the current report.
