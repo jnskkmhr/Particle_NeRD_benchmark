@@ -1,86 +1,86 @@
 [
   {
     "path": "benchmark_environment/runs/circle-flat/trajectory.h5",
-    "bytes": 594528645,
-    "sha256": "e17c791c701bb4af9fb894c948658015cff72c08ecd839f7454c2d4b42cc995a",
+    "bytes": 595599447,
+    "sha256": "cb184b9c202a1ee980fe32d51e556114957ee80f667d4a15b8e28f58a8f1e8fc",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/franka-flat/trajectory.h5",
-    "bytes": 264339071,
-    "sha256": "dcdfb76725a73b84b5eb0e3dceb6fec743ae5db5b580ae4c8bc175b2163cc8ad",
+    "bytes": 265645721,
+    "sha256": "d75665a94fe69c20997d5ea1b86268863699d25dde3d80a61710f44006aaf92e",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/g1-flat/trajectory.h5",
-    "bytes": 1428421252,
-    "sha256": "f49fc50bd4fc20de5dd7a20a504af20318da8ea8fa762679e042417ec1218995",
+    "bytes": 1455576664,
+    "sha256": "0b5a4a20ad09917baeb12ee4036af2f3c6f541c313e8abb2462f436890168ce6",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/horizontal-ascend/trajectory.h5",
-    "bytes": 618428492,
-    "sha256": "951489b929b0b37b083364e9d6a866c216f7ea01a11f030b7d74c9159f860dfb",
+    "bytes": 619063134,
+    "sha256": "82467c6a2a1d29efb5c8f29557a6bcd9ff3bc5a95bf7cfa3e6c3a7111afa413d",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/horizontal-descend/trajectory.h5",
-    "bytes": 622607309,
-    "sha256": "bd77a5e315a6ba22ba12649d641fa1e1f3234d397db97f1601005e61de9dcdc4",
+    "bytes": 623328515,
+    "sha256": "8bc53c7333a034a14b6f41d31ece0bb0d3e9d89768833000adaa14da6a392951",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/horizontal-flat/trajectory.h5",
-    "bytes": 594512916,
-    "sha256": "bb9d25124b4c92230b7b1feed64a646f82d6b552138707ced451ec8da19a8143",
+    "bytes": 595595351,
+    "sha256": "bb7741612b38df25480a1d8582600b0d4f777168de151958bc0f833c0a74a81f",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/horizontal-wave/trajectory.h5",
-    "bytes": 624896412,
-    "sha256": "6eedd5bd49b809a44432d7717ddf831779b6147d9bd3d395ec13d373592bfa5c",
+    "bytes": 625461204,
+    "sha256": "bc3b285dd9031d795edaa2541293f6847d9ffa9eaccb6cf7ae63d5a911695e19",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/projectile-flat/trajectory.h5",
-    "bytes": 590423137,
-    "sha256": "1a437c1e06600dfdb350a2d36f4f900b792871b1b1e5fb7e12e6777e0031d935",
+    "bytes": 595582231,
+    "sha256": "b5a871aaaf2196c61e57df03ec50509e126d91500c2ca49f82a839a04636e555",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/quadruped-flat/trajectory.h5",
-    "bytes": 263701168,
-    "sha256": "db2495e6c20174c592e9bcdb912580485a25da70f198ce1493d09657ecec78a2",
+    "bytes": 266337300,
+    "sha256": "e076fe21cb1fa345a4bb695caede62cf8d8c1b374c22969da1ea3be55279ab54",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/rolling-ascend/trajectory.h5",
-    "bytes": 618432748,
-    "sha256": "56e5db12aa947361b252d43edca533d0a728f6a9406d701814d7b58487668698",
+    "bytes": 619071326,
+    "sha256": "1dd2b43b15d0b11fc0e711a968de3c5d43af7ea645afdc9014c22fa41c97100f",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/rolling-descend/trajectory.h5",
-    "bytes": 622598555,
-    "sha256": "491224f5c2cab3c2584524d694c4208fde0958b7e7adefcaaf1dece8bc5785da",
+    "bytes": 623336707,
+    "sha256": "d63dc1b8e75aba0a22ea7045002ebfc47a57ff381905c23c11e6e84090a2a0cd",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/rolling-flat/trajectory.h5",
-    "bytes": 594353556,
-    "sha256": "a5c04c43748cb4d4d5d49ceb7d6e3741e24c2b1d01855ae8b2b6c4cf0e1c9e70",
+    "bytes": 595605591,
+    "sha256": "34e0173039a73f0213ee5099e31624c07960ee11e2062908a81fb4deaa587b2f",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/rolling-wave/trajectory.h5",
-    "bytes": 624903554,
-    "sha256": "af795363d85cf26e7ece46c04d7c12e0f0927ef42353f522d40a49b2203d32e9",
+    "bytes": 625467348,
+    "sha256": "fd2ff9b15446db0149999937dae6e6adb265d3fbf2635854a352880e47636bb6",
     "published": false
   },
   {
     "path": "benchmark_environment/runs/vertical-flat/trajectory.h5",
-    "bytes": 594367419,
-    "sha256": "c8bbb74cd0f94cc4be5b541b535ab07b0c57b722fbca840729302632943b1d31",
+    "bytes": 595595351,
+    "sha256": "a976a20ed996062545d3564dc5e3bcff6f987525b5848d80ee043dd270c4bab2",
     "published": false
   },
   {

@@ -3,3 +3,7 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
+
+"""Register the benchmark task families without loading simulation configs."""
+
+from . import cube, robot, sphere  # noqa: F401

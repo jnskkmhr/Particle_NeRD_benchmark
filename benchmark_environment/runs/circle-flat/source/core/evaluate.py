@@ -17,7 +17,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .recording import sha256
+from .provenance import sha256
 
 
 def evaluate(path):
@@ -52,6 +52,11 @@ def evaluate(path):
             "reacting_body_names": [names[i] for i in active],
             "peak_total_material_force_N": float(np.linalg.norm(total, axis=-1).max()),
         }
+        if meta["motion"] == "franka" and "rigid_tray_contact_count" in data:
+            contacts = data["rigid_tray_contact_count"][:]
+            checks["no_robot_tray_contacts"] = bool(np.all(contacts == 0))
+            motion["maximum_robot_tray_contacts"] = int(contacts.max())
+            motion["samples_with_robot_tray_contacts"] = int(np.count_nonzero(contacts))
         if meta["motion"] in ("g1", "quadruped"):
             root = next(i for i, n in enumerate(names) if n.split("/")[-1] in ("base", "trunk", "pelvis"))
             motion.update(

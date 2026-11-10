@@ -10,20 +10,20 @@
     "video_matches_recorded_states": true
   },
   "measurements": {
-    "max_particle_displacement_m": 1.9601163864135742,
-    "mean_particle_displacement_m": 0.002989164087921381,
+    "max_particle_displacement_m": 2.046694040298462,
+    "mean_particle_displacement_m": 0.0063082026317715645,
     "reacting_body_names": [
       "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link/left_ankle_roll_link",
       "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link/right_ankle_roll_link"
     ],
-    "peak_total_material_force_N": 732.7268676757812,
+    "peak_total_material_force_N": 800.7825317382812,
     "base_displacement_m": [
-      1.6578611135482788,
-      0.10150344669818878,
-      -0.07794231176376343
+      1.7471659183502197,
+      0.06933866441249847,
+      -0.09815442562103271
     ],
-    "minimum_base_height_m": 0.6460105776786804,
-    "minimum_base_up_z": 0.9856671690940857
+    "minimum_base_height_m": 0.6277444362640381,
+    "minimum_base_up_z": 0.9854561686515808
   },
   "passed": true
 }

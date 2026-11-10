@@ -5,7 +5,7 @@
 
 """Manager-based quadruped crawl with a free base and native sand reaction."""
 
-from isaaclab.envs import ManagerBasedEnvCfg
+from isaaclab.envs import ManagerBasedRLEnvCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
 
@@ -18,13 +18,16 @@ from .env_cfg.quadruped_scene_cfg import QuadrupedSceneCfg
 
 
 @configclass
-class QuadrupedEnvCfg(ManagerBasedEnvCfg):
+class QuadrupedEnvCfg(ManagerBasedRLEnvCfg):
     scene = QuadrupedSceneCfg(num_envs=1, env_spacing=4.0)
     actions = QuadrupedActionsCfg()
     observations = RobotObservationsCfg()
     events = RobotEventsCfg()
     decimation = 1
     seed = 42
+    episode_length_s = 6.0
+    rewards = {}
+    terminations = {}
     sim = SimulationCfg(
         dt=0.005,
         render_interval=4,

@@ -5,21 +5,11 @@
 
 """Streaming, step-aligned native MPM states and collider impulses."""
 
-import hashlib
-
 import h5py
 import numpy as np
 import torch
 import warp as wp
 from isaaclab_newton.physics import NewtonManager
-
-
-def sha256(path):
-    digest = hashlib.sha256()
-    with open(path, "rb") as stream:
-        for block in iter(lambda: stream.read(1 << 20), b""):
-            digest.update(block)
-    return digest.hexdigest()
 
 
 class Recorder:
@@ -29,7 +19,7 @@ class Recorder:
     floor/wall contacts are not included. The initial state has no force sample.
     """
 
-    def __init__(self, env, path, steps):
+    def __init__(self, env, path, steps, *, check_tray_contacts=False):
         self.env = env
         self.model = NewtonManager.get_model()
         self.entry = NewtonManager._solver._entries["sand"]
@@ -44,6 +34,15 @@ class Recorder:
         self.file.create_dataset("particle_radius", data=self.model.particle_radius.numpy())
         self.file.create_dataset("body_mass", data=self.model.body_mass.numpy())
         self.file.create_dataset("body_com", data=self.model.body_com.numpy())
+        self.tray_contact_shapes = None
+        if check_tray_contacts:
+            self.tray_contact_shapes = np.array(
+                ["/RigidWall" in label or "/RigidFloor" in label for label in self.model.shape_label]
+            )
+            self.file.create_dataset("rigid_tray_contact_count", (steps + 1,), dtype="i4")
+            self.file["rigid_tray_contact_count"].attrs["definition"] = (
+                "Dynamic-body versus rigid tray contacts with nonpositive gap, including contact margins"
+            )
         self.datasets = {}
         self.file.create_dataset("applied_action", (steps, env.action_manager.total_action_dim), dtype="f4")
         for name in ("shape_body", "shape_type", "shape_transform", "shape_scale"):
@@ -77,6 +76,36 @@ class Recorder:
 
     def record(self, index):
         state = NewtonManager.get_state_0()
+        if self.tray_contact_shapes is not None:
+            contacts = NewtonManager.get_contacts()
+            count = int(contacts.rigid_contact_count.numpy()[0])
+            a = contacts.rigid_contact_shape0.numpy()[:count]
+            b = contacts.rigid_contact_shape1.numpy()[:count]
+            valid = (a >= 0) & (b >= 0)
+            a, b = a[valid], b[valid]
+            bodies = self.model.shape_body.numpy()
+            touching = (self.tray_contact_shapes[a] & (bodies[b] >= 0)) | (
+                self.tray_contact_shapes[b] & (bodies[a] >= 0)
+            )
+            points = [
+                contacts.rigid_contact_point0.numpy()[:count][valid],
+                contacts.rigid_contact_point1.numpy()[:count][valid],
+            ]
+            poses = state.body_q.numpy()
+            for point, body in zip(points, (bodies[a], bodies[b]), strict=True):
+                moving = body >= 0
+                pose = poses[body[moving]]
+                local = point[moving]
+                point[moving] = (
+                    pose[:, :3]
+                    + local
+                    + 2 * np.cross(pose[:, 3:6], np.cross(pose[:, 3:6], local) + pose[:, 6:7] * local)
+                )
+            gap = np.sum((points[1] - points[0]) * contacts.rigid_contact_normal.numpy()[:count][valid], axis=1)
+            gap -= contacts.rigid_contact_margin0.numpy()[:count][valid]
+            gap -= contacts.rigid_contact_margin1.numpy()[:count][valid]
+            touching &= gap <= 0.0
+            self.file["rigid_tray_contact_count"][index] = np.count_nonzero(touching)
         for name, array in (
             ("particle_position", state.particle_q),
             ("particle_velocity", state.particle_qd),

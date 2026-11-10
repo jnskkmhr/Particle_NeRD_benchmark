@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MPM benchmark environments · Particle NeRD</title><meta name="description" content="Reproducible manager-based Isaac Lab MPM benchmark scenes with paired videos and datasets.">
-<link rel="stylesheet" href="../assets/slides.css?v=20261109-white"><link rel="stylesheet" href="gallery.css?v=a6f0ddc97bab"><script defer src="catalog.js?v=420438669f05"></script><script defer src="gallery.js?v=cb0ab066bb90"></script></head>
+<link rel="stylesheet" href="../assets/slides.css?v=20261109-white"><link rel="stylesheet" href="gallery.css?v=a6f0ddc97bab"><script defer src="catalog.js?v=2faad220b60e"></script><script defer src="gallery.js?v=b8159295221c"></script></head>
 <body class="benchmark-report benchmark-gallery"><header><a class="brand" href="../">Particle NeRD / Benchmarks</a><span class="archive">Native implicit MPM · Reference environments</span></header>
 <main><section class="report-heading"><p class="eyebrow">BENCHMARK ENVIRONMENTS</p><h1>Objects, terrain, and robot contacts.</h1>
 <p>Short, reproducible sand-interaction simulations built with Isaac Lab’s manager-based environments.
@@ -10,7 +10,10 @@ Choose a motion to inspect its simulation, forces, settings, and recorded states
 Particles and body states are saved at 200 Hz; video frames are captured from those same states at 50 fps.
 The first second prepares the object scenes before intrusion. Robot controllers run from reset.</p>
 <p>The sand uses density 1,600 kg/m³, Young’s modulus 10¹⁵ Pa, Poisson’s ratio 0.3, material friction 0.48,
-and yield pressure 10¹⁵ Pa. The MPM grid spacing is 0.04 m, with particles placed at 0.032 m intervals.
+and yield pressure 10¹⁵ Pa. The MPM grid spacing is 0.04 m. Initial particle positions use a 0.032 m lattice
+with uniform jitter of up to 6.4 mm per coordinate (seed 42), bounded by the initial sand surface and rigid tray.
+Particle count and mass are unchanged. Franka’s walls end 4 cm above its initial sand surface;
+other tray walls end at z=0.20 m.
 These are simulation parameters, not a calibration to a measured sand specimen.</p>
 <p>Validation checks particle containment, finite recorded states and forces, actual material contact,
 and video timestamps. Robot cases also check upright posture and forward motion.

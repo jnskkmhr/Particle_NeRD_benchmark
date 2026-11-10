@@ -5,17 +5,20 @@
     "particles_below_tray_floor_pass": true,
     "material_contact_present": true,
     "initial_and_final_particle_counts_match": true,
+    "no_robot_tray_contacts": true,
     "video_matches_recorded_states": true
   },
   "measurements": {
-    "max_particle_displacement_m": 0.15095500648021698,
-    "mean_particle_displacement_m": 0.004006236791610718,
+    "max_particle_displacement_m": 0.1512487232685089,
+    "mean_particle_displacement_m": 0.007027718238532543,
     "reacting_body_names": [
       "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand",
       "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_leftfinger",
       "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_rightfinger"
     ],
-    "peak_total_material_force_N": 150.45689392089844
+    "peak_total_material_force_N": 164.7262725830078,
+    "maximum_robot_tray_contacts": 0,
+    "samples_with_robot_tray_contacts": 0
   },
   "passed": true
 }

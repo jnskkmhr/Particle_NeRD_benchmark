@@ -1,0 +1,10 @@
+{
+  "definition": "Robot versus rigid tray contacts with nonpositive gap, including contact margins",
+  "sample_rate_hz": 200,
+  "samples": 1201,
+  "maximum_contacts": 0,
+  "samples_with_contacts": 0,
+  "first_contact_s": null,
+  "last_contact_s": null,
+  "shape_pairs": []
+}

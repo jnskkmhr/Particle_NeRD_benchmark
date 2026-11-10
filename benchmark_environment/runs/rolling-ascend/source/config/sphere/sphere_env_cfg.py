@@ -5,7 +5,7 @@
 
 """Manager-based object/MPM benchmark; one action per physics step."""
 
-from isaaclab.envs import ManagerBasedEnvCfg
+from isaaclab.envs import ManagerBasedRLEnvCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
 
@@ -17,11 +17,14 @@ from .env_cfg.scene_cfg import SceneCfg
 
 
 @configclass
-class ObjectEnvCfg(ManagerBasedEnvCfg):
+class ObjectEnvCfg(ManagerBasedRLEnvCfg):
     scene = SceneCfg(num_envs=1, env_spacing=4.0)
     actions = ActionsCfg()
     observations = ObservationsCfg()
     events = EventsCfg()
     decimation = 1
     seed = 42
+    episode_length_s = 6.0
+    rewards = {}
+    terminations = {}
     sim = SimulationCfg(dt=0.005, render_interval=4, physics=object_physics_cfg())

@@ -5,7 +5,7 @@
 
 """Manager-based Franka IK pushes a closed gripper through native MPM sand."""
 
-from isaaclab.envs import ManagerBasedEnvCfg
+from isaaclab.envs import ManagerBasedRLEnvCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
 
@@ -17,11 +17,14 @@ from .env_cfg.scene_cfg import FrankaSceneCfg
 
 
 @configclass
-class FrankaEnvCfg(ManagerBasedEnvCfg):
+class FrankaEnvCfg(ManagerBasedRLEnvCfg):
     scene = FrankaSceneCfg(num_envs=1, env_spacing=4.0)
     actions = FrankaActionsCfg()
     observations = RobotObservationsCfg()
     events = RobotEventsCfg()
     decimation = 1
     seed = 42
+    episode_length_s = 6.0
+    rewards = {}
+    terminations = {}
     sim = SimulationCfg(dt=0.005, render_interval=4, physics=franka_physics_cfg(), use_newton_actuators=True)

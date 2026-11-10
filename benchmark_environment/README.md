@@ -70,9 +70,9 @@ not measure Particle NeRD prediction error or solver scalability.
 
 The Go2 base is free: only its leg joints are actuated. Its successful run uses a
 **0.12 m sand layer over a rigid floor**, which its feet may also contact; it advances
-0.111 m in six seconds. This is not a deep-sand support test. The G1 uses a 0.30 m bed
+0.122 m in six seconds. This is not a deep-sand support test. The G1 uses a 0.30 m bed
 and the MPM-trained policy `jqur5jhm`, iteration 19,999, with a 0.35 m/s command; it
-advances 1.658 m. The policy checkpoint and saved training configuration are retained
+advances 1.747 m. The policy checkpoint and saved training configuration are retained
 in `checkpoints/jqur5jhm/`.
 
 Reported forces are the native MPM impulse divided by the physics interval, summed
@@ -104,3 +104,16 @@ No website template is maintained inside the IsaacLab simulation example package
 Large HDF5 and checkpoint files remain local. `../local_artifacts.json` records
 their local paths and SHA-256 checksums. Run `python publish.py --help` for
 catalog regeneration; public raw-data links are omitted from this gallery.
+
+
+## Initial-position jitter and Franka clearance
+
+The current gallery was regenerated with uniform initial particle-position jitter
+up to 6.4 mm per coordinate (20% of the 32 mm spacing), using seed 42. Samples stay
+inside the initial bed; particle count, particle mass, and material parameters are
+unchanged. Each updated video and force plot comes from the same new trajectory.
+
+Franka's retaining walls now end at z=0.04 m, 4 cm above its initial sand surface,
+rather than z=0.20 m. Its full six-second run records zero robot–tray contacts
+with nonpositive gap, including contact margins, over 1,201 recorded states.
+The HDF5 field `rigid_tray_contact_count` and `validation.json` retain this check.

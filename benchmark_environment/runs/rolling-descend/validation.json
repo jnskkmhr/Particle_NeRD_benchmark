@@ -8,12 +8,12 @@
     "video_matches_recorded_states": true
   },
   "measurements": {
-    "max_particle_displacement_m": 0.3624156713485718,
-    "mean_particle_displacement_m": 0.01435884553939104,
+    "max_particle_displacement_m": 0.18705862760543823,
+    "mean_particle_displacement_m": 0.038530539721250534,
     "reacting_body_names": [
       "/World/envs/env_0/Object"
     ],
-    "peak_total_material_force_N": 242.3616180419922
+    "peak_total_material_force_N": 80.98460388183594
   },
   "passed": true
 }

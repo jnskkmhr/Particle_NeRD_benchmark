@@ -10,22 +10,22 @@
     "video_matches_recorded_states": true
   },
   "measurements": {
-    "max_particle_displacement_m": 0.09777593612670898,
-    "mean_particle_displacement_m": 0.0030215783044695854,
+    "max_particle_displacement_m": 0.12999264895915985,
+    "mean_particle_displacement_m": 0.005610246676951647,
     "reacting_body_names": [
       "/World/envs/env_0/Robot/FL_foot",
       "/World/envs/env_0/Robot/FR_foot",
       "/World/envs/env_0/Robot/RL_foot",
       "/World/envs/env_0/Robot/RR_foot"
     ],
-    "peak_total_material_force_N": 229.21914672851562,
+    "peak_total_material_force_N": 214.80162048339844,
     "base_displacement_m": [
-      0.11053283512592316,
-      0.02523387037217617,
-      -0.19046863913536072
+      0.12185558676719666,
+      0.01593487150967121,
+      -0.1896667182445526
     ],
-    "minimum_base_height_m": 0.1899341493844986,
-    "minimum_base_up_z": 0.99007248878479
+    "minimum_base_height_m": 0.19108201563358307,
+    "minimum_base_up_z": 0.9926964640617371
   },
   "passed": true
 }

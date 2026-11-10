@@ -34,4 +34,4 @@ class FrankaSceneCfg(InteractiveSceneCfg):
     robot.actuators["panda_hand"].damping = 40.0
 
     def __post_init__(self):
-        configure_terrain(self, "flat", (1.2, 1.0, 0.25))
+        configure_terrain(self, "flat", (1.2, 1.0, 0.25), wall_top=0.04)

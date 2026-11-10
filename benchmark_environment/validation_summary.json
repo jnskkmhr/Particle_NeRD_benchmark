@@ -4,7 +4,7 @@
   "video_fps": 50,
   "duration_s": 6,
   "cases": {
-    "circle-flat": {
+    "horizontal-flat": {
       "checks": {
         "finite_saved_forces": true,
         "particles_below_tray_floor": 0,
@@ -14,62 +14,12 @@
         "video_matches_recorded_states": true
       },
       "measurements": {
-        "max_particle_displacement_m": 0.833570122718811,
-        "mean_particle_displacement_m": 0.0317443311214447,
+        "max_particle_displacement_m": 1.3218942880630493,
+        "mean_particle_displacement_m": 0.04176526889204979,
         "reacting_body_names": [
           "/World/envs/env_0/Object"
         ],
-        "peak_total_material_force_N": 1374.9847412109375
-      },
-      "passed": true
-    },
-    "franka-flat": {
-      "checks": {
-        "finite_saved_forces": true,
-        "particles_below_tray_floor": 0,
-        "particles_below_tray_floor_pass": true,
-        "material_contact_present": true,
-        "initial_and_final_particle_counts_match": true,
-        "video_matches_recorded_states": true
-      },
-      "measurements": {
-        "max_particle_displacement_m": 0.15095500648021698,
-        "mean_particle_displacement_m": 0.004006236791610718,
-        "reacting_body_names": [
-          "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand",
-          "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_leftfinger",
-          "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_rightfinger"
-        ],
-        "peak_total_material_force_N": 150.45689392089844
-      },
-      "passed": true
-    },
-    "g1-flat": {
-      "checks": {
-        "finite_saved_forces": true,
-        "particles_below_tray_floor": 0,
-        "particles_below_tray_floor_pass": true,
-        "material_contact_present": true,
-        "initial_and_final_particle_counts_match": true,
-        "robot_remains_upright": true,
-        "robot_moves_forward": true,
-        "video_matches_recorded_states": true
-      },
-      "measurements": {
-        "max_particle_displacement_m": 1.9601163864135742,
-        "mean_particle_displacement_m": 0.002989164087921381,
-        "reacting_body_names": [
-          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link/left_ankle_roll_link",
-          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link/right_ankle_roll_link"
-        ],
-        "peak_total_material_force_N": 732.7268676757812,
-        "base_displacement_m": [
-          1.6578611135482788,
-          0.10150344669818878,
-          -0.07794231176376343
-        ],
-        "minimum_base_height_m": 0.6460105776786804,
-        "minimum_base_up_z": 0.9856671690940857
+        "peak_total_material_force_N": 668.5436401367188
       },
       "passed": true
     },
@@ -83,12 +33,12 @@
         "video_matches_recorded_states": true
       },
       "measurements": {
-        "max_particle_displacement_m": 1.348833441734314,
-        "mean_particle_displacement_m": 0.0328943245112896,
+        "max_particle_displacement_m": 1.3358532190322876,
+        "mean_particle_displacement_m": 0.05046439170837402,
         "reacting_body_names": [
           "/World/envs/env_0/Object"
         ],
-        "peak_total_material_force_N": 1284.906005859375
+        "peak_total_material_force_N": 977.01220703125
       },
       "passed": true
     },
@@ -102,31 +52,12 @@
         "video_matches_recorded_states": true
       },
       "measurements": {
-        "max_particle_displacement_m": 1.3466575145721436,
-        "mean_particle_displacement_m": 0.0345461368560791,
+        "max_particle_displacement_m": 1.3472329378128052,
+        "mean_particle_displacement_m": 0.050579581409692764,
         "reacting_body_names": [
           "/World/envs/env_0/Object"
         ],
-        "peak_total_material_force_N": 1140.9139404296875
-      },
-      "passed": true
-    },
-    "horizontal-flat": {
-      "checks": {
-        "finite_saved_forces": true,
-        "particles_below_tray_floor": 0,
-        "particles_below_tray_floor_pass": true,
-        "material_contact_present": true,
-        "initial_and_final_particle_counts_match": true,
-        "video_matches_recorded_states": true
-      },
-      "measurements": {
-        "max_particle_displacement_m": 1.3157868385314941,
-        "mean_particle_displacement_m": 0.02407650463283062,
-        "reacting_body_names": [
-          "/World/envs/env_0/Object"
-        ],
-        "peak_total_material_force_N": 1470.8785400390625
+        "peak_total_material_force_N": 635.8349609375
       },
       "passed": true
     },
@@ -140,12 +71,126 @@
         "video_matches_recorded_states": true
       },
       "measurements": {
-        "max_particle_displacement_m": 1.3913753032684326,
-        "mean_particle_displacement_m": 0.034434933215379715,
+        "max_particle_displacement_m": 1.380693793296814,
+        "mean_particle_displacement_m": 0.050581350922584534,
         "reacting_body_names": [
           "/World/envs/env_0/Object"
         ],
-        "peak_total_material_force_N": 981.2648315429688
+        "peak_total_material_force_N": 591.5559692382812
+      },
+      "passed": true
+    },
+    "vertical-flat": {
+      "checks": {
+        "finite_saved_forces": true,
+        "particles_below_tray_floor": 0,
+        "particles_below_tray_floor_pass": true,
+        "material_contact_present": true,
+        "initial_and_final_particle_counts_match": true,
+        "video_matches_recorded_states": true
+      },
+      "measurements": {
+        "max_particle_displacement_m": 0.2407291978597641,
+        "mean_particle_displacement_m": 0.032354436814785004,
+        "reacting_body_names": [
+          "/World/envs/env_0/Object"
+        ],
+        "peak_total_material_force_N": 295.29754638671875
+      },
+      "passed": true
+    },
+    "circle-flat": {
+      "checks": {
+        "finite_saved_forces": true,
+        "particles_below_tray_floor": 0,
+        "particles_below_tray_floor_pass": true,
+        "material_contact_present": true,
+        "initial_and_final_particle_counts_match": true,
+        "video_matches_recorded_states": true
+      },
+      "measurements": {
+        "max_particle_displacement_m": 0.7874488830566406,
+        "mean_particle_displacement_m": 0.04781005159020424,
+        "reacting_body_names": [
+          "/World/envs/env_0/Object"
+        ],
+        "peak_total_material_force_N": 633.83837890625
+      },
+      "passed": true
+    },
+    "rolling-flat": {
+      "checks": {
+        "finite_saved_forces": true,
+        "particles_below_tray_floor": 0,
+        "particles_below_tray_floor_pass": true,
+        "material_contact_present": true,
+        "initial_and_final_particle_counts_match": true,
+        "video_matches_recorded_states": true
+      },
+      "measurements": {
+        "max_particle_displacement_m": 0.24068531394004822,
+        "mean_particle_displacement_m": 0.03149399906396866,
+        "reacting_body_names": [
+          "/World/envs/env_0/Object"
+        ],
+        "peak_total_material_force_N": 78.79983520507812
+      },
+      "passed": true
+    },
+    "rolling-ascend": {
+      "checks": {
+        "finite_saved_forces": true,
+        "particles_below_tray_floor": 0,
+        "particles_below_tray_floor_pass": true,
+        "material_contact_present": true,
+        "initial_and_final_particle_counts_match": true,
+        "video_matches_recorded_states": true
+      },
+      "measurements": {
+        "max_particle_displacement_m": 0.20361165702342987,
+        "mean_particle_displacement_m": 0.0397176593542099,
+        "reacting_body_names": [
+          "/World/envs/env_0/Object"
+        ],
+        "peak_total_material_force_N": 152.4347381591797
+      },
+      "passed": true
+    },
+    "rolling-descend": {
+      "checks": {
+        "finite_saved_forces": true,
+        "particles_below_tray_floor": 0,
+        "particles_below_tray_floor_pass": true,
+        "material_contact_present": true,
+        "initial_and_final_particle_counts_match": true,
+        "video_matches_recorded_states": true
+      },
+      "measurements": {
+        "max_particle_displacement_m": 0.18705862760543823,
+        "mean_particle_displacement_m": 0.038530539721250534,
+        "reacting_body_names": [
+          "/World/envs/env_0/Object"
+        ],
+        "peak_total_material_force_N": 80.98460388183594
+      },
+      "passed": true
+    },
+    "rolling-wave": {
+      "checks": {
+        "finite_saved_forces": true,
+        "particles_below_tray_floor": 0,
+        "particles_below_tray_floor_pass": true,
+        "material_contact_present": true,
+        "initial_and_final_particle_counts_match": true,
+        "video_matches_recorded_states": true
+      },
+      "measurements": {
+        "max_particle_displacement_m": 0.20234563946723938,
+        "mean_particle_displacement_m": 0.038164712488651276,
+        "reacting_body_names": [
+          "/World/envs/env_0/Object"
+        ],
+        "peak_total_material_force_N": 157.96661376953125
       },
       "passed": true
     },
@@ -159,12 +204,36 @@
         "video_matches_recorded_states": true
       },
       "measurements": {
-        "max_particle_displacement_m": 0.24039195477962494,
-        "mean_particle_displacement_m": 0.003805667394772172,
+        "max_particle_displacement_m": 0.23476365208625793,
+        "mean_particle_displacement_m": 0.006854679435491562,
         "reacting_body_names": [
           "/World/envs/env_0/Object"
         ],
-        "peak_total_material_force_N": 402.2344665527344
+        "peak_total_material_force_N": 373.6443176269531
+      },
+      "passed": true
+    },
+    "franka-flat": {
+      "checks": {
+        "finite_saved_forces": true,
+        "particles_below_tray_floor": 0,
+        "particles_below_tray_floor_pass": true,
+        "material_contact_present": true,
+        "initial_and_final_particle_counts_match": true,
+        "no_robot_tray_contacts": true,
+        "video_matches_recorded_states": true
+      },
+      "measurements": {
+        "max_particle_displacement_m": 0.1512487232685089,
+        "mean_particle_displacement_m": 0.007027718238532543,
+        "reacting_body_names": [
+          "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand",
+          "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_leftfinger",
+          "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_rightfinger"
+        ],
+        "peak_total_material_force_N": 164.7262725830078,
+        "maximum_robot_tray_contacts": 0,
+        "samples_with_robot_tray_contacts": 0
       },
       "passed": true
     },
@@ -180,121 +249,139 @@
         "video_matches_recorded_states": true
       },
       "measurements": {
-        "max_particle_displacement_m": 0.09777593612670898,
-        "mean_particle_displacement_m": 0.0030215783044695854,
+        "max_particle_displacement_m": 0.12999264895915985,
+        "mean_particle_displacement_m": 0.005610246676951647,
         "reacting_body_names": [
           "/World/envs/env_0/Robot/FL_foot",
           "/World/envs/env_0/Robot/FR_foot",
           "/World/envs/env_0/Robot/RL_foot",
           "/World/envs/env_0/Robot/RR_foot"
         ],
-        "peak_total_material_force_N": 229.21914672851562,
+        "peak_total_material_force_N": 214.80162048339844,
         "base_displacement_m": [
-          0.11053283512592316,
-          0.02523387037217617,
-          -0.19046863913536072
+          0.12185558676719666,
+          0.01593487150967121,
+          -0.1896667182445526
         ],
-        "minimum_base_height_m": 0.1899341493844986,
-        "minimum_base_up_z": 0.99007248878479
+        "minimum_base_height_m": 0.19108201563358307,
+        "minimum_base_up_z": 0.9926964640617371
       },
       "passed": true
     },
-    "rolling-ascend": {
+    "g1-flat": {
       "checks": {
         "finite_saved_forces": true,
         "particles_below_tray_floor": 0,
         "particles_below_tray_floor_pass": true,
         "material_contact_present": true,
         "initial_and_final_particle_counts_match": true,
+        "robot_remains_upright": true,
+        "robot_moves_forward": true,
         "video_matches_recorded_states": true
       },
       "measurements": {
-        "max_particle_displacement_m": 0.36396706104278564,
-        "mean_particle_displacement_m": 0.01604076661169529,
+        "max_particle_displacement_m": 2.046694040298462,
+        "mean_particle_displacement_m": 0.0063082026317715645,
         "reacting_body_names": [
-          "/World/envs/env_0/Object"
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link/left_ankle_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link/right_ankle_roll_link"
         ],
-        "peak_total_material_force_N": 292.8519287109375
-      },
-      "passed": true
-    },
-    "rolling-descend": {
-      "checks": {
-        "finite_saved_forces": true,
-        "particles_below_tray_floor": 0,
-        "particles_below_tray_floor_pass": true,
-        "material_contact_present": true,
-        "initial_and_final_particle_counts_match": true,
-        "video_matches_recorded_states": true
-      },
-      "measurements": {
-        "max_particle_displacement_m": 0.3624156713485718,
-        "mean_particle_displacement_m": 0.01435884553939104,
-        "reacting_body_names": [
-          "/World/envs/env_0/Object"
+        "peak_total_material_force_N": 800.7825317382812,
+        "base_displacement_m": [
+          1.7471659183502197,
+          0.06933866441249847,
+          -0.09815442562103271
         ],
-        "peak_total_material_force_N": 242.3616180419922
-      },
-      "passed": true
-    },
-    "rolling-flat": {
-      "checks": {
-        "finite_saved_forces": true,
-        "particles_below_tray_floor": 0,
-        "particles_below_tray_floor_pass": true,
-        "material_contact_present": true,
-        "initial_and_final_particle_counts_match": true,
-        "video_matches_recorded_states": true
-      },
-      "measurements": {
-        "max_particle_displacement_m": 0.25904354453086853,
-        "mean_particle_displacement_m": 0.011679639108479023,
-        "reacting_body_names": [
-          "/World/envs/env_0/Object"
-        ],
-        "peak_total_material_force_N": 176.2357177734375
-      },
-      "passed": true
-    },
-    "rolling-wave": {
-      "checks": {
-        "finite_saved_forces": true,
-        "particles_below_tray_floor": 0,
-        "particles_below_tray_floor_pass": true,
-        "material_contact_present": true,
-        "initial_and_final_particle_counts_match": true,
-        "video_matches_recorded_states": true
-      },
-      "measurements": {
-        "max_particle_displacement_m": 0.3026180565357208,
-        "mean_particle_displacement_m": 0.014642221853137016,
-        "reacting_body_names": [
-          "/World/envs/env_0/Object"
-        ],
-        "peak_total_material_force_N": 285.2568054199219
-      },
-      "passed": true
-    },
-    "vertical-flat": {
-      "checks": {
-        "finite_saved_forces": true,
-        "particles_below_tray_floor": 0,
-        "particles_below_tray_floor_pass": true,
-        "material_contact_present": true,
-        "initial_and_final_particle_counts_match": true,
-        "video_matches_recorded_states": true
-      },
-      "measurements": {
-        "max_particle_displacement_m": 0.2588834762573242,
-        "mean_particle_displacement_m": 0.012036523781716824,
-        "reacting_body_names": [
-          "/World/envs/env_0/Object"
-        ],
-        "peak_total_material_force_N": 658.199951171875
+        "minimum_base_height_m": 0.6277444362640381,
+        "minimum_base_up_z": 0.9854561686515808
       },
       "passed": true
     }
   },
-  "case_count": 14,
-  "all_passed": true
+  "initialization_checks": {
+    "rolling-flat": {
+      "maximum_initial_coordinate_offset_m": 0.006399914622306824,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "horizontal-flat": {
+      "maximum_initial_coordinate_offset_m": 0.006399914622306824,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "franka-flat": {
+      "maximum_initial_coordinate_offset_m": 0.006399832665920258,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "horizontal-ascend": {
+      "maximum_initial_coordinate_offset_m": 0.006399929523468018,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "projectile-flat": {
+      "maximum_initial_coordinate_offset_m": 0.006399914622306824,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "vertical-flat": {
+      "maximum_initial_coordinate_offset_m": 0.006399914622306824,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "horizontal-descend": {
+      "maximum_initial_coordinate_offset_m": 0.006399922072887421,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "rolling-ascend": {
+      "maximum_initial_coordinate_offset_m": 0.006399929523468018,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "circle-flat": {
+      "maximum_initial_coordinate_offset_m": 0.006399914622306824,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "rolling-wave": {
+      "maximum_initial_coordinate_offset_m": 0.006399919744580984,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "horizontal-wave": {
+      "maximum_initial_coordinate_offset_m": 0.006399919744580984,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "quadruped-flat": {
+      "maximum_initial_coordinate_offset_m": 0.006399830803275108,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "g1-flat": {
+      "maximum_initial_coordinate_offset_m": 0.006399869918823242,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "rolling-descend": {
+      "maximum_initial_coordinate_offset_m": 0.006399922072887421,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    }
+  }
 }

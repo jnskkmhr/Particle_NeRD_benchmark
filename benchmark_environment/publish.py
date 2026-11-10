@@ -53,7 +53,8 @@ DESCRIPTIONS = {
     ),
     "franka": (
         "A fixed-base Franka arm uses damped least-squares IK and joint drives to push its closed gripper "
-        "through the sand. The dataset stores the achieved motion."
+        "through the sand. The walls end 4 cm above the initial sand surface to clear the arm. "
+        "The dataset stores the achieved motion."
     ),
     "quadruped": (
         "A freely balancing Unitree Go2 follows a slow crawl with leg IK and PD drives. The 0.12 m sand "
@@ -123,6 +124,8 @@ def publish(runs, output, checkpoint=None, release_url=None):
                 "controller": metadata["controller"],
                 "control_hz": round(1.0 / metadata["control_dt_s"]),
                 "bed": metadata["bed_size_m"],
+                "particle_initialization": metadata["particle_initialization"],
+                "wall_top_z_m": metadata["tray_wall_top_z_m"],
                 "policy": "jqur5jhm · iteration 19,999" if motion == "g1" else None,
                 "command": command,
                 "date": str(date.today()),

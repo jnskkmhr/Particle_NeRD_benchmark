@@ -7,6 +7,7 @@
     "terrain": "flat",
     "family": "object",
     "path": "runs/horizontal-flat",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 20646,
     "controller": "Prescribed kinematic collider",
@@ -16,14 +17,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "bb9d25124b4c92230b7b1feed64a646f82d6b552138707ced451ec8da19a8143",
-      "simulation.mp4": "ec0528256c8c4a5a4187d7b4739693d5bee46a98269963e7f3036960189e0542"
-    },
-    "dataset_url": null
+      "trajectory.h5": "bb7741612b38df25480a1d8582600b0d4f777168de151958bc0f833c0a74a81f",
+      "simulation.mp4": "4f8240d1c17beff398d1018b606756e7b48e43cbd312f0904db508e8049a0db7"
+    }
   },
   {
     "id": "horizontal-ascend",
@@ -33,6 +39,7 @@
     "terrain": "ascend",
     "family": "object",
     "path": "runs/horizontal-ascend",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 21460,
     "controller": "Prescribed kinematic collider",
@@ -42,14 +49,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Ascend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "951489b929b0b37b083364e9d6a866c216f7ea01a11f030b7d74c9159f860dfb",
-      "simulation.mp4": "8f91d9839348637bea3a5c14bfa02ba4c65ee42d2701e9d7c5a4d55c534fcd8c"
-    },
-    "dataset_url": null
+      "trajectory.h5": "82467c6a2a1d29efb5c8f29557a6bcd9ff3bc5a95bf7cfa3e6c3a7111afa413d",
+      "simulation.mp4": "cc3478a0bd9457de8df77ce7a9fa95ee45bf429779c731a92a1ac174b42e24ce"
+    }
   },
   {
     "id": "horizontal-descend",
@@ -59,6 +71,7 @@
     "terrain": "descend",
     "family": "object",
     "path": "runs/horizontal-descend",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 21608,
     "controller": "Prescribed kinematic collider",
@@ -68,14 +81,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Descend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "bd77a5e315a6ba22ba12649d641fa1e1f3234d397db97f1601005e61de9dcdc4",
-      "simulation.mp4": "198c53a30e991994fe0cd12c0fcb7c3c19a7c236c9cab442cb0afb2e6c1d159a"
-    },
-    "dataset_url": null
+      "trajectory.h5": "8bc53c7333a034a14b6f41d31ece0bb0d3e9d89768833000adaa14da6a392951",
+      "simulation.mp4": "2155e3f2c696e85fc14dbbc3675a00bf751140f700573d7ebdb5f0072896078d"
+    }
   },
   {
     "id": "horizontal-wave",
@@ -85,6 +103,7 @@
     "terrain": "wave",
     "family": "object",
     "path": "runs/horizontal-wave",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 21682,
     "controller": "Prescribed kinematic collider",
@@ -94,14 +113,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Wave-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "6eedd5bd49b809a44432d7717ddf831779b6147d9bd3d395ec13d373592bfa5c",
-      "simulation.mp4": "813da9e56b055640ba5e8bb17dca4c7e4c8f930880ef7c94fde4fb4ed81941fc"
-    },
-    "dataset_url": null
+      "trajectory.h5": "bc3b285dd9031d795edaa2541293f6847d9ffa9eaccb6cf7ae63d5a911695e19",
+      "simulation.mp4": "090bf4b38542d691c18d955277d152e7f6ee7c4cde25db61edc11d9168989571"
+    }
   },
   {
     "id": "vertical-flat",
@@ -111,6 +135,7 @@
     "terrain": "flat",
     "family": "object",
     "path": "runs/vertical-flat",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 20646,
     "controller": "Prescribed kinematic collider",
@@ -120,14 +145,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Intrude-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "c8bbb74cd0f94cc4be5b541b535ab07b0c57b722fbca840729302632943b1d31",
-      "simulation.mp4": "0f70818bbab8317f577bb83201320316812b86e3da01fcc8be5bdc46e1f87153"
-    },
-    "dataset_url": null
+      "trajectory.h5": "a976a20ed996062545d3564dc5e3bcff6f987525b5848d80ee043dd270c4bab2",
+      "simulation.mp4": "b0febc39c7a6a7dcb08f12e8b00afd38b92bf0ad35df9ad4ab2b870c29435f50"
+    }
   },
   {
     "id": "circle-flat",
@@ -137,6 +167,7 @@
     "terrain": "flat",
     "family": "object",
     "path": "runs/circle-flat",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 20646,
     "controller": "Prescribed kinematic collider",
@@ -146,14 +177,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Circle-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "e17c791c701bb4af9fb894c948658015cff72c08ecd839f7454c2d4b42cc995a",
-      "simulation.mp4": "d6c5527f070cf3c05645d5819d98dee73f018afc34cbea54c20ee6586734a218"
-    },
-    "dataset_url": null
+      "trajectory.h5": "cb184b9c202a1ee980fe32d51e556114957ee80f667d4a15b8e28f58a8f1e8fc",
+      "simulation.mp4": "73f77328b11c3335d4fcf127d6eb1c2ff6b622c6d3e744a3ba13877294f68ea3"
+    }
   },
   {
     "id": "rolling-flat",
@@ -163,6 +199,7 @@
     "terrain": "flat",
     "family": "object",
     "path": "runs/rolling-flat",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 20646,
     "controller": "Prescribed kinematic collider",
@@ -172,14 +209,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "a5c04c43748cb4d4d5d49ceb7d6e3741e24c2b1d01855ae8b2b6c4cf0e1c9e70",
-      "simulation.mp4": "da6ebee25df429cd4aaa0cb1d8ac6debd6c5c9507dc1d52f626aca787313f63c"
-    },
-    "dataset_url": null
+      "trajectory.h5": "34e0173039a73f0213ee5099e31624c07960ee11e2062908a81fb4deaa587b2f",
+      "simulation.mp4": "2d7d4cac3c62ba9af959a61139a31454df12a1b86e54a935e3d205079a0ba788"
+    }
   },
   {
     "id": "rolling-ascend",
@@ -189,6 +231,7 @@
     "terrain": "ascend",
     "family": "object",
     "path": "runs/rolling-ascend",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 21460,
     "controller": "Prescribed kinematic collider",
@@ -198,14 +241,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Ascend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "56e5db12aa947361b252d43edca533d0a728f6a9406d701814d7b58487668698",
-      "simulation.mp4": "c1c0be9fc7a622d94a1bb7990a39cc08128a2cf9fc8119c056c38ce701a60e0a"
-    },
-    "dataset_url": null
+      "trajectory.h5": "1dd2b43b15d0b11fc0e711a968de3c5d43af7ea645afdc9014c22fa41c97100f",
+      "simulation.mp4": "d5c7f7add32c9765ff4fc465e1f30e983000fcad8325c9026f620c485faf523c"
+    }
   },
   {
     "id": "rolling-descend",
@@ -215,6 +263,7 @@
     "terrain": "descend",
     "family": "object",
     "path": "runs/rolling-descend",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 21608,
     "controller": "Prescribed kinematic collider",
@@ -224,14 +273,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Descend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "491224f5c2cab3c2584524d694c4208fde0958b7e7adefcaaf1dece8bc5785da",
-      "simulation.mp4": "0bc2bd1453408eda840b152df6de2b933a4c954f9a28dc25a1cfcbfe3e91b75e"
-    },
-    "dataset_url": null
+      "trajectory.h5": "d63dc1b8e75aba0a22ea7045002ebfc47a57ff381905c23c11e6e84090a2a0cd",
+      "simulation.mp4": "d6bb561bca656fc3539c61af88305a7ee6ba465d31151b306476880217db8239"
+    }
   },
   {
     "id": "rolling-wave",
@@ -241,6 +295,7 @@
     "terrain": "wave",
     "family": "object",
     "path": "runs/rolling-wave",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 21682,
     "controller": "Prescribed kinematic collider",
@@ -250,14 +305,19 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Wave-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "af795363d85cf26e7ece46c04d7c12e0f0927ef42353f522d40a49b2203d32e9",
-      "simulation.mp4": "9e89ba003be582f8b67523a22d1abe5670d624cad3e14ac756ddebb00d76d81e"
-    },
-    "dataset_url": null
+      "trajectory.h5": "fd2ff9b15446db0149999937dae6e6adb265d3fbf2635854a352880e47636bb6",
+      "simulation.mp4": "8af69ea8dcffdd6fb47c22d5af5650f295979afd89bac89c6fb510da909cebb4"
+    }
   },
   {
     "id": "projectile-flat",
@@ -267,6 +327,7 @@
     "terrain": "flat",
     "family": "object",
     "path": "runs/projectile-flat",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 20646,
     "controller": "Free projectile after release",
@@ -276,23 +337,29 @@
       1.2,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Projectile-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "1a437c1e06600dfdb350a2d36f4f900b792871b1b1e5fb7e12e6777e0031d935",
-      "simulation.mp4": "c5213a985dc64fe3c50c894c74afb83c32e43da58da4bfc7e92981753cb0701b"
-    },
-    "dataset_url": null
+      "trajectory.h5": "b5a871aaaf2196c61e57df03ec50509e126d91500c2ca49f82a839a04636e555",
+      "simulation.mp4": "de573409d35a52146a4998f920df84e001dc9df255e802dfa9b50e23940217bd"
+    }
   },
   {
     "id": "franka-flat",
     "title": "Franka sand pushing",
-    "description": "A fixed-base Franka arm uses damped least-squares IK and joint drives to push its closed gripper through the sand. The dataset stores the achieved motion.",
+    "description": "A fixed-base Franka arm uses damped least-squares IK and joint drives to push its closed gripper through the sand. The walls end 4 cm above the initial sand surface to clear the arm. The dataset stores the achieved motion.",
     "motion": "franka",
     "terrain": "flat",
     "family": "robot",
     "path": "runs/franka-flat",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 9176,
     "controller": "Franka damped least-squares IK",
@@ -302,14 +369,19 @@
       1.0,
       0.25
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.039999999999999994,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Franka-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "dcdfb76725a73b84b5eb0e3dceb6fec743ae5db5b580ae4c8bc175b2163cc8ad",
-      "simulation.mp4": "f2727d468bd3b230ee0fc1efb8bfa986ca245e8973b2c5b0d3db40b9052a9f31"
-    },
-    "dataset_url": null
+      "trajectory.h5": "d75665a94fe69c20997d5ea1b86268863699d25dde3d80a61710f44006aaf92e",
+      "simulation.mp4": "ff35bac2c4a4d406d7e39973d7f52c85b4503511cc4be52c7bfed6a7b84ae2f1"
+    }
   },
   {
     "id": "quadruped-flat",
@@ -319,6 +391,7 @@
     "terrain": "flat",
     "family": "robot",
     "path": "runs/quadruped-flat",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 9176,
     "controller": "Go2 free-base crawl with leg IK and PD joint drives",
@@ -328,14 +401,19 @@
       1.2,
       0.12
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Go2-Crawl-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "db2495e6c20174c592e9bcdb912580485a25da70f198ce1493d09657ecec78a2",
-      "simulation.mp4": "1a1b4e1b9e145d54560e394e39adb5e3666af78ad26a80936b1eaea6adc298c5"
-    },
-    "dataset_url": null
+      "trajectory.h5": "e076fe21cb1fa345a4bb695caede62cf8d8c1b374c22969da1ea3be55279ab54",
+      "simulation.mp4": "4cae681033ef01ae365df2e9f36fd3b92edbac42b0b0c60ea66cd8fcfd8891c6"
+    }
   },
   {
     "id": "g1-flat",
@@ -345,6 +423,7 @@
     "terrain": "flat",
     "family": "robot",
     "path": "runs/g1-flat",
+    "dataset_url": null,
     "duration": 6.0,
     "particles": 50400,
     "controller": "G1 closed-loop MPM-trained RL policy",
@@ -354,13 +433,18 @@
       1.6,
       0.3
     ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial bed",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": 0.2,
     "policy": "jqur5jhm \u00b7 iteration 19,999",
     "command": "uv run isaaclab play --task IsaacBench-MPM-G1-Walk-Flat-v0 --duration 6 --viz newton_gl --real-time --checkpoint /home/jkamohara/isaac/particle_nerd/Particle_NeRD_benchmark/benchmark_environment/checkpoints/jqur5jhm/model_19999.pt",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "f49fc50bd4fc20de5dd7a20a504af20318da8ea8fa762679e042417ec1218995",
-      "simulation.mp4": "2cae58e5e061cbe36451819ff51dffd5d18445d24e06b73748a6f72a64501579"
-    },
-    "dataset_url": null
+      "trajectory.h5": "0b5a4a20ad09917baeb12ee4036af2f3c6f541c313e8abb2462f436890168ce6",
+      "simulation.mp4": "2dda1d50932dc9b8d7a287a66e6c9c3d2142ff2a304bbe5ebeec1ea77888e1c0"
+    }
   }
 ]

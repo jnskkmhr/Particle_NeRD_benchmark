@@ -5,7 +5,7 @@
 
 """Standalone manager-based native-MPM scene for closed-loop G1 policy playback."""
 
-from isaaclab.envs import ManagerBasedEnvCfg
+from isaaclab.envs import ManagerBasedRLEnvCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
 
@@ -18,13 +18,16 @@ from .env_cfg.g1_scene_cfg import G1SceneCfg
 
 
 @configclass
-class G1EnvCfg(ManagerBasedEnvCfg):
+class G1EnvCfg(ManagerBasedRLEnvCfg):
     scene = G1SceneCfg(num_envs=1, env_spacing=5.0)
     actions = G1ActionsCfg()
     observations = G1ObservationsCfg()
     events = RobotEventsCfg()
     decimation = 4
     seed = 42
+    episode_length_s = 6.0
+    rewards = {}
+    terminations = {}
     forward_speed = 0.35
     sim = SimulationCfg(
         dt=0.005,
