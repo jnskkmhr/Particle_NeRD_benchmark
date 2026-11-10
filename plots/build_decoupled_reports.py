@@ -34,8 +34,11 @@ def table(caption, rows, heads=None):
     return f'<div class="table-wrap"><table><caption>{caption}</caption>{header}<tbody>{body}</tbody></table></div>'
 
 
+FIGURE_VERSION = "20261109-mpm-reference"
+
+
 def figure(number, path, caption, alt):
-    return f'''<figure class="result-figure"><div class="plot-scroll" tabindex="0" aria-label="Scrollable plot"><a href="{path}.svg" target="_blank" rel="noopener"><img src="{path}.svg" alt="{alt}" loading="lazy"></a></div><figcaption><strong>Figure {number}:</strong> {caption} <a href="{path}.pdf">PDF</a> · <a href="{path}.png">PNG</a> · Tap to enlarge.</figcaption></figure>'''
+    return f'''<figure class="result-figure"><div class="plot-scroll" tabindex="0" aria-label="Scrollable plot"><a href="{path}.svg?v={FIGURE_VERSION}" target="_blank" rel="noopener"><img src="{path}.svg?v={FIGURE_VERSION}" alt="{alt}" loading="lazy"></a></div><figcaption><strong>Figure {number}:</strong> {caption} <a href="{path}.pdf?v={FIGURE_VERSION}">PDF</a> · <a href="{path}.png?v={FIGURE_VERSION}">PNG</a> · Tap to enlarge.</figcaption></figure>'''
 
 
 def video(number, path, caption):
