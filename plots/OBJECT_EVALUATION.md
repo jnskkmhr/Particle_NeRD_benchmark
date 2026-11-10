@@ -19,7 +19,7 @@ Then stage the report using private downloaded training outputs and the same
 trained checkpoint for every evaluation:
 
 ```bash
-uv run --no-project python /PATH/Particle_NeRD_benchmark/plots/build_object_report.py \
+uv run --no-project --with matplotlib --with numpy python /PATH/Particle_NeRD_benchmark/plots/build_object_report.py \
   --training PRIVATE_TRAINING_OUTPUT \
   --test-report PRIVATE_TRAINING_OUTPUT/test_evaluation/report.json \
   --references PRIVATE_REFERENCE_EVALUATIONS \
@@ -34,7 +34,7 @@ video, and both plot/video provenance files. These inputs remain private.
 The reference root also needs `report.json`, generated with
 `python -m particle_nerd_benchmark.learning.summarize PRIVATE_REFERENCE_EVALUATIONS --expected 4`.
 Its one-second force-window means and temporal standard deviations populate
-each case's force table. The six figures include reference population counts,
+each case's force-summary plot. The six figures include reference population counts,
 so missing regional errors are distinguishable from zero error.
 
 To evaluate before the planned training run finishes, copy the selected
@@ -66,7 +66,7 @@ gallery. Do not publish local engineering checks as final model results.
 
 ## Fixed-object consistency extension
 
-The report now includes measured core-metric tables and three 23-second fixed-object recordings.
+The report now includes measured core-metric plots and three 23-second fixed-object recordings.
 The object stops at 2 s. Temporal metrics compare each method to its own state at 3 s through 23 s,
 without resetting particles. The benchmark source provides:
 
@@ -83,7 +83,7 @@ PYTHONPATH=examples uv run --no-sync --with scikit-image==0.27.0rc1 python \
 Repeat collection for sphere and cylinder. Run the existing plot, video, and summarize modules on the
 completed evaluations. Build the public report with the new required `--holds /private/evaluation`
 argument in addition to `--training`, `--test-report`, `--references`, and `--output`.
-`object_metric_results.py` builds tables from actual measured JSON; it does not contain substituted results.
+`object_metric_results.py` embeds plots of actual measured JSON; it does not contain substituted results.
 Use the frozen evaluation source and checkpoint hashes recorded in the report; a newer model or evaluator
 is a different experiment. Do not expose private trajectories or checkpoints when reproducing the site.
 
@@ -92,3 +92,25 @@ reported. All particles are included in the temporal metrics. The enlarged offli
 the original paired-field failures. See `metrics/README.md` and `consistency_results.json` for definitions.
 
 The public `plot_object_consistency.py CASE_PAGE_DIRECTORY --output NEW_PLOT_DIRECTORY` regenerates Figure 7 from published scalar time series without private particle trajectories.
+
+
+## Graphical presentation of measured metrics
+
+The overview contains nine comparison figures instead of numerical result tables.
+Each detailed case also replaces force-error and selected-window tables with plots.
+Only simulation-condition tables remain. Exact numerical values remain in the same public JSON files.
+
+```bash
+uv run --no-project --with matplotlib --with numpy python plots/plot_object_metric_comparisons.py \
+  benchmark_environment/object_prediction
+```
+
+This command reads only the public test summaries, consistency summaries, evaluation settings, and
+force-window data. It creates SVG/PDF/PNG figures and `comparison_plot_provenance.json` with their
+source/input/output hashes. It does not train a model, run physics, smooth force traces, drop
+trajectory outliers, or substitute missing particle-region errors with zeros.
+
+The distribution plots show every available trajectory summary, median/IQR boxes, 1.5-IQR whiskers,
+and mean diamonds. Counts are explicit per shape. Fixed-object bars represent one paired recording
+per shape; no repeated-trial uncertainty is implied. Reference MPM leakage and the effect of escaped
+particles on RMS remain disclosed.

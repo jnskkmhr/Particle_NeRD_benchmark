@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 
 from object_metric_results import HOLD_CASES, hold_results, metric_results
+from plot_object_metric_comparisons import figure_html, generate
 
 CASES = {
     "box-horizontal-flat": "Box: horizontal motion on flat sand",
@@ -295,63 +296,28 @@ def build_case(root, output, checkpoint):
             '<a href="consistency_series.json">Scalar time series</a> · '
             '<a href="consistency_provenance.json">Input and figure hashes</a></p>',
         )
-    rows = []
-    for key, label in (
-        ("force_predicted_particles", "Predicted particles"),
-        ("force_reference_particles", "Reference MPM particles"),
-    ):
-        force = meta[key]
-        for axis, rmse, bias in zip(
-            "xyz", force["component_rmse_n"], force["component_bias_n"], strict=True
-        ):
-            rows.append((label, "F" + axis, f"{rmse:.4g}", f"{bias:+.4g}"))
-    window_rows = []
-    for start in sorted({1.0, 3.0, completed - 1.0}):
-        for source, label in (
-            ("reference", "Implicit MPM"),
-            ("predicted_particles", "Estimator: predicted particles"),
-            ("reference_particles", "Estimator: MPM particles"),
-        ):
-            window = next(
-                item
-                for item in summary["force_windows"][source]
-                if item["start_exclusive_s"] == start
-            )
-            values = [
-                f"{mean:.3g} ± {std:.3g}"
-                for mean, std in zip(
-                    window["mean_fx_fy_fz_n"],
-                    window["frame_std_fx_fy_fz_n"],
-                    strict=True,
-                )
-            ]
-            window_rows.append(
-                (
-                    f"({start:g}, {window['end_inclusive_s']:g}]",
-                    label,
-                    window["samples"],
-                    *values,
-                )
-            )
+    first_number = 8 if episode["id"] in HOLD_CASES else 7
     content += section(
         "4. Force errors and provenance",
-        table(
-            "Table 2: Raw force-component errors against MPM over the evaluated interval.",
-            (
-                "Estimator particle input",
-                "Component",
-                "RMSE (N)",
-                "Signed mean error (N)",
-            ),
-            rows,
+        figure_html(
+            "force_error_summary",
+            first_number,
+            "(a) Fx/Fy/Fz component RMSE; (b) signed mean error (estimate minus native MPM material force). "
+            "Raw 200 Hz forces over the full recording. The gray diagnostic supplies MPM particles to the same estimator.",
         )
-        + table(
-            "Table 3: Force mean ± temporal standard deviation in selected one-second windows.",
-            ("Time (s)", "Force source", "Frames", "Fx (N)", "Fy (N)", "Fz (N)"),
-            window_rows,
+        + figure_html(
+            "force_window_summary",
+            first_number + 1,
+            "(a) Fx; (b) Fy; (c) Fz. Means and temporal population standard deviations over one-second "
+            "windows (1,2], (3,4], and the final second. Every raw 200 Hz sample is used. "
+            "Whiskers describe variation within one recording, not repeated-trial uncertainty.",
         )
-        + '<p>Each window uses every raw 200 Hz sample after its start through its end. The population standard deviation measures variation over time in this single recording, not uncertainty across repeated trials. Early, intermediate, and final windows are shown; <a href="force_windows.json">all one-second windows</a> and full force traces remain available.</p>'
-        + '<p><a href="evaluation_settings.json">Evaluation settings and metrics</a> · <a href="plot_provenance.json">Plot hashes</a> · <a href="video_provenance.json">Video timestamps and hashes</a></p><p>Only figures, videos, settings, and result summaries are public. Raw trajectories and model weights remain private.</p>',
+        + '<p><a href="force_windows.json">Exact one-second window results</a> · '
+        '<a href="evaluation_settings.json">Measured force errors and evaluation settings</a> · '
+        '<a href="../comparison_plot_provenance.json">Summary-plot hashes</a> · '
+        '<a href="plot_provenance.json">Time-series plot hashes</a> · '
+        '<a href="video_provenance.json">Video timestamps and hashes</a></p>'
+        "<p>Only figures, videos, settings, and result summaries are public. Raw trajectories and weights remain private.</p>",
     )
     (output / "index.html").write_text(
         page(({**CASES, **HOLD_CASES})[episode["id"]], content, depth=3)
@@ -537,82 +503,21 @@ def main():
         "1. Simulation conditions and evaluation method",
         table("Table 1: Shared object-model experiment.", ("Item", "Condition"), rows),
     )
-    metric_keys = (
-        ("global_rmse_mm_time_mean", "Position RMSE (mm)"),
-        ("surface_mean_mm_time_mean", "Surface mean distance (mm)"),
-        ("surface_p95_mm_time_mean", "Surface p95 distance (mm)"),
-        ("mass_discrepancy_time_mean", "Mass discrepancy"),
-        ("velocity_rmse_m_s_time_mean", "Velocity RMSE (m/s)"),
-        ("velocity_reference_mass_coverage_time_mean", "Velocity mass coverage"),
+    content += metric_results(
+        report, args.references, CASES, table, section, measurement
     )
-    metric_rows = []
-    for group in ("combined", "box", "sphere", "cylinder"):
-        values = report["groups"][group]
-        metrics = values["available_duration_including_failed_rollouts"]
-        metric_rows.append(
-            (
-                group.capitalize(),
-                f"{values['complete_trajectories']}/{values['trajectories']}",
-                *(measurement(metrics[key]) for key, _ in metric_keys),
-            )
-        )
     content += section(
-        "2. Held-out recurrent rollouts",
-        "<p>Each value first averages time within one trajectory, then weights trajectories equally. ± denotes sample standard deviation across trajectory summaries; n is the number with an available measurement. Failed rollouts contribute their available duration and remain in the denominator of completion counts. No smoothing, alignment, or time shifting is applied.</p>"
-        + "<p>Across the 60 test trajectories, the unchanged-initial-position baseline has a time-averaged "
-        + f"particle-position RMSE of {measurement(report['groups']['combined']['available_duration_including_failed_rollouts']['frozen_rmse_mm_time_mean'])} mm. "
-        + "Particle NeRD's error at the final six-second frame is "
-        + f"{measurement(report['groups']['combined']['complete_rollouts']['global_rmse_mm_end'])} mm. "
-        + "The table below reports errors averaged over time, which are smaller than final-frame errors when predictions drift.</p>"
-        + table(
-            "Table 2: All 60 test trajectories, including available portions of failed rollouts.",
-            ("Shape", "Numerically completed", *(label for _, label in metric_keys)),
-            metric_rows,
-        )
-        + '<p>Numerical completion does not establish physical accuracy. The complete summary includes regional position errors, surface-distance percentiles and resolution sensitivity, velocity coverage, unavailable measurements, and failure times. <a href="test_report.json">Read the full metric summary</a>.</p>',
-    )
-    reference_report = read(args.references / "report.json")
-    reference_rows = []
-    for record in reference_report["episodes"]:
-        final_forces = [
-            record["force_windows"][source][-1]
-            for source in ("reference", "predicted_particles")
-        ]
-        reference_rows.append(
-            (
-                CASES[record["id"]],
-                f"{record['completed_duration_s']:g}",
-                f"{record['metrics']['global_rmse_mm_end']:.4g}",
-                *(
-                    f"{window['mean_fx_fy_fz_n'][2]:.4g} ± {window['frame_std_fx_fy_fz_n'][2]:.3g}"
-                    for window in final_forces
-                ),
-            )
-        )
-    content += section(
-        "3. Detailed reference cases",
-        "<p>These four additional recordings use the same trained checkpoint. The 20-second support tests extend beyond the six-second training recordings. Each case includes conditions, an exact matching 50 fps video, force traces, particle errors, and material-distribution measurements.</p><ul>"
+        "3. Dedicated reference recordings and force accuracy",
+        "<p>The 60 held-out dataset recordings have no reference forces. Force accuracy is measured on four "
+        "dedicated recordings with the same checkpoint. Each includes an exact matching 50 fps video and full curves. "
+        "Body poses are replayed from MPM; estimated forces do not change them.</p><ul>"
         + "".join(
             f'<li><a href="{case}/">{title}</a></li>' for case, title in CASES.items()
         )
         + "</ul>"
-        + table(
-            "Table 3: Reference-case final position errors and material-on-object Fz during the last second.",
-            (
-                "Case",
-                "Duration (s)",
-                "Final position RMSE (mm)",
-                "MPM Fz (N)",
-                "NeRD Fz (N)",
-            ),
-            reference_rows,
-        )
-        + "<p>Force entries give the mean ± population standard deviation over time, not repeated-trial uncertainty. "
-        "Body poses are prescribed from the MPM recording during evaluation; support loss does not change the replayed object motion. "
-        "Fx and Fy, complete force traces, and estimator-only diagnostics appear on each case page.</p>",
-    )
-    content += metric_results(
-        report, args.references, CASES, table, section, measurement
+        + figure_html("reference_force_errors")
+        + figure_html("reference_summary")
+        + "<p>Chamfer and Wasserstein distances remain optional, unmeasured diagnostics.</p>",
     )
     content += hold_results(args.holds, args.output, checkpoint, digest, table, section)
     (args.output / "index.html").write_text(
@@ -639,6 +544,7 @@ def main():
         )
         + "\n"
     )
+    generate(args.output)
     print(
         f"Built report and seven matched case pages in {args.output}; no raw trajectories or weights copied."
     )

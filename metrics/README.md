@@ -1,6 +1,6 @@
 # Particle NeRD evaluation metrics
 
-This document defines metrics for comparing Particle NeRD with implicit MPM. Measured results are available in the [object-model benchmark report](https://jnskkmhr.github.io/Particle_NeRD_benchmark/benchmark_environment/object_prediction/): Tables 4–8 cover the core accuracy metrics, and Tables 9–10 cover the fixed-object consistency tests. Particle trajectories, sand shape, material distribution, and contact forces describe different aspects of accuracy and should be reported together.
+This document defines metrics for comparing Particle NeRD with implicit MPM. Measured results are available in the [object-model benchmark report](https://jnskkmhr.github.io/Particle_NeRD_benchmark/benchmark_environment/object_prediction/): Figures 1–7 show the core accuracy metrics, and Figures 8–9 compare the fixed-object consistency tests. Particle trajectories, sand shape, material distribution, and contact forces describe different aspects of accuracy and should be reported together.
 
 ## Evaluation conditions
 
@@ -144,11 +144,11 @@ The current experiment includes one box, sphere, and cylinder pair with particle
 
 | Metric | Measured population | Report location |
 |---|---|---|
-| Global, near-contact, and moving-particle position errors | 60 held-out, six-second trajectories | Table 4; time curves on reference case pages |
-| Mean/p95 sand-surface distance and 0.02/0.03 m grid sensitivity | 60 held-out trajectories | Table 5 |
-| Grid-mass discrepancy, beneath-object mass, penetration, and total represented mass | 60 held-out trajectories | Table 6; maps and curves on reference pages |
-| Velocity RMSE, reference-mass coverage, and kinetic energy | 60 held-out trajectories | Table 7 |
-| Fx/Fy/Fz and vector force errors, signed bias | Four dedicated reference recordings; no force references in the 60-test dataset | Table 8; additional fixed-hold force traces on their pages |
-| Spatio-temporal consistency | Three new fixed-object recordings, 20-second measurement interval | Tables 9–10; Figure 7 and exact matching video on each fixed-hold page |
+| Global, near-contact, and moving-particle position errors | 60 held-out, six-second trajectories | Figures 1–2; time curves on reference case pages |
+| Mean/p95 sand-surface distance and 0.02/0.03 m grid sensitivity | 60 held-out trajectories | Figure 3 |
+| Grid-mass discrepancy, beneath-object mass, penetration, and total represented mass | 60 held-out trajectories | Figure 4; maps and curves on reference pages |
+| Velocity RMSE, reference-mass coverage, and kinetic energy | 60 held-out trajectories | Figure 5 |
+| Fx/Fy/Fz and vector force errors, signed bias | Four dedicated reference recordings; no force references in the 60-test dataset | Figures 6–7; additional fixed-hold force traces on their pages |
+| Spatio-temporal consistency | Three new fixed-object recordings, 20-second measurement interval | Figures 8–9 on the overview; Figure 7 time curves and exact matching video on each fixed-hold page |
 
-All tables use the same frozen object-model checkpoint from training update 9,000 (SHA-256 `e22f611d594449ba2eeb54ca7b21203e9ca856de82c8105de13f80190ef5ae0f`). This is the object benchmark model, not certification of a separately modified G1 runtime or another model checkpoint. Optional Chamfer/Wasserstein distances have not been measured. Raw datasets and model weights are private; public reports include plots, videos, scalar metrics, definitions, and provenance.
+All result plots use the same frozen object-model checkpoint from training update 9,000 (SHA-256 `e22f611d594449ba2eeb54ca7b21203e9ca856de82c8105de13f80190ef5ae0f`). This is the object benchmark model, not certification of a separately modified G1 runtime or another model checkpoint. Optional Chamfer/Wasserstein distances have not been measured. Raw datasets and model weights are private; public reports include plots, videos, scalar metrics, definitions, and provenance.
