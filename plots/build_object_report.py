@@ -7,6 +7,7 @@ import json
 import shutil
 from pathlib import Path
 
+from object_dynamic_results import dynamic_results, evaluation_modes
 from object_metric_results import (
     HOLD_CASES,
     hold_results,
@@ -78,15 +79,22 @@ def table(caption, headings, rows):
     return f'<div class="table-wrap"><table><caption>{html.escape(caption)}</caption><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
-def page(title, content, *, depth, extra_head=""):
+def page(
+    title,
+    content,
+    *,
+    depth,
+    extra_head="",
+    introduction="One shared particle model, evaluated against implicit MPM with the same recorded interacting-body motion.",
+):
     assets = "../" * depth
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)} · Particle NeRD</title><link rel="stylesheet" href="{assets}assets/slides.css">{extra_head}</head>
 <body class="benchmark-report"><header><a class="brand" href="{assets}index.html">Particle NeRD / Benchmarks</a><span class="archive">Shared object-model evaluation</span></header>
 <main><section class="report-heading"><p class="eyebrow">BOX · SPHERE · CYLINDER</p><h1>{html.escape(title)}</h1>
-<p>One shared particle model, evaluated against implicit MPM with the same recorded interacting-body motion.</p></section>{content}</main>
-<footer class="site-footer"><span class="footer-brand">Particle NeRD</span><span>Recorded-motion evaluation · Raw forces · Matched plots and video</span></footer></body></html>'''
+<p>{html.escape(introduction)}</p></section>{content}</main>
+<footer class="site-footer"><span class="footer-brand">Particle NeRD</span><span>Explicit evaluation conditions · Raw forces · Matched plots and video</span></footer></body></html>'''
 
 
 def section(title, content):
@@ -373,6 +381,12 @@ def main():
         required=True,
         help="Verified videos of the first held-out episode in each shape/motion group",
     )
+    parser.add_argument(
+        "--dynamics",
+        type=Path,
+        required=True,
+        help="Three fully coupled object/NeRD simulations with matched videos",
+    )
     args = parser.parse_args()
     config, audit, report = (
         read(args.training / "model/config.json"),
@@ -441,15 +455,15 @@ def main():
             "Shared world coordinates; z points upward, gravity is (0, 0, −9.81) m/s². The nominal initial sand fill level is z = 0 m and the rigid tray floor is z = −0.30 m.",
         ),
         (
-            "Training data",
+            "Dataset and split",
             "600 six-second trajectories: 200 each for Box, Sphere and Cylinder; 480 training, 60 validation, 60 held-out test trajectories.",
         ),
         (
-            "Prescribed motion",
+            "MPM dataset motion: kinematic",
             "360 trajectories: horizontal motion, vertical motion, circles and holding. Object poses are imposed.",
         ),
         (
-            "Dynamic motion",
+            "MPM dataset motion: dynamic",
             "240 trajectories: drops, slides, throws and tumbles. Two-kilogram objects are released after the first second and respond to gravity and contacts.",
         ),
         (
@@ -512,7 +526,7 @@ def main():
         ),
         (
             "Evaluation",
-            "Recorded MPM body inputs with recurrent predicted particles; no reference particle replacement after initialization. Four separate reference cases add raw material-force comparisons and 20-second support tests.",
+            "Recorded-motion tests use imposed MPM body inputs with recurrent predicted particles; no reference particle replacement after initialization. Separate fully dynamic comparisons close the object force loop; Table 2 identifies each evaluation set.",
         ),
         ("Checkpoint SHA-256", checkpoint),
     ]
@@ -520,6 +534,7 @@ def main():
         "Evaluation conditions",
         table("Table 1: Shared object-model experiment.", ("Item", "Condition"), rows),
     )
+    content += evaluation_modes(table, section, args.dynamics is not None)
     content += motion_gallery(motion_manifest)
     content += metric_results(report, section)
     content += metric_section(
@@ -538,11 +553,14 @@ def main():
         section,
     )
     content += hold_results(args.holds, args.output, checkpoint, digest, table, section)
+    if args.dynamics:
+        content += dynamic_results(args.dynamics, args.output, checkpoint, section)
     (args.output / "index.html").write_text(
         page(
             "Shared object-model prediction accuracy",
             content,
             depth=2,
+            introduction="One shared particle model: recorded-motion particle/force evaluation and separately reported fully dynamic object simulations.",
             extra_head='<link rel="stylesheet" href="../../assets/object-motion-gallery.css"><script src="../../assets/object-motion-gallery.js" defer></script>',
         )
     )

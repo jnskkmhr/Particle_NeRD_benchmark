@@ -25,6 +25,7 @@ uv run --no-project --with matplotlib --with numpy python /PATH/Particle_NeRD_be
   --references PRIVATE_REFERENCE_EVALUATIONS \
   --holds PRIVATE_FIXED_HOLD_EVALUATIONS \
   --test-videos PRIVATE_TEST_MOTION_VIDEOS \
+  --dynamics PRIVATE_DYNAMIC_EVALUATIONS \
   --output NEW_STAGING_DIRECTORY
 ```
 
@@ -126,3 +127,48 @@ The motion gallery shows the first held-out episode in each shape/motion group (
 Render each downloaded saved evaluation with `uv run --no-sync python plots/render_object_motion_video.py PRIVATE_CASE --reference PRIVATE_REFERENCE.h5`; the reference's `manifest.json` must be beside that HDF5 file. Keep its original `evaluation.json`, `prediction.h5`, and reference file private. The gallery uses `motion_video_provenance.json` to record its deterministic selection rule and exact clip identities.
 
 Figures use descriptive labels without lettered panels. The particle-position, sand-surface, and velocity-field comparison columns are Time-mean (0–6 s) and Terminal state (6 s). The overview regional-population/unchanged-position-baseline figure is removed. Numerical inputs and the 60 evaluated trajectories are unchanged. Detailed plots can be regenerated with `plots/plot_recorded_object_case.py PRIVATE_CASE`, while temporal plots use `plot_object_consistency.py`.
+
+
+## Kinematic replay and fully dynamic object comparisons
+
+Table 2 separates reference generation from evaluation. All original metrics
+1–6 impose the recorded object motion during NeRD evaluation, including records
+whose MPM source was dynamic. Force reconstruction for those dynamic-source
+records still uses finite physical body mass/inertia.
+
+The additional fully dynamic section uses one 20-second drop-and-support run per
+shape. `PRIVATE_DYNAMIC_EVALUATIONS` contains `box-dynamic`, `sphere-dynamic`, and
+`cylinder-dynamic`, each produced with the same step-9,000 checkpoint by the
+IsaacLab example `particle_nerd_benchmark.learning.closed_loop`. For example:
+
+```bash
+PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.learning.closed_loop \
+  --reference PRIVATE_REFERENCES/box-static-support/box-static-support.h5 \
+  --checkpoint PRIVATE_TRAINING_OUTPUT/model/best.pt \
+  --output PRIVATE_DYNAMIC_EVALUATIONS/box-dynamic
+uv run --no-sync python /PATH/Particle_NeRD_benchmark/plots/render_object_motion_video.py \
+  PRIVATE_DYNAMIC_EVALUATIONS/box-dynamic \
+  --reference PRIVATE_REFERENCES/box-static-support/box-static-support.h5
+```
+
+The runner builds only rigid-body dynamics and the neural/contact estimators.
+It uses no native MPM steps, no future reference body/particle inputs, and no
+additional stabilization or force filter. It matches the reference's lagged
+force exchange and two rigid substeps. The object remains dynamic even before
+release: an external upward force balances gravity until 1 s.
+
+The report builder verifies complete trajectories, shared initial states,
+checkpoint identities, exact lagged force application, and video/state hashes.
+It exports only media, plotted scalar curves, and provenance; full HDF5 states
+and model weights stay private. To regenerate a published dynamic plot:
+
+```bash
+uv run --no-project --with matplotlib --with numpy python plots/plot_object_closed_loop.py \
+  benchmark_environment/object_prediction/dynamic/box --figure-number 9
+```
+
+Figures 9–11 correspond to box, sphere, cylinder. These individual coupled runs
+are kept separate from the 60 recorded-motion test trajectories. All three
+completed 4,000 steps; their NeRD particles continued sinking, and the rigid tray
+eventually supported the objects while material force fell to zero. The full
+20-second videos and curves retain this failure to maintain sand support.
