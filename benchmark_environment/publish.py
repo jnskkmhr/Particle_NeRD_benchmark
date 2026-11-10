@@ -28,6 +28,16 @@ TITLES = {
     "quadruped": "Go2 crawl (leg IK)",
     "g1": "G1 walking (RL)",
 }
+TASK_NAMES = {
+    "horizontal": "Box-Push",
+    "vertical": "Box-Intrude",
+    "circle": "Box-Circle",
+    "rolling": "Sphere-Roll",
+    "projectile": "Box-Projectile",
+    "franka": "Franka-Push",
+    "quadruped": "Go2-Crawl",
+    "g1": "G1-Walk",
+}
 DESCRIPTIONS = {
     "horizontal": "A 0.24 × 0.18 × 0.12 m box enters the sand, then follows a prescribed 1.30 m horizontal path.",
     "vertical": "The box enters the sand and continues downward by 0.12 m; its pose and velocity are prescribed.",
@@ -87,11 +97,8 @@ def publish(runs, output, checkpoint=None, release_url=None):
         else:
             shutil.copytree(run, destination)
         motion = metadata["motion"]
-        command = (
-            f"PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run "
-            f"--motion {motion} --terrain {metadata['terrain']} --duration {metadata['duration_s']:g} "
-            f"--output /tmp/{run.name}-new"
-        )
+        task = f"IsaacBench-MPM-{TASK_NAMES[motion]}-{metadata['terrain'].title()}-v0"
+        command = f"uv run isaaclab play --task {task} --duration {metadata['duration_s']:g} --viz newton_gl --real-time"
         if motion == "g1":
             command += " --checkpoint " + str(
                 checkpoint or metadata["policy_checkpoint"]

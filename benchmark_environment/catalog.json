@@ -17,7 +17,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion horizontal --terrain flat --duration 6 --output /tmp/horizontal-flat-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "bb9d25124b4c92230b7b1feed64a646f82d6b552138707ced451ec8da19a8143",
@@ -43,7 +43,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion horizontal --terrain ascend --duration 6 --output /tmp/horizontal-ascend-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Ascend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "951489b929b0b37b083364e9d6a866c216f7ea01a11f030b7d74c9159f860dfb",
@@ -69,7 +69,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion horizontal --terrain descend --duration 6 --output /tmp/horizontal-descend-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Descend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "bd77a5e315a6ba22ba12649d641fa1e1f3234d397db97f1601005e61de9dcdc4",
@@ -95,7 +95,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion horizontal --terrain wave --duration 6 --output /tmp/horizontal-wave-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Wave-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "6eedd5bd49b809a44432d7717ddf831779b6147d9bd3d395ec13d373592bfa5c",
@@ -121,7 +121,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion vertical --terrain flat --duration 6 --output /tmp/vertical-flat-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Intrude-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "c8bbb74cd0f94cc4be5b541b535ab07b0c57b722fbca840729302632943b1d31",
@@ -147,7 +147,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion circle --terrain flat --duration 6 --output /tmp/circle-flat-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Circle-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "e17c791c701bb4af9fb894c948658015cff72c08ecd839f7454c2d4b42cc995a",
@@ -173,7 +173,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion rolling --terrain flat --duration 6 --output /tmp/rolling-flat-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "a5c04c43748cb4d4d5d49ceb7d6e3741e24c2b1d01855ae8b2b6c4cf0e1c9e70",
@@ -199,7 +199,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion rolling --terrain ascend --duration 6 --output /tmp/rolling-ascend-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Ascend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "56e5db12aa947361b252d43edca533d0a728f6a9406d701814d7b58487668698",
@@ -225,7 +225,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion rolling --terrain descend --duration 6 --output /tmp/rolling-descend-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Descend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "491224f5c2cab3c2584524d694c4208fde0958b7e7adefcaaf1dece8bc5785da",
@@ -251,7 +251,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion rolling --terrain wave --duration 6 --output /tmp/rolling-wave-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Wave-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "af795363d85cf26e7ece46c04d7c12e0f0927ef42353f522d40a49b2203d32e9",
@@ -277,7 +277,7 @@
       0.3
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion projectile --terrain flat --duration 6 --output /tmp/projectile-flat-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Projectile-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "1a437c1e06600dfdb350a2d36f4f900b792871b1b1e5fb7e12e6777e0031d935",
@@ -303,7 +303,7 @@
       0.25
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion franka --terrain flat --duration 6 --output /tmp/franka-flat-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Franka-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "dcdfb76725a73b84b5eb0e3dceb6fec743ae5db5b580ae4c8bc175b2163cc8ad",
@@ -329,7 +329,7 @@
       0.12
     ],
     "policy": null,
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion quadruped --terrain flat --duration 6 --output /tmp/quadruped-flat-new",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Go2-Crawl-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "db2495e6c20174c592e9bcdb912580485a25da70f198ce1493d09657ecec78a2",
@@ -355,7 +355,7 @@
       0.3
     ],
     "policy": "jqur5jhm \u00b7 iteration 19,999",
-    "command": "PYTHONPATH=examples uv run --no-sync python -m particle_nerd_benchmark.core.run --motion g1 --terrain flat --duration 6 --output /tmp/g1-flat-new --checkpoint /home/jkamohara/isaac/particle_nerd/Particle_NeRD_benchmark/benchmark_environment/checkpoints/jqur5jhm/model_19999.pt",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-G1-Walk-Flat-v0 --duration 6 --viz newton_gl --real-time --checkpoint /home/jkamohara/isaac/particle_nerd/Particle_NeRD_benchmark/benchmark_environment/checkpoints/jqur5jhm/model_19999.pt",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "f49fc50bd4fc20de5dd7a20a504af20318da8ea8fa762679e042417ec1218995",
