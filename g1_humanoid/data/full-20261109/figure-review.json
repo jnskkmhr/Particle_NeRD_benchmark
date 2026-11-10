@@ -1,0 +1,15 @@
+{
+  "reviewer_route": "Native reviewer; paper-figure skill default; no project override. Canonical helper was not installed.",
+  "requested_model": "gpt-6-astra",
+  "requested_effort": "xhigh",
+  "review_scope": "Four representative rendered PNGs; prescribed-motion traces and metadata; completed forward run; proposed report methods and captions. Not remaining command videos or assembled website.",
+  "findings_addressed": [
+    "Total force renamed total contact force, defining sand plus rigid contact reaction.",
+    "Previous recorded MPM wrench input explicitly disclosed for prescribed-motion free-velocity reconstruction.",
+    "Lagged coupling stated: new sand reaction feeds the next rigid step.",
+    "Replay signed-z result read from raw arrays instead of hardcoded.",
+    "Reproduction documentation added."
+  ],
+  "numerical_checks": "32.664371N force-only;83.601723N recurrent;19.292153mm final position RMSE;+11.819056mm final signed z error independently recomputed.",
+  "visual_review": "Four representative plots readable, no clipping or legend overlap; vector PDFs present."
+}

@@ -1,18 +1,21 @@
 # Particle NeRD benchmark
 
-The website presents a **9 November 2026 evaluation of the installed Particle NeRD solver**, compared with a recorded implicit-MPM reference. Both pages use one five-second prescribed-motion replay and the exact matching video.
+The local G1 reports separate three evaluations of the installed Particle NeRD method:
 
-- [Foot forces](g1_humanoid/force_estimation/index.html): force-vector RMSE **83.60 N**.
-- [Particle positions](g1_humanoid/particle_prediction/index.html): final 3D position RMSE **19.29 mm**.
-- [Current settings and hashes](g1_humanoid/data/current-20261109/metadata.json).
-- [Reproduction instructions](plots/CURRENT_REPLAY.md).
+1. Prescribed MPM robot and particle motion → force reconstruction: force-vector RMSE **32.66 N**.
+2. Prescribed MPM robot motion → recurrent NeRD particles and force reconstruction: force-vector RMSE **83.60 N**, final particle-position RMSE **19.29 mm**.
+3. Full closed-loop policy + rigid dynamics + NeRD: six command profiles with policy **jqur5jhm**, matched force/tracking/deformation plots and 50 fps videos. No MPM or robot reference is supplied to the full simulation.
 
-Argon’s foot-speed displacement scaling is enabled. The replay uses 88,360 particles from the 0.04 m reference recording, with 5,312 active particles and 512 background samples. Its three-frame initial history comes from recorded MPM states. It is not an initially unsettled-bed test or a closed-loop policy test.
+Both replay tests use the previous recorded MPM wrench to reconstruct the proxy free velocity. They share one five-second recorded trajectory; they are conditional replay tests. Full runs start from a fresh grid with zero native MPM steps. Their different bed size, resolution and initialization are documented separately. Full-run particle displacement is not an MPM prediction-error metric.
 
-Serve with `python3 -m http.server 8765 --bind 127.0.0.1`, then open http://localhost:8765/. Forward port 8765 when using remote SSH.
+- [Force report](g1_humanoid/force_estimation/index.html)
+- [Particle report](g1_humanoid/particle_prediction/index.html)
+- [Conditions and reproduction](plots/DECOUPLED_EVALUATION.md)
+- [Full-run summaries](g1_humanoid/data/full-20261109/summary.json)
 
-Historical October 28 JSON files, figures and videos remain on disk for provenance; they are not used by the current report. Their original hashes are in `import_manifest.json`. Independent `benchmark_environment/README.md` and `metrics/README.md` are preserved.
+Serve with `python3 -m http.server 8765 --bind 127.0.0.1`, then open http://localhost:8765/. Forward port 8765 when using remote SSH. Large raw arrays are local artifacts and remain excluded from published Git history.
 
+Historical October 28 data remain on disk for provenance and are not displayed as current results. Independently maintained benchmark-environment and metrics files are preserved.
 
 ## Native MPM benchmark environments
 
@@ -28,3 +31,8 @@ The `.h5`, `.npz`, `.npy`, and `.pt` files stay outside the published Git histor
 
 GitHub Pages serves the repository root from `main`, with `.nojekyll` enabled.
 [Public website](https://jnskkmhr.github.io/Particle_NeRD_benchmark/).
+
+
+## Publishing benchmark website updates
+
+Completed and verified website updates should be published to the existing GitHub Pages site as part of the task, following the user’s standing request. Commit on a feature branch, publish with a normal fast-forward update to `main`, and verify the deployed pages and matching media before reporting completion. Preserve the local-only dataset exclusions and the independently maintained benchmark gallery.

@@ -1,0 +1,134 @@
+{
+  "forward": {
+    "physics_samples": 1200,
+    "mean_body_velocity": [
+      0.4132802188396454,
+      -0.022115647792816162,
+      -0.004897776525467634
+    ],
+    "tracking_rmse": [
+      0.1413820496481434,
+      0.04919196112421697,
+      0.2826083765331733
+    ],
+    "last_video_state_s": 5.98,
+    "outcome": "duration",
+    "duration_s": 6.0,
+    "max_abs_rigid_force_N": 0.0,
+    "final_base_position_m": [
+      2.4790029525756836,
+      -0.17286093533039093,
+      0.7184116244316101
+    ]
+  },
+  "backward": {
+    "physics_samples": 1092,
+    "mean_body_velocity": [
+      -0.47795429825782776,
+      -0.011631288565695286,
+      0.01303019467741251
+    ],
+    "tracking_rmse": [
+      0.1233699649644515,
+      0.050177918023798104,
+      0.3428267176001102
+    ],
+    "last_video_state_s": 5.46,
+    "outcome": "reached_sand_bed_edge",
+    "duration_s": 5.46,
+    "max_abs_rigid_force_N": 0.0,
+    "final_base_position_m": [
+      -2.607618808746338,
+      -0.14509782195091248,
+      0.6687817573547363
+    ]
+  },
+  "left": {
+    "physics_samples": 1116,
+    "mean_body_velocity": [
+      -0.014191142283380032,
+      0.462655246257782,
+      -0.008441445417702198
+    ],
+    "tracking_rmse": [
+      0.05844977191329156,
+      0.09010375047957775,
+      0.29649843730177333
+    ],
+    "last_video_state_s": 5.58,
+    "outcome": "reached_sand_bed_edge",
+    "duration_s": 5.58,
+    "max_abs_rigid_force_N": 0.0,
+    "final_base_position_m": [
+      -0.0057092951610684395,
+      2.6006217002868652,
+      0.7349698543548584
+    ]
+  },
+  "right": {
+    "physics_samples": 1044,
+    "mean_body_velocity": [
+      -0.04252239316701889,
+      -0.4966117739677429,
+      -0.019184760749340057
+    ],
+    "tracking_rmse": [
+      0.08311659250391908,
+      0.08703446867589898,
+      0.40546834892812583
+    ],
+    "last_video_state_s": 5.22,
+    "outcome": "reached_sand_bed_edge",
+    "duration_s": 5.22,
+    "max_abs_rigid_force_N": 0.0,
+    "final_base_position_m": [
+      -0.31588929891586304,
+      -2.603163957595825,
+      0.6971353888511658
+    ]
+  },
+  "forward_yaw_positive": {
+    "physics_samples": 1200,
+    "mean_body_velocity": [
+      0.4292593002319336,
+      -0.00948035903275013,
+      0.9866217970848083
+    ],
+    "tracking_rmse": [
+      0.13622351734358204,
+      0.045061864010201236,
+      0.2971753260211131
+    ],
+    "last_video_state_s": 5.98,
+    "outcome": "duration",
+    "duration_s": 6.0,
+    "max_abs_rigid_force_N": 0.0,
+    "final_base_position_m": [
+      -0.40559881925582886,
+      0.009161357767879963,
+      0.7358539700508118
+    ]
+  },
+  "forward_yaw_negative": {
+    "physics_samples": 1200,
+    "mean_body_velocity": [
+      0.4806782901287079,
+      0.0022398156579583883,
+      -1.0048460960388184
+    ],
+    "tracking_rmse": [
+      0.10152870145471474,
+      0.06275851014452208,
+      0.3085058181712913
+    ],
+    "last_video_state_s": 5.98,
+    "outcome": "duration",
+    "duration_s": 6.0,
+    "max_abs_rigid_force_N": 0.0,
+    "final_base_position_m": [
+      -0.4513036012649536,
+      -0.12226908653974533,
+      0.7452487945556641
+    ]
+  }
+}

@@ -115,3 +115,11 @@ td { color: #333; font-variant-numeric: tabular-nums; }
   th, td { padding: 9px; }
   .report-section h2::before, .card { print-color-adjust: exact; }
 }
+
+/* Each command opens its own matched plots and recording. */
+.profile { border-top: 1px solid #ccc; padding: 22px 0; }
+.profile > summary { cursor: pointer; font-size: 23px; font-weight: 700; line-height: 1.4; padding: 8px 0; }
+.profile > summary::marker { color: #76b900; }
+.profile[open] > summary { margin-bottom: 24px; }
+.profile .sources { margin-top: 25px; }
+@media (max-width: 700px) { .profile > summary { font-size: 18px; } }

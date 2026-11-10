@@ -1,0 +1,247 @@
+{
+  "backend": "nerd",
+  "force_filter": {
+    "type": "none",
+    "tau_ms": 0.0,
+    "alpha": 1.0,
+    "scope": "sand-to-body force and torque; feedback used by next lagged rigid step",
+    "initial_history": "zero feedback after reset"
+  },
+  "task": "IsaacContrib-Velocity-Sand-Flat-G1-29dof-ParticleNeRD-Play",
+  "seed": 42,
+  "command_m_s": 0.0,
+  "physics_dt_s": 0.005,
+  "control_dt_s": 0.02,
+  "checkpoint": "/tmp/nerd-foot-force-runs/checkpoints/jqur5jhm/model_19999.pt",
+  "checkpoint_sha256": "0852d6160c916f5f2c1bd873288657ecfb414b4fb76268d7314ab6f6ca6e7f44",
+  "initial_root_position_m": [
+    0.0,
+    0.0,
+    0.76
+  ],
+  "material": {
+    "density": 1600.0,
+    "young_modulus": 1000000000000000.0,
+    "poisson_ratio": 0.3,
+    "viscosity": 0.0,
+    "friction": 0.48,
+    "damping": 0.0,
+    "yield_pressure": 1000000000000000.0,
+    "tensile_yield_ratio": 0.0,
+    "yield_stress": 0.0,
+    "hardening": 0.0,
+    "dilatancy": 0.0,
+    "hardening_rate": 1.0,
+    "softening_rate": 1.0
+  },
+  "particle_grid": {
+    "lower": [
+      -3.0,
+      -3.0,
+      -0.3
+    ],
+    "upper": [
+      3.0,
+      3.0,
+      0.0
+    ],
+    "voxel_size": 0.02,
+    "particles_per_cell": 1.25,
+    "particle_placement": "cell_center",
+    "jitter": 0.05
+  },
+  "physics": {
+    "class_type": "isaaclab_tasks.contrib.particle_nerd.manager:NewtonParticleNeRDCouplerManager",
+    "launcher_type": null,
+    "deterministic": false,
+    "num_substeps": 1,
+    "collision_decimation": 0,
+    "debug_mode": false,
+    "use_cuda_graph": false,
+    "deterministic_mode": "not_guaranteed",
+    "solver_cfg": {
+      "class_type": "isaaclab_tasks.contrib.particle_nerd.manager:NewtonParticleNeRDCouplerManager",
+      "solver_type": "None",
+      "entries": [
+        {
+          "name": "robot",
+          "solver_cfg": {
+            "class_type": "isaaclab_newton.physics.mjwarp_manager:NewtonMJWarpManager",
+            "solver_type": "mujoco_warp",
+            "njmax": 1000,
+            "nconmax": 300,
+            "iterations": 100,
+            "ls_iterations": 50,
+            "solver": "newton",
+            "integrator": "implicitfast",
+            "use_mujoco_cpu": false,
+            "disable_contacts": false,
+            "disable_sensors": false,
+            "default_actuator_gear": null,
+            "actuator_gears": null,
+            "update_data_interval": 1,
+            "save_to_mjcf": null,
+            "impratio": 1.0,
+            "cone": "pyramidal",
+            "ccd_iterations": 35,
+            "enable_multiccd": false,
+            "ls_parallel": false,
+            "use_mujoco_contacts": false,
+            "tolerance": 1e-06
+          },
+          "bodies": [
+            "/World/envs/env_.*/Robot"
+          ],
+          "particles": [],
+          "all_particles": false,
+          "include_child_joints": true,
+          "include_body_shapes": true,
+          "include_static_shapes": true,
+          "shape_label_patterns": [],
+          "substeps": 2,
+          "in_place": false
+        },
+        {
+          "name": "sand",
+          "solver_cfg": {
+            "class_type": "isaaclab_tasks.contrib.particle_nerd.manager:NewtonParticleNeRDManager",
+            "solver_type": "None",
+            "checkpoint": "/home/jkamohara/isaac/IsaacLab-particle-nerd/source/isaaclab_tasks/isaaclab_tasks/contrib/particle_nerd/checkpoint/best.pt",
+            "collider_body_patterns": [
+              ".*/left_ankle_roll_link",
+              ".*/right_ankle_roll_link"
+            ],
+            "active_k": "auto",
+            "selection_interval": 4,
+            "anchor_particles": 512,
+            "compile_model": true,
+            "batch_inference": true,
+            "batch_contacts": true,
+            "effective_mass_scale": 100.0,
+            "tangent_mass_scale": 40.0,
+            "horizontal_mass_scale": 8.0,
+            "upward_mass_scale": 2.0,
+            "normal_power": 3.0,
+            "contact_iterations": 200,
+            "contact_relaxation": 0.02,
+            "gradient_radius": 0.065,
+            "gradient_contact_band": 0.08,
+            "contact_stabilization": 0.01,
+            "contact_offset": 0.0,
+            "bed_depth": 0.3
+          },
+          "bodies": [
+            "/World/envs/env_.*/MPMBedFloor",
+            "/World/envs/env_.*/MPMBedWallFront",
+            "/World/envs/env_.*/MPMApproachBank",
+            "/World/envs/env_.*/MPMBedWallLeft",
+            "/World/envs/env_.*/MPMBedWallRight"
+          ],
+          "particles": [],
+          "all_particles": true,
+          "include_child_joints": false,
+          "include_body_shapes": true,
+          "include_static_shapes": false,
+          "shape_label_patterns": [],
+          "substeps": 1,
+          "in_place": true
+        }
+      ],
+      "proxies": [
+        {
+          "source": "robot",
+          "destination": "sand",
+          "bodies": [
+            "/World/envs/env_.*/Robot/.*ankle_roll_link"
+          ],
+          "particles": [],
+          "mode": "lagged",
+          "mass_scale": 1.0,
+          "proxy_relaxation": 1.0,
+          "proxy_relaxation_mode": "fixed",
+          "proxy_relaxation_min": 0.1,
+          "proxy_relaxation_max": 1.0,
+          "collide_interval": null,
+          "collision_pipeline": null
+        }
+      ],
+      "iterations": 1
+    },
+    "soft_contact_cfg": null,
+    "collision_cfg": {
+      "broad_phase": "explicit",
+      "reduce_contacts": true,
+      "rigid_contact_max": null,
+      "max_triangle_pairs": 1000000,
+      "soft_contact_max": 0,
+      "soft_contact_margin": 0.01,
+      "enable_rigid_soft_full_surface_contact": false,
+      "requires_grad": null,
+      "sdf_hydroelastic_config": null
+    },
+    "default_shape_cfg": {
+      "margin": 0.0,
+      "gap": 0.01,
+      "ke": 160000.0,
+      "kd": 1100.0,
+      "mu": 1.0
+    },
+    "load_visual_shapes": true,
+    "bvh_constructor_geometry": "cubql",
+    "bvh_constructor_scene": "sah",
+    "bvh_constructor_gaussian": "cubql",
+    "capture_solver": true
+  },
+  "native_warmup_steps": 0,
+  "force_frame": "world; force exerted on each foot; z points upwards",
+  "comparison": "Full closed-loop Particle NeRD rollout; no reference robot motion or reference particle states",
+  "foot_names": [
+    "left_ankle_roll_link",
+    "right_ankle_roll_link"
+  ],
+  "particle_count": 2671875,
+  "initial_particles_sha256": "114b0e7a192c5a64c065f9c5ed05cccff9150e4c7d027e3d617d85ca09e4d795",
+  "robot_mass_kg": 33.34114074707031,
+  "particle_mass_kg": 0.006467368453741074,
+  "active_k": [
+    7104
+  ],
+  "outcome": "reached_sand_bed_edge",
+  "evaluation": "Full closed-loop MJWarp + Particle NeRD; fresh grid; no reference robot or particle states",
+  "command_body_frame": {
+    "vx_m_s": 0.0,
+    "vy_m_s": 0.5,
+    "wz_rad_s": 0.0
+  },
+  "nerd_checkpoint_sha256": "7eee570d75d00b4a09006e4ffd15a241510c3fd3ba74295d0396254187d00633",
+  "solver_code_sha256": {
+    "solver_cfg.py": "5706da04fd9202cfce7b056c608d072be012145abd6857eebaa3bec6bbd0336f",
+    "__init__.py": "bc387fb4f244efa1f09b2d249904e9f8f0157e1d1a32b2addf3e37ed0b01140c",
+    "kernels.py": "9c5af9c1d24c34daf6b931c10255026c92ef8ffa999a1e0903d57c5f6871879a",
+    "solver.py": "2516bd4093a264baf6014a248d8896deab885b23d2f97abd7374a852e8ae6159",
+    "manager.py": "70e3331c2a4d998f9ee6b82b533a6af47d9800f8dd3f8d3c5be2889e53340da2",
+    "fixed_bed.py": "1482324d7f1b25e61d5693d2de8e8fd5905d1bcb1a0d76344be2021122971153",
+    "network/features.py": "fded276b857e934cb0ac834efd63252da5d941be219849909d60306a82f117ec",
+    "network/sdf.py": "95d584252ad766b1b498944a646a0d1a625678b510cea38df2459474ae239db2",
+    "network/geometry.py": "8d82679f8e857b8afcb615243ea6e00ce661ab2d18005484415235cdfdc855a0",
+    "network/model.py": "adc8a5ce660993251ff1e3e625a8955eae0cd8e58dfee5bd2f95c3707472d5f7",
+    "network/__init__.py": "3be19bd191a2d8780967a91b0d6e6fe4c6d74ad8b54efef94c33f6c2ebd6078b",
+    "network/inference.py": "334fb6211eb31e77ad66842931372f7a7a2df8932b541d1f847e4a7477b4e1ea",
+    "patch/particles.py": "e8b7d2a05c6905ba5772aa857af8a23b80e221a3bc7ac78d2abcb588878f8dd9",
+    "patch/__init__.py": "3be19bd191a2d8780967a91b0d6e6fe4c6d74ad8b54efef94c33f6c2ebd6078b",
+    "patch/kernels.py": "295fadf0eee1f1379bf02ceaa04df77a9be131375397f9af3ddc1045de1fbfd1",
+    "contact/body_velocity.py": "0db35deb11282d66d0effa4f71ffd2209c048e69c2f0b1c04f5b16e5a0863fa0",
+    "contact/proxy.py": "d641b5fcb015cb71f2fb6753fe9b94e3773e6b838ecae801fa1bce13136155a8",
+    "contact/batch.py": "97d71fca6b23983def7ba5a686e53a73f28687ab4559b5bac28f0dc7978d50b3",
+    "contact/__init__.py": "3be19bd191a2d8780967a91b0d6e6fe4c6d74ad8b54efef94c33f6c2ebd6078b",
+    "contact/kernels.py": "e2917630ab4e3d23c8aeed54db42190b45d9363853f94bd06f7bab219f70d95e"
+  },
+  "argon_foot_speed_gate": true,
+  "video_fps": 50,
+  "simulation_uses_mpm_reference": false,
+  "simulation_uses_robot_reference": false,
+  "renderer": "Standalone Newton ViewerRTX rendering authoritative simulation arrays",
+  "checkpoint_iteration": 19999,
+  "video_frames": 280,
+  "recorded_seconds": 5.58
+}

@@ -29,14 +29,14 @@
     "g1_humanoid/data/current-20261109/reference-body-properties.json": "d0b5691fa700a3c0e54df6bd2b798df5946b6c1b635efca239a484d1f518f879",
     "g1_humanoid/data/current-20261109/states.h5": "4ef3438e48ecd8cf6a0783b85400be4b615766823703acfd14887cbb8a383da5",
     "g1_humanoid/data/current-20261109/trace.npz": "cb2dd1d5b11cb3813181120345a09757870a46028c51c3a1849d80c78564994a",
-    "g1_humanoid/force_estimation/figures/current_force_components.pdf": "edf087b3aeeb0f03fc25d0647d47b4d4f9e56b73b7ce50d034ce0f06de77d493",
-    "g1_humanoid/force_estimation/figures/current_force_components.png": "0fa14ded7ca423d39d1f279509e72492dc9eb4890e2ad024e062b2b2c0fe8382",
-    "g1_humanoid/force_estimation/figures/current_force_components.svg": "2dc7af0b5e08d0658009494fe86618048f360c13deca0c643b014420c3249913",
+    "g1_humanoid/force_estimation/figures/current_force_components.pdf": "2f33ea295afaf6b09443446d315f55b5121f5f2077dcac06efe51473998cb374",
+    "g1_humanoid/force_estimation/figures/current_force_components.png": "f0fadd75cad3f2e7428736246bca8dc85db605513c59e768179f1c0312df39a0",
+    "g1_humanoid/force_estimation/figures/current_force_components.svg": "12289e477cc13060d150635c2b13e8e8ca95b6fe019a3cc3623c06b929522a41",
     "g1_humanoid/particle_prediction/figures/current_particle_error.pdf": "7a658f46e024d54227a255634306786494057811b13aeeea81b320a72f6e43fe",
     "g1_humanoid/particle_prediction/figures/current_particle_error.png": "29dcfbe55571efd80416de97f0de2bfe92cc8df242a240a8376bc28123bfdcdd",
     "g1_humanoid/particle_prediction/figures/current_particle_error.svg": "2b9d0d55788d6bf4f77ef2ced60a5e8e13cced09e76840847a000791bc28064f",
     "plots/current_common.py": "1401533b9b5464c464f0515f0991cb7a15378e8ee367a32f78453d21d9faa9f1",
-    "plots/current_force.py": "d00b5b89ff48f84f5a0b25e8b18f50bafa91945d1c258ab9558cfcd0aa26b119",
+    "plots/current_force.py": "9d64ab5db4a800ee4be371af8769a61f431155118167a9bfd8052bbecc8480e6",
     "plots/current_particles.py": "9c71ef06916f47f410169de69a566d0d96b582fddd98f2fbe8c00056eb07163c",
     "plots/record_current_replay.py": "4333b1f38bc704a6cd8cc86b11679754e63cc7c1b2f2cd9dbbc8bd90e08b614f",
     "plots/render_current_replay.py": "974d831ae5e512f27a03d1d48bdf4eb3b1d711031e684f827ed5bf557469af7b",
@@ -46,50 +46,179 @@
     {
       "category": "force_estimation",
       "mobile": false,
-      "figure_width_px": 1324.8125,
-      "video": {
-        "duration": 5,
-        "width": 3840,
-        "height": 1140,
-        "source": "http://127.0.0.1:8765/g1_humanoid/data/current-20261109/comparison.mp4"
-      },
+      "figure_width_px": 1278.75,
+      "videos": [
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward/simulation.mp4"
+        },
+        {
+          "duration": 5.48,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/backward/simulation.mp4"
+        },
+        {
+          "duration": 5.6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/left/simulation.mp4"
+        },
+        {
+          "duration": 5.24,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/right/simulation.mp4"
+        },
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward_yaw_positive/simulation.mp4"
+        },
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward_yaw_negative/simulation.mp4"
+        }
+      ],
       "overflow": false
     },
     {
       "category": "force_estimation",
       "mobile": true,
       "figure_width_px": 800,
-      "video": {
-        "duration": 5,
-        "width": 3840,
-        "height": 1140,
-        "source": "http://127.0.0.1:8765/g1_humanoid/data/current-20261109/comparison.mp4"
-      },
+      "videos": [
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward/simulation.mp4"
+        },
+        {
+          "duration": 5.48,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/backward/simulation.mp4"
+        },
+        {
+          "duration": 5.6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/left/simulation.mp4"
+        },
+        {
+          "duration": 5.24,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/right/simulation.mp4"
+        },
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward_yaw_positive/simulation.mp4"
+        },
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward_yaw_negative/simulation.mp4"
+        }
+      ],
       "overflow": false
     },
     {
       "category": "particle_prediction",
       "mobile": false,
-      "figure_width_px": 1324.8125,
-      "video": {
-        "duration": 5,
-        "width": 3840,
-        "height": 1140,
-        "source": "http://127.0.0.1:8765/g1_humanoid/data/current-20261109/comparison.mp4"
-      },
+      "figure_width_px": 1278.75,
+      "videos": [
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward/simulation.mp4"
+        },
+        {
+          "duration": 5.48,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/backward/simulation.mp4"
+        },
+        {
+          "duration": 5.6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/left/simulation.mp4"
+        },
+        {
+          "duration": 5.24,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/right/simulation.mp4"
+        },
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward_yaw_positive/simulation.mp4"
+        },
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward_yaw_negative/simulation.mp4"
+        }
+      ],
       "overflow": false
     },
     {
       "category": "particle_prediction",
       "mobile": true,
       "figure_width_px": 800,
-      "video": {
-        "duration": 5,
-        "width": 3840,
-        "height": 1140,
-        "source": "http://127.0.0.1:8765/g1_humanoid/data/current-20261109/comparison.mp4"
-      },
+      "videos": [
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward/simulation.mp4"
+        },
+        {
+          "duration": 5.48,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/backward/simulation.mp4"
+        },
+        {
+          "duration": 5.6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/left/simulation.mp4"
+        },
+        {
+          "duration": 5.24,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/right/simulation.mp4"
+        },
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward_yaw_positive/simulation.mp4"
+        },
+        {
+          "duration": 6,
+          "width": 1280,
+          "height": 764,
+          "source": "http://127.0.0.1:8765/g1_humanoid/data/full-20261109/forward_yaw_negative/simulation.mp4"
+        }
+      ],
       "overflow": false
     }
-  ]
+  ],
+  "presentation_update": "Left/right-foot column labels added; report split into separate evaluation protocols. Numerical replay data unchanged."
 }

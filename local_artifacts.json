@@ -94,5 +94,131 @@
     "bytes": 16579519,
     "sha256": "0852d6160c916f5f2c1bd873288657ecfb414b4fb76268d7314ab6f6ca6e7f44",
     "published": false
+  },
+  {
+    "path": "g1_humanoid/data/current-20261109/trace.npz",
+    "bytes": 98139,
+    "sha256": "cb2dd1d5b11cb3813181120345a09757870a46028c51c3a1849d80c78564994a",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/estimator-only-20261109/trace.npz",
+    "bytes": 88245,
+    "sha256": "187c999112f8f6d969182782436f9168580f9963954b0f888659a491fcb3f739",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/backward/particle_metrics.npz",
+    "bytes": 5482,
+    "sha256": "2d072898ddb03ba5a751572e4a4a06495076ee444b96f97ab351b44d80e2513d",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/backward/states.h5",
+    "bytes": 192399372,
+    "sha256": "429d1ef604640cd4773348ff6c5032151ddf9f856b852cfb389fd724083ceb30",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/backward/trace.npz",
+    "bytes": 277096,
+    "sha256": "c41dcbe971ab787c07f1fcb7dbc14a10056d120a3bd5ebe9473a621e207d0cde",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward/particle_metrics.npz",
+    "bytes": 5890,
+    "sha256": "c193e97950c70357450db4165c3444f0472b6dd3b188f7de6b830729ceef75a9",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward/states.h5",
+    "bytes": 192399375,
+    "sha256": "1e5ee27320e249612b625018781bcfa222f5ef810dfe35cae7c6fcfd077c11ec",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward/trace.npz",
+    "bytes": 299380,
+    "sha256": "48c8556e312a847aae4dad988cecb53535ba5048c66a4415bdd1437536a399db",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward_yaw_negative/particle_metrics.npz",
+    "bytes": 5953,
+    "sha256": "0a18b8c5b34582908a74846a055ca50db21a4da7247b1260276a8aa4a13a586c",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward_yaw_negative/states.h5",
+    "bytes": 192399380,
+    "sha256": "3095b82bf49685092c26d0ae79100e97233515559e1d7e58a082544995069d27",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward_yaw_negative/trace.npz",
+    "bytes": 294442,
+    "sha256": "e4a094204e5d3d30d88e1f9edf6d6355d36e803e9838a6a63ee0ce7c678349ed",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward_yaw_positive/particle_metrics.npz",
+    "bytes": 5929,
+    "sha256": "1044eef48958b400ed017e2b9d26a55cd1deff38e49b4c283635adb11d7543c6",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward_yaw_positive/states.h5",
+    "bytes": 192399376,
+    "sha256": "f29ba59bd4931d149f43be91f06a83743235d5ad459eba567e2847f85ca3732b",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/forward_yaw_positive/trace.npz",
+    "bytes": 291215,
+    "sha256": "eabe2043ea65ec5bf8ca0e2ce695365166da00ad3dfb526374daae3a9e17dba7",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/left/particle_metrics.npz",
+    "bytes": 5632,
+    "sha256": "86a474288de219d7330f7e7f2380f985a900883b4c4026457b622f3e0e149091",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/left/states.h5",
+    "bytes": 192399375,
+    "sha256": "fd7960f9a634467d9b76bacf9aefa6f2f0799131b3a78e0f0dab07028a15839f",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/left/trace.npz",
+    "bytes": 262155,
+    "sha256": "fdec2be503abaaaab46be1bae214c3e8e626051c680b4860d0120f4a255766c1",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/right/particle_metrics.npz",
+    "bytes": 5253,
+    "sha256": "6fdfce6e318db79cffd42ce8306c6897477171848260fa6421bff98d70cc22e5",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/right/states.h5",
+    "bytes": 192399374,
+    "sha256": "adb068f6630661f981cda69284cec2aa073e5347450ea4729ac66b21c9a23e66",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/full-20261109/right/trace.npz",
+    "bytes": 246628,
+    "sha256": "9a483bd016c9396c0ebc25fa5847aae7b997a46c6b42fcfc5833340c394e66d6",
+    "published": false
+  },
+  {
+    "path": "g1_humanoid/data/recorded-local-direct.npz",
+    "bytes": 115156,
+    "sha256": "4fe4cef176dd53a17afd15f76b6b9ba1d77baf58128abf3f88b1001c01acc9fa",
+    "published": false
   }
 ]

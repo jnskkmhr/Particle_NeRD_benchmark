@@ -1,9 +1,8 @@
-# G1 particle-position prediction
+# G1 particle evaluation
 
-[Open the current report](index.html). It evaluates the currently installed Particle NeRD solver on the same five-second prescribed-motion replay as the foot-force report. Argon’s foot-speed displacement scaling is enabled. The matching video is rendered from the saved states used to calculate the plotted errors.
+[Open the report](index.html). Two protocols distinguish prediction accuracy from freely evolving deformation.
 
-Final 3D particle-position RMSE is **19.29 mm** across 88,360 particles. The solver uses 5,312 active particles and 512 background samples on the recorded 0.04 m bed. It starts with three recorded MPM history frames; it is not an initially unsettled-bed test.
+1. **Prescribed robot motion:** compare identical particle IDs against the recorded MPM trajectory. Final 3D position RMSE is 19.29 mm over 88,360 particles. The current active selection and foot-speed displacement rule are included; only the initial three history frames come from MPM.
+2. **Full simulation:** six constant body-frame velocity commands under policy jqur5jhm. The robot and particles evolve through coupled rigid–NeRD dynamics without a reference trajectory. Plots show particle displacement relative to initialization, not pointwise accuracy against MPM. Each video and plot comes from the same run.
 
-See [run metadata](../data/current-20261109/metadata.json), [alignment verification](../data/current-20261109/verification.json), and [reproduction instructions](../../plots/CURRENT_REPLAY.md).
-
-The `validation-*.json` files are separate historical October 28 archives, not the data displayed in the current report.
+The prescribed and full protocols use different bed dimensions, resolution and initial states; their conditions are stated separately. See [conditions and reproduction](../../plots/DECOUPLED_EVALUATION.md). Historical validation JSON files are not the active report’s data.

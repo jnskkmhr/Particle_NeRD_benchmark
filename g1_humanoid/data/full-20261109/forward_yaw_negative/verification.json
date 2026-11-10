@@ -1,0 +1,18 @@
+{
+  "command": "Matches requested constant vx/vy/wz at every recorded physics step",
+  "physics_hz": 200,
+  "video_hz": 50,
+  "video_frames": 300,
+  "force_identity": "Total = sand contribution + rigid-geometry contribution",
+  "snapshots": "Particle displacement metrics recomputed from 1 Hz saved states; body poses matched to 200 Hz trace",
+  "source_identity": "Checkpoint and all solver source hashes match the prescribed-motion evaluation",
+  "mpm_reference_in_simulation": false,
+  "robot_reference_in_simulation": false,
+  "artifacts_sha256": {
+    "trace.npz": "e4a094204e5d3d30d88e1f9edf6d6355d36e803e9838a6a63ee0ce7c678349ed",
+    "metadata.json": "1544855bb64ecdc143e8dfe57da2dea7a9007791c365c8f93a06c8a895e59389",
+    "particle_metrics.npz": "0a18b8c5b34582908a74846a055ca50db21a4da7247b1260276a8aa4a13a586c",
+    "simulation.mp4": "7e5cba13fc9b8c7445954743cc6eadb23c2b7de0dd8a739a1a3129b91fb3df04",
+    "states.h5": "3095b82bf49685092c26d0ae79100e97233515559e1d7e58a082544995069d27"
+  }
+}
