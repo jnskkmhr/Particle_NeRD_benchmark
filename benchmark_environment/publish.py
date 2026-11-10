@@ -8,6 +8,7 @@
 import argparse
 import hashlib
 import json
+import re
 import shutil
 from datetime import date
 from pathlib import Path
@@ -138,6 +139,15 @@ def publish(runs, output, checkpoint=None, release_url=None):
     (output / "catalog.js").write_text(
         "const BENCHMARK_CASES = " + json.dumps(catalog, indent=2) + ";\n"
     )
+    page = output / "index.html"
+    html = page.read_text()
+    for asset in ("catalog.js", "gallery.js", "gallery.css"):
+        html = re.sub(
+            re.escape(asset) + r'(?:\?[^"]*)?(?=")',
+            asset + "?v=" + sha256(output / asset)[:12],
+            html,
+        )
+    page.write_text(html)
     print(f"Published {len(catalog)} cases; excluded failed cases: {skipped}")
 
 
