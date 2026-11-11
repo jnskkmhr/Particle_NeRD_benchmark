@@ -1,53 +1,6 @@
 const $=id=>document.getElementById(id);let selected=null;let visible=[];
 const terrainNames={flat:'Flat sand bed',ascend:'Ascending slope (+12%)',descend:'Descending slope (−12%)',wave:'Wave (0.06 m amplitude, 1.2 m wavelength)'};
-const sourceRepository='https://github.com/jnskkmhr/Particle_NeRD_benchmark';
-const publicGallery='https://jnskkmhr.github.io/Particle_NeRD_benchmark/benchmark_environment/index.html';
-// Each case links to its own recorded source, not a potentially changed simulator checkout.
-function environmentFiles(c){
-  const robot=c.family==='robot';
-  const family=robot?'robot':c.motion==='rolling'?'sphere':'cube';
-  const name=robot?c.motion:family;
-  const prefix=['g1','quadruped'].includes(c.motion)?c.motion+'_':'';
-  const root='config/'+family;
-  const files=[
-    ['Environment configuration',root+'/'+name+'_env_cfg.py'],
-    ['Scene and assets',root+'/env_cfg/'+prefix+'scene_cfg.py'],
-    ['Actions',root+'/env_cfg/'+prefix+'action_cfg.py'],
-    ['Observations',root+'/env_cfg/'+(c.motion==='g1'?'g1_':'')+'observation_cfg.py'],
-    ['Reset events',root+'/env_cfg/event_cfg.py'],
-    ['Physics configuration',prefix?'core/physics.py':root+'/env_cfg/physics_cfg.py'],
-    ['Task registration',root+'/__init__.py'],
-    ['Motion and terrain selection','core/case_config.py'],
-    ['Sand and tray geometry','core/terrain.py'],
-    ['Playback entry point','core/play.py'],
-    ['Controller and dataset collection','core/run.py'],
-    ['Recording implementation','core/recording.py'],
-  ];
-  if(!robot)files.push(['Object motion targets','core/motions.py'],['Object action implementation','core/mdp/actions.py']);
-  if(c.motion==='quadruped')files.push(['Leg IK controller','core/quadruped_controller.py']);
-  return files;
-}
-function sourceUrl(c,path='',directory=false){
-  return sourceRepository+'/'+(directory?'tree':'blob')+'/main/benchmark_environment/'+c.path+'/source/'+path;
-}
-function sourceLink(c,path){
-  const a=document.createElement('a'),code=document.createElement('code');
-  a.href=sourceUrl(c,path);a.target='_blank';a.rel='noopener';code.textContent=path;a.append(code);return a;
-}
-function showSources(c){
-  const files=environmentFiles(c),entry=files[0][1];
-  $('environment-file').href=sourceUrl(c,entry);
-  $('environment-file').textContent='examples/particle_nerd_benchmark/'+entry;
-  $('source-variant').textContent='Selected case: motion = "'+c.motion+'", terrain = "'+c.terrain+'". These settings are applied in core/case_config.py.';
-  $('source-folder').href=sourceUrl(c,'',true);
-  $('share-case').href=publicGallery+'#'+c.id;
-  $('source-files').replaceChildren(...files.slice(1).map(([label,path])=>{
-    const tr=document.createElement('tr'),name=document.createElement('td'),file=document.createElement('td');
-    name.textContent=label;file.append(sourceLink(c,path));tr.append(name,file);return tr;
-  }));
-}
 function choose(id){const c=visible.find(v=>v.id===id)||visible[0];if(!c)return;selected=c;history.replaceState(null,'','#'+c.id);
-showSources(c);
 $('title').textContent=c.title;$('category').textContent=c.family==='robot'?'ROBOT CONTACTS':'ELEMENTARY OBJECT MOTION';$('description').textContent=c.description;
 const version='?v='+c.artifacts['simulation.mp4'].slice(0,12);
 $('video').src=c.path+'/simulation.mp4'+version;$('video').poster=c.path+'/poster.jpg'+version;$('video').load();$('duration').textContent=c.duration+' s · 50 fps';
@@ -65,4 +18,4 @@ $('count').textContent=visible.length+' recorded cases';$('empty').hidden=visibl
 choose(selected?.id||decodeURIComponent(location.hash.slice(1)));}
 for(const id of ['family','terrain','search'])$(id).addEventListener('input',filter);
 $('previous').onclick=()=>choose(visible[(visible.indexOf(selected)-1+visible.length)%visible.length].id);$('next').onclick=()=>choose(visible[(visible.indexOf(selected)+1)%visible.length].id);
-for(const c of BENCHMARK_CASES){const tr=document.createElement('tr');for(const text of [c.title,terrainNames[c.terrain]]){const td=document.createElement('td');td.textContent=text;tr.append(td)}const source=document.createElement('td');source.append(sourceLink(c,environmentFiles(c)[0][1]));tr.append(source);for(const text of [c.controller,c.duration+' s']){const td=document.createElement('td');td.textContent=text;tr.append(td)}const td=document.createElement('td'),a=document.createElement('a');a.href='#'+c.id;a.textContent='Inspect run →';a.onclick=e=>{e.preventDefault();$('family').value='';$('terrain').value='';$('search').value='';filter();choose(c.id);document.querySelector('.workspace').scrollIntoView({behavior:'smooth'})};td.append(a);tr.append(td);$('summary').append(tr)}filter();
+for(const c of BENCHMARK_CASES){const tr=document.createElement('tr');for(const text of [c.title,terrainNames[c.terrain],c.controller,c.duration+' s']){const td=document.createElement('td');td.textContent=text;tr.append(td)}const td=document.createElement('td'),a=document.createElement('a');a.href='#'+c.id;a.textContent='Inspect run →';a.onclick=e=>{e.preventDefault();$('family').value='';$('terrain').value='';$('search').value='';filter();choose(c.id);document.querySelector('.workspace').scrollIntoView({behavior:'smooth'})};td.append(a);tr.append(td);$('summary').append(tr)}filter();

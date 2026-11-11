@@ -100,7 +100,10 @@ def publish(runs, output, checkpoint=None, release_url=None):
             shutil.copytree(run, destination)
         motion = metadata["motion"]
         task = f"IsaacBench-MPM-{TASK_NAMES[motion]}-{metadata['terrain'].title()}-v0"
-        command = f"uv run isaaclab play --task {task} --duration {metadata['duration_s']:g} --viz newton_gl --real-time"
+        command = (
+            "uv run isaaclab -p scripts/reinforcement_learning/play.py "
+            f"--task {task} --duration {metadata['duration_s']:g} --viz newton_gl --real-time"
+        )
         if motion == "g1":
             command += " --checkpoint " + str(
                 checkpoint or metadata["policy_checkpoint"]

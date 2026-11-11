@@ -45,11 +45,6 @@ summary { cursor: pointer; font-weight: 700; }
 pre { overflow-x: auto; padding: 20px; background: #f7f7f7; font-size: 14px; line-height: 1.6; }
 details p { font-size: 16px; }
 .catalog-table td:first-child { font-weight: 600; }
-.source-path { display: block; font: 15px/1.6 monospace; overflow-wrap: anywhere; }
-.source-files p { font-size: 16px; }
-.source-note { color: var(--muted); }
-.source-files details { margin-top: 20px; padding-top: 16px; }
-.source-files code, .catalog-table code { font-size: 14px; overflow-wrap: anywhere; }
 @media (max-width: 1000px) {
   .workspace { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   aside { position: static; }
@@ -65,3 +60,5 @@ details p { font-size: 16px; }
   .detail td:first-child { width: 34%; }
   .downloads { font-size: 14px; }
 }
+
+#command { white-space: pre-wrap; overflow-wrap: anywhere; }

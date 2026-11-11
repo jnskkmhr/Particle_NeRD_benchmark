@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MPM benchmark environments · Particle NeRD</title><meta name="description" content="Reproducible manager-based Isaac Lab MPM benchmark scenes with paired videos and datasets.">
-<link rel="stylesheet" href="../assets/slides.css?v=20261109-white"><link rel="stylesheet" href="gallery.css?v=370b196ccedd"><script defer src="catalog.js?v=2faad220b60e"></script><script defer src="gallery.js?v=8b5e84a053ed"></script></head>
+<link rel="stylesheet" href="../assets/slides.css?v=20261109-white"><link rel="stylesheet" href="gallery.css?v=83dd30934d06"><script defer src="catalog.js?v=b204a98cb915"></script><script defer src="gallery.js?v=b8159295221c"></script></head>
 <body class="benchmark-report benchmark-gallery"><header><a class="brand" href="../">Particle NeRD / Benchmarks</a><span class="archive">Native implicit MPM · Reference environments</span></header>
 <main><section class="report-heading"><p class="eyebrow">BENCHMARK ENVIRONMENTS</p><h1>Objects, terrain, and robot contacts.</h1>
 <p>Short, reproducible sand-interaction simulations built with Isaac Lab’s manager-based environments.
@@ -27,20 +27,12 @@ These reference rollouts do not measure Particle NeRD prediction accuracy or GPU
 <p id="description"></p><div class="screen"><video id="video" controls playsinline preload="metadata" aria-label="Recorded MPM simulation"></video></div>
 <div class="video-controls"><button id="previous">← Previous</button><span id="duration"></span><button id="next">Next →</button></div>
 <p id="video-caption" class="caption"></p>
-<section class="source-files" aria-labelledby="source-heading"><h3 id="source-heading">Environment files</h3>
-<p>Implementation path relative to the <code>IsaacLab-particle-nerd/</code> repository root:</p>
-<a id="environment-file" class="source-path" target="_blank" rel="noopener"></a>
-<p id="source-variant"></p>
-<div class="downloads"><a id="source-folder" target="_blank" rel="noopener">Browse recorded source on GitHub ↗</a><a id="share-case">Link to this case ↗</a></div>
-<p class="source-note">GitHub links open the source snapshot saved with this case’s video and data. Paths below are relative to <code>examples/particle_nerd_benchmark/</code>.</p>
-<details><summary>Scene, physics, controller, and recording files</summary><table><tbody id="source-files"></tbody></table></details></section>
+<h3>Run this environment</h3><pre id="command"></pre>
 <h3>Run conditions</h3><table><tbody id="conditions"></tbody></table>
 <div class="downloads"><a id="dataset" download>Dataset (HDF5) ↓</a><a id="metadata">Run metadata ↗</a><a id="validation">Validation ↗</a></div>
 <h3>Measured sand reaction</h3><figure class="result-figure"><div class="plot-scroll" tabindex="0" aria-label="Scrollable force plot"><a id="plot-link" target="_blank" rel="noopener"><img id="plot" alt="Signed world-frame Fx, Fy and Fz from this MPM simulation"></a></div><figcaption>
 Figure 1: Sand-on-collider forces from the video’s recorded run. (a) Fx; (b) Fy; (c) Fz.
 For robot cases, forces are summed over the reacting robot links listed in the validation file. Direct rigid tray contact is excluded.</figcaption></figure>
-<details><summary>Run this case</summary><p>Install the task package once from the IsaacLab-particle-nerd repository root:</p><pre>uv pip install --no-deps -e examples/particle_nerd_benchmark</pre><p>Then select this registered task:</p><pre id="command"></pre><p>Run from the IsaacLab-particle-nerd repository root.
-Scripts and standalone task configurations are in <code>examples/particle_nerd_benchmark/</code>.</p></details>
 </section></div><p id="empty" hidden>No completed cases match these filters.</p></section>
-<section class="report-section catalog-table" id="recorded-cases"><h2>3. Recorded cases</h2><p>Each configuration link opens the public source saved for that recording. Paths are relative to <code>examples/particle_nerd_benchmark/</code>; cases can share a configuration and select different motion or terrain settings.</p><div class="table-wrap"><table><thead><tr><th>Motion</th><th>Terrain</th><th>Environment configuration</th><th>Controller</th><th>Duration</th><th>Video / data</th></tr></thead><tbody id="summary"></tbody></table></div></section>
+<section class="report-section catalog-table" id="recorded-cases"><h2>3. Recorded cases</h2><div class="table-wrap"><table><thead><tr><th>Motion</th><th>Terrain</th><th>Controller</th><th>Duration</th><th>Video / data</th></tr></thead><tbody id="summary"></tbody></table></div></section>
 </main><footer class="site-footer"><span class="footer-brand">Particle NeRD</span><span>Native MPM reference environments · Paired videos and plots</span></footer></body></html>
