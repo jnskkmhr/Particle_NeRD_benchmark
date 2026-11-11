@@ -2,42 +2,46 @@
   "franka-flat": {
     "particle_world": {
       "steps": 1198,
-      "mean_rmse_mm": 10.25150245278825,
-      "final_rmse_mm": 15.288276672363281,
-      "surface_mean_rmse_mm": 11.794704305620643,
-      "ms_per_step": 7.765590419055263,
+      "mean_rmse_mm": 17.9907683553625,
+      "final_rmse_mm": 27.627838134765625,
+      "surface_mean_rmse_mm": 32.49178034089543,
+      "ms_per_step": 6.423923612680311,
       "mean_pressure_pa": 0.0,
       "mean_deviatoric_pa": 0.0
     },
     "particle_nerd_local_3": {
       "steps": 1198,
-      "mean_rmse_mm": 10.485200271097467,
-      "final_rmse_mm": 18.75052261352539,
-      "surface_mean_rmse_mm": 14.204236987076438,
-      "ms_per_step": 8.594415692817762,
-      "mean_pressure_pa": 177.79947070088332,
-      "mean_deviatoric_pa": 0.0
+      "mean_rmse_mm": 14.475783859275419,
+      "final_rmse_mm": 25.22393035888672,
+      "surface_mean_rmse_mm": 25.19520429887487,
+      "ms_per_step": 7.007973427411623,
+      "mean_pressure_pa": 2592.6906785152987,
+      "mean_deviatoric_pa": 431.61973258449956
     },
     "particle_nerd": {
       "steps": 1198,
-      "mean_rmse_mm": 46.356858391918,
-      "final_rmse_mm": 71.3093490600586,
-      "surface_mean_rmse_mm": 56.43104107700326,
-      "ms_per_step": 2.5040328706527606
+      "mean_rmse_mm": 48.9945999407808,
+      "final_rmse_mm": 74.65443420410156,
+      "surface_mean_rmse_mm": 66.93139324535014,
+      "ms_per_step": 2.4375407787456562
     },
     "coupled_particle_world": {
       "motion": "franka",
       "solver": "particle_world",
       "steps": 1200,
       "particles_finite": true,
-      "min_particle_z_m": -0.29435616731643677
+      "min_particle_z_m": -0.2937035858631134,
+      "mean_fz_N": 16.55208969116211,
+      "peak_force_N": 139.79696655273438
     },
     "coupled_particle_nerd_local_3": {
       "motion": "franka",
       "solver": "particle_nerd_local_3",
       "steps": 1200,
       "particles_finite": true,
-      "min_particle_z_m": -0.28580668568611145
+      "min_particle_z_m": -0.2817640006542206,
+      "mean_fz_N": 8.393327713012695,
+      "peak_force_N": 86.02818298339844
     }
   },
   "quadruped-flat": {
@@ -71,14 +75,16 @@
       "solver": "particle_world",
       "steps": 1200,
       "particles_finite": true,
-      "min_particle_z_m": -0.1609659045934677,
+      "min_particle_z_m": -0.16079188883304596,
+      "mean_fz_N": 0.7635058760643005,
+      "peak_force_N": 231.6708526611328,
       "base_displacement_m": [
-        0.16400671005249023,
-        0.025366781279444695,
-        -0.19242331385612488
+        0.15825995802879333,
+        0.017164329066872597,
+        -0.19191281497478485
       ],
-      "minimum_base_height_m": 0.193342924118042,
-      "minimum_base_up_z": 0.9935106039047241,
+      "minimum_base_height_m": 0.19080714881420135,
+      "minimum_base_up_z": 0.9930883646011353,
       "robot_remains_upright": true,
       "robot_moves_forward": true
     },
@@ -87,14 +93,16 @@
       "solver": "particle_nerd_local_3",
       "steps": 1200,
       "particles_finite": true,
-      "min_particle_z_m": -0.13758806884288788,
+      "min_particle_z_m": -0.1389079988002777,
+      "mean_fz_N": 0.00589803047478199,
+      "peak_force_N": 226.35142517089844,
       "base_displacement_m": [
-        0.16475655138492584,
-        0.023983998224139214,
-        -0.19252575933933258
+        0.1488322615623474,
+        0.014675223268568516,
+        -0.19203150272369385
       ],
-      "minimum_base_height_m": 0.19335733354091644,
-      "minimum_base_up_z": 0.9931878447532654,
+      "minimum_base_height_m": 0.18914541602134705,
+      "minimum_base_up_z": 0.9904231429100037,
       "robot_remains_upright": true,
       "robot_moves_forward": true
     }
@@ -130,14 +138,16 @@
       "solver": "particle_world",
       "steps": 1200,
       "particles_finite": true,
-      "min_particle_z_m": -0.34680119156837463,
+      "min_particle_z_m": -0.3479781448841095,
+      "mean_fz_N": 327.4564208984375,
+      "peak_force_N": 1045.3187255859375,
       "base_displacement_m": [
-        1.5090289115905762,
-        -0.11871306598186493,
-        -0.2399415373802185
+        2.033430576324463,
+        0.10093319416046143,
+        -0.03397476673126221
       ],
-      "minimum_base_height_m": 0.4944928288459778,
-      "minimum_base_up_z": 0.9839581251144409,
+      "minimum_base_height_m": 0.6960585713386536,
+      "minimum_base_up_z": 0.9846055507659912,
       "robot_remains_upright": true,
       "robot_moves_forward": true
     },
@@ -146,14 +156,16 @@
       "solver": "particle_nerd_local_3",
       "steps": 1200,
       "particles_finite": true,
-      "min_particle_z_m": -0.32832950353622437,
+      "min_particle_z_m": -0.3328655958175659,
+      "mean_fz_N": 327.2386474609375,
+      "peak_force_N": 1065.531005859375,
       "base_displacement_m": [
-        1.519065499305725,
-        -0.04393545165657997,
-        -0.2423456907272339
+        1.956057071685791,
+        0.048407554626464844,
+        -0.03513681888580322
       ],
-      "minimum_base_height_m": 0.4830876290798187,
-      "minimum_base_up_z": 0.9841185212135315,
+      "minimum_base_height_m": 0.6775475144386292,
+      "minimum_base_up_z": 0.9809343218803406,
       "robot_remains_upright": true,
       "robot_moves_forward": true
     }
