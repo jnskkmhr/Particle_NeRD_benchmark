@@ -1,0 +1,33 @@
+{
+  "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
+  "reference_sha256": "a0fec6503bf7caf0ec2a2de1b952bd0b53b4ccca78945c43fbdd659dd9ed67d2",
+  "prediction_sha256": "42cb148fe2ee05de327dbabbad4da459316023b11f75f56d903795019b6a77be",
+  "inputs_sha256": {
+    "evaluation.json": "72307423df576a63a739aed4eae3e3acfbf076645c59652c615a3e1422132790",
+    "prediction.h5": "42cb148fe2ee05de327dbabbad4da459316023b11f75f56d903795019b6a77be",
+    "particle_metrics.csv": "c846de0e4be9cacc86ddeb4ed061255f5cfc2562b28d3f4203ae1a02e0c6e82f",
+    "field_metrics.csv": "779a792ed6aa95834d40871f251998fbee926388536e9a508003288433aff9dd",
+    "mass_difference_maps.npz": "5d002eed34787cb9b1f5018e116bcc266085d374f204e60f57607b4aefc52d46"
+  },
+  "figures_sha256": {
+    "particle_evaluation.png": "61bcc94159fa1ede9b2484eddcab9e4b651e057bde17c5b4423258a5929d67a7",
+    "particle_evaluation.pdf": "c436a4b8f2467d71381136701fadc49353920f67aee9fe144dddf11bd42f509e",
+    "particle_evaluation.svg": "be70dabc0a7acd31d4060fec58e4f3269e51a6a27739cb571a0ec21bb4030fd0",
+    "particle_region_counts.png": "4133b0b5de31eee3a6746a769bbe11ce13288eba222e216e62497d4ac9bbf2c1",
+    "particle_region_counts.pdf": "f3b5600251b3c5fa341af5a8c8698e87956d6929f8cf9fc54bcd2394e7d7d2fd",
+    "particle_region_counts.svg": "6f10f92b9418a470fe05587ab2f0bf01cc56d97c2cfcc0d9258dd62fe1413879",
+    "body_mass.png": "2b171167f77ddb8608975ce8894feac0c46173615b8a3ed1eda7eadd0e6f76b4",
+    "body_mass.pdf": "61ebc89e1f9d30e09b4651b1ee3d5216f4aa73d54d48797b177b23c1907daf49",
+    "body_mass.svg": "2ac69bdaa31c71817863a5965bd14cd302ec1375637aa3a5bfb3cc99d8c238cc",
+    "mass_difference.png": "67e0b16c786ceec3e538b26431709d20d22ef09daaac238ac3d35921c64e019e",
+    "mass_difference.pdf": "6b9c9eb60cda6fbfced28a7796adbb15b8d3f42c32adf815b9e1ab1f99432ebd",
+    "mass_difference.svg": "be5c1e0c8435bca550a70177e445b12707e3370fd5183a7093621110e75b5e39",
+    "forces.png": "29028297254f386da60dc1f307a5c24ee88e1b159ce08e96963b698a12356142",
+    "forces.pdf": "53d5729aa84e93ea8b0776cf33cb4acf28365b9290d6f2e328372d08635086ff",
+    "forces.svg": "902d4ea7e5a14b18c4c29f34823cf78b66f6f2735e9687e40eab0c4042292b85",
+    "force_reconstruction.png": "5b6b042cc760483acd7414abb21d5ac7fae671f53f25245e1795f329b4818d8a",
+    "force_reconstruction.pdf": "015233b12e4555b4b36f23414b3daf93748b9eb9d57b4b01455d0af34c6e0789",
+    "force_reconstruction.svg": "5711d689db655b3f416a12a902e56a7c80b04f87f38b25c8ce8f0fc72aff37a9"
+  },
+  "plot_source_sha256": "40a3d1ec339ec392bd4e2134ee6b3e4b39cca82db29abed2ea46de6494268b88"
+}

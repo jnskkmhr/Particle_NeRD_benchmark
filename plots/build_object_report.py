@@ -490,9 +490,23 @@ def main():
         (
             "Model architecture",
             (
-                f"Particle Transolver: {config['model']['layers']} attention blocks, hidden size {config['model']['hidden']}, "
-                f"{config['model']['heads']} heads, {config['model']['slices']} slices, "
-                f"{config['model']['history']} position-history frames; displacement scale {config['model']['displacement_scale']:g} m."
+                f"WorldParticle (translation-invariant + smooth tanh collider decay): d_model {config['model']['d_model']}, "
+                f"cconv {config['model']['cconv_dim']}, {config['model']['heads']} heads, "
+                f"{config['model']['slot_attn_iters']} ToMe encoder layers, {config['model']['num_decoder_layers']} cross-attn decoder layers, "
+                f"{config['model']['history']} history frames; displacement scale {config['model']['displacement_scale']:g} m."
+                if "d_model" in config["model"]
+                else (
+                    f"ParticleNeRD-Local (translation-invariant + CConv + 3D-RoPE slices): {config['model']['layers']} attention blocks, "
+                    f"hidden size {config['model']['hidden']}, cconv {config['model']['cconv_dim']}, "
+                    f"{config['model']['heads']} heads, {config['model']['slices']} slices, "
+                    f"{config['model']['history']} history frames; displacement scale {config['model']['displacement_scale']:g} m."
+                    if "cconv_dim" in config["model"]
+                    else (
+                        f"Particle Transolver: {config['model']['layers']} attention blocks, hidden size {config['model']['hidden']}, "
+                        f"{config['model']['heads']} heads, {config['model']['slices']} slices, "
+                        f"{config['model']['history']} position-history frames; displacement scale {config['model']['displacement_scale']:g} m."
+                    )
+                )
             ),
         ),
         (
