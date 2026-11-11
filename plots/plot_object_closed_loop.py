@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import os
 import textwrap
 from pathlib import Path
 
@@ -98,9 +99,10 @@ def plot(root, number):
     )
     fig, axes = plt.subplots(2, 3, figsize=(14, 8))
     time = np.array(data["time_s"])
+    model_label = os.environ.get("BENCHMARK_MODEL_LABEL", "Particle NeRD")
     for prefix, label, color in (
         ("mpm", "Implicit MPM", MPM),
-        ("nerd", "Particle NeRD", NERD),
+        ("nerd", model_label, NERD),
     ):
         position, force = (
             np.array(data[prefix + "_body_com_m"]),

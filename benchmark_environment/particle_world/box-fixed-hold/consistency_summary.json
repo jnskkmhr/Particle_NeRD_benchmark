@@ -25,7 +25,7 @@
   "maximum_grid_nodes": 100000000,
   "below_body_region": "Horizontal rectangle enclosing the body's world x/y projection, from 0 to 0.10 m below its lowest world z; clipped at the rigid floor z = -0.30 m",
   "surface_failures": [],
-  "source_sha256": "473c54ecba5f63649d440df0bd1c0b6c31efb72d01d1a504764fe0baf8560b5e",
+  "source_sha256": "c9b10182d8e358d191ca0fb576659bb1a2114d4e339be24e0ed970e4c109a15b",
   "body_motion_check": {
     "maximum_translation_m": 0.0,
     "maximum_rotation_rad": 0.0,

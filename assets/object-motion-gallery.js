@@ -9,9 +9,10 @@ function updateMotion() {
   video.poster = `motions/${clip.episode_id}/comparison_poster.png`;
   video.querySelector("source").src = `motions/${clip.episode_id}/comparison.mp4`;
   video.load();
+  const modelLabel = clip.model_label || "Particle NeRD";
   document.getElementById("motion-description").textContent =
     `${shape.options[shape.selectedIndex].text} — ${clip.motion_label.toLowerCase()}, episode ${clip.episode_id}. ` +
-    `${clip.motion_description} Left: implicit MPM. Right: Particle NeRD. ` +
+    `${clip.motion_description} Left: implicit MPM. Right: ${modelLabel}. ` +
     `Saved states at 50 fps, simulation time 0.02–6 s. This is one of ${clip.group_trajectory_count} plotted trajectories in this shape/motion group.`;
   document.getElementById("motion-provenance").href = `motions/${clip.episode_id}/video_provenance.json`;
 }

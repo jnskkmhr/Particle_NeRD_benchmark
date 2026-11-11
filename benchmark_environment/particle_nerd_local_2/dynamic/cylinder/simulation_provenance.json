@@ -1,0 +1,113 @@
+{
+  "episode": {
+    "id": "cylinder-static-support",
+    "shape": "cylinder",
+    "mode": "dynamic",
+    "motion": "drop",
+    "split": "test",
+    "seed": 42,
+    "particle_seed": 42,
+    "duration_s": 20.0,
+    "dt_s": 0.005,
+    "terrain": "flat",
+    "yaw": 0.0,
+    "direction": 1,
+    "y": 0.0,
+    "travel": 1.1141135593678742,
+    "depth": -0.028110956026448336,
+    "radius": 0.27175222349199435,
+    "entry_s": 1.2475947051890737,
+    "release_height": 0.25,
+    "speed": 0.26438234990871273,
+    "spin": 0.8185570426158919
+  },
+  "checkpoint_sha256": "0ec69c79cceccbfeba9c3a063df5ed72dc3a4716328c54481c21509c41fb82bc",
+  "reference_sha256": "a0fec6503bf7caf0ec2a2de1b952bd0b53b4ccca78945c43fbdd659dd9ed67d2",
+  "prediction_sha256": "73c5afcaca1bf055d396c17304bfe303420a0ad3bd80790494482cbde21db873",
+  "native_dt_s": 0.005,
+  "expected_steps": 4000,
+  "completed_steps": 4000,
+  "failure": null,
+  "elapsed_s": 67.25317025498953,
+  "mode": "Fully dynamic object and recurrent neural particles with lagged estimated force/torque feedback",
+  "feedback_enabled": true,
+  "active_selection": "auto",
+  "displacement_gate": true,
+  "particle_projection": "tray_floor_and_walls",
+  "pipeline": {
+    "active_k": "auto",
+    "anchor_particles": 512,
+    "selection_interval": 4,
+    "displacement_gate": true,
+    "gate_during_training": true,
+    "free_surface_ballistics": true,
+    "particle_projection": "tray_floor_and_walls",
+    "packing_correction": false,
+    "collider_input": "pre_rigid_step",
+    "support": 0.07
+  },
+  "force_filter": null,
+  "native_mpm_steps": 0,
+  "body_input": "Own begin-of-step pose and velocity",
+  "force_body_input": "Own MJWarp end velocity minus the previously applied material impulse",
+  "force_application": "Estimated world force and center-of-mass torque applied over both MJWarp substeps of the next 5 ms exchange",
+  "release": "Upward external force balances gravity for t < 1 s; removed at 1 s. No later pose or velocity writes.",
+  "force_parameters": {
+    "effective_mass_scale": 100.0,
+    "tangent_mass_scale": 40.0,
+    "horizontal_mass_scale": 8.0,
+    "upward_mass_scale": 2.0,
+    "normal_power": 3.0,
+    "contact_iterations": 200,
+    "contact_relaxation": 0.02,
+    "gradient_radius": 0.065,
+    "gradient_contact_band": 0.08,
+    "contact_stabilization": 0.01,
+    "contact_offset": 0.0,
+    "friction": 1.0,
+    "contact_solver": "rft_body_velocity",
+    "tolerance": 1e-09
+  },
+  "rigid": {
+    "integrator": "implicitfast",
+    "cone": "pyramidal",
+    "substeps": 2,
+    "substep_dt_s": 0.0025,
+    "body_mass_kg": 2.0,
+    "body_inertia_kg_m2": [
+      [
+        0.007399999536573887,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.007399999536573887,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.009999999776482582
+      ]
+    ],
+    "geometry": "Recorded moving collision shape and five rigid tray shapes",
+    "contacts": "Newton collision pipeline"
+  },
+  "network_source_sha256": {
+    "features.py": "89ff4aa7df54e1e6f607dad5d9a419477ac2421988628c1ecd4eb0d44043990e",
+    "model.py": "5fa57f8c232856b2d0dbb5f2691fbf9b22342ae766fba092f519ec3c9abd09dc"
+  },
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "warp-lang": "1.19.0.dev20261008",
+    "newton": "1.8.0.dev0",
+    "numpy": "2.5.1"
+  },
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "implementation_source_sha256": {
+    "closed_loop.py": "bd93fe4e219f567aa9030ad8fdbabe7c793dec7e2c790567451ab7057802b39a",
+    "forces.py": "4b7df74b033e41c581b671ba3c2a28dc336ee03d1393a1ada1a20502b0e3f654",
+    "estimator.py": "221e4bf1ac4147133d6579b1f3e8547ce56778433b9fa0af9a121fcdcdcb5db4"
+  }
+}

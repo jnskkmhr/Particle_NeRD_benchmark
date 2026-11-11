@@ -1,0 +1,120 @@
+{
+  "episode": {
+    "id": "box-static-support",
+    "shape": "box",
+    "mode": "dynamic",
+    "motion": "drop",
+    "split": "test",
+    "seed": 42,
+    "particle_seed": 42,
+    "duration_s": 20.0,
+    "dt_s": 0.005,
+    "terrain": "flat",
+    "yaw": 0.0,
+    "direction": 1,
+    "y": 0.0,
+    "travel": 1.1544737345849607,
+    "depth": -0.015558887682898384,
+    "radius": 0.19431790244782796,
+    "entry_s": 0.7693481666618698,
+    "release_height": 0.25,
+    "speed": 0.4357319126264538,
+    "spin": 2.3265632928919633
+  },
+  "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
+  "reference_sha256": "2301c18571400a9fc3bf9b1901fa5cddbbd4b3faea4bfa46d2d0f86d960e034f",
+  "network_source_sha256": {
+    "features.py": "89ff4aa7df54e1e6f607dad5d9a419477ac2421988628c1ecd4eb0d44043990e",
+    "model.py": "5fa57f8c232856b2d0dbb5f2691fbf9b22342ae766fba092f519ec3c9abd09dc"
+  },
+  "evaluation_source_sha256": {
+    "evaluate.py": "323e7bd934ce93a7706234bc80bf6304572e96b378295b1f1bc8b791e60d0588",
+    "metrics.py": "2624b91b052c667151c31871630bd1152b3f3b2bf6fa9ba55eb8855ec4082bd1",
+    "forces.py": "4b7df74b033e41c581b671ba3c2a28dc336ee03d1393a1ada1a20502b0e3f654",
+    "data.py": "6876ec6c5c57b9a61648f6c6935d6affeb263727b4843fe36be9e4607917deb9"
+  },
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "warp-lang": "1.19.0.dev20261008",
+    "numpy": "2.5.1",
+    "scipy": "1.17.0",
+    "scikit-image": "0.27.0rc1",
+    "trimesh": "4.11.1",
+    "rtree": "1.4.1"
+  },
+  "mode": "Recurrent particle rollout with recorded body inputs",
+  "failure": null,
+  "expected_steps": 4000,
+  "completed_steps": 4000,
+  "native_dt_s": 0.005,
+  "particle_metric_interval_s": 0.005,
+  "field_metric_interval_s": 0.1,
+  "surface_metric_interval_s": 0.2,
+  "grid_spacing_m": 0.02,
+  "surface_sensitivity_spacing_m": 0.03,
+  "surface_kernel_sigma_m": 0.032,
+  "surface_density_threshold_kg_m3": 800.0,
+  "surface_samples_per_direction": 4096,
+  "surface_seed": 42,
+  "contact_distance_m": 0.05,
+  "moving_speed_m_s": 0.01,
+  "cell_mass_threshold_kg": 0.0005242880061268806,
+  "below_body_depth_m": 0.1,
+  "below_body_region": "Horizontal rectangle enclosing the body's world x/y projection, from 0 to 0.10 m below its lowest world z; clipped at the rigid floor z = -0.30 m",
+  "active_selection": null,
+  "displacement_gate": false,
+  "particle_projection": false,
+  "pipeline": null,
+  "force_filter": null,
+  "force_velocity": "Forward finite difference from particle positions at t and t+dt",
+  "body_input": "material_step",
+  "force_body_input": "At entry to the MPM step, after proxy rewind, before material solve",
+  "force_parameters": {
+    "effective_mass_factor": 10.0,
+    "tangent_mass_factor": 10.0,
+    "stabilization": 0.01,
+    "friction": 1.0
+  },
+  "surface_failures": [],
+  "grid_lower_m": [
+    -1.2019057273864746,
+    -0.8002985119819641,
+    -0.6565723419189453
+  ],
+  "grid_upper_m": [
+    1.1706372499465942,
+    0.775922954082489,
+    0.15952099859714508
+  ],
+  "mass_difference_map_definition": "Particle NeRD minus MPM physical mass, summed along z for the xy map and y for the xz map; kg per projected grid column, sampled every 1 s",
+  "force_reference_particles": {
+    "component_rmse_n": [
+      0.9696489572525024,
+      0.720761239528656,
+      6.710482597351074
+    ],
+    "component_bias_n": [
+      0.5151088237762451,
+      -0.3401307165622711,
+      -5.5600056648254395
+    ],
+    "vector_rmse_n": 6.818373203277588,
+    "unconverged_steps": 0
+  },
+  "force_predicted_particles": {
+    "component_rmse_n": [
+      1.0342254638671875,
+      1.140774130821228,
+      18.91956901550293
+    ],
+    "component_bias_n": [
+      0.03685755655169487,
+      -0.16328537464141846,
+      -17.34345054626465
+    ],
+    "vector_rmse_n": 18.982120513916016,
+    "unconverged_steps": 0
+  },
+  "mean_position_rmse_mm": 40.75698249236494,
+  "final_position_rmse_mm": 88.02593994140625
+}

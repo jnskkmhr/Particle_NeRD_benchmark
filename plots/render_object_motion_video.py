@@ -8,6 +8,7 @@
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -123,12 +124,17 @@ def main():
             ],
             stdin=subprocess.PIPE,
         )
+        pred_label = os.environ.get("BENCHMARK_MODEL_LABEL") or (
+            "Particle World"
+            if "cconv_warp.py" in meta.get("network_source_sha256", {})
+            else ("Particle NeRD-Local" if len(meta.get("network_source_sha256", {})) == 2 else "Particle NeRD")
+        )
         try:
             for frame in frame_indices:
                 canvas = Image.new("RGB", (2 * width, height + header), "white")
                 draw = ImageDraw.Draw(canvas)
                 for column, (source, label) in enumerate(
-                    ((reference, "Implicit MPM"), (prediction, "Particle NeRD"))
+                    ((reference, "Implicit MPM"), (prediction, pred_label))
                 ):
                     state.particle_q.assign(source["particle_position"][frame])
                     state.body_q.assign(source["body_state"][frame, :7][None])

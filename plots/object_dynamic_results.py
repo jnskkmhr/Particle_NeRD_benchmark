@@ -2,6 +2,7 @@
 
 import html
 import json
+import os
 import shutil
 
 from plot_object_closed_loop import caption, digest, export_curves, plot
@@ -126,12 +127,13 @@ def dynamic_results(source, output, checkpoint, section):
         (destination / "simulation_provenance.json").write_text(
             json.dumps(public, indent=2) + "\n"
         )
+        model_label = os.environ.get("BENCHMARK_MODEL_LABEL", "Particle NeRD")
         prefix = f"dynamic/{shape}/"
         parts.append(
             f"<h3>{shape.title()}: dynamic drop and support</h3>"
             f'<video controls playsinline preload="metadata" poster="{prefix}comparison_poster.png" style="display:block;width:100%;height:auto">'
             f'<source src="{prefix}comparison.mp4" type="video/mp4"></video>'
-            "<p>Left: Implicit MPM. Right: Particle NeRD. Both objects move dynamically; their trajectories can diverge. Playback is real time at 50 fps.</p>"
+            f"<p>Left: Implicit MPM. Right: {html.escape(model_label)}. Both objects move dynamically; their trajectories can diverge. Playback is real time at 50 fps.</p>"
             f'<figure><a href="{prefix}dynamic_response.png"><img src="{prefix}dynamic_response.svg" alt="{shape.title()} dynamic object position and Fx Fy Fz over time" style="width:100%;height:auto"></a>'
             f"<figcaption>{html.escape(caption(shape, number))}</figcaption></figure>"
             f'<p><a href="{prefix}dynamic_response.png">PNG</a> · <a href="{prefix}dynamic_response.pdf">PDF</a> · '

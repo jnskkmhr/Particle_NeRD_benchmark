@@ -10,12 +10,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "df23c653d405f9fcf989481e854e6a49a904dc46141de8ce1f131ec3f293201c",
       "prediction_sha256": "13090379e904389ad83b6243f34adaab35ba0ef54d53c87dd3b0e49f46067088",
-      "video_sha256": "e4b34af3d4c0c19dfadb3d26d711de1d58bf926a2d56f55de269299c956353cb",
-      "poster_sha256": "d9ec3935c631e0501ba735a05ff83d2b28b6d421f0c34cfd1b548f6f22405c67",
-      "video_provenance_sha256": "5384fed86b5c95f5d54675e23bae4d8efe8880b6bc4fe5ae539749572a2e11e2",
+      "video_sha256": "6e13de6384b963281e5ca46d268c2f4046ba642a451036afcbd8545fc6bba064",
+      "poster_sha256": "da85027210d4ef0a86c87cda30caf4b443f8c3d61404831159f988337443300e",
+      "video_provenance_sha256": "3a6ecf8bb63162c5ee32b3d46c00898527b56d2b7f810cfd09b6c4297e08a594",
       "group_trajectory_count": 3,
       "motion_label": "Horizontal motion",
-      "motion_description": "The object is lowered into the sand and follows a prescribed horizontal path."
+      "motion_description": "The object is lowered into the sand and follows a prescribed horizontal path.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "box-0039",
@@ -26,12 +27,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "fa6b9fb950228e38147536d548d7470255e4b43ff31990c726d943541f2ac537",
       "prediction_sha256": "dd15a78a063012b31b230bbdf46f27433d34d50937a1a51f21410476db97c780",
-      "video_sha256": "1a474f15893c6c9d5d2b38d679262e7b665a1e0576f8297f94568a4e870c3485",
-      "poster_sha256": "61f8d25615fb01005ac4a5bd30346907d0395c6de5448561bd524020e20201d3",
-      "video_provenance_sha256": "33bcae3f859ab17e53568b79732a00f31829e1f765a58294c5d240d39b369578",
+      "video_sha256": "fecbb7ac97e42bdc5d2db2433baa25d19471b5890cb4032d61ce2aad81d7c6d6",
+      "poster_sha256": "f656ba713b7b0fad49993003e633db105745b7844dc738bf5685fe291dbac420",
+      "video_provenance_sha256": "0addf016c2dc114744069d11a7cee37c63ffaa7be80d1d414d1730d3de6d852f",
       "group_trajectory_count": 3,
       "motion_label": "Vertical motion",
-      "motion_description": "The object is lowered into the sand, then moves down and up along a prescribed vertical path."
+      "motion_description": "The object is lowered into the sand, then moves down and up along a prescribed vertical path.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "box-0069",
@@ -42,12 +44,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "2d261e7fac29dc287722ead7d21c392580a90ffaaeddce9d54c31b635dc97d0f",
       "prediction_sha256": "8f642805796f2f61ddfe006e0a2dbb064997ec6719d74c3a272989fb94cf9ed5",
-      "video_sha256": "bb612f27fdc44f8d3aef3562af9c074c1aa486f185a05d85bd853fbd3c4c8fd9",
-      "poster_sha256": "542138dc1d95fb90304a8baaeca414c855dc9ae5138b48b7b092af2fac4a81c0",
-      "video_provenance_sha256": "d144c377363ebffdb90e2c52eedb2ced20a5853b125e5018e6b412d04b9bd7c8",
+      "video_sha256": "b6290e7cceb2f69f7f7bc9e1dace24cd8ab5a45751f10ee2986098be1f90a397",
+      "poster_sha256": "672c81bd0b052d7005f788ad2f7086893c3880df776c77887b2681bf24562725",
+      "video_provenance_sha256": "7a4620c63c8f6b4b4f02ba574ff997c3353241a4e88667bd69455614322f0c5f",
       "group_trajectory_count": 3,
       "motion_label": "Circular motion",
-      "motion_description": "The object is lowered into the sand and follows one prescribed horizontal circle."
+      "motion_description": "The object is lowered into the sand and follows one prescribed horizontal circle.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "box-0099",
@@ -58,12 +61,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "0a179738cc58b8d656137247fb40233759aa04001b10d0f010e09ac1b705ae96",
       "prediction_sha256": "a8b65d31c613fa277a25a1c675fb92db874f2eae8954658c9f4aa34c588cb6f7",
-      "video_sha256": "1d2c4adb858d53e8867f31975ef6ca5b7edeb75aabf82d7a587773aa8ae41f90",
-      "poster_sha256": "c44f97712d7a5a508e15d7c76348b77a05ee72386cd20a5e0cc8b2a5cb6127da",
-      "video_provenance_sha256": "3f102104c90e86d8459b0b9742338ff6e3d78376bbb03d63f169d539587bba4d",
+      "video_sha256": "0aa789ac17a0dbd24ced1c75a8451b187c139c85a2df57eeeed0e5393a4a2dec",
+      "poster_sha256": "ad32ae9156d1a142e5f6952f937a5c80a755330dc7647eef5cf3465040b409cd",
+      "video_provenance_sha256": "2928bd0045de2e7c750bb506a57d12b1f55ff1f99464f6085e6583833bfac7ef",
       "group_trajectory_count": 3,
       "motion_label": "Holding",
-      "motion_description": "The object is lowered into the sand and its pose is then held fixed."
+      "motion_description": "The object is lowered into the sand and its pose is then held fixed.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "box-0129",
@@ -74,12 +78,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "d6121f7078e1e4e008cc0808758c3b7ebf0b2582982b1f5e8b3c20427f7f59d2",
       "prediction_sha256": "181e318b11e000165ff2b6e03b08967c73be54f5d8c78e929b31b4f9bdaede83",
-      "video_sha256": "a39a5b0c8c0963b31f243e8f49bd7a99bd744a5600ea4895e9827c7907d7f6aa",
-      "poster_sha256": "9efff9fa1b88f5d5327f27ec91b5675389c289806f7cb33caa627c259bcfbb4f",
-      "video_provenance_sha256": "002a1a71cdb3c4348256efc88b35ffd03e146316da3267c7bbec1f9cc9bdde9b",
+      "video_sha256": "5d140fcdd20dd9a25b17bb3c64828b6f6a6d9dd3593e6fbb8829ee7f6f5d01a1",
+      "poster_sha256": "e43c418a3ca7eed7b3335b181e298368fe888da83d6d6016bd6066d10b45c62f",
+      "video_provenance_sha256": "2079a7766597c711a826766ea9f8aa41b9117cb1e240f1bd57463d979315d2f5",
       "group_trajectory_count": 2,
       "motion_label": "Drop",
-      "motion_description": "The object is released at 1 s and responds to gravity and sand contact in the MPM recording."
+      "motion_description": "The object is released at 1 s and responds to gravity and sand contact in the MPM recording.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "box-0149",
@@ -90,12 +95,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "157d24d1427755949b2db4bd4acaa02c390a6e323eb7f8ab69e0c48f6e2e9ca7",
       "prediction_sha256": "d5c2cca74619246e4bf5746b20d34a73231314639cc5ab21bb3565b76d4f58a2",
-      "video_sha256": "dda600d3bbf4d12c9aa85c073d4b35ce3fc7818b344d59fd3f881b9b220e78a1",
-      "poster_sha256": "78c2cb5aca845c63fb4280489401e1a34fd0c384e5d3c22d1ceb7dc15710cd4a",
-      "video_provenance_sha256": "3328319f8c091554859b4384035c30f0cad06dfa9ba52f81f26ff79309c96080",
+      "video_sha256": "cd24787cc8758f8778e6a46d0e4d5247ff3374e866b47434b872a2324b725ba5",
+      "poster_sha256": "ecee1419e0608b772a0487cdd2e99ce5c12360b358e591755ac3aefebc27c112",
+      "video_provenance_sha256": "3979b91d85f7e47b26d59597ed7a44c5280b392c1a774f3473688939f4c76798",
       "group_trajectory_count": 2,
       "motion_label": "Slide",
-      "motion_description": "The object is released at 1 s with a horizontal velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with a horizontal velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "box-0169",
@@ -106,12 +112,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "58d394ce834acd8c3efad07e9b90236b70738ad87be8bc86fd185c6a36b7df55",
       "prediction_sha256": "7fc3edaedd51cfaba60ed9180c7cf222438e19e4452eade26ac19e539e94aa50",
-      "video_sha256": "d36ff4f056cb109d00476ec734f36905079c48207e99f8eb90403a5eccd001d4",
-      "poster_sha256": "ee71d73b3eba3bcf2f8bf9f8589ebf8e064e06a0473a8405f4f5b9da607b61b3",
-      "video_provenance_sha256": "dc73e9bb4b64d78311e09bd938ba641a3bd21ce9f0f4787bbcea0f565c3dd766",
+      "video_sha256": "2d71b5ef6c328bce8b2bc40d8d4058701879fdbfaee1ef4e74a6d2203a0d4fe5",
+      "poster_sha256": "db74098f2e947a46910f31a881623c3408b4433214d4e249c925ba76661e9222",
+      "video_provenance_sha256": "85f573db6f3e3ffd21b8f3cad8755521a2cf7544d6c29e48e224562f6dcf027d",
       "group_trajectory_count": 2,
       "motion_label": "Throw",
-      "motion_description": "The object is released at 1 s with horizontal and upward velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with horizontal and upward velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "box-0189",
@@ -122,12 +129,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "6e287659354535bbadf28b4d3a74f0520af00e69c9528e50677e0f92753d0f11",
       "prediction_sha256": "d633fde1dd231952bb0ab9d91e418ae0710b098eee3122360ac750418b1d770a",
-      "video_sha256": "68e980d3b30f67de4b1c2d4e6d7cb4a2cada32ecdc9271868a4173572f74e792",
-      "poster_sha256": "8d2296af45a8b0eacf960a272fc66164b40e97e679af34166ba9efee878ba217",
-      "video_provenance_sha256": "e8ac7a25bd3669a5d952793644dda6aefa0f9373c29aa1106a0f433e7274a4a2",
+      "video_sha256": "6c4d4f0072e871fbd4a55740ee4025d58ce15e2c16be8845033620092713abe8",
+      "poster_sha256": "fd40eac1fb155937ef16aa582db1c9caf84ae6249038a69b06eb4d1d2c9856a0",
+      "video_provenance_sha256": "9fdacbd9039f45e978d95f6f1cd0eec8475a2937eca8862a37b705e42439c7f5",
       "group_trajectory_count": 2,
       "motion_label": "Tumble",
-      "motion_description": "The object is released at 1 s with horizontal and angular velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with horizontal and angular velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "sphere-0009",
@@ -138,12 +146,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "cee873eb5939ffac6296cf12001adf6f424e44ea75d08f14ea140e18d300459d",
       "prediction_sha256": "be94427f767472256fd3e0d6773a0834c0e8eb71b3846ed7230e05cb0b53185a",
-      "video_sha256": "8ec1017e352bfceb73bd1fe5aa61e5aaf8bfaf7e50f27918367859c452a13899",
-      "poster_sha256": "908ad59cfae440655bb84c42a536242cbfaa951b15351cfb184b69bf22c9d1ff",
-      "video_provenance_sha256": "bb34f3d7527d092179059ac7a84c240d6df5bbad0a94869a19f85599ab4538de",
+      "video_sha256": "37ca90e04a1a006ac64d233cd0b98ad882cf272bab8b73e6b3bdbae26f987a35",
+      "poster_sha256": "8dd4c893b15c1b8f33dd418d5b242274c4a0c3890d0831cccd3c9a86a213eb2b",
+      "video_provenance_sha256": "53e2f56c13370a599e272244244ba631160fede06223add5898e1a33a8d5aa14",
       "group_trajectory_count": 3,
       "motion_label": "Horizontal motion",
-      "motion_description": "The object is lowered into the sand and follows a prescribed horizontal path."
+      "motion_description": "The object is lowered into the sand and follows a prescribed horizontal path.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "sphere-0039",
@@ -154,12 +163,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "ac6747f02b335707552e2d9b2ad2d548fd1412ec448c1087764e14108915f301",
       "prediction_sha256": "040c2866e51501f191a8e6eb7429d4b2ec89b0e8f33d270e35cc8897a35b3da7",
-      "video_sha256": "bed05b85aad043ef0d74af7fac70e6e4206aafadb4bedd652d525ae96184c22a",
-      "poster_sha256": "b992122e34f9221f070d0114548bceeef55faa31b7f7e78306b3fbd16412e82f",
-      "video_provenance_sha256": "77f11819ebe74cb623c4f66f8ff98dc8e314701fdc83bc2c697d723716f1d81c",
+      "video_sha256": "58fe68f5bca72b2a8d6da15f0872e7e5c06ca4aaabab17d0fa14005e97eea4fe",
+      "poster_sha256": "a479a05f33b6f1a490ec40835ed3780ed859b78739e060b46f06721e77d16677",
+      "video_provenance_sha256": "739b31542d8507962523f4e860401e5e29bfaa5e9b31f1dcdaaf9a3c0fc8e44a",
       "group_trajectory_count": 3,
       "motion_label": "Vertical motion",
-      "motion_description": "The object is lowered into the sand, then moves down and up along a prescribed vertical path."
+      "motion_description": "The object is lowered into the sand, then moves down and up along a prescribed vertical path.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "sphere-0069",
@@ -170,12 +180,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "fee7555da8edb9c9496def2bd6b018c4b61525a22c4be257a3e070582b107f9c",
       "prediction_sha256": "e144c0f72a5ae1f816e474d37cb0abf7b091ed9ab71b553652a9dacbee0cc774",
-      "video_sha256": "fee613b80e2333f115b5b3ee837658b60d90835a2a5006add81cfd629afd9a1e",
-      "poster_sha256": "9bcf9076fe380ae5e296ababfa6bef649634ee6aac30b953c07a173cb9a1220b",
-      "video_provenance_sha256": "14205b520a9b1b477d4980d669dd52df4d5b1b45d64becaecec1cb1ff73454f4",
+      "video_sha256": "7b170c3e3004bbdd3b5ea93ac149c8b219f6bb67e207f39d62352721cdb06ff9",
+      "poster_sha256": "8f06b46730cd76fee798923813de2cf0171e45f017da5679f18aa1019e06be70",
+      "video_provenance_sha256": "f0f66e0341e2f6701fbfef272d48262c0e2cc232d027e4f03561a30977e0c698",
       "group_trajectory_count": 3,
       "motion_label": "Circular motion",
-      "motion_description": "The object is lowered into the sand and follows one prescribed horizontal circle."
+      "motion_description": "The object is lowered into the sand and follows one prescribed horizontal circle.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "sphere-0099",
@@ -186,12 +197,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "7327bf943f1542a4f0380f367389ee31911355240f515aaa99238bcd0a38c074",
       "prediction_sha256": "c670735ef20f9dd8e9802f1b51e97ee0c10f0bdfca0cfa729b2d701f56f40249",
-      "video_sha256": "9ea53a2ed0931e98ee22a2c11d13a9191b821bdd835862dfb69fb727e6a438ca",
-      "poster_sha256": "17928b4b27d7cf06f72471a2207e6308f88e26d0167e76ac8315577d49e70bea",
-      "video_provenance_sha256": "ac621862623ad413a1b5d7409410185f750a90293f5f8f4029afa41ea284faf1",
+      "video_sha256": "3b5eb85e93f83e799cceafd7559eb1ac346794c044056a6ca8a60daf743ee79f",
+      "poster_sha256": "6f2eb922e4ef4617cace1c6868c5e12dd702a025e9eaa9927949e3aeecb7f4f1",
+      "video_provenance_sha256": "5b8707cc2b6cb10767f999f063c60956e2d843ac42ff640f099b4ee060fd51a4",
       "group_trajectory_count": 3,
       "motion_label": "Holding",
-      "motion_description": "The object is lowered into the sand and its pose is then held fixed."
+      "motion_description": "The object is lowered into the sand and its pose is then held fixed.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "sphere-0129",
@@ -202,12 +214,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "f2bb23f42d4b700dde91660487994f94c0ad89cbb327d3e5bfba834d91f227e5",
       "prediction_sha256": "fcad3d46af4048421cf148cdb1393c2d678c9e577e0864a25df4d7753784bf1e",
-      "video_sha256": "8990fdbb1d231097546b95d9734028325e3df80c5dbc38a1745b33ed8ee7cf8e",
-      "poster_sha256": "eb14d4cfd819c14e93f44bade3727ab0c33041795867f8281eb7e46b281f877e",
-      "video_provenance_sha256": "fa2b47bce75f939f0a73904f21848f66b0aeb0e9b1b601525d58f871b1908d04",
+      "video_sha256": "57210f2c44f8d953e8b387f26b8b695991239be621404de98de0e37ef0469102",
+      "poster_sha256": "c7cfd0d29e6785583c78504ec7230c737e7ebac4c73b8b1434c5609b14d063f5",
+      "video_provenance_sha256": "8e22b2c289cb4c55c61f50705cc2b218f137e398b2f5ad66e227f855fb201f1e",
       "group_trajectory_count": 2,
       "motion_label": "Drop",
-      "motion_description": "The object is released at 1 s and responds to gravity and sand contact in the MPM recording."
+      "motion_description": "The object is released at 1 s and responds to gravity and sand contact in the MPM recording.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "sphere-0149",
@@ -218,12 +231,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "dc70efb137821a8c6857b656f8ce15b8aa0d56bd36337aee4a58d50ec74d14ea",
       "prediction_sha256": "2a52e972b2b9d5bed38c7490a637562291ea8950a024aebb545e453cb46e8d60",
-      "video_sha256": "d773f8f0f9610c1cbc975c845ada598dc6c924e4978f4c90b2fb33318fa9e0fc",
-      "poster_sha256": "312acd76ce136310bd35e7da4d5d3fe33ba7f9dbb946b7bca8be49d216bc2901",
-      "video_provenance_sha256": "18a0ad973185d12b79e16da339863cc1b95052d208328185595dcca0e42d95b6",
+      "video_sha256": "0d519db216bf78616f8260f938c842a2a8212a4d5692fc24fab7d22d332533df",
+      "poster_sha256": "71dcbaa790b168b0daf542bc7f3b430bbcf2b682d52c1b833f471bd48e15ac31",
+      "video_provenance_sha256": "20d608953525b908f2ec7e246a756334985bdba9a80b78257c87b978e8c05ba0",
       "group_trajectory_count": 2,
       "motion_label": "Slide",
-      "motion_description": "The object is released at 1 s with a horizontal velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with a horizontal velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "sphere-0169",
@@ -234,12 +248,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "accf9198d8843136ee386097454dfe0649e0f8dc1d23e4a3ac8810dccf0469bf",
       "prediction_sha256": "b7bff20d5372ceddc76cff713d173707f6ff194130476ab713ab9a6211917766",
-      "video_sha256": "4391493a21f166a49da2535e7a0a2a65b4cab174d9ce3d84fcf51aa2f57f6e00",
-      "poster_sha256": "190736bc7bc7ec077960f61628ecd94c48734a2e61abe64d77a528fc6be90465",
-      "video_provenance_sha256": "8730163806ebd81fba11cd6ba4ad20bf57e58775e90a57739d8812a572312515",
+      "video_sha256": "8715184441fb85f04a4e8a2593fd99ac2433c6f6f0be41631fdc18571169b537",
+      "poster_sha256": "107e752c9ef3fd0c494ff44c8e92c4c1074d149f819ec015b3414ccaf14a268a",
+      "video_provenance_sha256": "74665f73ecc40d413aeb37f72d00c6457acbdfbaec73544d81f2e96e8fc43792",
       "group_trajectory_count": 2,
       "motion_label": "Throw",
-      "motion_description": "The object is released at 1 s with horizontal and upward velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with horizontal and upward velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "sphere-0189",
@@ -250,12 +265,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "86e16745849b70a91a299305f4b704b8bb7736c61f35b30efd11b253112aac75",
       "prediction_sha256": "7f2698cc95ea55530098e2a04f022a144a2e389172a464bb21164229e410eb1e",
-      "video_sha256": "152b173da945c0e94d7f63a245933526b6c8e1bc2702433bab2f6e2321e38f6e",
-      "poster_sha256": "9abec12af40702cb273b2c5c0ae0ce213fffa681f7080b6e42d94fe67a821933",
-      "video_provenance_sha256": "3b0891bab79da64ff2a0ba9cb02c3582f1fd5b61503c49aab31517c13a5b5a2d",
+      "video_sha256": "b17d4ecc6493c8cd69d58bc6914497fd1c457cb9e287708be0944fff1b88dfd5",
+      "poster_sha256": "671d51552df371da35df195d4eb71d93973be9b4cec87291efaa75d2cbb314a9",
+      "video_provenance_sha256": "b4a86fab272b5b4aac0e4a0d1a7266a56a7851949af404299d6fe207a0456cc3",
       "group_trajectory_count": 2,
       "motion_label": "Tumble",
-      "motion_description": "The object is released at 1 s with horizontal and angular velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with horizontal and angular velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "cylinder-0009",
@@ -266,12 +282,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "e065db03828558a063e27563f8b32ec38286bb139eed84ac38c56635758ad22a",
       "prediction_sha256": "253bb1f66f38ef976f652bedf9b1dd571e48a9fafe0bfdcc400ae6ad2529676e",
-      "video_sha256": "e2daaf72ce3a44fc7d8f1124b5ef37b3c09c1f7fa2a4f070deb1fe74ec76a4ea",
-      "poster_sha256": "3619db24ddad9f529a4f12dfb237e788f918fa92270c28197ed3cd17eaa9cba3",
-      "video_provenance_sha256": "d5ae60099ef35ab29cf7d9cd10f6e03845bb9bd55f92575fe274daf801c0e7a3",
+      "video_sha256": "5e705f7e1ef838fbbea3c5bb651b6d3ec30ce623e08b2e550f4a37c803a07702",
+      "poster_sha256": "0a39ba9722ae3350c7523d21fe42ca3728f61623fe6c8ceea8059eda6f53c0f0",
+      "video_provenance_sha256": "5686b4a4108a8158d6675f913e0c6388fcbcaff0b9d9571633e15a1f177304b2",
       "group_trajectory_count": 3,
       "motion_label": "Horizontal motion",
-      "motion_description": "The object is lowered into the sand and follows a prescribed horizontal path."
+      "motion_description": "The object is lowered into the sand and follows a prescribed horizontal path.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "cylinder-0039",
@@ -282,12 +299,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "f5c67d7e0203f1c158363dc28d3433cd9eb905b6920d6cff2f4c0d16900c3eb6",
       "prediction_sha256": "828eb53e55ef3be502b0c30c1015ca8f770c920b019377aa2399afbe29136a79",
-      "video_sha256": "e390c483c64ffdec266e4c84181262d3d5797933a203b98fa2ee37ffdbc24ded",
-      "poster_sha256": "4df557c596a21ef0570763bb3344cc6ca0f33e49ada7cf2e88eb0c0476c2daa8",
-      "video_provenance_sha256": "68baeda11d0a27452d2383b2722708dd04de9731e05ea5769a065c16de3e3202",
+      "video_sha256": "9b0f8834f6d50ca56104ced6b8e6e7786579ef72acddcdfe3863ff16f370052c",
+      "poster_sha256": "c5bc3874c864b0b5d99eb12a8834159f58a23649d407b47776bfb60d16dcb97d",
+      "video_provenance_sha256": "02adc47170a5928309cc9d5202813e9127193010a3edcb54fb3c4130bd72aba8",
       "group_trajectory_count": 3,
       "motion_label": "Vertical motion",
-      "motion_description": "The object is lowered into the sand, then moves down and up along a prescribed vertical path."
+      "motion_description": "The object is lowered into the sand, then moves down and up along a prescribed vertical path.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "cylinder-0069",
@@ -298,12 +316,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "e839841c7e507921137fdbb8e7111e432de80bb593be0e9aa855ef9f6ce4f169",
       "prediction_sha256": "5eee5679f9f204ff645fbb19c7a898810c5c3879f5fd53ea69fb02210487c2e6",
-      "video_sha256": "93c823fa4481279ddb1ebf960be417e755dabf31e6a560bb02cb5e061175d6ad",
-      "poster_sha256": "4464459d6419bff43365ca81cebc80069a42e1808543042e4d5b0246de044f18",
-      "video_provenance_sha256": "180a4baf6318eb675e2ef4889ed3bddeb65ee0e5fb6e97dd5e1c55530d827cb4",
+      "video_sha256": "ec1bbd3c5ef9e732f3b7118d3065fd04d967b03cd3072a968aa41b5d89e9f21a",
+      "poster_sha256": "f89a591f04dd95fa7a4751fc2f9717a411fde96abc12f57c4d0b9d24186c03e8",
+      "video_provenance_sha256": "d0cf38cf681f81af78e4c852a48c22b67d929d696a60692b4446bc4afd08a6d0",
       "group_trajectory_count": 3,
       "motion_label": "Circular motion",
-      "motion_description": "The object is lowered into the sand and follows one prescribed horizontal circle."
+      "motion_description": "The object is lowered into the sand and follows one prescribed horizontal circle.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "cylinder-0099",
@@ -314,12 +333,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "cdc746d23344f5916f620f21d7ba349c0f87d84d659a7416ab86dcb5ff56ab95",
       "prediction_sha256": "ed0ed1bc858887b4bd07a3a9a4534d23790eb19a0124a282f31ab3cb7192f6b0",
-      "video_sha256": "454efb40316daaf06b8e697a0672d7153b996d136a000af8e4f810481c1bb9d8",
-      "poster_sha256": "c09396f59f7d5d915dafc0f5a0b72d613861be9df2d12c841b8af9bd6ef9017c",
-      "video_provenance_sha256": "0b6c3f1e089f195e9b1d2079543c8383f62e63c750cfc0597faccc33bd117532",
+      "video_sha256": "a1b0a1d83630315ea598f85a8f1532d3a7c26ea7e4dbbcf729ba3676352843cb",
+      "poster_sha256": "c48f40bcb4fdee54665fb242b79b23a925c956da5d9296a6ea2a07749c969afd",
+      "video_provenance_sha256": "eba551bc3397082d374a1a47c75804a320f9ce0c4041d52ebfa840679c27d674",
       "group_trajectory_count": 3,
       "motion_label": "Holding",
-      "motion_description": "The object is lowered into the sand and its pose is then held fixed."
+      "motion_description": "The object is lowered into the sand and its pose is then held fixed.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "cylinder-0129",
@@ -330,12 +350,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "24b52d6641144f70cc6466f9f31ffab110bf1273ec96fb4cda32862730c8e903",
       "prediction_sha256": "0b19e2ba10b10b715da4453ca2251baecc3aeff5c928e06c5e2d37575f53c6ff",
-      "video_sha256": "d1ec37b1585b434775e8762f024e83025efc955cf69e8fa4360e7f484fab7d3d",
-      "poster_sha256": "cd2790e20e7afd4b2fcfdc83022527489d684fa91749f1d1ac98c34f26fe4bf8",
-      "video_provenance_sha256": "ff438ba7bdeb53188309efc2138c622ce45e4e27d925ac3bb5c91c7163ac70aa",
+      "video_sha256": "ced16cbafa997801e90347ae8169958c3a3fd15961b42c69fd084a1fa91a09dd",
+      "poster_sha256": "d8cb39295be7f85e9b1d05ce50046be5f01378d22a217b01fa3d38153dc5e6a4",
+      "video_provenance_sha256": "ba4b45c2566452efe04a2cf6c9f682369638c1bcb5e1ffd7a3fe292dc5ed47c1",
       "group_trajectory_count": 2,
       "motion_label": "Drop",
-      "motion_description": "The object is released at 1 s and responds to gravity and sand contact in the MPM recording."
+      "motion_description": "The object is released at 1 s and responds to gravity and sand contact in the MPM recording.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "cylinder-0149",
@@ -346,12 +367,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "981d695c167f2ba9f9433111667ae199893235629ba3e89108a3b6361f59ff39",
       "prediction_sha256": "aae05f25e12583fd995733ca7843d0a572ff2d430aa3710cfd63c23aeb72b0fe",
-      "video_sha256": "7c357810ef1a5ac1eb1d7b2865e98cb781d8aad26fcf7c5726fb32a763039980",
-      "poster_sha256": "fa36eb4a0ff1eb06541ad7357ccf367de6759bd9e0903c510cd59de48ed078be",
-      "video_provenance_sha256": "7c68636a68a276f1d48edc225ea60deff85c39e636080e258e21f5bd7d915827",
+      "video_sha256": "1005e64c5f5083bfdf3d6c032683c3c2cf34757c464e008f97820e6a24032b39",
+      "poster_sha256": "6c9bb6e06d58aa187c8557c570f16fc3e542908b0bba87b615f6f455682e2373",
+      "video_provenance_sha256": "954a19109c6c7a3bc79d67d92e45ec7ef9f5af9fd7a5e609a881cf76a1812a65",
       "group_trajectory_count": 2,
       "motion_label": "Slide",
-      "motion_description": "The object is released at 1 s with a horizontal velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with a horizontal velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "cylinder-0169",
@@ -362,12 +384,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "a6fddec2a080ff1c739709965abb82a2950befbd70ddee0824f9f52fb4ebe28b",
       "prediction_sha256": "0ff96d5e33920b81b46ed58bef150a1f21c8fd5e07b163695e3827a332884faa",
-      "video_sha256": "188013fc4c3c1c1fc42ad9bf3efcd13b209175d805596f14ed518298f95836d2",
-      "poster_sha256": "e3ec0f82a3cd65ec53f699d61ec54b1582e5cf303adf8e262cbc7777739087e4",
-      "video_provenance_sha256": "ca3cceed9992a09a7ff8858e1391fdcc149ad200ea0cb70f53605fc2ee49b678",
+      "video_sha256": "b47135dd3ba5e18199a7ad96cccca95f1c584d46623c59419c994883d55c5b40",
+      "poster_sha256": "b8c70caa994c1b15316ac006c6c3e457ea7f2a194df145d4a1c3a5904ff4ed06",
+      "video_provenance_sha256": "f16b48eb2701edd5c769dee4da332daa2cdab6bab4fca24217028a12b3f4c7ce",
       "group_trajectory_count": 2,
       "motion_label": "Throw",
-      "motion_description": "The object is released at 1 s with horizontal and upward velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with horizontal and upward velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     },
     {
       "episode_id": "cylinder-0189",
@@ -378,12 +401,13 @@
       "checkpoint_sha256": "9c12c7dd86225dd22aa7ae4518479c1a2c6c0bd76e67fe288502ec448e8fa5b7",
       "reference_sha256": "5e1070d1a57a566f7d9bb014e6e9339a247212e9c597d24026c33c3590e0b678",
       "prediction_sha256": "8e38a5dad12c1bad94ea3d82cc614925328b1a78c23d57986c5175406ce096ec",
-      "video_sha256": "beb4d5d068589ecdfd4ae17ff780d7c134b72f300123d219492362782c9bcd8d",
-      "poster_sha256": "c2bd1e1881e2f614fbf62e509e3f0101b25f7adacf4d2d5a083dafd06e4d194d",
-      "video_provenance_sha256": "d6f1a0bac0d07462a3afcb8b1e2696d67bd124f6c574972b654d890a27c5a7fe",
+      "video_sha256": "5cd484487fcc994ecdc61badeea1e9419b85628fa0846b1323c8168b3bda7c46",
+      "poster_sha256": "e6a0bdb6feecbf72a99b28560ea0fcc2b66e2bdcc8446b3a45a9cb281aa6f528",
+      "video_provenance_sha256": "b05590e74472964e2cbff7b95da1a6b0716edacb90c5d2db202a17232e4a9558",
       "group_trajectory_count": 2,
       "motion_label": "Tumble",
-      "motion_description": "The object is released at 1 s with horizontal and angular velocity and then responds to gravity and sand contact."
+      "motion_description": "The object is released at 1 s with horizontal and angular velocity and then responds to gravity and sand contact.",
+      "model_label": "Particle World"
     }
   ]
 }

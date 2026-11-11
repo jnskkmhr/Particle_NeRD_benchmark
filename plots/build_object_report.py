@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import html
 import json
+import os
 import shutil
 from pathlib import Path
 
@@ -279,10 +280,11 @@ def build_case(root, output, checkpoint):
             + "</p><p>All particles remain in the position and force "
             "measurements. Temporal metrics below use a larger grid and retain escaped particles.</p>",
         )
+    model_label = os.environ.get("BENCHMARK_MODEL_LABEL", "Particle NeRD")
     first, last = (video["state_indices"][i] * meta["native_dt_s"] for i in (0, -1))
     content += section(
         "Matched simulation video",
-        f'<figure class="video-figure" id="hold-video"><video controls playsinline preload="metadata" poster="comparison_poster.png"><source src="comparison.mp4" type="video/mp4"></video><figcaption><strong>Video 1:</strong> Left: recorded implicit MPM. Right: recurrent Particle NeRD predictions. Both panels show the same recorded body poses; an object can therefore remain suspended when predicted sand loses support. These exact states supply the plots below. {len(video["state_indices"])} frames at 50 fps, simulation time {first:g}–{last:g} s.</figcaption></figure>',
+        f'<figure class="video-figure" id="hold-video"><video controls playsinline preload="metadata" poster="comparison_poster.png"><source src="comparison.mp4" type="video/mp4"></video><figcaption><strong>Video 1:</strong> Left: recorded implicit MPM. Right: recurrent {html.escape(model_label)} predictions. Both panels show the same recorded body poses; an object can therefore remain suspended when predicted sand loses support. These exact states supply the plots below. {len(video["state_indices"])} frames at 50 fps, simulation time {first:g}–{last:g} s.</figcaption></figure>',
     )
     figures = ""
     for number, stem, caption in FIGURES:
@@ -439,6 +441,12 @@ def main():
         for key in ("network_source_sha256", "evaluation_source_sha256"):
             if meta[key] != report[key]:
                 raise ValueError(f"Hold/test implementation mismatch in {case}: {key}")
+    model_label = os.environ.get("BENCHMARK_MODEL_LABEL") or (
+        "Particle World"
+        if "d_model" in config["model"]
+        else ("Particle NeRD-Local" if "cconv_dim" in config["model"] else "Particle NeRD")
+    )
+    os.environ["BENCHMARK_MODEL_LABEL"] = model_label
     args.output.mkdir(parents=True)
     motion_manifest = install_test_videos(args.test_videos, args.output, report, digest)
     for case in CASES:
@@ -569,12 +577,18 @@ def main():
     content += hold_results(args.holds, args.output, checkpoint, digest, table, section)
     if args.dynamics:
         content += dynamic_results(args.dynamics, args.output, checkpoint, section)
+    model_label = os.environ.get("BENCHMARK_MODEL_LABEL") or (
+        "Particle World"
+        if "d_model" in config["model"]
+        else ("Particle NeRD-Local" if "cconv_dim" in config["model"] else "Particle NeRD")
+    )
+    os.environ["BENCHMARK_MODEL_LABEL"] = model_label
     (args.output / "index.html").write_text(
         page(
-            "Shared object-model prediction accuracy",
+            f"{model_label}: shared object-model prediction accuracy",
             content,
             depth=2,
-            introduction="One shared particle model: recorded-motion particle/force evaluation and separately reported fully dynamic object simulations.",
+            introduction=f"One shared {model_label} particle model: recorded-motion particle/force evaluation and separately reported fully dynamic object simulations.",
             extra_head='<link rel="stylesheet" href="../../assets/object-motion-gallery.css"><script src="../../assets/object-motion-gallery.js" defer></script>',
         )
     )

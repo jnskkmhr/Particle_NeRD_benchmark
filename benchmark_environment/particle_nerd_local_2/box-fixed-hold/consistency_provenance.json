@@ -1,0 +1,13 @@
+{
+  "checkpoint_sha256": "0ec69c79cceccbfeba9c3a063df5ed72dc3a4716328c54481c21509c41fb82bc",
+  "reference_sha256": "fd3d28d445803085c6f82d063872badc5b2f6434fe458d728238e582b83e3312",
+  "prediction_sha256": "241ec435a6e07fbaabeb8f17a19cc4d3fa9ec9ffde5072adb18f3d70b6a78357",
+  "source_sha256": "c9b10182d8e358d191ca0fb576659bb1a2114d4e339be24e0ed970e4c109a15b",
+  "files_sha256": {
+    "consistency_summary.json": "719247c0936f7f298e880668b1e5f9fc8dda05acfcbda683baf9606d73b588b7",
+    "consistency_series.json": "5a409b8538abccee1bda6273e1449ece750635a7ef209b21be78a9932588faca",
+    "spatiotemporal_consistency.png": "48dc65bf56b6fef783541c0441747ecf3cee959ab11011676857011b7b1b1f59",
+    "spatiotemporal_consistency.pdf": "d747a8e4688bf4f841ef32401fd2e408fe62a8c3bcc0631a1f625ceb9799137f",
+    "spatiotemporal_consistency.svg": "d4c7345dfd439b877579bd843f67a7b25e716e4acf25cdb48e017b1473a6d9b9"
+  }
+}

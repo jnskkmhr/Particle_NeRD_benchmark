@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import html
 import json
+import os
 from pathlib import Path
 
 import matplotlib
@@ -236,7 +237,8 @@ def distribution(ax, records, series, ylabel):
 
 
 def paired_bars(ax, values, labels, ylabel, *, methods=None, std=None):
-    methods = methods or (("Implicit MPM", MPM), ("Particle NeRD", NERD))
+    model_label = os.environ.get("BENCHMARK_MODEL_LABEL", "Particle NeRD")
+    methods = methods or (("Implicit MPM", MPM), (model_label, NERD))
     x = np.arange(len(labels))
     width = 0.72 / len(methods)
     for j, (label, color) in enumerate(methods):
@@ -343,10 +345,15 @@ def generate(root):
             ("predicted_ke_j_end", "Final kinetic energy (J)"),
         ],
     }
+    model_label = os.environ.get("BENCHMARK_MODEL_LABEL") or (
+        "Particle World"
+        if "cconv_warp.py" in report.get("network_source_sha256", {})
+        else ("Particle NeRD-Local" if len(report.get("network_source_sha256", {})) == 2 else "Particle NeRD")
+    )
     for stem, keys in layouts.items():
         fig, axes = canvas(3, 2) if len(keys) > 4 else canvas(2, 2)
         for index, (key, label) in enumerate(keys):
-            series = [(key, "Particle NeRD", NERD)]
+            series = [(key, model_label, NERD)]
             if key.startswith("predicted_"):
                 series.insert(
                     0, (key.replace("predicted_", "reference_"), "Implicit MPM", MPM)
@@ -363,7 +370,7 @@ def generate(root):
     metadata = [read(root / name / "evaluation_settings.json") for name in REFERENCES]
     windows = [read(root / name / "force_windows.json") for name in REFERENCES]
     assert all(m["checkpoint_sha256"] == checkpoint for m in metadata)
-    estimation = (("Particle NeRD", NERD), ("Estimator with MPM particles", DIAGNOSTIC))
+    estimation = ((model_label, NERD), ("Estimator with MPM particles", DIAGNOSTIC))
     fig, axes = canvas(2, 3)
     for row, metric in enumerate(("component_rmse_n", "component_bias_n")):
         for i in range(3):
@@ -395,7 +402,7 @@ def generate(root):
         [[m["final_position_rmse_mm"] for m in metadata]],
         CASE_LABELS,
         "Final position RMSE (mm)",
-        methods=(("Particle NeRD", NERD),),
+        methods=((model_label, NERD),),
     )
     paired_bars(
         axes[1],
@@ -526,7 +533,7 @@ def generate(root):
         end = meta["completed_steps"] * meta["native_dt_s"]
         for source, label, color in (
             ("reference", "Implicit MPM", MPM),
-            ("predicted_particles", "Particle NeRD", NERD),
+            ("predicted_particles", model_label, NERD),
             ("reference_particles", "Estimator with MPM particles", DIAGNOSTIC),
         ):
             rows = [
