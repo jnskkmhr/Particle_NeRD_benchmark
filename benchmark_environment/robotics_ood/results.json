@@ -1,0 +1,161 @@
+{
+  "franka-flat": {
+    "particle_world": {
+      "steps": 1198,
+      "mean_rmse_mm": 10.25150245278825,
+      "final_rmse_mm": 15.288276672363281,
+      "surface_mean_rmse_mm": 11.794704305620643,
+      "ms_per_step": 7.765590419055263,
+      "mean_pressure_pa": 0.0,
+      "mean_deviatoric_pa": 0.0
+    },
+    "particle_nerd_local_3": {
+      "steps": 1198,
+      "mean_rmse_mm": 10.485200271097467,
+      "final_rmse_mm": 18.75052261352539,
+      "surface_mean_rmse_mm": 14.204236987076438,
+      "ms_per_step": 8.594415692817762,
+      "mean_pressure_pa": 177.79947070088332,
+      "mean_deviatoric_pa": 0.0
+    },
+    "particle_nerd": {
+      "steps": 1198,
+      "mean_rmse_mm": 46.356858391918,
+      "final_rmse_mm": 71.3093490600586,
+      "surface_mean_rmse_mm": 56.43104107700326,
+      "ms_per_step": 2.5040328706527606
+    },
+    "coupled_particle_world": {
+      "motion": "franka",
+      "solver": "particle_world",
+      "steps": 1200,
+      "particles_finite": true,
+      "min_particle_z_m": -0.29435616731643677
+    },
+    "coupled_particle_nerd_local_3": {
+      "motion": "franka",
+      "solver": "particle_nerd_local_3",
+      "steps": 1200,
+      "particles_finite": true,
+      "min_particle_z_m": -0.28580668568611145
+    }
+  },
+  "quadruped-flat": {
+    "particle_world": {
+      "steps": 1198,
+      "mean_rmse_mm": 9.983001439743527,
+      "final_rmse_mm": 17.91160774230957,
+      "surface_mean_rmse_mm": 9.345071650071315,
+      "ms_per_step": 5.849230716172886,
+      "mean_pressure_pa": 0.0,
+      "mean_deviatoric_pa": 0.0
+    },
+    "particle_nerd_local_3": {
+      "steps": 1198,
+      "mean_rmse_mm": 11.964193905210854,
+      "final_rmse_mm": 22.803592681884766,
+      "surface_mean_rmse_mm": 15.729244849294773,
+      "ms_per_step": 6.604737678650792,
+      "mean_pressure_pa": 178.1364156758049,
+      "mean_deviatoric_pa": 0.0
+    },
+    "particle_nerd": {
+      "steps": 1198,
+      "mean_rmse_mm": 31.198865649459854,
+      "final_rmse_mm": 71.23919677734375,
+      "surface_mean_rmse_mm": 29.4169216024097,
+      "ms_per_step": 2.2965256820117217
+    },
+    "coupled_particle_world": {
+      "motion": "quadruped",
+      "solver": "particle_world",
+      "steps": 1200,
+      "particles_finite": true,
+      "min_particle_z_m": -0.1609659045934677,
+      "base_displacement_m": [
+        0.16400671005249023,
+        0.025366781279444695,
+        -0.19242331385612488
+      ],
+      "minimum_base_height_m": 0.193342924118042,
+      "minimum_base_up_z": 0.9935106039047241,
+      "robot_remains_upright": true,
+      "robot_moves_forward": true
+    },
+    "coupled_particle_nerd_local_3": {
+      "motion": "quadruped",
+      "solver": "particle_nerd_local_3",
+      "steps": 1200,
+      "particles_finite": true,
+      "min_particle_z_m": -0.13758806884288788,
+      "base_displacement_m": [
+        0.16475655138492584,
+        0.023983998224139214,
+        -0.19252575933933258
+      ],
+      "minimum_base_height_m": 0.19335733354091644,
+      "minimum_base_up_z": 0.9931878447532654,
+      "robot_remains_upright": true,
+      "robot_moves_forward": true
+    }
+  },
+  "g1-flat": {
+    "particle_world": {
+      "steps": 1198,
+      "mean_rmse_mm": 19.985369939413015,
+      "final_rmse_mm": 32.41913604736328,
+      "surface_mean_rmse_mm": 35.83161856400748,
+      "ms_per_step": 7.981511545002162,
+      "mean_pressure_pa": 0.0,
+      "mean_deviatoric_pa": 0.0
+    },
+    "particle_nerd_local_3": {
+      "steps": 1198,
+      "mean_rmse_mm": 19.899391009576483,
+      "final_rmse_mm": 32.13584518432617,
+      "surface_mean_rmse_mm": 37.36911140726833,
+      "ms_per_step": 17.054385377346026,
+      "mean_pressure_pa": 182.4188916265268,
+      "mean_deviatoric_pa": 0.0
+    },
+    "particle_nerd": {
+      "steps": 1198,
+      "mean_rmse_mm": 68.29780999704175,
+      "final_rmse_mm": 88.44313049316406,
+      "surface_mean_rmse_mm": 94.66904856364098,
+      "ms_per_step": 4.960435314647362
+    },
+    "coupled_particle_world": {
+      "motion": "g1",
+      "solver": "particle_world",
+      "steps": 1200,
+      "particles_finite": true,
+      "min_particle_z_m": -0.34680119156837463,
+      "base_displacement_m": [
+        1.5090289115905762,
+        -0.11871306598186493,
+        -0.2399415373802185
+      ],
+      "minimum_base_height_m": 0.4944928288459778,
+      "minimum_base_up_z": 0.9839581251144409,
+      "robot_remains_upright": true,
+      "robot_moves_forward": true
+    },
+    "coupled_particle_nerd_local_3": {
+      "motion": "g1",
+      "solver": "particle_nerd_local_3",
+      "steps": 1200,
+      "particles_finite": true,
+      "min_particle_z_m": -0.32832950353622437,
+      "base_displacement_m": [
+        1.519065499305725,
+        -0.04393545165657997,
+        -0.2423456907272339
+      ],
+      "minimum_base_height_m": 0.4830876290798187,
+      "minimum_base_up_z": 0.9841185212135315,
+      "robot_remains_upright": true,
+      "robot_moves_forward": true
+    }
+  }
+}

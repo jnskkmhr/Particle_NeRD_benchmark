@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Out-of-Distribution Robotics & Continuum Stress · Particle NeRD</title><link rel="stylesheet" href="../../assets/slides.css"><link rel="stylesheet" href="../../assets/object-motion-gallery.css"></head>
+<body class="benchmark-report"><header><a class="brand" href="../index.html">Particle NeRD / Benchmarks</a><span class="archive">Out-of-distribution robotics &amp; continuum stress evaluation</span></header>
+<main>
+<section class="report-heading">
+  <p class="eyebrow">FRANKA · UNITREE GO2 · UNITREE G1 · CONTINUUM STRESS</p>
+  <h1>Zero-shot out-of-distribution robotics &amp; continuum stress fields</h1>
+  <p>Shared object-trained models (<strong>Particle World</strong> and <strong>Particle NeRD-Local 3</strong>) evaluated zero-shot on multi-link articulated robots (Franka Emika Panda, Unitree Go2 quadruped, and Unitree G1 29-DOF humanoid on 50,400 particles), alongside per-particle compressive pressure and deviatoric shear stress from <code>ConsistentStressContactHead</code>.</p>
+  <nav aria-label="Report sections" style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap">
+    <a href="#stress">1. Continuum pressure &amp; deviatoric stress</a>
+    <a href="#ood-rollout">2. Open-loop 6.0 s rollout accuracy</a>
+    <a href="#coupled-robotics">3. Closed-loop coupled robot simulations</a>
+    <a href="../particle_nerd_local_3/">Particle NeRD-Local 3 object report ↗</a>
+    <a href="../particle_world/">Particle World object report ↗</a>
+  </nav>
+</section>
+
+<section class="report-section" id="stress">
+  <h2>1. Continuum compressive pressure &amp; deviatoric shear stress (Particle NeRD-Local 3)</h2>
+  <p><code>Particle NeRD-Local 3</code> (<code>ParticleNeRDLocalNetwork</code>) augments its local-to-global 3D-RoPE Transolver backbone with two continuum-mechanics modules:</p>
+  <ul>
+    <li><strong>Full-bed local packing fraction $\phi_i$ and compaction rate $\dot{\phi}_i = d\phi_i / dt$</strong> (<code>cconv_and_packing_rate_kernel</code>): computed on the complete particle bed via a Warp <code>HashGrid</code> before any active-particle compaction, capturing instantaneous local compression ($\dot{\phi}_i &gt; 0$) and shear dilation ($\dot{\phi}_i &lt; 0$).</li>
+    <li><strong>Shared continuum stress head (<code>ConsistentStressContactHead</code>)</strong>: predicts strictly nonnegative per-particle compressive pressure $p_i = P_0 \phi_i (1 + 0.5\operatorname{ReLU}(\dot{\phi}_i))\operatorname{softplus}(z_{i,0}) \ge 0$ and 3D deviatoric shear stress $\boldsymbol{\tau}_i = P_0 \phi_i \mathbf{z}_{i,1:4}$, and integrates unilateral normal traction and Coulomb-cone-bounded tangential shear traction over collider surfaces.</li>
+  </ul>
+  <figure class="result-figure">
+    <div class="plot-scroll" tabindex="0"><a href="particle_nerd_local3_stress_fields.png"><img src="particle_nerd_local3_stress_fields.png" alt="Per-particle compressive pressure and deviatoric shear stress during horizontal box plowing at t = 2.75 s" loading="lazy" style="width:100%;height:auto"></a></div>
+    <figcaption><strong>Figure 1:</strong> Per-particle continuum stress fields from <code>ConsistentStressContactHead</code> in <strong>Particle NeRD-Local 3</strong> during horizontal box plowing ($t = 2.75\text{ s}$, central slice $|y| &lt; 0.12\text{ m}$). (a) Compressive pressure $p_i \ge 0$ (kPa) showing the passive earth-pressure bulb ahead of the leading box face and hydrostatic overburden with depth. (b) Deviatoric shear stress magnitude $\|\boldsymbol{\tau}_i\|$ (Pa) localized along the active shear band and leading edges.</figcaption>
+  </figure>
+</section>
+
+<section class="report-section" id="ood-rollout">
+  <h2>2. Zero-shot out-of-distribution robotics rollout accuracy (6.0 s / 1,200 steps at 200 Hz)</h2>
+  <p>All three models were trained <strong>exclusively on single rigid objects</strong> (Box, Sphere, Cylinder in a $2.0 \times 1.2 \times 0.30\text{ m}$ tray with $20,646$ particles) and evaluated zero-shot over full $6.0\text{ s}$ ($1,200$-step) open-loop rollouts on three unseen robotics benchmarks with different tray dimensions, particle counts, and multi-body articulated contact links:</p>
+  <div class="table-wrap">
+    <table>
+      <caption>Table 1: Zero-shot 6.0 s (1,200-step) open-loop rollout RMSE on out-of-distribution robotics benchmarks.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Benchmark case</th>
+          <th scope="col">Tray dimensions &amp; particles</th>
+          <th scope="col">Interacting robot links</th>
+          <th scope="col">Original Particle NeRD<br>(Mean / Final RMSE)</th>
+          <th scope="col">Particle World<br>(Mean / Final RMSE)</th>
+          <th scope="col">Particle NeRD-Local 3<br>(Mean / Final RMSE)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Franka Emika Panda</strong> (<code>franka-flat</code>)</td>
+          <td>$1.2 \times 1.0 \times 0.25\text{ m}$ · $9,176$ particles</td>
+          <td><code>panda_hand</code> (capsule), <code>panda_leftfinger</code>, <code>panda_rightfinger</code> (3)</td>
+          <td>46.36 mm / 71.31 mm</td>
+          <td><strong>10.25 mm / 15.29 mm</strong></td>
+          <td><strong>10.49 mm / 18.75 mm</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Unitree Go2 Quadruped</strong> (<code>quadruped-flat</code>)</td>
+          <td>$2.0 \times 1.2 \times 0.12\text{ m}$ · $9,176$ particles</td>
+          <td><code>FL_foot</code>, <code>FR_foot</code>, <code>RL_foot</code>, <code>RR_foot</code> spheres (4)</td>
+          <td>31.20 mm / 71.24 mm</td>
+          <td><strong>9.98 mm / 17.91 mm</strong></td>
+          <td><strong>11.96 mm / 22.80 mm</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Unitree G1 Humanoid</strong> (<code>g1-flat</code>)</td>
+          <td>$3.6 \times 1.6 \times 0.30\text{ m}$ · $50,400$ particles</td>
+          <td><code>left_ankle_roll_link</code>, <code>right_ankle_roll_link</code> boxes (2)</td>
+          <td>68.30 mm / 88.44 mm</td>
+          <td><strong>19.99 mm / 32.42 mm</strong></td>
+          <td><strong>19.90 mm / 32.14 mm</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <figure class="result-figure">
+    <div class="plot-scroll" tabindex="0"><a href="robotics_ood_and_stress_summary.png"><img src="robotics_ood_and_stress_summary.png" alt="Particle NeRD-Local 3 deviatoric stress fields on Franka, Go2, and G1 and zero-shot OOD rollout RMSE comparison" loading="lazy" style="width:100%;height:auto"></a></div>
+    <figcaption><strong>Figure 2:</strong> Top row (a–c): <strong>Particle NeRD-Local 3</strong> predicted deviatoric shear stress $\|\boldsymbol{\tau}_i\|$ and peak compressive pressure $p_i$ beneath the active robot contact links on Franka ($t=4.5\text{ s}$), Unitree Go2 ($t=3.5\text{ s}$), and Unitree G1 ($t=3.5\text{ s}$, $50,400$ particles). Bottom row (d–e): 6.0 s open-loop mean RMSE and terminal 6.0 s drift error comparing Original Particle NeRD, Particle World, and Particle NeRD-Local 3. <a href="results.json">Download full numerical metrics (JSON)</a>.</figcaption>
+  </figure>
+</section>
+
+<section class="report-section" id="coupled-robotics">
+  <h2>3. Closed-loop two-way coupled robot-in-the-loop simulations</h2>
+  <p>In closed-loop coupled simulation, MJWarp integrates the articulated robot dynamics and controllers (Franka damped least-squares IK, Unitree Go2 free-base crawl controller, and Unitree G1 closed-loop MPM-trained RL policy <code>jqur5jhm/model_19999.pt</code>) while exchanging lagged 200 Hz contact reaction wrenches with <code>ParticleWorldSolver</code> and <code>ParticleNeRDLocalSolver</code>.</p>
+  <div class="table-wrap">
+    <table>
+      <caption>Table 2: Closed-loop two-way coupled robot-in-the-loop simulation metrics over 6.0 s (1,200 steps at 200 Hz).</caption>
+      <thead>
+        <tr>
+          <th scope="col">Task</th>
+          <th scope="col">Metric</th>
+          <th scope="col">Implicit MPM (Reference)</th>
+          <th scope="col">Particle World (Coupled)</th>
+          <th scope="col">Particle NeRD-Local 3 (Coupled)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Franka Emika Panda</strong></td>
+          <td>Finite particles / Escaped below floor</td>
+          <td>True / 0</td>
+          <td><strong>True / 0</strong></td>
+          <td><strong>True / 0</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Unitree Go2 Quadruped</strong></td>
+          <td>Forward base displacement $\Delta x$ / Min base height $z_{\min}$</td>
+          <td>+0.159 m / 0.193 m (Pass)</td>
+          <td><strong>+0.164 m / 0.193 m (Pass)</strong></td>
+          <td><strong>+0.165 m / 0.193 m (Pass)</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Unitree G1 Humanoid (50,400 pts)</strong></td>
+          <td>Forward base displacement $\Delta x$ / Min pelvis height $z_{\min}$</td>
+          <td>+1.500 m / 0.481 m (Pass)</td>
+          <td><strong>+1.509 m / 0.494 m (Pass)</strong></td>
+          <td><strong>+1.519 m / 0.483 m (Pass)</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="result-figure">
+    <div class="plot-scroll" tabindex="0"><a href="coupled_robotics_montage.png"><img src="coupled_robotics_montage.png" alt="3x3 montage of closed-loop coupled Franka, Go2, and G1 simulations at t = 4.5 s" loading="lazy" style="width:100%;height:auto"></a></div>
+    <figcaption><strong>Figure 3:</strong> Keyframe comparison at $t = 4.5\text{ s}$ across closed-loop coupled rollouts of Franka Emika Panda, Unitree Go2, and Unitree G1 ($50,400$ particles): Implicit MPM (left), Particle World (center), and Particle NeRD-Local 3 (right).</figcaption>
+  </figure>
+
+  <h3>Franka Emika Panda: closed-loop IK gripper plowing (6.0 s, 50 fps)</h3>
+  <figure class="video-figure">
+    <video controls playsinline preload="metadata" poster="franka_comparison_poster.jpg" style="display:block;width:100%;height:auto">
+      <source src="franka_comparison.mp4" type="video/mp4">
+    </video>
+    <figcaption><strong>Video 1:</strong> Closed-loop coupled Franka Emika Panda gripper plowing ($9,176$ particles, $1.2 \times 1.0 \times 0.25\text{ m}$ tray). Left: Implicit MPM. Center: Particle World. Right: Particle NeRD-Local 3.</figcaption>
+  </figure>
+
+  <h3>Unitree Go2 Quadruped: closed-loop free-base crawl on sand (6.0 s, 50 fps)</h3>
+  <figure class="video-figure">
+    <video controls playsinline preload="metadata" poster="quadruped_comparison_poster.jpg" style="display:block;width:100%;height:auto">
+      <source src="quadruped_comparison.mp4" type="video/mp4">
+    </video>
+    <figcaption><strong>Video 2:</strong> Closed-loop coupled Unitree Go2 free-base crawl ($9,176$ particles, $2.0 \times 1.2 \times 0.12\text{ m}$ shallow bed). Left: Implicit MPM ($\Delta x = +0.159\text{ m}$). Center: Particle World ($\Delta x = +0.164\text{ m}$). Right: Particle NeRD-Local 3 ($\Delta x = +0.165\text{ m}$).</figcaption>
+  </figure>
+
+  <h3>Unitree G1 Humanoid: closed-loop RL walking on 50,400 sand particles (6.0 s, 50 fps)</h3>
+  <figure class="video-figure">
+    <video controls playsinline preload="metadata" poster="g1_comparison_poster.jpg" style="display:block;width:100%;height:auto">
+      <source src="g1_comparison.mp4" type="video/mp4">
+    </video>
+    <figcaption><strong>Video 3:</strong> Closed-loop coupled Unitree G1 29-DOF humanoid walking with MPM-trained RL policy <code>jqur5jhm/model_19999.pt</code> ($50,400$ particles, $3.6 \times 1.6 \times 0.30\text{ m}$ bed). Left: Implicit MPM ($\Delta x = +1.500\text{ m}$). Center: Particle World ($\Delta x = +1.509\text{ m}$). Right: Particle NeRD-Local 3 ($\Delta x = +1.519\text{ m}$).</figcaption>
+  </figure>
+</section>
+</main>
+<footer class="site-footer"><span class="footer-brand">Particle NeRD</span><span>Out-of-distribution robotics &amp; continuum stress evaluation</span></footer>
+</body></html>
