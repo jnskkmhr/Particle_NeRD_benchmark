@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Continuum Stress &amp; RFT Contact Estimation · Particle-NeRD</title>
+<link rel="stylesheet" href="../../assets/slides.css">
+<link rel="stylesheet" href="../../assets/object-motion-gallery.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body class="benchmark-report"><header><a class="brand" href="../index.html">Particle-NeRD / Benchmarks</a><span class="archive">Continuum stress &amp; RFT contact estimation</span></header>
+<main>
+<section class="report-heading">
+  <p class="eyebrow">COMPRESSIVE PRESSURE · DEVIATORIC SHEAR STRESS · PACKING &amp; 3D RFT</p>
+  <h1>Continuum stress &amp; contact force estimation: Dynamic MPM vs. Particle-NeRD</h1>
+  <p>Direct evaluation of per-particle <strong>compressive pressure $p_i \ge 0$</strong> and <strong>deviatoric shear stress $\|\boldsymbol{\tau}_i\|$</strong> on a <strong>fully dynamic $2.0\text{ kg}$ free-projectile impact and support simulation (<code>projectile-flat</code>)</strong>, alongside the unified <strong>Packing-State + 3D Resistive Force Theory (RFT)</strong> contact scaling law.</p>
+  <nav aria-label="Report sections" style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap">
+    <a href="#definitions">1. What are pressure &amp; deviatoric stress?</a>
+    <a href="#dynamic-comparison">2. Dynamic MPM vs. Particle-NeRD video &amp; fields</a>
+    <a href="#rft-packing">3. Packing-state + 3D RFT contact scaling</a>
+    <a href="../robotics_ood/">Out-of-distribution robotics (Franka, Go2, G1) ↗</a>
+    <a href="../particle_nerd_local_3/">Particle-NeRD object report ↗</a>
+  </nav>
+</section>
+
+<section class="report-section" id="definitions">
+  <h2>1. Physical definitions: compressive pressure $p_i$ and deviatoric shear stress $\boldsymbol{\tau}_i$</h2>
+  <p>In continuum granular mechanics, the $3 \times 3$ Cauchy stress tensor $\boldsymbol{\sigma}_i$ at particle $i$ decomposes into two physically distinct parts:</p>
+  $$\boldsymbol{\sigma}_i = -p_i\,\mathbf{I} + \boldsymbol{\tau}_i, \qquad p_i = -\frac{1}{3}\operatorname{tr}(\boldsymbol{\sigma}_i) \ge 0, \qquad \operatorname{tr}(\boldsymbol{\tau}_i) = 0$$
+  <ul>
+    <li><strong>Compressive pressure $p_i \ge 0$ ($\text{Pa}$ or $\text{kPa}$)</strong>: The isotropic normal squeeze acting inward from all directions on particle $i$. Because dry cohesionless sand cannot sustain tension ($p_i \ge 0$), $p_i$ is governed by three physical effects:
+      <ol>
+        <li><em>Hydrostatic overburden</em> $p_{\text{hydro}}(z_i) = \rho g (-z_i)$, which increases linearly with depth below the free surface;</li>
+        <li><em>Sub-collider Boussinesq bearing bulb</em>, where an external load on the sand surface (such as an impacting box or stepping robot foot) transmits a bulb-shaped high-pressure zone into the supporting particle column directly beneath the collider; and</li>
+        <li><em>Dynamic compaction</em> ($\dot{\phi}_i = d\phi_i / dt &gt; 0$), where converging particles compress the local pore volume.</li>
+      </ol>
+    </li>
+    <li><strong>Deviatoric shear stress $\boldsymbol{\tau}_i$ and its magnitude $\|\boldsymbol{\tau}_i\|$ ($\text{Pa}$)</strong>: The trace-free (anisotropic) part of the stress tensor that causes <strong>shape distortion and plastic shear sliding</strong> along internal slip planes without changing volume. In granular media (Drucker–Prager / Mohr–Coulomb plasticity), shear failure occurs when the deviatoric stress reaches the friction yield cone $\|\boldsymbol{\tau}_i\| \le \mu_{\text{internal}}\,p_i$, localizing along the shear band beneath and around the edges of an intruding body.</li>
+  </ul>
+</section>
+
+<section class="report-section" id="dynamic-comparison">
+  <h2>2. Dynamic free-projectile impact &amp; support (<code>projectile-flat</code>): Implicit MPM vs. Particle-NeRD</h2>
+  <p><strong>Why evaluate forces and stresses on a dynamic simulation?</strong> In a prescribed (kinematic) motion, the rigid body is forced along a fixed trajectory with infinite effective stiffness regardless of material resistance, which can create artificial impulse spikes from tiny position discrepancies. For a fair physical comparison against <strong>Implicit MPM</strong>, this evaluation uses the <strong>fully dynamic $2.0\text{ kg}$ free-projectile simulation (<code>projectile-flat</code>)</strong>:</p>
+  <ul>
+    <li><strong>Dynamic motion protocol &amp; object trajectory</strong>: A $2.0\text{ kg}$ rigid box ($0.26 \times 0.18 \times 0.05\text{ m}$, <code>kinematic_enabled = False</code>) is held at $(-0.55, 0.0, 0.35)\text{ m}$ until $t = 1.0\text{ s}$ and then released as a free projectile with initial linear velocity $\mathbf{v}_0 = (1.0, 0.0, 0.4)\text{ m/s}$ and angular velocity $\boldsymbol{\omega}_0 = (0.0, 1.0, 0.0)\text{ rad/s}$. Under gravity and MPM sand contact forces, it flies forward, <strong>impacts and slides into the sand bed at $t = 1.31\text{ s}$</strong> (generating peak dynamic deceleration forces $F_x = -168.3\text{ N}, F_z = +332.1\text{ N}$), and settles into static bearing equilibrium ($F_z \to mg = 19.62\text{ N}$) for $t &gt; 2.2\text{ s}$.</li>
+  </ul>
+
+  <h3>Full-timestep evolution video ($t = 0.0\text{–}6.0\text{ s}$, $50\text{ fps}$): 3D simulation, pressure $p_i(t)$, deviatoric stress $\|\boldsymbol{\tau}_i(t)\|$, and forces</h3>
+  <figure class="video-figure">
+    <video controls playsinline preload="metadata" poster="stress_evolution_poster.jpg" style="display:block;width:100%;height:auto">
+      <source src="stress_evolution.mp4" type="video/mp4">
+    </video>
+    <figcaption><strong>Video 1:</strong> Full $6.0\text{ s}$ ($300$-frame, $50\text{ fps}$) time evolution on the dynamic $2.0\text{ kg}$ free-projectile benchmark (<code>projectile-flat</code>). (a) 3D dynamic simulation view; (b–c) <strong>Implicit MPM</strong> vs. <strong>Particle-NeRD</strong> per-particle compressive pressure $p_i(t)$ ($\text{kPa}$); (d) dynamic horizontal and vertical reaction forces $F_x(t), F_z(t)$ ($\text{N}$) with live time cursor; (e–f) <strong>Implicit MPM</strong> vs. <strong>Particle-NeRD</strong> deviatoric shear stress $\|\boldsymbol{\tau}_i(t)\|$ ($\text{Pa}$).</figcaption>
+  </figure>
+
+  <figure class="result-figure">
+    <div class="plot-scroll" tabindex="0"><a href="particle_nerd_local3_stress_fields.png"><img src="particle_nerd_local3_stress_fields.png" alt="Dynamic free-projectile peak impact at t = 1.31 s: Implicit MPM vs Particle-NeRD continuum stress, box trajectory, and forces" loading="lazy" style="width:100%;height:auto"></a></div>
+    <figcaption><strong>Figure 1:</strong> Snapshot at peak dynamic impact ($t = 1.31\text{ s}$, central cross-section $|y| &lt; 0.12\text{ m}$) and full $6.0\text{ s}$ time series for the dynamic $2.0\text{ kg}$ free-projectile benchmark (<code>projectile-flat</code>). Top row (a–d, with horizontal colorbars beneath the $x$-axis): <strong>Implicit MPM</strong> vs. <strong>Particle-NeRD</strong> compressive pressure $p_i$ ($\text{kPa}$, showing the high-pressure Boussinesq bearing bulb directly underneath the impacting box) and deviatoric shear stress $\|\boldsymbol{\tau}_i\|$ ($\text{Pa}$). Bottom row: (e) dynamic box center-of-mass trajectory $x(t), z(t)$; (f) dynamic horizontal impact/slide force $F_x(t)$; (g) dynamic vertical support force $F_z(t)$ converging to $mg = 19.6\text{ N}$.</figcaption>
+  </figure>
+</section>
+
+<section class="report-section" id="rft-packing">
+  <h2>3. Unified Packing-State + 3D RFT contact scaling</h2>
+  <p>Instead of using four separate hard-coded box mass scales, the contact estimator determines each contacting particle's effective mobilized inertia $m_{\text{eff}, i}$ from (1) its local Wendland packing sum $\phi_i$ and compression rate $\dot{\epsilon}_{v,i}$, and (2) a continuous 3D Resistive Force Theory (RFT) directional multiplier $\alpha_{\text{RFT}}(\beta_i, \gamma_i)$ over surface orientation $\beta_i$ and velocity dive angle $\gamma_i$:</p>
+  $$s_{\text{pack}, i} - 1 = s_0 \left(\frac{\phi_i}{\phi_{\text{ref}}}\right)^2 \bigl(1 + 4\,\dot{\epsilon}_{v,i}\bigr), \qquad m_{\text{eff}, n, i} = m_i \Bigl(1 + (s_{\text{pack}, i} - 1)\,\alpha_{\text{RFT}, n}(\beta_i, \gamma_i)\Bigr)$$
+  <figure class="result-figure">
+    <div class="plot-scroll" tabindex="0"><a href="rft_and_packing_scaling.png"><img src="rft_and_packing_scaling.png" alt="Unified Packing-State and 3D RFT directional contact scaling" loading="lazy" style="width:100%;height:auto"></a></div>
+    <figcaption><strong>Figure 2:</strong> (a) Continuous 3D RFT directional stress multiplier $\alpha_{\text{RFT}, n}(\beta, \gamma)$ over surface orientation $\beta$ and velocity dive angle $\gamma$ (analogous to Fig. 3 of Treers et al., <em>PNAS</em> 2023); (b) packing-state mobilized mass $s_{\text{pack}}(\phi_i, \dot{\epsilon}_{v,i})$ where sparse/airborne particles ($\phi_i \to 0$) move freely with $m_{\text{eff}} = 1.0\,m_i$ while condensed zones scale quadratically with packing density; (c) spatial distribution of $s_{\text{pack}}(\phi_i)$ across the sand bed.</figcaption>
+  </figure>
+</section>
+</main>
+<footer class="site-footer"><span class="footer-brand">Particle-NeRD</span><span>Continuum stress &amp; RFT contact estimation</span></footer>
+</body></html>
