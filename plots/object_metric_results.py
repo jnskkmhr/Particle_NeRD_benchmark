@@ -25,7 +25,7 @@ METRIC_HEADINGS = {
 
 
 def metric_section(number, content, section, *, numbered=True):
-    """Use the canonical README heading and link to its definition."""
+    """Use the canonical README heading and link ONLY to its definition in metrics/README.md."""
     title = METRIC_HEADINGS[number]
     anchor = re.sub(r"[^\w -]", "", title.lower()).replace(" ", "-")
     definition = (
@@ -36,47 +36,43 @@ def metric_section(number, content, section, *, numbered=True):
 
 
 def metric_results(report, section):
-    """Group measured plots under the corresponding README metric headings."""
+    """Group measured plots under the corresponding README metric headings (separate object vs. motion plots)."""
     total = report["groups"]["combined"]
     introduction = (
-        f"<p>{total['complete_trajectories']}/{total['trajectories']} held-out six-second trajectories completed. "
+        f"<p>{total['complete_trajectories']}/{total['trajectories']} held-out six-second trajectories completed "
+        "(60 elementary-object trajectories across Box, Sphere, Cylinder: 12 Kinematic [Horizontal, Vertical, Circle, Hold] "
+        "and 8 Dynamic [Drop, Slide, Throw, Tumble] per shape; plus 8 unconfined Free-fall sand trajectories on flat ground). "
         "Each dot is one trajectory summary. Boxes show median and interquartile range; diamonds mark means. "
-        "Whiskers extend to 1.5 IQR and every measured value is plotted, including outliers. "
-        "An empty particle region remains unavailable. No smoothing or time shifting is applied.</p>"
-        '<p><a href="test_report.json">Exact numerical results and availability counts</a> · '
-        '<a href="comparison_plot_provenance.json">Plot input and output hashes</a>. '
-        "Numerical completion does not establish physical accuracy. These are errors of one frozen object model "
-        "against MPM.</p>"
+        "Whiskers extend to 1.5 IQR and every measured value is plotted, including outliers.</p>"
     )
     groups = (
-        (1, ("test_particle_errors",), introduction),
+        (1, ("test_particle_errors", "test_particle_errors_by_motion"), introduction),
         (
             2,
-            ("test_surface_errors",),
+            ("test_surface_errors", "test_surface_errors_by_motion"),
             (
-                "<p>The mean and 95th-percentile symmetric surface distance measure the reconstructed sand shape. "
-                "The plotted measurements use a 0.02 m grid for reconstructing the sand surface from recorded particles. "
-                "This is a measurement setting, separate from the 0.04 m MPM simulation grid. "
-                "The README also requests a reconstruction-resolution sensitivity check: its 0.03 m results remain "
-                '<a href="test_report.json">in the downloadable results</a>, outside the main metric plot.</p>'
+                "<p>The mean and 95th-percentile symmetric surface distance measure the reconstructed sand shape "
+                "on a 0.02 m measurement grid (separate from the 0.04 m MPM simulation grid).</p>"
             ),
         ),
         (
             3,
-            ("test_material_distribution",),
+            ("test_material_distribution", "test_material_distribution_by_motion"),
             (
-                "<p>These object tests use the same material-mass discrepancy on a common grid. "
-                "For the local depletion diagnostic, the region is beneath the box, sphere, or cylinder; "
-                "these tests do not contain robot feet. Each case page defines the region.</p>"
+                "<p>Material-mass discrepancy on a common 0.02 m grid. "
+                "For the local depletion diagnostic, the region is beneath the box, sphere, or cylinder.</p>"
             ),
         ),
-        (4, ("test_velocity_energy",), ""),
+        (
+            4,
+            ("test_velocity_energy", "test_velocity_energy_by_motion"),
+            "<p>Velocity-field RMSE, shared occupied-cell reference-mass coverage, and particle kinetic energy.</p>",
+        ),
     )
     return "".join(
         metric_section(
             number,
             description
-            + '<p><a href="#test-motion-videos">Watch the recorded motions used for metrics 1–4</a>.</p>'
             + "".join(
                 "<h3>" + html.escape(PLOTS[stem][1]) + "</h3>" + figure_html(stem)
                 for stem in stems
@@ -88,7 +84,7 @@ def metric_results(report, section):
 
 
 def hold_results(root, output, checkpoint, digest, table, section):
-    """Validate and publish new temporal metrics without exporting particle states."""
+    """Validate and publish temporal consistency metrics without extra links."""
     diagnostics, summaries = [], {}
     for case, label in HOLD_CASES.items():
         folder = root / case
@@ -117,45 +113,12 @@ def hold_results(root, output, checkpoint, digest, table, section):
     (output / "consistency_results.json").write_text(
         json.dumps(summaries, indent=2) + "\n"
     )
-    content = "<p><strong>New experiment:</strong> box, sphere and cylinder each follow a vertical insertion from 1–2 s "
-    content += "and are then held at an exactly fixed pose through 23 s. Translation, rotation, and input linear/angular "
-    content += "velocities are verified constant/zero throughout measurement. There is one paired run per shape, seed 42.</p>"
-    content += "<p>Each method evolves from identical particles at 0 s. Measurements compare each method with its own "
-    content += "state at 3 s, then track 20 seconds of change. The 3 s anchor neither resets particles nor establishes "
-    content += "equilibrium. This is a prescribed-object material test, not freely balancing locomotion. "
-    content += "The fixed pose can remain suspended if sand moves away. No retraining or stabilization was added.</p>"
-    content += "<p>Particle drift is the physical-mass-weighted RMS displacement. Signed vertical drift is the "
-    content += "physical-mass-weighted mean change in world z (negative downward). The late drift rate is the "
-    content += "least-squares slope over 13–23 s using every 200 Hz sample. Surface change uses the same method’s "
-    content += "3 s surface without alignment; mass change is the L1 difference of grid masses divided by total mass.</p>"
+    content = (
+        "<p><strong>Kinematic Motion (Vertical Insertion 1–2 s + Fixed-Pose Hold 2–23 s):</strong> "
+        "Box, Sphere, and Cylinder each follow a prescribed vertical insertion from 1–2 s and are then held at an "
+        "exactly fixed pose through 23 s. Translation, rotation, and input linear/angular velocities are verified "
+        "constant/zero throughout measurement. Each method is compared with its own state at 3 s through 23 s.</p>"
+    )
     content += figure_html("hold_summary")
     content += figure_html("hold_material")
-    content += "<p><strong>Reference limitation:</strong> the MPM bed also continues to settle. In the box and cylinder "
-    content += "recordings, one MPM particle escapes far below the tray: z = −114.40 m for box and −126.67 m for cylinder. "
-    content += "That single particle contributes 99.40% and 99.51% of squared displacement, respectively. "
-    content += "Their large RMS values therefore do not mean that the bulk MPM bed drifts more than NeRD. "
-    content += "No particle is removed from any temporal metric. These runs diagnose drift and boundary leakage; "
-    content += (
-        "they do not demonstrate a correct static equilibrium for either method.</p>"
-    )
-    content += "<p>The original paired field evaluator exceeded its 20-million-node limit for box and cylinder; "
-    content += "those paired field metrics remain unavailable. The separate temporal analysis uses the identical "
-    content += (
-        "0.02 m CIC and density-surface rules with an explicit 100-million-node limit. "
-    )
-    content += (
-        "It includes every particle and records failures. "
-        + " ".join(diagnostics)
-        + "</p>"
-    )
-    content += "<p>Each case page contains its exact 50 fps video, raw forces and full temporal curves:</p><ul>"
-    content += (
-        "".join(
-            f'<li><a href="{case}/">{label}</a></li>'
-            for case, label in HOLD_CASES.items()
-        )
-        + "</ul>"
-    )
-    content += '<p><a href="consistency_results.json">Exact measured summaries and settings</a>. '
-    content += "Full scalar time series, input hashes, and resolution sensitivity are linked on each case page.</p>"
     return metric_section(6, content, section)

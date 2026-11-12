@@ -42,25 +42,28 @@ def main():
         h5py.File(root / "prediction.h5", "r") as prediction,
     ):
         builder = newton.ModelBuilder()
-        body = builder.add_body(mass=1.0, is_kinematic=True, label="InteractingObject")
-        size = np.asarray(manifest["body_size_m"]) / 2
         shape = meta["episode"]["shape"]
-        color = (0.12, 0.32, 0.25)
-        if shape == "box":
-            builder.add_shape_box(
-                body,
-                hx=float(size[0]),
-                hy=float(size[1]),
-                hz=float(size[2]),
-                color=color,
-            )
-        elif shape == "sphere":
-            builder.add_shape_sphere(body, radius=float(size[0]), color=color)
-        else:
-            builder.add_shape_cylinder(
-                body, radius=float(size[0]), half_height=float(size[2]), color=color
-            )
+        if shape != "freefall":
+            body = builder.add_body(mass=1.0, is_kinematic=True, label="InteractingObject")
+            size = np.asarray(manifest["body_size_m"]) / 2
+            color = (0.12, 0.32, 0.25)
+            if shape == "box":
+                builder.add_shape_box(
+                    body,
+                    hx=float(size[0]),
+                    hy=float(size[1]),
+                    hz=float(size[2]),
+                    color=color,
+                )
+            elif shape == "sphere":
+                builder.add_shape_sphere(body, radius=float(size[0]), color=color)
+            else:
+                builder.add_shape_cylinder(
+                    body, radius=float(size[0]), half_height=float(size[2]), color=color
+                )
         for wall in manifest["boundary_boxes"]:
+            if shape == "freefall" and wall["name"] != "floor":
+                continue
             half = np.asarray(wall["size_m"]) / 2
             builder.add_shape_box(
                 -1,
@@ -137,7 +140,8 @@ def main():
                     ((reference, "Implicit MPM"), (prediction, pred_label))
                 ):
                     state.particle_q.assign(source["particle_position"][frame])
-                    state.body_q.assign(source["body_state"][frame, :7][None])
+                    if shape != "freefall":
+                        state.body_q.assign(source["body_state"][frame, :7][None])
                     viewer.begin_frame(frame * meta["native_dt_s"])
                     viewer.log_state(state)
                     viewer.log_points(

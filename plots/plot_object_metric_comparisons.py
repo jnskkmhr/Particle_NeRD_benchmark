@@ -21,127 +21,118 @@ REFERENCES = (
     "cylinder-static-support",
 )
 CASE_LABELS = (
-    "Box\nsupport\n(20 s)",
-    "Sphere\nsupport\n(20 s)",
-    "Cylinder\nsupport\n(20 s)",
+    "Box\n[Dyn: Drop &\nSupport 20s]",
+    "Sphere\n[Dyn: Drop &\nSupport 20s]",
+    "Cylinder\n[Dyn: Drop &\nSupport 20s]",
 )
-DISTRIBUTION = (
-    "Each dot is one trajectory summary; boxes show the median and interquartile range, "
-    "whiskers extend to 1.5 IQR, diamonds mark means. Twenty trajectories per shape unless labeled otherwise. "
-    "Time means use available samples; empty particle regions are not assigned zero error."
+HOLD_LABELS = (
+    "Box\n[Kin: Insert 1–2s,\nFixed Hold 2–23s]",
+    "Sphere\n[Kin: Insert 1–2s,\nFixed Hold 2–23s]",
+    "Cylinder\n[Kin: Insert 1–2s,\nFixed Hold 2–23s]",
 )
 PLOTS = {
     "test_particle_errors": (
-        1,
-        "Particle-position RMSE, globally and by region",
+        "1a",
+        "By interacting object (Box, Sphere, Cylinder across 8 object motions)",
         (
-            "Rows show particle-position RMSE for the entire bed, near-contact "
-            "particles, and moving particles. Left column: time-mean over 0–6 s; "
-            "right column: terminal state at 6 s. NeRD errors use corresponding MPM "
-            "particles. Near-contact reference distance ≤0.05 m; moving reference "
-            "speed >0.01 m/s. One terminal-state moving region is empty and remains "
-            "unavailable. Each dot is one trajectory summary; boxes show the median "
-            "and interquartile range, whiskers extend to 1.5 IQR, diamonds mark "
-            "means. Twenty trajectories per shape unless labeled otherwise. Time "
-            "means use available samples; empty particle regions are not assigned "
-            "zero error."
+            "Elementary objects (Box, Sphere, Cylinder), each aggregated across 20 trajectories: "
+            "12 Kinematic (Horizontal, Vertical, Circular, Hold) and 8 Dynamic (Drop, Slide, Throw, Tumble). "
+            "Rows show particle-position RMSE for the entire bed, near-contact particles (≤0.05 m), and moving particles (>0.01 m/s). "
+            "Left column: time-mean over 0–6 s; right column: terminal state at 6 s."
+        ),
+    ),
+    "test_particle_errors_by_motion": (
+        "1b",
+        "By motion type (Kinematic object motions, Dynamic object motions, and Unconfined sand free-fall)",
+        (
+            "Breakdown by motion across Kinematic object motions (Horizontal, Vertical, Circle, Hold; n=9 each across Box/Sphere/Cylinder), "
+            "Dynamic object motions (Obj Drop, Slide, Throw, Tumble; n=6 each across Box/Sphere/Cylinder), "
+            "and Unconfined Sand Free-Fall on flat ground (no rigid object; n=8)."
         ),
     ),
     "test_surface_errors": (
-        2,
-        "Mean and 95th-percentile symmetric surface distance",
+        "2a",
+        "By interacting object (Box, Sphere, Cylinder across 8 object motions)",
         (
-            "Rows show the mean and 95th-percentile symmetric surface distance. Left "
-            "column: time-mean over 0–6 s; right column: terminal state at 6 s. "
-            "Distances use area-uniform surface samples without alignment. The 95th "
-            "percentile is over surface distances within a frame, not across "
-            "trajectories. Sand surfaces use a 0.02 m measurement grid. Each dot is "
-            "one trajectory summary; boxes show the median and interquartile range, "
-            "whiskers extend to 1.5 IQR, diamonds mark means. Twenty trajectories per "
-            "shape unless labeled otherwise. Time means use available samples; empty "
-            "particle regions are not assigned zero error."
+            "Elementary objects (Box, Sphere, Cylinder) across 12 Kinematic (Horizontal, Vertical, Circular, Hold) "
+            "and 8 Dynamic (Drop, Slide, Throw, Tumble) trajectories per shape. "
+            "Rows show mean and 95th-percentile symmetric surface distance on a 0.02 m measurement grid."
+        ),
+    ),
+    "test_surface_errors_by_motion": (
+        "2b",
+        "By motion type (Kinematic object motions, Dynamic object motions, and Unconfined sand free-fall)",
+        (
+            "Symmetric sand-surface distance grouped by motion: Kinematic object motions (Horizontal, Vertical, Circle, Hold), "
+            "Dynamic object motions (Obj Drop, Slide, Throw, Tumble), and Unconfined Sand Free-Fall on flat ground (no object)."
         ),
     ),
     "test_material_distribution": (
-        3,
-        "Material-mass discrepancy on a common grid",
+        "3a",
+        "By interacting object (Box, Sphere, Cylinder across 8 object motions)",
         (
-            "The first row shows time-mean and terminal-state material-mass "
-            "discrepancy: sum of absolute cell-mass differences divided by "
-            "total physical mass. The second row shows terminal-state mass "
-            "beneath and inside the body; the last panel shows total "
-            "represented mass. Terminal state is 6 s. Equal total mass does "
-            "not imply correct distribution or confinement to the tray. Each "
-            "dot is one trajectory summary; boxes show the median and "
-            "interquartile range, whiskers extend to 1.5 IQR, diamonds mark "
-            "means. Twenty trajectories per shape unless labeled otherwise. "
-            "Time means use available samples; empty particle regions are not "
-            "assigned zero error."
+            "Elementary objects (Box, Sphere, Cylinder) across 12 Kinematic (Horizontal, Vertical, Circular, Hold) "
+            "and 8 Dynamic (Drop, Slide, Throw, Tumble) trajectories per shape. "
+            "First row: time-mean and terminal-state material-mass discrepancy. Second row: terminal mass beneath and inside the body; last panel: total represented mass."
+        ),
+    ),
+    "test_material_distribution_by_motion": (
+        "3b",
+        "By motion type (Kinematic object motions, Dynamic object motions, and Unconfined sand free-fall)",
+        (
+            "Material-mass discrepancy and represented mass grouped by motion: Kinematic object motions (Horizontal, Vertical, Circle, Hold), "
+            "Dynamic object motions (Obj Drop, Slide, Throw, Tumble), and Unconfined Sand Free-Fall on flat ground."
         ),
     ),
     "test_velocity_energy": (
-        4,
-        "Velocity fields and kinetic energy",
+        "4a",
+        "By interacting object (Box, Sphere, Cylinder across 8 object motions)",
         (
-            "Rows show velocity-field RMSE, the fraction of reference mass covered "
-            "by shared occupied cells, and particle kinetic energy. Left column: "
-            "time-mean over 0–6 s; right column: terminal state at 6 s. Velocities "
-            "use matched consecutive-position differences. Each dot is one "
-            "trajectory summary; boxes show the median and interquartile range, "
-            "whiskers extend to 1.5 IQR, diamonds mark means. Twenty trajectories "
-            "per shape unless labeled otherwise. Time means use available samples; "
-            "empty particle regions are not assigned zero error."
+            "Elementary objects (Box, Sphere, Cylinder) across 12 Kinematic (Horizontal, Vertical, Circular, Hold) "
+            "and 8 Dynamic (Drop, Slide, Throw, Tumble) trajectories per shape. "
+            "Rows show velocity-field RMSE, reference-mass coverage, and particle kinetic energy."
+        ),
+    ),
+    "test_velocity_energy_by_motion": (
+        "4b",
+        "By motion type (Kinematic object motions, Dynamic object motions, and Unconfined sand free-fall)",
+        (
+            "Velocity-field RMSE, reference-mass coverage, and particle kinetic energy grouped by motion: "
+            "Kinematic object motions (Horizontal, Vertical, Circle, Hold), Dynamic object motions (Obj Drop, Slide, Throw, Tumble), "
+            "and Unconfined Sand Free-Fall on flat ground."
         ),
     ),
     "reference_force_errors": (
         5,
-        "Per-body force RMSE and signed mean error for Fx, Fy, Fz",
+        "Per-body force RMSE and signed mean error (Dynamic Motion: 20 s Drop & Gravity Support)",
         (
-            "Columns show Fx, Fy, Fz. Top row: component RMSE; bottom row: signed "
-            "mean error (estimate minus native MPM material force). Direct "
-            "rigid-tray force is excluded. Each case is one raw 200 Hz recording. "
-            "The gray diagnostic supplies MPM particles to the same estimator. No "
-            "force reference exists for the 60-test dataset."
+            "Dynamic Motion: 2 kg object held until 1 s, then released to drop and settle on sand through 20 s. "
+            "Columns show Fx, Fy, Fz. Top row: component RMSE; bottom row: signed mean error (estimate minus native MPM material force)."
         ),
     ),
     "reference_summary": (
         6,
-        "Dedicated reference recordings",
+        "Dedicated dynamic drop-and-support reference recordings (0–20 s)",
         (
-            "Left: terminal particle-position RMSE. Center: force-vector RMSE without "
-            "division by three. Right: mean Fz during the final second, with temporal "
-            "population standard deviation. Open circles mark measured zeros. Whiskers "
-            "describe temporal variation in one recording, not repeated-run "
-            "uncertainty. Horizontal motion lasts 6 s; support tests last 20 s. Body "
-            "poses are replayed from MPM and do not respond to estimated force."
+            "Dynamic Motion: 20 s Drop & Gravity Support for Box, Sphere, and Cylinder. "
+            "Left: terminal particle-position RMSE. Center: force-vector RMSE. Right: mean Fz during the final second (19–20 s)."
         ),
     ),
     "hold_summary": (
         7,
-        "Spatio-temporal consistency under a stationary object",
+        "Spatio-temporal consistency (Kinematic Motion: 1–2 s Vertical Insertion + 2–23 s Fixed-Pose Hold)",
         (
-            "One fixed-object run per shape; open circles mark measured zeros. Top row: "
-            "mass-weighted mean change in world z at 23 s relative to 3 s, and its "
-            "least-squares rate over 13–23 s. Middle row: RMS particle drift and mean "
-            "material-isosurface change. Bottom row: normalized absolute grid-mass "
-            "redistribution and mass remaining beneath the object relative to 3 s. Negative "
-            "z means downward. Each solver is compared with its own 3 s state without reset. "
-            "One escaped MPM particle dominates box/cylinder RMS (>99% of squared "
-            "displacement); this does not describe bulk-bed drift."
+            "Kinematic Motion: Object is inserted vertically (1–2 s) and held at an exactly fixed pose (2–23 s); measured relative to 3 s. "
+            "Top row: mean change in world z at 23 s relative to 3 s, and late drift rate (13–23 s). "
+            "Middle row: RMS particle drift and mean surface change. Bottom row: grid-mass redistribution and mass remaining beneath object."
         ),
     ),
     "hold_material": (
         8,
-        "Material beneath the fixed object and floor leakage",
+        "Material beneath fixed object and floor leakage (Kinematic Motion: 2–23 s Fixed-Pose Hold)",
         (
-            "Open circles mark measured zeros. Top row: physical mass beneath the object at "
-            "3 and 23 s. The region is its world x/y bounding rectangle extending 0.10 m "
-            "below the lowest body point, clipped above the floor. Middle row: mass with "
-            "centers below the z=−0.30 m floor (1 μm tolerance), and mass more than 1 cm "
-            "below it. Last panel: lowest particle-center z at 23 s, with symmetric-log "
-            "scale (linear within ±1 m). Percentages use total represented physical mass. "
-            "One paired run per shape; all escaped particles are retained. MPM also settles "
-            "and leaks."
+            "Kinematic Motion: 2–23 s Fixed-Pose Hold for Box, Sphere, and Cylinder. "
+            "Top row: physical mass beneath the object at 3 and 23 s. Middle row: mass below the z=−0.30 m floor. Last panel: lowest particle z at 23 s."
         ),
     ),
 }
@@ -152,20 +143,19 @@ def figure_html(stem, number=None, caption=None):
         number, _, caption = PLOTS[stem]
     return (
         f'<figure class="result-figure" id="{stem}"><div class="plot-scroll" tabindex="0">'
-        f'<a href="{stem}.svg"><img src="{stem}.svg" alt="{html.escape(caption)}" loading="lazy"></a></div>'
-        f"<figcaption><strong>Figure {number}:</strong> {caption} "
-        f'<a href="{stem}.png">PNG</a> · <a href="{stem}.pdf">PDF</a></figcaption></figure>'
+        f'<img src="{stem}.svg" alt="{html.escape(caption)}" loading="lazy"></div>'
+        f"<figcaption><strong>Figure {number}:</strong> {caption}</figcaption></figure>"
     )
 
 
-def canvas(rows=2, cols=3):
-    fig, axes = plt.subplots(rows, cols, figsize=(14, 4.1 * rows + 1.5), squeeze=False)
+def canvas(rows=2, cols=3, width=14.0):
+    fig, axes = plt.subplots(rows, cols, figsize=(width, 4.1 * rows + 1.5), squeeze=False)
     fig.subplots_adjust(
         left=0.08,
         right=0.98,
         bottom=0.22 if rows > 1 else 0.35,
-        top=0.84 if rows == 1 else 0.91,
-        hspace=0.58,
+        top=0.84 if rows == 1 else 0.90,
+        hspace=0.62,
         wspace=0.40,
     )
     return fig, list(axes.flat)
@@ -177,9 +167,9 @@ def finish(fig, axes, root, stem, caption, number):
     for ax in axes:
         if ax.axison:
             ax.grid(axis="y", alpha=0.15)
-            ax.tick_params(axis="x", labelsize=10)
+            ax.tick_params(axis="x", labelsize=9.5)
     text = textwrap.fill(f"Figure {number}: {caption}", width=155)
-    fig.text(0.5, 0.025, text, ha="center", va="bottom", fontsize=9)
+    fig.text(0.5, 0.02, text, ha="center", va="bottom", fontsize=9)
     paths = []
     for ext in ("svg", "png", "pdf"):
         path = root / f"{stem}.{ext}"
@@ -189,33 +179,15 @@ def finish(fig, axes, root, stem, caption, number):
     return paths
 
 
-SHAPE_DISPLAY = {
-    "box": "Box",
-    "sphere": "Sphere",
-    "cylinder": "Cylinder",
-    "freefall": "Free-fall\nsand",
-}
-
-
 def distribution(ax, records, series, ylabel):
-    """Draw every available per-trajectory scalar without clipping or imputing missing regions."""
+    """Plot ONLY elementary rigid objects (Box, Sphere, Cylinder) — never mix free-fall motion here."""
+    obj_records = [r for r in records if r["shape"] in SHAPES]
     offsets = np.linspace(-0.17, 0.17, len(series)) if len(series) > 1 else [0]
-    active_shapes = []
-    for cand in ("box", "sphere", "cylinder", "freefall"):
-        if any(
-            r["shape"] == cand
-            and any(r["metrics"].get(k) is not None and np.isfinite(r["metrics"].get(k)) for k, _, _ in series)
-            for r in records
-        ):
-            active_shapes.append(cand)
-    if not active_shapes:
-        active_shapes = list(SHAPES)
-    n_s = len(active_shapes)
     counts = []
     for j, (key, label, color) in enumerate(series):
-        groups = [[r["metrics"].get(key) for r in records if r["shape"] == shape] for shape in active_shapes]
+        groups = [[r["metrics"].get(key) for r in obj_records if r["shape"] == shape] for shape in SHAPES]
         groups = [np.asarray([v for v in g if v is not None and np.isfinite(v)]) for g in groups]
-        positions = np.arange(n_s) + offsets[j]
+        positions = np.arange(3) + offsets[j]
         counts.append([len(g) for g in groups])
         boxes = ax.boxplot(
             groups,
@@ -238,10 +210,91 @@ def distribution(ax, records, series, ylabel):
             jitter = np.random.default_rng(42).uniform(-0.065, 0.065, len(values))
             ax.scatter(x + jitter, values, s=12, color=color, alpha=0.65, zorder=3)
         ax.plot([], [], color=color, marker="D", linestyle="none", label=label)
-    ticks = [SHAPE_DISPLAY.get(shape, shape.title()) + f"\n(n={min(c[i] for c in counts)})" for i, shape in enumerate(active_shapes)]
-    ax.set(xticks=np.arange(n_s), xticklabels=ticks, ylabel=ylabel, xlim=(-0.6, n_s - 0.4))
+    ticks = [
+        f"{shape.title()}\n(12 Kin + 8 Dyn, n={min(c[i] for c in counts)})"
+        for i, shape in enumerate(SHAPES)
+    ]
+    ax.set(xticks=np.arange(3), xticklabels=ticks, ylabel=ylabel, xlim=(-0.6, 2.6))
     if len(series) > 1:
         ax.legend(fontsize=9, loc="best")
+
+
+MOTION_SPECS = (
+    ("horizontal", "prescribed", "Horizontal\n[Kin]"),
+    ("vertical", "prescribed", "Vertical\n[Kin]"),
+    ("circle", "prescribed", "Circle\n[Kin]"),
+    ("hold", "prescribed", "Hold\n[Kin]"),
+    ("drop", "dynamic_obj", "Obj Drop\n[Dyn]"),
+    ("slide", "dynamic_obj", "Slide\n[Dyn]"),
+    ("throw", "dynamic_obj", "Throw\n[Dyn]"),
+    ("tumble", "dynamic_obj", "Tumble\n[Dyn]"),
+    ("drop", "freefall", "Free-fall\n[Sand]"),
+)
+
+
+def _match_motion_group(r, m_name, m_cat):
+    if m_cat == "freefall":
+        return r["shape"] == "freefall"
+    if m_cat == "prescribed":
+        return r["shape"] in SHAPES and r["motion_mode"] == "prescribed" and r["motion"] == m_name
+    return r["shape"] in SHAPES and r["motion_mode"] == "dynamic" and r["motion"] == m_name
+
+
+def distribution_by_motion(ax, records, series, ylabel):
+    """Plot distribution across individual motions (Kinematic, Dynamic object, and Free-fall sand)."""
+    active_specs = []
+    for m_name, m_cat, m_label in MOTION_SPECS:
+        if any(
+            _match_motion_group(r, m_name, m_cat)
+            and any(r["metrics"].get(k) is not None and np.isfinite(r["metrics"].get(k)) for k, _, _ in series)
+            for r in records
+        ):
+            active_specs.append((m_name, m_cat, m_label))
+    n_m = len(active_specs)
+    offsets = np.linspace(-0.17, 0.17, len(series)) if len(series) > 1 else [0]
+    counts = []
+    for j, (key, label, color) in enumerate(series):
+        groups = [
+            [r["metrics"].get(key) for r in records if _match_motion_group(r, m_name, m_cat)]
+            for m_name, m_cat, _ in active_specs
+        ]
+        groups = [np.asarray([v for v in g if v is not None and np.isfinite(v)]) for g in groups]
+        positions = np.arange(n_m) + offsets[j]
+        counts.append([len(g) for g in groups])
+        boxes = ax.boxplot(
+            groups,
+            positions=positions,
+            widths=0.22 if len(series) > 1 else 0.42,
+            patch_artist=True,
+            showfliers=False,
+            showmeans=True,
+            meanprops={
+                "marker": "D",
+                "markerfacecolor": color,
+                "markeredgecolor": "white",
+                "markersize": 4.5,
+            },
+            medianprops={"color": "#303030"},
+        )
+        for box in boxes["boxes"]:
+            box.set(facecolor=color, alpha=0.22)
+        for x, values in zip(positions, groups, strict=True):
+            jitter = np.random.default_rng(42).uniform(-0.06, 0.06, len(values))
+            ax.scatter(x + jitter, values, s=10, color=color, alpha=0.65, zorder=3)
+        ax.plot([], [], color=color, marker="D", linestyle="none", label=label)
+    # Draw vertical dashed separators between Kinematic (0..3), Dynamic Object (4..7), and Free-fall Sand (8)
+    cats = [c for _, c, _ in active_specs]
+    for idx in range(1, len(cats)):
+        if cats[idx] != cats[idx - 1]:
+            ax.axvline(idx - 0.5, color="#888888", linestyle="--", linewidth=0.9, alpha=0.6)
+    ticks = [
+        f"{m_label}\n(n={min(c[i] for c in counts)})"
+        for i, (_, _, m_label) in enumerate(active_specs)
+    ]
+    ax.set(xticks=np.arange(n_m), xticklabels=ticks, ylabel=ylabel, xlim=(-0.6, n_m - 0.4))
+    ax.tick_params(axis="x", labelsize=8.0)
+    if len(series) > 1:
+        ax.legend(fontsize=8.5, loc="best")
 
 
 def paired_bars(ax, values, labels, ylabel, *, methods=None, std=None):
@@ -353,6 +406,7 @@ def generate(root):
         else ("Particle NeRD-Local" if len(report.get("network_source_sha256", {})) == 2 else "Particle NeRD")
     )
     for stem, keys in layouts.items():
+        # Group A: By Interacting Object (Box, Sphere, Cylinder only)
         fig, axes = canvas(3, 2) if len(keys) > 4 else canvas(2, 2)
         for index, (key, label) in enumerate(keys):
             series = [(key, model_label, NERD)]
@@ -364,8 +418,36 @@ def generate(root):
         if stem != "test_material_distribution":
             axes[0].set_title("Time-mean (0–6 s)", pad=14)
             axes[1].set_title("Terminal state (6 s)", pad=14)
+        fig.suptitle(
+            "By Interacting Object (Box, Sphere, Cylinder) — Motions: Kinematic (Horizontal, Vertical, Circle, Hold) & Dynamic (Drop, Slide, Throw, Tumble)",
+            fontsize=11,
+            fontweight="bold",
+            y=0.97,
+        )
         number, _, caption = PLOTS[stem]
         outputs.extend(save(fig, axes, root, stem, caption, number))
+
+        # Group B: By Motion (Horizontal, Vertical, Circle, Hold | Obj Drop, Slide, Throw, Tumble | Free-fall Sand)
+        motion_stem = f"{stem}_by_motion"
+        fig_m, axes_m = canvas(3, 2, width=16.0) if len(keys) > 4 else canvas(2, 2, width=16.0)
+        for index, (key, label) in enumerate(keys):
+            series = [(key, model_label, NERD)]
+            if key.startswith("predicted_"):
+                series.insert(0, (key.replace("predicted_", "reference_"), "Implicit MPM", MPM))
+            distribution_by_motion(axes_m[index], records, series, label)
+        for ax in axes_m[len(keys) :]:
+            ax.set_axis_off()
+        if stem != "test_material_distribution":
+            axes_m[0].set_title("Time-mean (0–6 s)", pad=14)
+            axes_m[1].set_title("Terminal state (6 s)", pad=14)
+        fig_m.suptitle(
+            "By Motion Type — Kinematic Object Motions (Horizontal, Vertical, Circle, Hold) | Dynamic Object Motions (Obj Drop, Slide, Throw, Tumble) | Sand Free-Fall (Flat Ground)",
+            fontsize=11,
+            fontweight="bold",
+            y=0.97,
+        )
+        num_m, _, cap_m = PLOTS[motion_stem]
+        outputs.extend(save(fig_m, axes_m, root, motion_stem, cap_m, num_m))
 
     metadata = [read(root / name / "evaluation_settings.json") for name in REFERENCES]
     windows = [read(root / name / "force_windows.json") for name in REFERENCES]
@@ -385,7 +467,13 @@ def generate(root):
                 f"$F_{'xyz'[i]}$ {'RMSE' if row == 0 else 'signed bias'} (N)",
                 methods=estimation,
             )
-    fig.legend(*axes[0].get_legend_handles_labels(), loc="upper center", ncol=2)
+    fig.suptitle(
+        "Dynamic Motion: 20 s Vertical Drop & Gravity Support (2 kg Object Released at t = 1 s)",
+        fontsize=11.5,
+        fontweight="bold",
+        y=0.98,
+    )
+    fig.legend(*axes[0].get_legend_handles_labels(), loc="upper center", bbox_to_anchor=(0.5, 0.93), ncol=2)
     outputs.extend(
         save(
             fig,
@@ -406,10 +494,7 @@ def generate(root):
     )
     paired_bars(
         axes[1],
-        [
-            [m[source]["vector_rmse_n"] for m in metadata]
-            for source in ("force_predicted_particles", "force_reference_particles")
-        ],
+        [[m[source]["vector_rmse_n"] for m in metadata] for source in ("force_predicted_particles", "force_reference_particles")],
         CASE_LABELS,
         "Force-vector RMSE (N)",
         methods=estimation,
@@ -426,6 +511,12 @@ def generate(root):
         ],
     )
     axes[2].legend(fontsize=8)
+    fig.suptitle(
+        "Dynamic Motion: 20 s Vertical Drop & Gravity Support Summary",
+        fontsize=11.5,
+        fontweight="bold",
+        y=0.96,
+    )
     outputs.extend(
         save(
             fig,
@@ -476,13 +567,19 @@ def generate(root):
                         value = value[part]
                     group.append(value * 100 if key == "final_below_body_mass_fraction" else value)
                 values.append(group)
-            paired_bars(axes[i], values, [s.title() for s in SHAPES], label)
+            paired_bars(axes[i], values, HOLD_LABELS, label)
             if key.endswith("minimum_particle_z_m"):
                 axes[i].set_yscale("symlog", linthresh=1)
                 axes[i].set_yticks([-100, -10, -1, 0], labels=["−100", "−10", "−1", "0"])
         for ax in axes[len(metrics) :]:
             ax.set_axis_off()
-        fig.legend(*axes[0].get_legend_handles_labels(), loc="upper center", ncol=2)
+        fig.suptitle(
+            "Kinematic Motion: Vertical Insertion (1–2 s) + Stationary Fixed-Pose Hold (2–23 s)",
+            fontsize=11.5,
+            fontweight="bold",
+            y=0.98,
+        )
+        fig.legend(*axes[0].get_legend_handles_labels(), loc="upper center", bbox_to_anchor=(0.5, 0.94), ncol=2)
         number, _, caption = PLOTS[stem]
         outputs.extend(save(fig, axes, root, stem, caption, number))
 
