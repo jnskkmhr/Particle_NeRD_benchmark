@@ -67,15 +67,8 @@ def digest(path):
 
 
 def table(caption, headings, rows):
-    head = "".join(
-        f'<th scope="col">{html.escape(str(value))}</th>' for value in headings
-    )
-    body = "".join(
-        "<tr>"
-        + "".join(f"<td>{html.escape(str(value))}</td>" for value in row)
-        + "</tr>"
-        for row in rows
-    )
+    head = "".join(f'<th scope="col">{html.escape(str(value))}</th>' for value in headings)
+    body = "".join("<tr>" + "".join(f"<td>{html.escape(str(value))}</td>" for value in row) + "</tr>" for row in rows)
     return f'<div class="table-wrap"><table><caption>{html.escape(caption)}</caption><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
@@ -128,21 +121,13 @@ def training_details(root, config, records, checkpoint):
             or snapshot.get("training_step_at_snapshot") != observed_step
             or snapshot.get("training_complete") != complete
         ):
-            raise ValueError(
-                "Frozen checkpoint metadata does not match the training log and weights"
-            )
+            raise ValueError("Frozen checkpoint metadata does not match the training log and weights")
         for key in ("selection", "source_workflow", "snapshot_utc"):
             if not snapshot.get(key):
                 raise ValueError(f"Frozen checkpoint metadata is missing {key}")
     elif not complete:
-        raise ValueError(
-            "In-progress evaluation requires an explicit frozen checkpoint snapshot"
-        )
-    horizons = [
-        row["horizon"]
-        for row in records
-        if "loss" in row and row["step"] <= selected["step"]
-    ]
+        raise ValueError("In-progress evaluation requires an explicit frozen checkpoint snapshot")
+    horizons = [row["horizon"] for row in records if "loss" in row and row["step"] <= selected["step"]]
     if not horizons:
         raise ValueError("No training-window records exist for the selected checkpoint")
     return {
@@ -158,8 +143,7 @@ def training_details(root, config, records, checkpoint):
 
 def verify_case(root, checkpoint):
     meta, plots, video = (
-        read(root / name)
-        for name in ("evaluation.json", "plot_provenance.json", "video_provenance.json")
+        read(root / name) for name in ("evaluation.json", "plot_provenance.json", "video_provenance.json")
     )
     if any(item["checkpoint_sha256"] != checkpoint for item in (meta, plots, video)):
         raise ValueError(f"Checkpoint mismatch: {root}")
@@ -183,11 +167,7 @@ def verify_case(root, checkpoint):
             raise ValueError(f"Artifact changed after generation: {root / name}")
     if digest(root / "prediction.h5") != video["prediction_sha256"]:
         raise ValueError(f"Prediction mismatch: {root}")
-    required = (
-        FIGURES
-        if meta["episode"]["id"] not in HOLD_CASES
-        else [f for f in FIGURES if f[0] in (1, 6)]
-    )
+    required = FIGURES if meta["episode"]["id"] not in HOLD_CASES else [f for f in FIGURES if f[0] in (1, 6)]
     for _, stem, _ in required:
         if stem + ".svg" not in plots["figures_sha256"]:
             raise ValueError(f"Missing required reference-case plot: {root / stem}")
@@ -205,9 +185,7 @@ def build_case(root, output, checkpoint):
     ):
         if report[key] != meta[key]:
             raise ValueError(f"Force-window report identity mismatch: {root}")
-    summary = next(
-        record for record in report["episodes"] if record["id"] == episode["id"]
-    )
+    summary = next(record for record in report["episodes"] if record["id"] == episode["id"])
     output.mkdir(parents=True, exist_ok=True)
     for name in [*plots["figures_sha256"], "comparison.mp4", "comparison_poster.png"]:
         shutil.copy2(root / name, output / name)
@@ -270,15 +248,11 @@ def build_case(root, output, checkpoint):
         + "<p>The reference body moves dynamically or follows its prescribed trajectory during MPM recording. During evaluation, its recorded poses and solver-entry free velocities are imposed on Particle NeRD. The recorded free velocities retain information from the MPM coupling. Estimated forces do not change body motion; these results do not establish closed-loop stability.</p>",
     )
     if meta["failure"]:
-        content += section(
-            "Rollout failure", "<p>" + html.escape(json.dumps(meta["failure"])) + "</p>"
-        )
+        content += section("Rollout failure", "<p>" + html.escape(json.dumps(meta["failure"])) + "</p>")
     if meta.get("field_failure"):
         content += section(
             "Paired field measurement unavailable",
-            "<p>"
-            + html.escape(meta["field_failure"])
-            + "</p><p>All particles remain in the position and force "
+            "<p>" + html.escape(meta["field_failure"]) + "</p><p>All particles remain in the position and force "
             "measurements. Temporal metrics below use a larger grid and retain escaped particles.</p>",
         )
     model_label = os.environ.get("BENCHMARK_MODEL_LABEL", "Particle NeRD")
@@ -340,9 +314,7 @@ def build_case(root, output, checkpoint):
             section,
             numbered=False,
         )
-    (output / "index.html").write_text(
-        page(({**CASES, **HOLD_CASES})[episode["id"]], content, depth=3)
-    )
+    (output / "index.html").write_text(page(({**CASES, **HOLD_CASES})[episode["id"]], content, depth=3))
     return public_meta
 
 
@@ -390,6 +362,12 @@ def main():
         required=True,
         help="Three fully coupled object/NeRD simulations with matched videos",
     )
+    parser.add_argument(
+        "--dynamic-page-output",
+        type=Path,
+        default=None,
+        help="Output directory for the dedicated elementary_object_dynamic_simulation page",
+    )
     args = parser.parse_args()
     config, audit, report = (
         read(args.training / "model/config.json"),
@@ -397,46 +375,28 @@ def main():
         read(args.test_report),
     )
     checkpoint = digest(args.training / "model/best.pt")
-    if (
-        config["smoke"]
-        or audit["trajectories"] != 600
-        or audit["splits"] != {"train": 480, "validation": 60, "test": 60}
-    ):
-        raise ValueError("This report requires the completed 600-trajectory campaign")
-    records = [
-        json.loads(line)
-        for line in (args.training / "model/metrics.jsonl").read_text().splitlines()
-    ]
+    valid_600 = audit["trajectories"] == 600 and audit["splits"] == {"train": 480, "validation": 60, "test": 60}
+    valid_680 = audit["trajectories"] == 680 and audit["splits"] == {"train": 544, "validation": 68, "test": 68}
+    if config["smoke"] or not (valid_600 or valid_680):
+        raise ValueError("This report requires the completed 600- or 680-trajectory campaign")
+    records = [json.loads(line) for line in (args.training / "model/metrics.jsonl").read_text().splitlines()]
     training = training_details(args.training, config, records, checkpoint)
-    if (
-        checkpoint != report["checkpoint_sha256"]
-        or report["groups"]["combined"]["trajectories"] != 60
-    ):
-        raise ValueError(
-            "Test report must contain 60 trajectories evaluated with this checkpoint"
-        )
+    expected_test_count = 68 if valid_680 else 60
+    if checkpoint != report["checkpoint_sha256"] or report["groups"]["combined"]["trajectories"] != expected_test_count:
+        raise ValueError(f"Test report must contain {expected_test_count} trajectories evaluated with this checkpoint")
     if args.output.exists():
-        raise ValueError(
-            "Use a new staging directory; existing reports are never overwritten"
-        )
-    expected_test = {
-        f"{shape}-{index:04d}"
-        for shape in ("box", "sphere", "cylinder")
-        for index in range(9, 200, 10)
-    }
-    if (
-        len(report["episodes"]) != 60
-        or {episode["id"] for episode in report["episodes"]} != expected_test
-    ):
-        raise ValueError("Report does not contain the exact 60 held-out test IDs")
+        raise ValueError("Use a new staging directory; existing reports are never overwritten")
+    expected_test = {f"{shape}-{index:04d}" for shape in ("box", "sphere", "cylinder") for index in range(9, 200, 10)}
+    if valid_680:
+        expected_test |= {f"freefall-{index:04d}" for index in range(129, 200, 10)}
+    if len(report["episodes"]) != expected_test_count or {episode["id"] for episode in report["episodes"]} != expected_test:
+        raise ValueError(f"Report does not contain the exact {expected_test_count} held-out test IDs")
     # Validate every input before producing a partial export.
     for case in CASES:
         meta, _, _ = verify_case(args.references / case, checkpoint)
         for key in ("network_source_sha256", "evaluation_source_sha256"):
             if meta[key] != report[key]:
-                raise ValueError(
-                    f"Reference/test implementation mismatch in {case}: {key}"
-                )
+                raise ValueError(f"Reference/test implementation mismatch in {case}: {key}")
     for case in HOLD_CASES:
         meta, _, _ = verify_case(args.holds / case, checkpoint)
         for key in ("network_source_sha256", "evaluation_source_sha256"):
@@ -465,7 +425,12 @@ def main():
         ),
         (
             "Dataset and split",
-            "600 six-second trajectories: 200 each for Box, Sphere and Cylinder; 480 training, 60 validation, 60 held-out test trajectories.",
+            (
+                "680 six-second trajectories: 200 each for Box, Sphere and Cylinder, plus 80 dynamic Free-fall sand trajectories; "
+                "544 training, 68 validation, 68 held-out test trajectories."
+                if valid_680
+                else "600 six-second trajectories: 200 each for Box, Sphere and Cylinder; 480 training, 60 validation, 60 held-out test trajectories."
+            ),
         ),
         (
             "MPM dataset motion: kinematic",
@@ -473,11 +438,15 @@ def main():
         ),
         (
             "MPM dataset motion: dynamic",
-            "240 trajectories: drops, slides, throws and tumbles. Two-kilogram objects are released after the first second and respond to gravity and contacts.",
+            (
+                "320 trajectories: 240 with 2 kg objects (Box, Sphere, Cylinder) released after 1 s and 80 unconfined Free-fall sand blocks/columns (drops, slides, throws, and tumbles)."
+                if valid_680
+                else "240 trajectories: drops, slides, throws and tumbles. Two-kilogram objects are released after the first second and respond to gravity and contacts."
+            ),
         ),
         (
             "Sand and resolution",
-            "2 × 1.2 × 0.30 m flat bed; 20,646 particles; MPM grid 0.04 m; particle spacing 0.032 m, radius 0.016 m; seeded bounded position jitter up to 0.0064 m per coordinate.",
+            "2 × 1.2 × 0.30 m flat bed (20,646 particles) for object interactions; unconfined 3D sand blocks/columns for free-fall sand; MPM grid 0.04 m; particle spacing 0.032 m, radius 0.016 m; seeded bounded position jitter up to 0.0064 m per coordinate.",
         ),
         (
             "Material",
@@ -521,7 +490,7 @@ def main():
         (
             "Checkpoint validation",
             (
-                f"{training['selected_validation']['validation_trajectories']} of the 60 reserved validation trajectories; "
+                f"{training['selected_validation']['validation_trajectories']} reserved validation trajectories; "
                 f"{training['selected_validation']['validation_windows']} windows of {config['validation_horizon'] * 0.005:g} s. "
                 "Each selected trajectory contributes initial settling and a motion-specific window. "
                 "The loss separates moving/stationary groups at 0.5 mm reference displacement per step; "
@@ -549,7 +518,7 @@ def main():
         ),
         (
             "Evaluation",
-            "Recorded-motion tests use imposed MPM body inputs with recurrent predicted particles; no reference particle replacement after initialization. Separate fully dynamic comparisons close the object force loop; Table 2 identifies each evaluation set.",
+            "Recorded-motion tests use imposed MPM body inputs with recurrent predicted particles; no reference particle replacement after initialization. Dynamic contact-force accuracy and 20-second closed-loop dynamic simulations are reported on the dedicated Dynamic Object Simulation page.",
         ),
         ("Checkpoint SHA-256", checkpoint),
     ]
@@ -557,27 +526,17 @@ def main():
         "Evaluation conditions",
         table("Table 1: Shared object-model experiment.", ("Item", "Condition"), rows),
     )
-    content += evaluation_modes(table, section, args.dynamics is not None)
     content += motion_gallery(motion_manifest)
     content += metric_results(report, section)
     content += metric_section(
         5,
-        "<p>The 60 held-out dataset recordings have no reference forces. Force accuracy is measured on four "
-        "dedicated recordings with the same checkpoint. Each includes an exact matching 50 fps video and full curves. "
-        "Body poses are replayed from MPM; estimated forces do not change them.</p><ul>"
-        + "".join(
-            f'<li><a href="{case}/">{title}</a></li>' for case, title in CASES.items()
-        )
-        + "</ul>"
-        + reference_videos(CASES)
-        + figure_html("reference_force_errors")
-        + figure_html("reference_summary")
-        + "<p>Chamfer and Wasserstein distances remain optional, unmeasured diagnostics.</p>",
+        "<p>Contact-force accuracy on the three 20-second dynamic object support tests (Box, Sphere, and Cylinder; "
+        "kinematic prescribed-object force estimation is omitted) and the three 20-second fully dynamic closed-loop "
+        "simulations with NeRD force feedback are published on the dedicated benchmark page:</p>"
+        '<p><a href="../elementary_object_dynamic_simulation/"><strong>Open Elementary object dynamic simulation &amp; contact-force benchmark →</strong></a></p>',
         section,
     )
     content += hold_results(args.holds, args.output, checkpoint, digest, table, section)
-    if args.dynamics:
-        content += dynamic_results(args.dynamics, args.output, checkpoint, section)
     model_label = os.environ.get("BENCHMARK_MODEL_LABEL") or (
         "Particle World"
         if "d_model" in config["model"]
@@ -586,10 +545,10 @@ def main():
     os.environ["BENCHMARK_MODEL_LABEL"] = model_label
     (args.output / "index.html").write_text(
         page(
-            f"{model_label}: shared object-model prediction accuracy",
+            f"{model_label}: Elementary object benchmark",
             content,
             depth=2,
-            introduction=f"One shared {model_label} particle model: recorded-motion particle/force evaluation and separately reported fully dynamic object simulations.",
+            introduction=f"One shared {model_label} particle model: recorded-motion particle evaluation (kinematic, dynamic, and free-fall sand) and spatio-temporal consistency.",
             extra_head='<link rel="stylesheet" href="../../assets/object-motion-gallery.css"><script src="../../assets/object-motion-gallery.js" defer></script>',
         )
     )
@@ -600,14 +559,8 @@ def main():
                 "checkpoint_sha256": checkpoint,
                 "dataset_splits": audit["splits"],
                 "dataset_groups": audit["groups"],
-                "trajectory_hashes": {
-                    key: value["sha256"] for key, value in audit["files"].items()
-                },
-                "training_config": {
-                    key: value
-                    for key, value in config.items()
-                    if key not in {"data", "output"}
-                },
+                "trajectory_hashes": {key: value["sha256"] for key, value in audit["files"].items()},
+                "training_config": {key: value for key, value in config.items() if key not in {"data", "output"}},
                 "evaluated_training_state": training,
             },
             indent=2,
@@ -615,9 +568,50 @@ def main():
         + "\n"
     )
     generate(args.output)
-    print(
-        f"Built report and seven matched case pages in {args.output}; no raw trajectories or weights copied."
+
+    # Also build the dedicated elementary_object_dynamic_simulation page
+    dyn_page_dir = args.dynamic_page_output or (args.output.parent / "elementary_object_dynamic_simulation")
+    if dyn_page_dir.exists():
+        shutil.rmtree(dyn_page_dir)
+    dyn_page_dir.mkdir(parents=True, exist_ok=True)
+    for case in CASES:
+        shutil.copytree(args.output / case, dyn_page_dir / case)
+    for stem in ("reference_force_errors", "reference_summary"):
+        for ext in ("svg", "png", "pdf"):
+            shutil.copy2(args.output / f"{stem}.{ext}", dyn_page_dir / f"{stem}.{ext}")
+    shutil.copy2(args.output / "comparison_plot_provenance.json", dyn_page_dir / "comparison_plot_provenance.json")
+
+    dyn_content = section(
+        "Overview",
+        '<p><a href="../particle_nerd_local/">← Back to Elementary object &amp; free-fall sand particle prediction benchmark</a></p>'
+        f"<p>This page evaluates contact-force reconstruction and 20-second closed-loop dynamic coupling for the shared <strong>{html.escape(model_label)}</strong> model (checkpoint <code>{checkpoint[:16]}…</code>, update {training['checkpoint_step']:,}). "
+        "Force estimation is evaluated exclusively on <strong>dynamic</strong> 2 kg objects (Box, Sphere, Cylinder) that respond to gravity and sand contact; force estimation for kinematic prescribed objects is omitted.</p>",
     )
+    dyn_content += metric_section(
+        5,
+        "<p>Force accuracy is measured on three dedicated 20-second dynamic drop-and-support recordings (Box, Sphere, and Cylinder) with the same frozen checkpoint. "
+        "Each includes an exact matching 50 fps video and full curves. In this first section, body poses are replayed from the dynamic MPM recording so predicted and reference particles are evaluated along the identical object trajectory.</p><ul>"
+        + "".join(f'<li><a href="{case}/">{title}</a></li>' for case, title in CASES.items())
+        + "</ul>"
+        + reference_videos(CASES)
+        + figure_html("reference_force_errors")
+        + figure_html("reference_summary"),
+        section,
+    )
+    if args.dynamics:
+        dyn_content += dynamic_results(args.dynamics, dyn_page_dir, checkpoint, section)
+        # Also keep dynamic/ in args.output so existing relative links continue to resolve
+        if (dyn_page_dir / "dynamic").exists() and not (args.output / "dynamic").exists():
+            shutil.copytree(dyn_page_dir / "dynamic", args.output / "dynamic")
+    (dyn_page_dir / "index.html").write_text(
+        page(
+            f"{model_label}: Elementary object dynamic simulation & force benchmark",
+            dyn_content,
+            depth=2,
+            introduction=f"Dynamic-object contact-force accuracy (20 s drop-and-support tests) and 20 s fully dynamic closed-loop object simulations with {model_label} force feedback.",
+        )
+    )
+    print(f"Built report in {args.output} and dynamic simulation page in {dyn_page_dir}; no raw trajectories or weights copied.")
 
 
 if __name__ == "__main__":

@@ -189,20 +189,33 @@ def finish(fig, axes, root, stem, caption, number):
     return paths
 
 
+SHAPE_DISPLAY = {
+    "box": "Box",
+    "sphere": "Sphere",
+    "cylinder": "Cylinder",
+    "freefall": "Free-fall\nsand",
+}
+
+
 def distribution(ax, records, series, ylabel):
     """Draw every available per-trajectory scalar without clipping or imputing missing regions."""
     offsets = np.linspace(-0.17, 0.17, len(series)) if len(series) > 1 else [0]
+    active_shapes = []
+    for cand in ("box", "sphere", "cylinder", "freefall"):
+        if any(
+            r["shape"] == cand
+            and any(r["metrics"].get(k) is not None and np.isfinite(r["metrics"].get(k)) for k, _, _ in series)
+            for r in records
+        ):
+            active_shapes.append(cand)
+    if not active_shapes:
+        active_shapes = list(SHAPES)
+    n_s = len(active_shapes)
     counts = []
     for j, (key, label, color) in enumerate(series):
-        groups = [
-            [r["metrics"].get(key) for r in records if r["shape"] == shape]
-            for shape in SHAPES
-        ]
-        groups = [
-            np.asarray([v for v in g if v is not None and np.isfinite(v)])
-            for g in groups
-        ]
-        positions = np.arange(3) + offsets[j]
+        groups = [[r["metrics"].get(key) for r in records if r["shape"] == shape] for shape in active_shapes]
+        groups = [np.asarray([v for v in g if v is not None and np.isfinite(v)]) for g in groups]
+        positions = np.arange(n_s) + offsets[j]
         counts.append([len(g) for g in groups])
         boxes = ax.boxplot(
             groups,
@@ -225,11 +238,8 @@ def distribution(ax, records, series, ylabel):
             jitter = np.random.default_rng(42).uniform(-0.065, 0.065, len(values))
             ax.scatter(x + jitter, values, s=12, color=color, alpha=0.65, zorder=3)
         ax.plot([], [], color=color, marker="D", linestyle="none", label=label)
-    ticks = [
-        shape.title() + f"\n(n={min(c[i] for c in counts)})"
-        for i, shape in enumerate(SHAPES)
-    ]
-    ax.set(xticks=np.arange(3), xticklabels=ticks, ylabel=ylabel, xlim=(-0.6, 2.6))
+    ticks = [SHAPE_DISPLAY.get(shape, shape.title()) + f"\n(n={min(c[i] for c in counts)})" for i, shape in enumerate(active_shapes)]
+    ax.set(xticks=np.arange(n_s), xticklabels=ticks, ylabel=ylabel, xlim=(-0.6, n_s - 0.4))
     if len(series) > 1:
         ax.legend(fontsize=9, loc="best")
 
@@ -278,9 +288,7 @@ def generate(root):
     inputs, outputs = {}, []
 
     def read(path):
-        inputs[path.relative_to(root).as_posix()] = hashlib.sha256(
-            path.read_bytes()
-        ).hexdigest()
+        inputs[path.relative_to(root).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
         return json.loads(path.read_text())
 
     report = read(root / "test_report.json")
@@ -293,15 +301,11 @@ def generate(root):
         if directory != root:
             meta = read(directory / "evaluation_settings.json")
             if directory.name in REFERENCES:
-                case_name = CASE_LABELS[REFERENCES.index(directory.name)].replace(
-                    "\n", " "
-                )
+                case_name = CASE_LABELS[REFERENCES.index(directory.name)].replace("\n", " ")
             else:
                 case_name = meta["episode"]["shape"].title() + ": fixed-object hold"
             duration = meta["completed_steps"] * meta["native_dt_s"]
-            context += (
-                f"{case_name}; {duration:g} s recording; one recorded-motion replay. "
-            )
+            context += f"{case_name}; {duration:g} s recording; one recorded-motion replay. "
         return finish(fig, axes, directory, stem, context + caption, number)
 
     records = report["episodes"]
@@ -353,9 +357,7 @@ def generate(root):
         for index, (key, label) in enumerate(keys):
             series = [(key, model_label, NERD)]
             if key.startswith("predicted_"):
-                series.insert(
-                    0, (key.replace("predicted_", "reference_"), "Implicit MPM", MPM)
-                )
+                series.insert(0, (key.replace("predicted_", "reference_"), "Implicit MPM", MPM))
             distribution(axes[index], records, series, label)
         for ax in axes[len(keys) :]:
             ax.set_axis_off()
@@ -415,10 +417,7 @@ def generate(root):
     axes[1].legend(fontsize=8)
     paired_bars(
         axes[2],
-        [
-            [w[source][-1]["mean_fx_fy_fz_n"][2] for w in windows]
-            for source in ("reference", "predicted_particles")
-        ],
+        [[w[source][-1]["mean_fx_fy_fz_n"][2] for w in windows] for source in ("reference", "predicted_particles")],
         CASE_LABELS,
         "Final-second $F_z$ (N)",
         std=[
@@ -475,18 +474,12 @@ def generate(root):
                     value = summaries[f"{shape}-fixed-hold"][method]
                     for part in key.split("."):
                         value = value[part]
-                    group.append(
-                        value * 100
-                        if key == "final_below_body_mass_fraction"
-                        else value
-                    )
+                    group.append(value * 100 if key == "final_below_body_mass_fraction" else value)
                 values.append(group)
             paired_bars(axes[i], values, [s.title() for s in SHAPES], label)
             if key.endswith("minimum_particle_z_m"):
                 axes[i].set_yscale("symlog", linthresh=1)
-                axes[i].set_yticks(
-                    [-100, -10, -1, 0], labels=["−100", "−10", "−1", "0"]
-                )
+                axes[i].set_yticks([-100, -10, -1, 0], labels=["−100", "−10", "−1", "0"])
         for ax in axes[len(metrics) :]:
             ax.set_axis_off()
         fig.legend(*axes[0].get_legend_handles_labels(), loc="upper center", ncol=2)
@@ -507,10 +500,7 @@ def generate(root):
         ):
             paired_bars(
                 ax,
-                [
-                    meta[k][key]
-                    for k in ("force_predicted_particles", "force_reference_particles")
-                ],
+                [meta[k][key] for k in ("force_predicted_particles", "force_reference_particles")],
                 ("Fx", "Fy", "Fz"),
                 label,
                 methods=estimation,
@@ -534,11 +524,7 @@ def generate(root):
             ("predicted_particles", model_label, NERD),
             ("reference_particles", "Estimator with MPM particles", DIAGNOSTIC),
         ):
-            rows = [
-                r
-                for r in force_windows[source]
-                if r["start_exclusive_s"] in {1.0, 3.0, end - 1}
-            ]
+            rows = [r for r in force_windows[source] if r["start_exclusive_s"] in {1.0, 3.0, end - 1}]
             offset = {
                 "reference": -0.18,
                 "predicted_particles": 0.0,
@@ -565,10 +551,7 @@ def generate(root):
                     xlabel="Simulation-time window (s)",
                     ylabel=f"$F_{'xyz'[i]}$ (N)",
                     xticks=np.arange(len(rows)),
-                    xticklabels=[
-                        f"({r['start_exclusive_s']:g}, {r['end_inclusive_s']:g}]"
-                        for r in rows
-                    ],
+                    xticklabels=[f"({r['start_exclusive_s']:g}, {r['end_inclusive_s']:g}]" for r in rows],
                     xlim=(-0.5, len(rows) - 0.5),
                 )
         fig.legend(
@@ -592,15 +575,10 @@ def generate(root):
         "checkpoint_sha256": checkpoint,
         "plot_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "inputs_sha256": inputs,
-        "figures_sha256": {
-            p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-            for p in outputs
-        },
+        "figures_sha256": {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in outputs},
         "statement": "Presentation-only transformation of existing measured summaries. No new simulation, training, filtering, or removal of trajectories.",
     }
-    (root / "comparison_plot_provenance.json").write_text(
-        json.dumps(provenance, indent=2)
-    )
+    (root / "comparison_plot_provenance.json").write_text(json.dumps(provenance, indent=2))
 
 
 if __name__ == "__main__":

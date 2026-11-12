@@ -92,12 +92,8 @@ def dynamic_results(source, output, checkpoint, section):
             raise ValueError("Dynamic experiment checkpoint or material solver differs")
         for key in ("reference_sha256", "prediction_sha256", "checkpoint_sha256"):
             if video[key] != meta[key]:
-                raise ValueError(
-                    f"Video and dynamic simulation disagree: {shape}/{key}"
-                )
-        if video["fps"] != 50 or video["state_indices"] != list(
-            range(4, meta["completed_steps"] + 1, 4)
-        ):
+                raise ValueError(f"Video and dynamic simulation disagree: {shape}/{key}")
+        if video["fps"] != 50 or video["state_indices"] != list(range(4, meta["completed_steps"] + 1, 4)):
             raise ValueError("Expected the complete 50 fps simulation video")
         if digest(case / "comparison.mp4") != video["video_sha256"]:
             raise ValueError("Video hash differs from provenance")
@@ -109,18 +105,11 @@ def dynamic_results(source, output, checkpoint, section):
             "video_provenance.json",
         ):
             shutil.copy2(case / name, destination / name)
-        public = {
-            k: v
-            for k, v in meta.items()
-            if k not in ("reference_path", "implementation_source_sha256")
-        }
+        public = {k: v for k, v in meta.items() if k not in ("reference_path", "implementation_source_sha256")}
         public["implementation_source_sha256"] = {
-            path.rsplit("/", 1)[-1]: value
-            for path, value in meta["implementation_source_sha256"].items()
+            path.rsplit("/", 1)[-1]: value for path, value in meta["implementation_source_sha256"].items()
         }
-        (destination / "simulation_provenance.json").write_text(
-            json.dumps(public, indent=2) + "\n"
-        )
+        (destination / "simulation_provenance.json").write_text(json.dumps(public, indent=2) + "\n")
         model_label = os.environ.get("BENCHMARK_MODEL_LABEL", "Particle NeRD")
         prefix = f"dynamic/{shape}/"
         parts.append(
