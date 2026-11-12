@@ -1,33 +1,27 @@
 {
-  "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
+  "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
   "reference_sha256": "7a85835b4cf0986a63a750b2dcef8ff9c325e653c4f39b965864ca6a3bee652f",
-  "prediction_sha256": "09db4291d60f7492631335adb13d48e58d91e0b66a0e286c09a172679bae531e",
+  "prediction_sha256": "0a5243642ff1cbfadc50d0ace93b1f0e1948d0e80be60406e86ec2bf7352df3d",
   "inputs_sha256": {
-    "evaluation.json": "7b9974579bcbb172903394392ba0291e53bc57ce36f45ffb1613b13bf444b1b9",
-    "prediction.h5": "09db4291d60f7492631335adb13d48e58d91e0b66a0e286c09a172679bae531e",
-    "particle_metrics.csv": "e1b9d0b4d4fd05d0854f3a46c56694e97f6964a6275aa424d64f8985ca56c816",
-    "field_metrics.csv": "cf6865d4932375e12e50070053ed02019b091e199a742858e4f14526d3ddb1f7",
-    "mass_difference_maps.npz": "9b80e6e12c70f4e341817552e343729d2b1175cd0b51ebd1bc48e690b9e085e0"
+    "evaluation.json": "d635e3ed4750bf9ed49fc9de9d21974de40ea95319e95647b9d56d56ee280559",
+    "prediction.h5": "0a5243642ff1cbfadc50d0ace93b1f0e1948d0e80be60406e86ec2bf7352df3d",
+    "particle_metrics.csv": "69ba147506705530830cbe07cb35db8e2310ef586dc870cd9eec702abcdf1f6e",
+    "field_metrics.csv": "99de68de1899815243223050ad258d65fe61a20bd75488a1198aeb12fd1049f4",
+    "mass_difference_maps.npz": "a0c198e470a056d9bd99e8abfc6db80bf870f473411cd851a2a01e236de02af9"
   },
   "figures_sha256": {
-    "particle_evaluation.png": "2665b966e7c3f9a8f12d86e4ab390915d4ed40df9857ee8f31a6753bef17da7d",
-    "particle_evaluation.pdf": "ded15259d50b76e371be1c1bb8f539f8288e3df9e5dbdcd042b23084c81f06d6",
-    "particle_evaluation.svg": "0bab53663cdd9ac01d4b1f5ce999e180754f8eb5584e7775a6d2b9e52af93c8d",
+    "particle_evaluation.png": "5e0c9546c9d9217d62302d93389919a1b12ff506b93b37126b4da99b0dee38b7",
+    "particle_evaluation.pdf": "145da52982823e717fafb25b18f5d16a9165dabe47627f841527ac68c149733f",
+    "particle_evaluation.svg": "f078536231a2f17bf2fc879ce40fba73e4ad709107ffacfe45a2257e3b520f44",
     "particle_region_counts.png": "bb98bbb5bd5aff10103435ece63ec4cc0b8c1487ee66e2398de6ae8719423d40",
-    "particle_region_counts.pdf": "cf59501477d45b01485f23b457f68a92f0c7f2c3bc8d293841f8097ee0daef99",
-    "particle_region_counts.svg": "e0cc4956406ad9768a80d44c775058eb56e68c4d7407375e3fcdb2a462dc3c7e",
-    "body_mass.png": "048a56f13f5b59759cb4232bbb943534625e73f8a16caf3b9502286a4fc19813",
-    "body_mass.pdf": "7def4bc18b740963399302de13c39882c51a29564fa95f23321e2a4865a44734",
-    "body_mass.svg": "eb32741ead866b03516b6e3ad0a8ba7916de596bbd8c852ba188059855a22bb3",
-    "mass_difference.png": "513ab900de0494e4cd8d1e73312fdf3bd75048892db7019ceaf8f1fd21f8d7d7",
-    "mass_difference.pdf": "d03fe848d6644a3c91ad840ce8412799e72abb5988a4f7738c2513f5ed9023c5",
-    "mass_difference.svg": "e63a06466100ab2964d58d93866c09dfecc67c6b6cb92f39bc6d7088e78b1e49",
-    "forces.png": "7bd6fc30bc59b19dec5b117381f8afdebf3e01f8706c260acb076869264b329a",
-    "forces.pdf": "f1457c7ed04572ea1b8c9a17bb51eea906920b0f4747cbc9f1d42ff098a2652a",
-    "forces.svg": "910e4c3f896e35e6b6d00172abebc95b9666644c74f26b636491a470f59c86db",
-    "force_reconstruction.png": "8864b75700756da3a4817d0276cdabdca92303b0c127effee076d59ea0aae420",
-    "force_reconstruction.pdf": "e97c502ced03bf2c67e594b76a01bb8a143524c4b86dfd12f145733ac5055fc2",
-    "force_reconstruction.svg": "068d739ad873379786214889b0f9d9ab7a1ce520183521d16456f986b393a272"
+    "particle_region_counts.pdf": "37e18fa8f5c6292c2350b81ccbe5e8768e77fe70c77dc6f7bfb1daa9c0e48649",
+    "particle_region_counts.svg": "a8979f946e36d4959528e593ded92664f56f3107f396b0e710f7bf6a9fe8a7e9",
+    "body_mass.png": "990644a318214808789bdbd973523577bf5375e415c37f7f0b3cdf742db70d59",
+    "body_mass.pdf": "50bb6f1d175de2311ae6e449e9c14a9a81757723315f36dffca1cf0604b5ba2e",
+    "body_mass.svg": "f771a5a435d9a55f40d001e46fdd06688b6e2a8b4059a578235030685fd19544",
+    "mass_difference.png": "7d71ef94fd599360441c7e8c9ec938bafc3bb8eb33fb29f19fa296f876cbdc88",
+    "mass_difference.pdf": "47e77a8388d0050542f8dda03814c9c44660a136461c4cec794f92d92b00cbfc",
+    "mass_difference.svg": "84c468203a81683c94eb35f1060652efbba4ce919473d9081df1566648fa94c8"
   },
   "plot_source_sha256": "910d0053869db31d806f6c4001ae66c20a0b282e50d61b66a799cc53264ae212"
 }

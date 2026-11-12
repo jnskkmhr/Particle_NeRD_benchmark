@@ -21,14 +21,14 @@
     "speed": 0.4357319126264538,
     "spin": 2.3265632928919633
   },
-  "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
+  "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
   "reference_sha256": "2301c18571400a9fc3bf9b1901fa5cddbbd4b3faea4bfa46d2d0f86d960e034f",
-  "prediction_sha256": "385191b2c357e9b2bca6b8614e5df6e0da5aa4734ae57cf1b810b69fbbea7a20",
+  "prediction_sha256": "81f2b1de1bfd16d44efbea91f9571d632228db483d97effd8ebff57be95eb28d",
   "native_dt_s": 0.005,
   "expected_steps": 4000,
   "completed_steps": 4000,
   "failure": null,
-  "elapsed_s": 72.07468579395209,
+  "elapsed_s": 62.4089724640362,
   "mode": "Fully dynamic object and recurrent neural particles with lagged estimated force/torque feedback",
   "feedback_enabled": true,
   "active_selection": "auto",
@@ -95,8 +95,8 @@
     "contacts": "Newton collision pipeline"
   },
   "network_source_sha256": {
-    "features.py": "89ff4aa7df54e1e6f607dad5d9a419477ac2421988628c1ecd4eb0d44043990e",
-    "model.py": "5fa57f8c232856b2d0dbb5f2691fbf9b22342ae766fba092f519ec3c9abd09dc"
+    "features.py": "696d6752c2ee974e865ce179f39a3f9bfc8874c783bcd76f9b9081952079342e",
+    "model.py": "a70ecc5f0a773b7a6fb89ee8ee99685c4315e24e9989d39687b2456db80ce39d"
   },
   "versions": {
     "torch": "2.11.0+cu130",

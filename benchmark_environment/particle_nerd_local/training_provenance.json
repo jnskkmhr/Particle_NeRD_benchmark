@@ -1,5 +1,5 @@
 {
-  "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
+  "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
   "dataset_splits": {
     "train": 480,
     "validation": 60,
@@ -644,7 +644,8 @@
       "far_gap_weight": 0.3,
       "far_influence_weight": 0.15,
       "spatial_slice_assign": true,
-      "use_rms_swiglu": true
+      "use_rms_swiglu": true,
+      "use_cloud_context": true
     },
     "world_size": 4,
     "train_trajectories": 480,
@@ -658,8 +659,8 @@
       "6/manifest.json": "46ee37f1385a85a83fc00ecc5f7c4977d99f1ad67421da4bf4bf1ef8a8882652"
     },
     "network_source_sha256": {
-      "features.py": "89ff4aa7df54e1e6f607dad5d9a419477ac2421988628c1ecd4eb0d44043990e",
-      "model.py": "5fa57f8c232856b2d0dbb5f2691fbf9b22342ae766fba092f519ec3c9abd09dc"
+      "features.py": "696d6752c2ee974e865ce179f39a3f9bfc8874c783bcd76f9b9081952079342e",
+      "model.py": "a70ecc5f0a773b7a6fb89ee8ee99685c4315e24e9989d39687b2456db80ce39d"
     },
     "horizon_curriculum": "Six equal stages: 4, 8, 16, 32, 64, 128 steps, each capped at the requested horizon",
     "learning_rate_schedule": "Cosine from initial learning rate to 10% of initial",
@@ -746,32 +747,35 @@
     }
   },
   "evaluated_training_state": {
-    "checkpoint_step": 4500,
-    "checkpoint_training_horizon": 32,
+    "checkpoint_step": 10800,
+    "checkpoint_training_horizon": 100,
     "selected_validation": {
-      "validation_loss": 0.9617346023054173,
-      "position_rmse_mm": 5.477045103907585,
-      "frozen_baseline_rmse_mm": 6.824972957372665,
+      "validation_loss": 0.479425,
+      "position_rmse_mm": 3.184692993760109,
+      "freefall_val_rmse_mm": 123.00472448885441,
+      "freefall_z_com_mae_mm": 9.636700868606567,
+      "freefall_r_95_mae_mm": 131.84560108184814,
+      "frozen_baseline_rmse_mm": 4.954131419459979,
       "validation_trajectories": 24,
       "validation_windows": 48,
       "horizon": 200,
-      "step": 4500,
-      "elapsed_s": 4485.413285630057,
-      "gpu_peak_allocated_bytes": 8535653888
+      "step": 10800,
+      "elapsed_s": 31026.724454189953,
+      "gpu_peak_allocated_bytes": 2510150656
     },
-    "training_step_at_snapshot": 6050,
+    "training_step_at_snapshot": 10800,
     "planned_updates": 12000,
     "training_complete": false,
     "snapshot": {
       "schema": "particle_nerd_object_evaluation_snapshot_v1",
-      "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
-      "frozen_metrics_sha256": "2dbb4fb89cde4a0f5b0cc52876ff1ec92dfd9838f558b56a5743c1131d7f74c2",
-      "checkpoint_step": 4500,
-      "training_step_at_snapshot": 6050,
+      "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
+      "frozen_metrics_sha256": "4ab9a6a31e5fbc7f966cbb6b0c866d6088394fac532d19866f450ea5272b1a4e",
+      "checkpoint_step": 10800,
+      "training_step_at_snapshot": 10800,
       "training_complete": false,
-      "selection": "lowest validation_loss at frozen in-progress snapshot",
-      "source_workflow": "particle-nerd-local-objects-train-5",
-      "snapshot_utc": "2026-11-11T19:28:00Z"
+      "selection": "lowest validation_loss on combined object + free-fall dataset",
+      "source_workflow": "particle-nerd-local-objects-train-5 + combined-freefall",
+      "snapshot_utc": "2026-11-12T16:30:00Z"
     }
   }
 }

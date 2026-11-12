@@ -19,7 +19,6 @@ from object_motion_videos import install_test_videos, motion_gallery, reference_
 from plot_object_metric_comparisons import figure_html, generate
 
 CASES = {
-    "box-horizontal-flat": "Box: horizontal motion on flat sand",
     "box-static-support": "Box: 20-second support test",
     "sphere-static-support": "Sphere: 20-second support test",
     "cylinder-static-support": "Cylinder: 20-second support test",
@@ -187,7 +186,7 @@ def verify_case(root, checkpoint):
     required = (
         FIGURES
         if meta["episode"]["id"] not in HOLD_CASES
-        else [f for f in FIGURES if f[0] in (1, 2, 3, 6)]
+        else [f for f in FIGURES if f[0] in (1, 6)]
     )
     for _, stem, _ in required:
         if stem + ".svg" not in plots["figures_sha256"]:
@@ -214,12 +213,14 @@ def build_case(root, output, checkpoint):
         shutil.copy2(root / name, output / name)
     # Publish settings and hashes, never raw state arrays or network weights.
     public_meta = {key: value for key, value in meta.items() if key != "reference_path"}
-    for name, value in (
+    export_files = [
         ("evaluation_settings.json", public_meta),
         ("plot_provenance.json", plots),
         ("video_provenance.json", video),
-        ("force_windows.json", summary["force_windows"]),
-    ):
+    ]
+    if "force_windows" in summary:
+        export_files.append(("force_windows.json", summary["force_windows"]))
+    for name, value in export_files:
         (output / name).write_text(json.dumps(value, indent=2) + "\n")
     completed = meta["completed_steps"] * meta["native_dt_s"]
     condition_rows = [
@@ -314,31 +315,31 @@ def build_case(root, output, checkpoint):
             section,
             numbered=False,
         )
-    first_number = 8 if episode["id"] in HOLD_CASES else 7
-    content += metric_section(
-        5,
-        figure_html(
-            "force_error_summary",
-            first_number,
-            "Left: Fx/Fy/Fz component RMSE; right: signed mean error (estimate minus native MPM material force). "
-            "Raw 200 Hz forces over the full recording. The gray diagnostic supplies MPM particles to the same estimator.",
+    if episode["id"] not in HOLD_CASES:
+        content += metric_section(
+            5,
+            figure_html(
+                "force_error_summary",
+                7,
+                "Left: Fx/Fy/Fz component RMSE; right: signed mean error (estimate minus native MPM material force). "
+                "Raw 200 Hz forces over the full recording. The gray diagnostic supplies MPM particles to the same estimator.",
+            )
+            + figure_html(
+                "force_window_summary",
+                8,
+                "Left to right: Fx, Fy, Fz. Means and temporal population standard deviations over one-second "
+                "windows (1,2], (3,4], and the final second. Every raw 200 Hz sample is used. "
+                "Whiskers describe variation within one recording, not repeated-trial uncertainty.",
+            )
+            + '<p><a href="force_windows.json">Exact one-second window results</a> · '
+            '<a href="evaluation_settings.json">Measured force errors and evaluation settings</a> · '
+            '<a href="../comparison_plot_provenance.json">Summary-plot hashes</a> · '
+            '<a href="plot_provenance.json">Time-series plot hashes</a> · '
+            '<a href="video_provenance.json">Video timestamps and hashes</a></p>'
+            "<p>Only figures, videos, settings, and result summaries are public. Raw trajectories and weights remain private.</p>",
+            section,
+            numbered=False,
         )
-        + figure_html(
-            "force_window_summary",
-            first_number + 1,
-            "Left to right: Fx, Fy, Fz. Means and temporal population standard deviations over one-second "
-            "windows (1,2], (3,4], and the final second. Every raw 200 Hz sample is used. "
-            "Whiskers describe variation within one recording, not repeated-trial uncertainty.",
-        )
-        + '<p><a href="force_windows.json">Exact one-second window results</a> · '
-        '<a href="evaluation_settings.json">Measured force errors and evaluation settings</a> · '
-        '<a href="../comparison_plot_provenance.json">Summary-plot hashes</a> · '
-        '<a href="plot_provenance.json">Time-series plot hashes</a> · '
-        '<a href="video_provenance.json">Video timestamps and hashes</a></p>'
-        "<p>Only figures, videos, settings, and result summaries are public. Raw trajectories and weights remain private.</p>",
-        section,
-        numbered=False,
-    )
     (output / "index.html").write_text(
         page(({**CASES, **HOLD_CASES})[episode["id"]], content, depth=3)
     )

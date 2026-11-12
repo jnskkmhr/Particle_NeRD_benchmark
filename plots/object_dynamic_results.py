@@ -23,12 +23,6 @@ def evaluation_modes(table, section, include_dynamic):
             "No",
         ),
         (
-            "Force reference: box horizontal (1)",
-            "Kinematic / prescribed",
-            "Kinematic replay",
-            "No",
-        ),
-        (
             "Force references: box, sphere, cylinder drop-and-support (3)",
             "Dynamic after release at 1 s",
             "Kinematic replay",

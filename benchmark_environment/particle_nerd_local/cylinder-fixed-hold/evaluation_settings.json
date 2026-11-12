@@ -23,14 +23,14 @@
     "hold_start_s": 2.0,
     "consistency_start_s": 3.0
   },
-  "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
+  "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
   "reference_sha256": "4b5c8019693d61e201a76c2c3bee4a16f88d3388b204ff31652a78ae5fa52e94",
   "network_source_sha256": {
-    "features.py": "89ff4aa7df54e1e6f607dad5d9a419477ac2421988628c1ecd4eb0d44043990e",
-    "model.py": "5fa57f8c232856b2d0dbb5f2691fbf9b22342ae766fba092f519ec3c9abd09dc"
+    "features.py": "696d6752c2ee974e865ce179f39a3f9bfc8874c783bcd76f9b9081952079342e",
+    "model.py": "a70ecc5f0a773b7a6fb89ee8ee99685c4315e24e9989d39687b2456db80ce39d"
   },
   "evaluation_source_sha256": {
-    "evaluate.py": "323e7bd934ce93a7706234bc80bf6304572e96b378295b1f1bc8b791e60d0588",
+    "evaluate.py": "fa2e6ba0e91b1fea960e14765e1d393df66a16d4a9a48e3a7b7935edabe57289",
     "metrics.py": "2624b91b052c667151c31871630bd1152b3f3b2bf6fa9ba55eb8855ec4082bd1",
     "forces.py": "4b7df74b033e41c581b671ba3c2a28dc336ee03d1393a1ada1a20502b0e3f654",
     "data.py": "6876ec6c5c57b9a61648f6c6935d6affeb263727b4843fe36be9e4607917deb9"
@@ -79,45 +79,17 @@
   },
   "surface_failures": [],
   "grid_lower_m": [
-    -1.2074730396270752,
-    -0.8038433790206909,
+    -1.2753019332885742,
+    -0.8140437602996826,
     -126.85104370117188
   ],
   "grid_upper_m": [
     1.2018475532531738,
-    0.7924560308456421,
-    0.15839681029319763
+    0.7956697344779968,
+    0.17126791179180145
   ],
   "field_failure": "Evaluation grid exceeds 20 million nodes; report rollout failure, not clipped mass",
   "mass_difference_map_definition": "Particle NeRD minus MPM physical mass, summed along z for the xy map and y for the xz map; kg per projected grid column, sampled every 1 s",
-  "force_reference_particles": {
-    "component_rmse_n": [
-      0.8953231573104858,
-      1.496059536933899,
-      37.89259338378906
-    ],
-    "component_bias_n": [
-      -0.12080774456262589,
-      -0.28276413679122925,
-      -3.5207581520080566
-    ],
-    "vector_rmse_n": 37.93273162841797,
-    "unconverged_steps": 0
-  },
-  "force_predicted_particles": {
-    "component_rmse_n": [
-      3.910611391067505,
-      3.3162271976470947,
-      32.52194595336914
-    ],
-    "component_bias_n": [
-      -2.2912540435791016,
-      -1.6177517175674438,
-      8.952066421508789
-    ],
-    "vector_rmse_n": 32.92369842529297,
-    "unconverged_steps": 0
-  },
-  "mean_position_rmse_mm": 81.25320922306051,
-  "final_position_rmse_mm": 880.3905639648438
+  "mean_position_rmse_mm": 86.80447315741168,
+  "final_position_rmse_mm": 880.635009765625
 }

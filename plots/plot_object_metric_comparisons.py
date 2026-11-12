@@ -16,13 +16,11 @@ import numpy as np
 MPM, NERD, DIAGNOSTIC = "#193c64", "#248044", "#718170"
 SHAPES = ("box", "sphere", "cylinder")
 REFERENCES = (
-    "box-horizontal-flat",
     "box-static-support",
     "sphere-static-support",
     "cylinder-static-support",
 )
 CASE_LABELS = (
-    "Box\nhorizontal\n(6 s)",
     "Box\nsupport\n(20 s)",
     "Sphere\nsupport\n(20 s)",
     "Cylinder\nsupport\n(20 s)",
@@ -495,7 +493,7 @@ def generate(root):
         number, _, caption = PLOTS[stem]
         outputs.extend(save(fig, axes, root, stem, caption, number))
 
-    for case in (*REFERENCES, *(f"{s}-fixed-hold" for s in SHAPES)):
+    for case in REFERENCES:
         folder = root / case
         meta = read(folder / "evaluation_settings.json")
         force_windows = read(folder / "force_windows.json")

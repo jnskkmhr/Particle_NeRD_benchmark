@@ -1,9 +1,9 @@
 {
   "box-fixed-hold": {
     "episode": "box-fixed-hold",
-    "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
+    "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
     "reference_sha256": "fd3d28d445803085c6f82d063872badc5b2f6434fe458d728238e582b83e3312",
-    "prediction_sha256": "72d5d139a1f7410fe6a9caea1d50c47bca471a993cd1cc869f50274c1fd1376e",
+    "prediction_sha256": "0b37e7f61dc05912a07bc60f38cab17487e87f227dc832e0b7a1c90630cbb808",
     "definition": "Each method is compared to its own state at the shared 3 s anchor; neither state is reset.",
     "start_s": 3.0,
     "end_s": 23.0,
@@ -42,14 +42,14 @@
     "particle_count": 20646,
     "physical_mass_kg": 1082.4450174495578,
     "grid_lower_m": [
-      -1.22,
+      -1.28,
       -0.8200000000000001,
       -114.60000000000001
     ],
     "grid_shape": [
-      123,
+      126,
       82,
-      5739
+      5740
     ],
     "reference": {
       "final": {
@@ -63,7 +63,7 @@
         "minimum_particle_z_m": -114.40076446533203,
         "temporal_mass_discrepancy": 0.9846816543199467,
         "below_body_mass_kg": 5.662310466170311,
-        "surface_mean_mm": 46.020635347596745,
+        "surface_mean_mm": 46.020635348052075,
         "surface_p95_mm": 86.59597788825783
       },
       "late_vertical_drift_rate_mm_s": -2.298971918892967,
@@ -73,42 +73,42 @@
       "initial_below_body_mass_kg": 8.755609702318907,
       "final_below_body_mass_fraction": 0.6467065868263473,
       "surface_final_30mm_grid": {
-        "surface_mean_mm": 46.284301816058075,
+        "surface_mean_mm": 46.284301794348806,
         "surface_p95_mm": 85.33899467925455
       }
     },
     "predicted": {
       "final": {
         "time_s": 23.0,
-        "rms_displacement_mm": 90.80985345662744,
-        "mean_vertical_change_mm": -82.1879501652561,
-        "kinetic_energy_j": 0.009898189302960178,
-        "rms_speed_m_s": 0.0042765145375461035,
-        "below_floor_mass_percent": 12.074978204010462,
-        "below_floor_1cm_mass_percent": 4.7418386128063545,
-        "minimum_particle_z_m": -0.49540433287620544,
-        "temporal_mass_discrepancy": 1.1425112971166551,
-        "below_body_mass_kg": 1.0485760122537613,
-        "surface_mean_mm": 63.32188655808159,
-        "surface_p95_mm": 128.6441856926729
+        "rms_displacement_mm": 93.91236363633797,
+        "mean_vertical_change_mm": -80.8330097119448,
+        "kinetic_energy_j": 0.03908854392820176,
+        "rms_speed_m_s": 0.00849839321011672,
+        "below_floor_mass_percent": 13.048532403371112,
+        "below_floor_1cm_mass_percent": 6.693790564758307,
+        "minimum_particle_z_m": -0.4596666097640991,
+        "temporal_mass_discrepancy": 1.2120931286187833,
+        "below_body_mass_kg": 6.815744079649448,
+        "surface_mean_mm": 60.351504655350766,
+        "surface_p95_mm": 127.02120248439955
       },
-      "late_vertical_drift_rate_mm_s": -4.455161543869144,
-      "late_mean_rms_speed_m_s": 0.004833345528252388,
-      "late_mean_kinetic_energy_j": 0.012717378648063342,
+      "late_vertical_drift_rate_mm_s": -5.379746107368725,
+      "late_mean_rms_speed_m_s": 0.006410024979571992,
+      "late_mean_kinetic_energy_j": 0.02303183696355434,
       "late_samples": 2001,
-      "initial_below_body_mass_kg": 6.658457677811384,
-      "final_below_body_mass_fraction": 0.15748031496062992,
+      "initial_below_body_mass_kg": 6.448742475360632,
+      "final_below_body_mass_fraction": 1.056910569105691,
       "surface_final_30mm_grid": {
-        "surface_mean_mm": 64.32219216295674,
-        "surface_p95_mm": 127.78288596732399
+        "surface_mean_mm": 63.64017063933082,
+        "surface_p95_mm": 129.25969116394265
       }
     }
   },
   "sphere-fixed-hold": {
     "episode": "sphere-fixed-hold",
-    "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
+    "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
     "reference_sha256": "7a85835b4cf0986a63a750b2dcef8ff9c325e653c4f39b965864ca6a3bee652f",
-    "prediction_sha256": "09db4291d60f7492631335adb13d48e58d91e0b66a0e286c09a172679bae531e",
+    "prediction_sha256": "0a5243642ff1cbfadc50d0ace93b1f0e1948d0e80be60406e86ec2bf7352df3d",
     "definition": "Each method is compared to its own state at the shared 3 s anchor; neither state is reset.",
     "start_s": 3.0,
     "end_s": 23.0,
@@ -147,14 +147,14 @@
     "particle_count": 20646,
     "physical_mass_kg": 1082.4450174495578,
     "grid_lower_m": [
-      -1.22,
+      -1.28,
       -0.8200000000000001,
-      -0.7000000000000001
+      -0.64
     ],
     "grid_shape": [
-      123,
+      126,
       82,
-      44
+      43
     ],
     "reference": {
       "final": {
@@ -166,10 +166,10 @@
         "below_floor_mass_percent": 11.634214860021311,
         "below_floor_1cm_mass_percent": 4.732151506345055,
         "minimum_particle_z_m": -0.3812849223613739,
-        "temporal_mass_discrepancy": 0.9848529023922863,
+        "temporal_mass_discrepancy": 0.9848529023922861,
         "below_body_mass_kg": 4.037017647176981,
-        "surface_mean_mm": 46.429785460975324,
-        "surface_p95_mm": 86.65697354417132
+        "surface_mean_mm": 46.42981312322733,
+        "surface_p95_mm": 86.65696606751169
       },
       "late_vertical_drift_rate_mm_s": -1.8985403156738525,
       "late_mean_rms_speed_m_s": 0.0023416638195950475,
@@ -178,42 +178,42 @@
       "initial_below_body_mass_kg": 6.186598472297192,
       "final_below_body_mass_fraction": 0.652542372881356,
       "surface_final_30mm_grid": {
-        "surface_mean_mm": 45.80912724309768,
-        "surface_p95_mm": 85.38750886989918
+        "surface_mean_mm": 45.80912720455993,
+        "surface_p95_mm": 85.38750886989915
       }
     },
     "predicted": {
       "final": {
         "time_s": 23.0,
-        "rms_displacement_mm": 92.97776541042376,
-        "mean_vertical_change_mm": -84.48770926910007,
-        "kinetic_energy_j": 0.010658778085541195,
-        "rms_speed_m_s": 0.004437780169502541,
-        "below_floor_mass_percent": 14.085052794730213,
-        "below_floor_1cm_mass_percent": 5.424779618328006,
-        "minimum_particle_z_m": -0.5037540197372437,
-        "temporal_mass_discrepancy": 1.1579959069548251,
-        "below_body_mass_kg": 0.8912896104156971,
-        "surface_mean_mm": 65.02160443081404,
-        "surface_p95_mm": 130.2835537119571
+        "rms_displacement_mm": 84.12173901051511,
+        "mean_vertical_change_mm": -72.38500703563389,
+        "kinetic_energy_j": 0.034597095174608114,
+        "rms_speed_m_s": 0.007995247147763096,
+        "below_floor_mass_percent": 10.09396493267461,
+        "below_floor_1cm_mass_percent": 4.877458103264555,
+        "minimum_particle_z_m": -0.45608192682266235,
+        "temporal_mass_discrepancy": 1.1221981578909517,
+        "below_body_mass_kg": 1.572864018380642,
+        "surface_mean_mm": 54.50361758291425,
+        "surface_p95_mm": 115.00553100273905
       },
-      "late_vertical_drift_rate_mm_s": -4.3695397850698505,
-      "late_mean_rms_speed_m_s": 0.004822944920999671,
-      "late_mean_kinetic_energy_j": 0.012717069133068123,
+      "late_vertical_drift_rate_mm_s": -5.120556174565112,
+      "late_mean_rms_speed_m_s": 0.006006884664030721,
+      "late_mean_kinetic_energy_j": 0.020245565007436073,
       "late_samples": 2001,
-      "initial_below_body_mass_kg": 6.815744079649448,
-      "final_below_body_mass_fraction": 0.13076923076923078,
+      "initial_below_body_mass_kg": 6.553600076586008,
+      "final_below_body_mass_fraction": 0.24,
       "surface_final_30mm_grid": {
-        "surface_mean_mm": 65.96440012590944,
-        "surface_p95_mm": 129.4669871366481
+        "surface_mean_mm": 55.51484158010746,
+        "surface_p95_mm": 115.16961524581771
       }
     }
   },
   "cylinder-fixed-hold": {
     "episode": "cylinder-fixed-hold",
-    "checkpoint_sha256": "5b164d0a9bc5a3644b7845d01926d82b4abd5fc5876d19a362f3d10cf19bccd1",
+    "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
     "reference_sha256": "4b5c8019693d61e201a76c2c3bee4a16f88d3388b204ff31652a78ae5fa52e94",
-    "prediction_sha256": "a9a524cc6b24083f93121769028862b333552ca072380896c3286728aa7ceaae",
+    "prediction_sha256": "3fc53fe5b7c958d14ccf1f676006d166f98e48f2f8ffdcf5bc7b5fe9d29ba4c3",
     "definition": "Each method is compared to its own state at the shared 3 s anchor; neither state is reset.",
     "start_s": 3.0,
     "end_s": 23.0,
@@ -252,14 +252,14 @@
     "particle_count": 20646,
     "physical_mass_kg": 1082.4450174495578,
     "grid_lower_m": [
-      -1.22,
+      -1.28,
       -0.8200000000000001,
       -126.86
     ],
     "grid_shape": [
-      123,
+      126,
       82,
-      6352
+      6353
     ],
     "reference": {
       "final": {
@@ -271,9 +271,9 @@
         "below_floor_mass_percent": 11.64874551971326,
         "below_floor_1cm_mass_percent": 4.722464399883755,
         "minimum_particle_z_m": -126.6710433959961,
-        "temporal_mass_discrepancy": 0.983530425732472,
+        "temporal_mass_discrepancy": 0.9835304257324717,
         "below_body_mass_kg": 5.452595263719559,
-        "surface_mean_mm": 45.88235998722604,
+        "surface_mean_mm": 45.88235999551581,
         "surface_p95_mm": 86.52822023515903
       },
       "late_vertical_drift_rate_mm_s": -2.3537986598580245,
@@ -283,34 +283,34 @@
       "initial_below_body_mass_kg": 7.916748892515898,
       "final_below_body_mass_fraction": 0.6887417218543046,
       "surface_final_30mm_grid": {
-        "surface_mean_mm": 46.51698311178302,
+        "surface_mean_mm": 46.516983127517264,
         "surface_p95_mm": 85.26850639653223
       }
     },
     "predicted": {
       "final": {
         "time_s": 23.0,
-        "rms_displacement_mm": 92.6162411430996,
-        "mean_vertical_change_mm": -83.96094980848402,
-        "kinetic_energy_j": 0.010228789228795441,
-        "rms_speed_m_s": 0.004347345833122729,
-        "below_floor_mass_percent": 13.247118085827763,
-        "below_floor_1cm_mass_percent": 5.090574445413155,
-        "minimum_particle_z_m": -0.49112632870674133,
-        "temporal_mass_discrepancy": 1.1572272001005732,
-        "below_body_mass_kg": 1.1010048128664494,
-        "surface_mean_mm": 64.41104900499697,
-        "surface_p95_mm": 131.02982131066005
+        "rms_displacement_mm": 95.17460123558935,
+        "mean_vertical_change_mm": -81.90905589593739,
+        "kinetic_energy_j": 0.039439532910704234,
+        "rms_speed_m_s": 0.00853646288474849,
+        "below_floor_mass_percent": 13.528044173205464,
+        "below_floor_1cm_mass_percent": 6.994090865058607,
+        "minimum_particle_z_m": -0.4640590250492096,
+        "temporal_mass_discrepancy": 1.218476551386736,
+        "below_body_mass_kg": 4.823449656367302,
+        "surface_mean_mm": 60.22218398558019,
+        "surface_p95_mm": 127.59321899347886
       },
-      "late_vertical_drift_rate_mm_s": -4.518740230047509,
-      "late_mean_rms_speed_m_s": 0.00491213570543939,
-      "late_mean_kinetic_energy_j": 0.01312157601906527,
+      "late_vertical_drift_rate_mm_s": -5.42559680624403,
+      "late_mean_rms_speed_m_s": 0.006478243848828506,
+      "late_mean_kinetic_energy_j": 0.023459409111308803,
       "late_samples": 2001,
-      "initial_below_body_mass_kg": 6.50117127597332,
-      "final_below_body_mass_fraction": 0.1693548387096774,
+      "initial_below_body_mass_kg": 6.029312070459127,
+      "final_below_body_mass_fraction": 0.8,
       "surface_final_30mm_grid": {
-        "surface_mean_mm": 66.14739466340595,
-        "surface_p95_mm": 130.08098189506538
+        "surface_mean_mm": 63.81730395042175,
+        "surface_p95_mm": 129.24676495664482
       }
     }
   }
