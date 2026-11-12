@@ -27,36 +27,50 @@ function syncControls(trigger) {
     }
   }
   if (modeSelect) {
-    const currentMotion = motion.value;
+    const previousMotion = motion.value;
     const allowed = modeSelect.value === "prescribed" ? KINEMATIC_MOTIONS : DYNAMIC_MOTIONS;
     const availSet = new Set(
       clips.filter(c => c.shape === shape.value && c.motion_mode === modeSelect.value).map(c => c.motion)
     );
     const filtered = allowed.filter(([val]) => availSet.size === 0 || availSet.has(val));
+    const list = filtered.length ? filtered : allowed;
     motion.innerHTML = "";
-    for (const [val, label] of (filtered.length ? filtered : allowed)) {
+    for (const [val, label] of list) {
       const opt = document.createElement("option");
       opt.value = val;
       opt.textContent = label;
       motion.appendChild(opt);
     }
-    if ([...motion.options].some(o => o.value === currentMotion)) {
-      motion.value = currentMotion;
+    if (list.some(([val]) => val === previousMotion)) {
+      motion.value = previousMotion;
+    } else if (motion.options.length > 0) {
+      motion.selectedIndex = 0;
+      motion.value = motion.options[0].value;
     }
   }
   updateMotion();
 }
 
 function updateMotion() {
-  let clip = clips.find(item => item.shape === shape.value && item.motion === motion.value);
+  let clip = clips.find(
+    item =>
+      item.shape === shape.value &&
+      (!modeSelect || item.motion_mode === modeSelect.value) &&
+      item.motion === motion.value
+  );
+  if (!clip && modeSelect) {
+    clip = clips.find(item => item.shape === shape.value && item.motion_mode === modeSelect.value);
+  }
   if (!clip) {
     clip = clips.find(item => item.shape === shape.value) || clips[0];
-    if (clip) {
-      if (modeSelect) modeSelect.value = clip.motion_mode;
-      motion.value = clip.motion;
-    }
   }
   if (!clip) return;
+  if (modeSelect && modeSelect.value !== clip.motion_mode) {
+    modeSelect.value = clip.motion_mode;
+  }
+  if (motion.value !== clip.motion) {
+    motion.value = clip.motion;
+  }
   video.pause();
   video.poster = `motions/${clip.episode_id}/comparison_poster.png`;
   video.querySelector("source").src = `motions/${clip.episode_id}/comparison.mp4`;
@@ -78,6 +92,4 @@ if (modeSelect) {
   modeSelect.addEventListener("change", () => syncControls(modeSelect));
 }
 motion.addEventListener("change", updateMotion);
-if (modeSelect) {
-  syncControls(modeSelect);
-}
+syncControls(modeSelect || shape);

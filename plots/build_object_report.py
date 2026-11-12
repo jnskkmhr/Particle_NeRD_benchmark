@@ -549,7 +549,7 @@ def main():
             content,
             depth=2,
             introduction=f"One shared {model_label} particle model: recorded-motion particle evaluation (kinematic, dynamic, and free-fall sand) and spatio-temporal consistency.",
-            extra_head='<link rel="stylesheet" href="../../assets/object-motion-gallery.css"><script src="../../assets/object-motion-gallery.js" defer></script>',
+            extra_head='<link rel="stylesheet" href="../../assets/object-motion-gallery.css?v=20261112-v2"><script src="../../assets/object-motion-gallery.js?v=20261112-v2" defer></script>',
         )
     )
     (args.output / "test_report.json").write_text(json.dumps(report, indent=2) + "\n")
