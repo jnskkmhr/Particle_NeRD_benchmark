@@ -1,5 +1,5 @@
 {
-  "checkpoint_sha256": "8e121c133605aae9e5d9d7d735637e4633df4a43413bb750651942b8733c9d52",
+  "checkpoint_sha256": "26993ab280670a8acc4cd8727214e546613f2249622479209b6a1d7e5e240d27",
   "dataset_splits": {
     "train": 800,
     "validation": 100,
@@ -752,7 +752,7 @@
     }
   },
   "evaluated_training_state": {
-    "checkpoint_step": 6000,
+    "checkpoint_step": 11000,
     "checkpoint_training_horizon": 32,
     "selected_validation": {
       "validation_loss": 17.909028487900894,
@@ -765,16 +765,16 @@
       "elapsed_s": 10910.496616220102,
       "gpu_peak_allocated_bytes": 10935878656
     },
-    "training_step_at_snapshot": 6000,
+    "training_step_at_snapshot": 11000,
     "planned_updates": 12000,
     "training_complete": false,
     "snapshot": {
       "schema": "particle_nerd_object_evaluation_snapshot_v1",
-      "checkpoint_sha256": "8e121c133605aae9e5d9d7d735637e4633df4a43413bb750651942b8733c9d52",
-      "checkpoint_step": 6000,
-      "training_step_at_snapshot": 6000,
+      "checkpoint_sha256": "26993ab280670a8acc4cd8727214e546613f2249622479209b6a1d7e5e240d27",
+      "checkpoint_step": 11000,
+      "training_step_at_snapshot": 11000,
       "training_complete": false,
-      "selection": "halfway checkpoint (step 6000 / 12000) from 1,000-trajectory combined object + free-fall from-scratch training",
+      "selection": "heuristic-free ParticleNeRD-Local checkpoint evaluated on 100 held-out trajectories",
       "source_workflow": "particle-nerd-local-combined-1000-train-7",
       "snapshot_utc": "2026-11-13T07:35:00Z"
     }
