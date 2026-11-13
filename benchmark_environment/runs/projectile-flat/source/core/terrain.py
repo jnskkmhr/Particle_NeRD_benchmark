@@ -33,7 +33,7 @@ def surface_height(x, terrain):
     raise ValueError(f"Unknown terrain: {terrain}")
 
 
-def sand_cfg(terrain="flat", size=(2.0, 1.2, 0.30)):
+def sand_cfg(terrain="flat", size=(2.0, 1.2, 0.30), *, seed=PARTICLE_SEED):
     """Jitter lattice samples within the initial bed, preserving count and mass.
 
     Each coordinate is sampled uniformly within 20% of the particle spacing
@@ -48,7 +48,7 @@ def sand_cfg(terrain="flat", size=(2.0, 1.2, 0.30)):
     ]
     points = np.stack(np.meshgrid(*axes, indexing="ij"), axis=-1).reshape(-1, 3)
     points = points[points[:, 2] < surface_height(points[:, 0], terrain)]
-    rng = np.random.default_rng(PARTICLE_SEED)
+    rng = np.random.default_rng(seed)
     lower = np.maximum(points - PARTICLE_JITTER, (-length / 2, -width / 2, -depth))
     upper = np.minimum(points + PARTICLE_JITTER, (length / 2, width / 2, np.inf))
     points[:, :2] = rng.uniform(lower[:, :2], upper[:, :2])

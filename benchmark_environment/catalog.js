@@ -1,4 +1,4 @@
-const BENCHMARK_CASES = [
+window.BENCHMARK_ENV_CATALOG = [
   {
     "id": "horizontal-flat",
     "title": "Horizontal box push",
@@ -322,7 +322,7 @@ const BENCHMARK_CASES = [
   {
     "id": "projectile-flat",
     "title": "Shallow box projectile",
-    "description": "A 2 kg shallow box (0.26 \u00d7 0.18 \u00d7 0.05 m) is released after one second with velocity (1, 0, 0.4) m/s and angular velocity (0, 1, 0) rad/s. Its subsequent motion is dynamic.",
+    "description": "A 10 kg shallow box (0.26 \u00d7 0.18 \u00d7 0.05 m) is released after one second with velocity (1, 0, 0.4) m/s and angular velocity (0, 1, 0) rad/s. Its subsequent motion is dynamic.",
     "motion": "projectile",
     "terrain": "flat",
     "family": "object",
@@ -345,10 +345,10 @@ const BENCHMARK_CASES = [
     "wall_top_z_m": 0.2,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Projectile-Flat-v0 --duration 6 --viz newton_gl --real-time",
-    "date": "2026-11-09",
+    "date": "2026-11-12",
     "artifacts": {
-      "trajectory.h5": "b5a871aaaf2196c61e57df03ec50509e126d91500c2ca49f82a839a04636e555",
-      "simulation.mp4": "de573409d35a52146a4998f920df84e001dc9df255e802dfa9b50e23940217bd"
+      "trajectory.h5": "68d461bc5bd6edf7c7d4b30b691fd27201c80da3aa860731b9ac22e8a34706c4",
+      "simulation.mp4": "c7f2096560720ad2ab6451df658120a0bdcc7d9d6d7079913c79df0484872640"
     }
   },
   {

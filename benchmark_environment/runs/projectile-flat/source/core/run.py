@@ -35,7 +35,7 @@ def create_config(args):
     if args.task:
         cfg = load_cfg_from_registry(args.task, "env_cfg_entry_point")
     else:
-        cfg = make_config(args.motion, args.terrain)
+        cfg = make_config(args.motion, args.terrain, geometry=args.geometry)
     cfg.sim.device = args.device
     bed_size = {"franka": (1.2, 1.0, 0.25), "g1": (3.6, 1.6, 0.30), "quadruped": (2.0, 1.2, 0.12)}.get(
         args.motion, (2.0, 1.2, 0.30)
@@ -70,6 +70,7 @@ def _parse_args(argv: list[str] | None, interactive: bool) -> argparse.Namespace
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--motion", choices=(*MOTIONS, "franka", "quadruped", "g1"), default="horizontal")
     parser.add_argument("--terrain", choices=TERRAINS, default="flat")
+    parser.add_argument("--geometry", choices=("box", "sphere", "cylinder"))
     parser.add_argument("--duration", type=float, default=6.0)
     parser.add_argument("--task", help="Registered benchmark task ID")
     parser.add_argument("--num_envs", type=int, default=1)
@@ -99,6 +100,7 @@ def _parse_args(argv: list[str] | None, interactive: bool) -> argparse.Namespace
             parser.error("--task must name a registered particle_nerd_benchmark case")
         args.motion = spec.kwargs["benchmark_motion"]
         args.terrain = spec.kwargs["benchmark_terrain"]
+        args.geometry = spec.kwargs.get("benchmark_geometry")
     elif interactive:
         parser.error("--task is required for isaaclab play")
     args.record_data = args.output is not None
@@ -132,13 +134,12 @@ def _command(env, args, step, obs, actor, controller):
     elif args.motion == "quadruped":
         action = controller.command(t)
     elif args.motion == "franka":
-        blend = np.clip((t - 1.0) / 1.5, 0.0, 1.0)
-        blend = blend * blend * (3 - 2 * blend)
-        travel = np.clip((t - 2.5) / 3.0, 0.0, 1.0)
-        x = -0.30 + 0.35 * travel
-        z = 0.30 * (1 - blend) - 0.04 * blend
-        # Command the fingertip frame in robot base coordinates.
-        action = torch.tensor([[x + 0.85, 0.0, z - 0.10, 1.0, 0.0, 0.0, 0.0]], device=env.device)
+        progress = np.clip(t / 6.0, 0.0, 1.0)
+        x = -0.34 + 0.40 * progress
+        y = -0.22 * np.cos(2.0 * np.pi * progress)
+        z = -0.06
+        # Command the fingertip frame in robot base coordinates (base at [-0.72, 0.0, 0.05]).
+        action = torch.tensor([[x + 0.72, y, z - 0.05, 1.0, 0.0, 0.0, 0.0]], device=env.device)
     elif args.motion == "projectile":
         action = torch.zeros((1, 6), device=env.device)
         if t < SETTLE_SECONDS:
@@ -175,6 +176,7 @@ def run(argv: list[str] | None = None, *, interactive: bool = False) -> None:
     metadata = {
         "motion": args.motion,
         "terrain": args.terrain,
+        "geometry": args.geometry or ("sphere" if args.motion == "rolling" else "box"),
         "solver": "Implicit MPM",
         "physics_dt_s": cfg.sim.dt,
         "video_fps": 50,

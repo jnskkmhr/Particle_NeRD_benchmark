@@ -50,7 +50,7 @@ DESCRIPTIONS = {
         "is not a freely rolling sphere."
     ),
     "projectile": (
-        "A 2 kg shallow box (0.26 × 0.18 × 0.05 m) is released after one second with velocity (1, 0, 0.4) "
+        "A 10 kg shallow box (0.26 × 0.18 × 0.05 m) is released after one second with velocity (1, 0, 0.4) "
         "m/s and angular velocity (0, 1, 0) rad/s. Its subsequent motion is dynamic."
     ),
     "freefall": (
