@@ -14,6 +14,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 MPM, NERD, DIAGNOSTIC = "#193c64", "#248044", "#718170"
+SHAPE_COLORS = {
+    "box": "#248044",
+    "sphere": "#193c64",
+    "cylinder": "#b86b1b",
+}
 SHAPES = ("box", "sphere", "cylinder")
 REFERENCES = (
     "box-static-support",
@@ -33,26 +38,33 @@ HOLD_LABELS = (
 PLOTS = {
     "test_particle_errors": (
         "1a",
-        "By interacting object (Box, Sphere, Cylinder across 8 object motions)",
+        "Group A — By interacting object (Box, Sphere, Cylinder across 8 object motions)",
         (
-            "Elementary objects (Box, Sphere, Cylinder), each aggregated across 20 trajectories: "
-            "12 Kinematic (Horizontal, Vertical, Circular, Hold) and 8 Dynamic (Drop, Slide, Throw, Tumble). "
-            "Rows show particle-position RMSE for the entire bed, near-contact particles (≤0.05 m), and moving particles (>0.01 m/s). "
-            "Left column: time-mean over 0–6 s; right column: terminal state at 6 s."
+            "Elementary objects (Box, Sphere, Cylinder), each aggregated across its 20 held-out trajectories: "
+            "12 Kinematic (Horizontal, Vertical, Circular, Hold; 3 each) and 8 Dynamic (Drop, Slide, Throw, Tumble; 2 each). "
+            "Rows show particle-position RMSE for the entire bed, near-contact particles (≤0.05 m), and moving particles (>0.01 m/s)."
         ),
     ),
     "test_particle_errors_by_motion": (
         "1b",
-        "By motion type (Kinematic object motions, Dynamic object motions, and Unconfined sand free-fall)",
+        "Group B — By object motion (per-object breakdown: Box n=3/2, Sphere n=3/2, Cylinder n=3/2)",
         (
-            "Breakdown by motion across Kinematic object motions (Horizontal, Vertical, Circle, Hold; n=9 each across Box/Sphere/Cylinder), "
-            "Dynamic object motions (Obj Drop, Slide, Throw, Tumble; n=6 each across Box/Sphere/Cylinder), "
-            "and Unconfined Sand Free-Fall on flat ground (no rigid object; n=8)."
+            "Per-object breakdown across the 4 Kinematic motions (Horizontal, Vertical, Circle, Hold; n=3 per object shape) "
+            "and 4 Dynamic object motions (Obj Drop, Slide, Throw, Tumble; n=2 per object shape). "
+            "Each motion shows separate distributions for Box, Sphere, and Cylinder (not a multi-object average)."
+        ),
+    ),
+    "test_particle_errors_freefall": (
+        "1c",
+        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=8)",
+        (
+            "Unconfined 3D mid-air sand blocks/columns dropped onto open flat ground (no retaining box walls and no rigid object; n=8 held-out test trajectories). "
+            "Top row: whole-bed position RMSE; bottom row: moving-particles position RMSE (>0.01 m/s)."
         ),
     ),
     "test_surface_errors": (
         "2a",
-        "By interacting object (Box, Sphere, Cylinder across 8 object motions)",
+        "Group A — By interacting object (Box, Sphere, Cylinder across 8 object motions)",
         (
             "Elementary objects (Box, Sphere, Cylinder) across 12 Kinematic (Horizontal, Vertical, Circular, Hold) "
             "and 8 Dynamic (Drop, Slide, Throw, Tumble) trajectories per shape. "
@@ -61,15 +73,22 @@ PLOTS = {
     ),
     "test_surface_errors_by_motion": (
         "2b",
-        "By motion type (Kinematic object motions, Dynamic object motions, and Unconfined sand free-fall)",
+        "Group B — By object motion (per-object breakdown: Box n=3/2, Sphere n=3/2, Cylinder n=3/2)",
         (
-            "Symmetric sand-surface distance grouped by motion: Kinematic object motions (Horizontal, Vertical, Circle, Hold), "
-            "Dynamic object motions (Obj Drop, Slide, Throw, Tumble), and Unconfined Sand Free-Fall on flat ground (no object)."
+            "Symmetric sand-surface distance broken down by motion and by object shape (Box, Sphere, Cylinder shown separately for each motion): "
+            "Kinematic motions (Horizontal, Vertical, Circle, Hold; n=3 per shape) and Dynamic motions (Obj Drop, Slide, Throw, Tumble; n=2 per shape)."
+        ),
+    ),
+    "test_surface_errors_freefall": (
+        "2c",
+        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=8)",
+        (
+            "Symmetric sand-surface distance (mean and 95th-percentile on a 0.02 m grid) for unconfined 3D sand blocks/columns dropped onto open flat ground (n=8)."
         ),
     ),
     "test_material_distribution": (
         "3a",
-        "By interacting object (Box, Sphere, Cylinder across 8 object motions)",
+        "Group A — By interacting object (Box, Sphere, Cylinder across 8 object motions)",
         (
             "Elementary objects (Box, Sphere, Cylinder) across 12 Kinematic (Horizontal, Vertical, Circular, Hold) "
             "and 8 Dynamic (Drop, Slide, Throw, Tumble) trajectories per shape. "
@@ -78,15 +97,21 @@ PLOTS = {
     ),
     "test_material_distribution_by_motion": (
         "3b",
-        "By motion type (Kinematic object motions, Dynamic object motions, and Unconfined sand free-fall)",
+        "Group B — By object motion (per-object breakdown: Box n=3/2, Sphere n=3/2, Cylinder n=3/2)",
         (
-            "Material-mass discrepancy and represented mass grouped by motion: Kinematic object motions (Horizontal, Vertical, Circle, Hold), "
-            "Dynamic object motions (Obj Drop, Slide, Throw, Tumble), and Unconfined Sand Free-Fall on flat ground."
+            "Material-mass discrepancy and sub-body/inside-body mass broken down by motion and by object shape (Box, Sphere, Cylinder shown separately)."
+        ),
+    ),
+    "test_material_distribution_freefall": (
+        "3c",
+        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=8)",
+        (
+            "Time-mean and terminal-state material-mass discrepancy and total represented mass for unconfined 3D sand blocks/columns dropped onto open flat ground (n=8)."
         ),
     ),
     "test_velocity_energy": (
         "4a",
-        "By interacting object (Box, Sphere, Cylinder across 8 object motions)",
+        "Group A — By interacting object (Box, Sphere, Cylinder across 8 object motions)",
         (
             "Elementary objects (Box, Sphere, Cylinder) across 12 Kinematic (Horizontal, Vertical, Circular, Hold) "
             "and 8 Dynamic (Drop, Slide, Throw, Tumble) trajectories per shape. "
@@ -95,11 +120,16 @@ PLOTS = {
     ),
     "test_velocity_energy_by_motion": (
         "4b",
-        "By motion type (Kinematic object motions, Dynamic object motions, and Unconfined sand free-fall)",
+        "Group B — By object motion (per-object breakdown: Box n=3/2, Sphere n=3/2, Cylinder n=3/2)",
         (
-            "Velocity-field RMSE, reference-mass coverage, and particle kinetic energy grouped by motion: "
-            "Kinematic object motions (Horizontal, Vertical, Circle, Hold), Dynamic object motions (Obj Drop, Slide, Throw, Tumble), "
-            "and Unconfined Sand Free-Fall on flat ground."
+            "Velocity-field RMSE, reference-mass coverage, and particle kinetic energy broken down by motion and by object shape (Box, Sphere, Cylinder shown separately)."
+        ),
+    ),
+    "test_velocity_energy_freefall": (
+        "4c",
+        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=8)",
+        (
+            "Velocity-field RMSE, reference-mass coverage, and particle kinetic energy for unconfined 3D sand blocks/columns dropped onto open flat ground (n=8)."
         ),
     ),
     "reference_force_errors": (
@@ -120,18 +150,18 @@ PLOTS = {
     ),
     "hold_summary": (
         7,
-        "Spatio-temporal consistency (Kinematic Motion: 1–2 s Vertical Insertion + 2–23 s Fixed-Pose Hold)",
+        "Long-horizon simulation evaluation (Kinematic Motion: 1–2 s Vertical Insertion + 2–23 s Fixed-Pose Hold)",
         (
-            "Kinematic Motion: Object is inserted vertically (1–2 s) and held at an exactly fixed pose (2–23 s); measured relative to 3 s. "
+            "Long-horizon 23-second evaluation (Kinematic Motion: Object is inserted vertically from 1–2 s and held at an exactly fixed pose from 2–23 s; measured relative to 3 s). "
             "Top row: mean change in world z at 23 s relative to 3 s, and late drift rate (13–23 s). "
             "Middle row: RMS particle drift and mean surface change. Bottom row: grid-mass redistribution and mass remaining beneath object."
         ),
     ),
     "hold_material": (
         8,
-        "Material beneath fixed object and floor leakage (Kinematic Motion: 2–23 s Fixed-Pose Hold)",
+        "Long-horizon material beneath fixed object and floor leakage (2–23 s Fixed-Pose Hold)",
         (
-            "Kinematic Motion: 2–23 s Fixed-Pose Hold for Box, Sphere, and Cylinder. "
+            "Long-horizon 23-second evaluation (Kinematic Motion: 2–23 s Fixed-Pose Hold for Box, Sphere, and Cylinder). "
             "Top row: physical mass beneath the object at 3 and 23 s. Middle row: mass below the z=−0.30 m floor. Last panel: lowest particle z at 23 s."
         ),
     ),
@@ -180,7 +210,7 @@ def finish(fig, axes, root, stem, caption, number):
 
 
 def distribution(ax, records, series, ylabel):
-    """Plot ONLY elementary rigid objects (Box, Sphere, Cylinder) — never mix free-fall motion here."""
+    """Plot ONLY elementary rigid objects (Box, Sphere, Cylinder)."""
     obj_records = [r for r in records if r["shape"] in SHAPES]
     offsets = np.linspace(-0.17, 0.17, len(series)) if len(series) > 1 else [0]
     counts = []
@@ -219,80 +249,111 @@ def distribution(ax, records, series, ylabel):
         ax.legend(fontsize=9, loc="best")
 
 
-MOTION_SPECS = (
-    ("horizontal", "prescribed", "Horizontal\n[Kin]"),
-    ("vertical", "prescribed", "Vertical\n[Kin]"),
-    ("circle", "prescribed", "Circle\n[Kin]"),
-    ("hold", "prescribed", "Hold\n[Kin]"),
-    ("drop", "dynamic_obj", "Obj Drop\n[Dyn]"),
-    ("slide", "dynamic_obj", "Slide\n[Dyn]"),
-    ("throw", "dynamic_obj", "Throw\n[Dyn]"),
-    ("tumble", "dynamic_obj", "Tumble\n[Dyn]"),
-    ("drop", "freefall", "Free-fall\n[Sand]"),
+OBJECT_MOTION_SPECS = (
+    ("horizontal", "prescribed", "Horizontal\n[Kin, n=3/obj]"),
+    ("vertical", "prescribed", "Vertical\n[Kin, n=3/obj]"),
+    ("circle", "prescribed", "Circle\n[Kin, n=3/obj]"),
+    ("hold", "prescribed", "Hold\n[Kin, n=3/obj]"),
+    ("drop", "dynamic", "Obj Drop\n[Dyn, n=2/obj]"),
+    ("slide", "dynamic", "Slide\n[Dyn, n=2/obj]"),
+    ("throw", "dynamic", "Throw\n[Dyn, n=2/obj]"),
+    ("tumble", "dynamic", "Tumble\n[Dyn, n=2/obj]"),
 )
 
 
-def _match_motion_group(r, m_name, m_cat):
-    if m_cat == "freefall":
-        return r["shape"] == "freefall"
-    if m_cat == "prescribed":
-        return r["shape"] in SHAPES and r["motion_mode"] == "prescribed" and r["motion"] == m_name
-    return r["shape"] in SHAPES and r["motion_mode"] == "dynamic" and r["motion"] == m_name
-
-
 def distribution_by_motion(ax, records, series, ylabel):
-    """Plot distribution across individual motions (Kinematic, Dynamic object, and Free-fall sand)."""
-    active_specs = []
-    for m_name, m_cat, m_label in MOTION_SPECS:
-        if any(
-            _match_motion_group(r, m_name, m_cat)
-            and any(r["metrics"].get(k) is not None and np.isfinite(r["metrics"].get(k)) for k, _, _ in series)
-            for r in records
-        ):
-            active_specs.append((m_name, m_cat, m_label))
-    n_m = len(active_specs)
-    offsets = np.linspace(-0.17, 0.17, len(series)) if len(series) > 1 else [0]
-    counts = []
-    for j, (key, label, color) in enumerate(series):
+    """Plot per-object distributions (Box, Sphere, Cylinder separately!) for each of the 8 object motions."""
+    n_m = len(OBJECT_MOTION_SPECS)
+    # Use primary predicted metric key from series[-1]
+    primary_key = series[-1][0]
+    shape_offsets = (-0.24, 0.0, 0.24)
+    for s_idx, shape in enumerate(SHAPES):
+        s_color = SHAPE_COLORS[shape]
         groups = [
-            [r["metrics"].get(key) for r in records if _match_motion_group(r, m_name, m_cat)]
-            for m_name, m_cat, _ in active_specs
+            np.asarray(
+                [
+                    r["metrics"].get(primary_key)
+                    for r in records
+                    if r["shape"] == shape
+                    and r["motion_mode"] == m_cat
+                    and r["motion"] == m_name
+                    and r["metrics"].get(primary_key) is not None
+                    and np.isfinite(r["metrics"].get(primary_key))
+                ]
+            )
+            for m_name, m_cat, _ in OBJECT_MOTION_SPECS
         ]
-        groups = [np.asarray([v for v in g if v is not None and np.isfinite(v)]) for g in groups]
-        positions = np.arange(n_m) + offsets[j]
-        counts.append([len(g) for g in groups])
-        boxes = ax.boxplot(
-            groups,
-            positions=positions,
-            widths=0.22 if len(series) > 1 else 0.42,
-            patch_artist=True,
-            showfliers=False,
-            showmeans=True,
-            meanprops={
-                "marker": "D",
-                "markerfacecolor": color,
-                "markeredgecolor": "white",
-                "markersize": 4.5,
-            },
-            medianprops={"color": "#303030"},
-        )
-        for box in boxes["boxes"]:
-            box.set(facecolor=color, alpha=0.22)
-        for x, values in zip(positions, groups, strict=True):
-            jitter = np.random.default_rng(42).uniform(-0.06, 0.06, len(values))
-            ax.scatter(x + jitter, values, s=10, color=color, alpha=0.65, zorder=3)
-        ax.plot([], [], color=color, marker="D", linestyle="none", label=label)
-    # Draw vertical dashed separators between Kinematic (0..3), Dynamic Object (4..7), and Free-fall Sand (8)
-    cats = [c for _, c, _ in active_specs]
-    for idx in range(1, len(cats)):
-        if cats[idx] != cats[idx - 1]:
-            ax.axvline(idx - 0.5, color="#888888", linestyle="--", linewidth=0.9, alpha=0.6)
-    ticks = [
-        f"{m_label}\n(n={min(c[i] for c in counts)})"
-        for i, (_, _, m_label) in enumerate(active_specs)
-    ]
+        positions = np.arange(n_m) + shape_offsets[s_idx]
+        valid_pos = [pos for pos, g in zip(positions, groups, strict=True) if len(g) > 0]
+        valid_grp = [g for g in groups if len(g) > 0]
+        if valid_grp:
+            boxes = ax.boxplot(
+                valid_grp,
+                positions=valid_pos,
+                widths=0.19,
+                patch_artist=True,
+                showfliers=False,
+                showmeans=True,
+                meanprops={
+                    "marker": "D",
+                    "markerfacecolor": s_color,
+                    "markeredgecolor": "white",
+                    "markersize": 4.0,
+                },
+                medianprops={"color": "#202020"},
+            )
+            for box in boxes["boxes"]:
+                box.set(facecolor=s_color, alpha=0.25)
+            for x, values in zip(valid_pos, valid_grp, strict=True):
+                jitter = np.random.default_rng(42 + s_idx).uniform(-0.04, 0.04, len(values))
+                ax.scatter(x + jitter, values, s=11, color=s_color, alpha=0.75, zorder=3)
+        ax.plot([], [], color=s_color, marker="D", linestyle="none", label=f"{shape.title()}")
+    ax.axvline(3.5, color="#888888", linestyle="--", linewidth=1.0, alpha=0.7)
+    ticks = [m_label for _, _, m_label in OBJECT_MOTION_SPECS]
     ax.set(xticks=np.arange(n_m), xticklabels=ticks, ylabel=ylabel, xlim=(-0.6, n_m - 0.4))
     ax.tick_params(axis="x", labelsize=8.0)
+    ax.legend(fontsize=8.5, loc="best", ncol=3)
+
+
+def distribution_freefall(ax, records, series, ylabel):
+    """Dedicated plot for Unconfined Sand Free-Fall on flat ground (no rigid object, n=8)."""
+    ff_records = [r for r in records if r["shape"] == "freefall"]
+    offsets = np.linspace(-0.15, 0.15, len(series)) if len(series) > 1 else [0]
+    counts = []
+    for j, (key, label, color) in enumerate(series):
+        vals = np.asarray(
+            [r["metrics"].get(key) for r in ff_records if r["metrics"].get(key) is not None and np.isfinite(r["metrics"].get(key))]
+        )
+        counts.append(len(vals))
+        if len(vals) > 0:
+            pos = [offsets[j]]
+            boxes = ax.boxplot(
+                [vals],
+                positions=pos,
+                widths=0.24 if len(series) > 1 else 0.36,
+                patch_artist=True,
+                showfliers=False,
+                showmeans=True,
+                meanprops={
+                    "marker": "D",
+                    "markerfacecolor": color,
+                    "markeredgecolor": "white",
+                    "markersize": 5.5,
+                },
+                medianprops={"color": "#303030"},
+            )
+            for box in boxes["boxes"]:
+                box.set(facecolor=color, alpha=0.24)
+            jitter = np.random.default_rng(42).uniform(-0.05, 0.05, len(vals))
+            ax.scatter(pos[0] + jitter, vals, s=16, color=color, alpha=0.75, zorder=3)
+            ax.plot([], [], color=color, marker="D", linestyle="none", label=label)
+    n_cnt = min(counts) if counts else 0
+    ax.set(
+        xticks=[0],
+        xticklabels=[f"Unconfined Sand Free-Fall\non Flat Ground (n={n_cnt})"],
+        ylabel=ylabel,
+        xlim=(-0.6, 0.6),
+    )
     if len(series) > 1:
         ax.legend(fontsize=8.5, loc="best")
 
@@ -400,13 +461,28 @@ def generate(root):
             ("predicted_ke_j_end", "Final kinetic energy (J)"),
         ],
     }
+    freefall_layouts = {
+        "test_particle_errors": [
+            ("global_rmse_mm_time_mean", "Whole bed\nposition RMSE (mm)"),
+            ("global_rmse_mm_end", "Whole bed\nposition RMSE (mm)"),
+            ("moving_rmse_mm_time_mean", "Moving particles\nposition RMSE (mm)"),
+            ("moving_rmse_mm_end", "Moving particles\nposition RMSE (mm)"),
+        ],
+        "test_surface_errors": layouts["test_surface_errors"],
+        "test_material_distribution": [
+            ("mass_discrepancy_time_mean", "Time-mean material-mass\ndiscrepancy"),
+            ("mass_discrepancy_end", "Final material-mass\ndiscrepancy"),
+            ("predicted_mass_kg_end", "Terminal total\nrepresented mass (kg)"),
+        ],
+        "test_velocity_energy": layouts["test_velocity_energy"],
+    }
     model_label = os.environ.get("BENCHMARK_MODEL_LABEL") or (
         "Particle World"
         if "cconv_warp.py" in report.get("network_source_sha256", {})
         else ("Particle NeRD-Local" if len(report.get("network_source_sha256", {})) == 2 else "Particle NeRD")
     )
     for stem, keys in layouts.items():
-        # Group A: By Interacting Object (Box, Sphere, Cylinder only)
+        # Group A: By Interacting Object (Box, Sphere, Cylinder)
         fig, axes = canvas(3, 2) if len(keys) > 4 else canvas(2, 2)
         for index, (key, label) in enumerate(keys):
             series = [(key, model_label, NERD)]
@@ -419,7 +495,7 @@ def generate(root):
             axes[0].set_title("Time-mean (0–6 s)", pad=14)
             axes[1].set_title("Terminal state (6 s)", pad=14)
         fig.suptitle(
-            "By Interacting Object (Box, Sphere, Cylinder) — Motions: Kinematic (Horizontal, Vertical, Circle, Hold) & Dynamic (Drop, Slide, Throw, Tumble)",
+            "Group A: By Interacting Object (Box, Sphere, Cylinder) — Motions: Kinematic (Horizontal, Vertical, Circle, Hold) & Dynamic (Drop, Slide, Throw, Tumble)",
             fontsize=11,
             fontweight="bold",
             y=0.97,
@@ -427,7 +503,7 @@ def generate(root):
         number, _, caption = PLOTS[stem]
         outputs.extend(save(fig, axes, root, stem, caption, number))
 
-        # Group B: By Motion (Horizontal, Vertical, Circle, Hold | Obj Drop, Slide, Throw, Tumble | Free-fall Sand)
+        # Group B: By Object Motion (Box, Sphere, Cylinder plotted separately per motion!)
         motion_stem = f"{stem}_by_motion"
         fig_m, axes_m = canvas(3, 2, width=16.0) if len(keys) > 4 else canvas(2, 2, width=16.0)
         for index, (key, label) in enumerate(keys):
@@ -441,13 +517,41 @@ def generate(root):
             axes_m[0].set_title("Time-mean (0–6 s)", pad=14)
             axes_m[1].set_title("Terminal state (6 s)", pad=14)
         fig_m.suptitle(
-            "By Motion Type — Kinematic Object Motions (Horizontal, Vertical, Circle, Hold) | Dynamic Object Motions (Obj Drop, Slide, Throw, Tumble) | Sand Free-Fall (Flat Ground)",
+            "Group B: By Object Motion (Per-Shape Breakdown: Box, Sphere, Cylinder) — Kinematic (n=3/obj) | Dynamic (n=2/obj)",
             fontsize=11,
             fontweight="bold",
             y=0.97,
         )
         num_m, _, cap_m = PLOTS[motion_stem]
         outputs.extend(save(fig_m, axes_m, root, motion_stem, cap_m, num_m))
+
+        # Group C: Dedicated Plot Group for Unconfined Sand Free-Fall on Flat Ground (no rigid object, n=8)
+        ff_stem = f"{stem}_freefall"
+        ff_keys = freefall_layouts[stem]
+        if len(ff_keys) == 3:
+            fig_f, axes_f = canvas(1, 3, width=13.5)
+        elif len(ff_keys) > 4:
+            fig_f, axes_f = canvas(3, 2, width=12.0)
+        else:
+            fig_f, axes_f = canvas(2, 2, width=12.0)
+        for index, (key, label) in enumerate(ff_keys):
+            series = [(key, model_label, NERD)]
+            if key.startswith("predicted_"):
+                series.insert(0, (key.replace("predicted_", "reference_"), "Implicit MPM", MPM))
+            distribution_freefall(axes_f[index], records, series, label)
+        for ax in axes_f[len(ff_keys) :]:
+            ax.set_axis_off()
+        if stem != "test_material_distribution":
+            axes_f[0].set_title("Time-mean (0–6 s)", pad=14)
+            axes_f[1].set_title("Terminal state (6 s)", pad=14)
+        fig_f.suptitle(
+            "Group C: Unconfined Sand Free-Fall Motion on Flat Ground (No Rigid Object, n=8)",
+            fontsize=11,
+            fontweight="bold",
+            y=0.97,
+        )
+        num_f, _, cap_f = PLOTS[ff_stem]
+        outputs.extend(save(fig_f, axes_f, root, ff_stem, cap_f, num_f))
 
     metadata = [read(root / name / "evaluation_settings.json") for name in REFERENCES]
     windows = [read(root / name / "force_windows.json") for name in REFERENCES]
@@ -574,7 +678,7 @@ def generate(root):
         for ax in axes[len(metrics) :]:
             ax.set_axis_off()
         fig.suptitle(
-            "Kinematic Motion: Vertical Insertion (1–2 s) + Stationary Fixed-Pose Hold (2–23 s)",
+            "Long-Horizon Simulation Evaluation (23 s): Kinematic Vertical Insertion (1–2 s) + Fixed-Pose Hold (2–23 s)",
             fontsize=11.5,
             fontweight="bold",
             y=0.98,

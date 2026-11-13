@@ -121,7 +121,7 @@ Record all metric parameters, sampling seeds, and data/checkpoint hashes alongsi
 Every figure must identify its metric, units, reference, and evaluation mode. Use “Figure X:” captions and explain each labeled panel. Any accompanying simulation video must show the same recorded rollout, checkpoint, time interval, and solver settings as the plotted results. Historical or differently conditioned results must be identified explicitly.
 
 
-## 6. Spatio-temporal consistency under a stationary object
+## 6. Long-horizon simulation evaluation
 
 Hold the interacting body at a fixed world pose and verify its position, orientation, and linear/angular velocities during measurement. Track whether the sand continues to move despite the stationary body. This is a diagnostic of material evolution; a fixed object does not respond to loss of support.
 

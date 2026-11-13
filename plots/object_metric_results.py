@@ -1,4 +1,4 @@
-"""Expose measured metric results and fixed-object diagnostics in the public report."""
+"""Expose measured metric results and long-horizon simulation diagnostics in the public report."""
 
 import html
 import json
@@ -36,20 +36,24 @@ def metric_section(number, content, section, *, numbered=True):
 
 
 def metric_results(report, section):
-    """Group measured plots under the corresponding README metric headings (separate object vs. motion plots)."""
+    """Group measured plots under the corresponding README metric headings (3 separate plot groups: Object, Object Motion, Free-Fall)."""
     total = report["groups"]["combined"]
     introduction = (
-        f"<p>{total['complete_trajectories']}/{total['trajectories']} held-out six-second trajectories completed "
-        "(60 elementary-object trajectories across Box, Sphere, Cylinder: 12 Kinematic [Horizontal, Vertical, Circle, Hold] "
-        "and 8 Dynamic [Drop, Slide, Throw, Tumble] per shape; plus 8 unconfined Free-fall sand trajectories on flat ground). "
-        "Each dot is one trajectory summary. Boxes show median and interquartile range; diamonds mark means. "
-        "Whiskers extend to 1.5 IQR and every measured value is plotted, including outliers.</p>"
+        f"<p>{total['complete_trajectories']}/{total['trajectories']} held-out six-second trajectories completed. "
+        "Results are presented in three separate plot groups: "
+        "<strong>(a) By interacting object</strong> (Box, Sphere, Cylinder; n=20 per object), "
+        "<strong>(b) By object motion</strong> (Box, Sphere, and Cylinder plotted separately for each of the 4 Kinematic motions [n=3 per shape] and 4 Dynamic motions [n=2 per shape]), and "
+        "<strong>(c) Unconfined sand free-fall on flat ground</strong> (no rigid object, n=8).</p>"
     )
     groups = (
-        (1, ("test_particle_errors", "test_particle_errors_by_motion"), introduction),
+        (
+            1,
+            ("test_particle_errors", "test_particle_errors_by_motion", "test_particle_errors_freefall"),
+            introduction,
+        ),
         (
             2,
-            ("test_surface_errors", "test_surface_errors_by_motion"),
+            ("test_surface_errors", "test_surface_errors_by_motion", "test_surface_errors_freefall"),
             (
                 "<p>The mean and 95th-percentile symmetric surface distance measure the reconstructed sand shape "
                 "on a 0.02 m measurement grid (separate from the 0.04 m MPM simulation grid).</p>"
@@ -57,7 +61,7 @@ def metric_results(report, section):
         ),
         (
             3,
-            ("test_material_distribution", "test_material_distribution_by_motion"),
+            ("test_material_distribution", "test_material_distribution_by_motion", "test_material_distribution_freefall"),
             (
                 "<p>Material-mass discrepancy on a common 0.02 m grid. "
                 "For the local depletion diagnostic, the region is beneath the box, sphere, or cylinder.</p>"
@@ -65,7 +69,7 @@ def metric_results(report, section):
         ),
         (
             4,
-            ("test_velocity_energy", "test_velocity_energy_by_motion"),
+            ("test_velocity_energy", "test_velocity_energy_by_motion", "test_velocity_energy_freefall"),
             "<p>Velocity-field RMSE, shared occupied-cell reference-mass coverage, and particle kinetic energy.</p>",
         ),
     )
@@ -84,7 +88,7 @@ def metric_results(report, section):
 
 
 def hold_results(root, output, checkpoint, digest, table, section):
-    """Validate and publish temporal consistency metrics without extra links."""
+    """Validate and publish 23-second long-horizon simulation evaluation metrics."""
     diagnostics, summaries = [], {}
     for case, label in HOLD_CASES.items():
         folder = root / case
@@ -114,7 +118,7 @@ def hold_results(root, output, checkpoint, digest, table, section):
         json.dumps(summaries, indent=2) + "\n"
     )
     content = (
-        "<p><strong>Kinematic Motion (Vertical Insertion 1–2 s + Fixed-Pose Hold 2–23 s):</strong> "
+        "<p><strong>23-Second Long-Horizon Evaluation (Kinematic Vertical Insertion 1–2 s + Fixed-Pose Hold 2–23 s):</strong> "
         "Box, Sphere, and Cylinder each follow a prescribed vertical insertion from 1–2 s and are then held at an "
         "exactly fixed pose through 23 s. Translation, rotation, and input linear/angular velocities are verified "
         "constant/zero throughout measurement. Each method is compared with its own state at 3 s through 23 s.</p>"
