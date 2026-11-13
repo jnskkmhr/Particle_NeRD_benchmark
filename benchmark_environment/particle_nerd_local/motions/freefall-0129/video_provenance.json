@@ -1,37 +1,10 @@
 {
-  "episode": {
-    "id": "freefall-0129",
-    "shape": "freefall",
-    "column_shape": "cylinder",
-    "block_size_m": [
-      0.382068169020194,
-      0.382068169020194,
-      0.5028761120198408
-    ],
-    "mode": "dynamic",
-    "motion": "drop",
-    "split": "test",
-    "seed": 20264239,
-    "particle_seed": 20364239,
-    "duration_s": 6.0,
-    "dt_s": 0.005,
-    "terrain": "flat",
-    "yaw": 0.0,
-    "direction": 1,
-    "y": 0.0,
-    "travel": 0.0,
-    "depth": 0.0,
-    "radius": 0.191034084510097,
-    "entry_s": 0.0,
-    "release_height": 0.12020110809173232,
-    "speed": 0.0,
-    "spin": 0.0
-  },
-  "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
-  "reference_sha256": "9030d5097c7b4836389ea2cdad615e61ecdc631e42dfa0a2d55a758b6baf1e4b",
-  "prediction_sha256": "f35144bba66e13e9b699a26e235b9809fbba83b106546e1b0f11ed7135607968",
-  "video_sha256": "f65fd929150760390a33310db24ac4b4078262fa4e5c0f3864a5be6a21c54ce9",
-  "poster_sha256": "ea6df10479a2c3b12895b846b78f34a7a2f85b3c9052e712c5a475a3db89b3ed",
+  "episode_id": "freefall-0129",
+  "checkpoint_sha256": "26993ab280670a8acc4cd8727214e546613f2249622479209b6a1d7e5e240d27",
+  "renderer_sha256": "391443cdbc10b33ead69250cd118c78b244aebf0ece4f9304a09134450b53ad3",
+  "reference_sha256": "c7e1dacd87357ba95213b84dbcafe2bdf621e9c4b05387820246b92af82938ea",
+  "prediction_sha256": "4ce11648ab9c16ce75d53a781ce3c7b129c137af81570c25d1e7799146fc0d33",
+  "video_sha256": "983f468acd6a35335b4b2d34fafc47ddfabdcff4245119d89688b31406e1855e",
   "fps": 50,
   "native_dt_s": 0.005,
   "state_indices": [
@@ -335,5 +308,17 @@
     1192,
     1196,
     1200
-  ]
+  ],
+  "rendering": "Saved recorded and predicted states; no physics solver is stepped during rendering",
+  "camera_eye": [
+    1.65,
+    -2.0,
+    1.55
+  ],
+  "camera_target": [
+    0.0,
+    0.0,
+    -0.05
+  ],
+  "fov_degrees": 50.0
 }
