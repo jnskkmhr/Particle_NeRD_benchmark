@@ -24,7 +24,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Box-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "bb7741612b38df25480a1d8582600b0d4f777168de151958bc0f833c0a74a81f",
@@ -56,7 +56,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Box-Push-Ascend-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Ascend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "82467c6a2a1d29efb5c8f29557a6bcd9ff3bc5a95bf7cfa3e6c3a7111afa413d",
@@ -88,7 +88,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Box-Push-Descend-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Descend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "8bc53c7333a034a14b6f41d31ece0bb0d3e9d89768833000adaa14da6a392951",
@@ -120,7 +120,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Box-Push-Wave-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Push-Wave-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "bc3b285dd9031d795edaa2541293f6847d9ffa9eaccb6cf7ae63d5a911695e19",
@@ -152,7 +152,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Box-Intrude-Flat-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Intrude-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "a976a20ed996062545d3564dc5e3bcff6f987525b5848d80ee043dd270c4bab2",
@@ -184,7 +184,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Box-Circle-Flat-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Circle-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "cb184b9c202a1ee980fe32d51e556114957ee80f667d4a15b8e28f58a8f1e8fc",
@@ -216,7 +216,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Sphere-Roll-Flat-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "34e0173039a73f0213ee5099e31624c07960ee11e2062908a81fb4deaa587b2f",
@@ -248,7 +248,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Sphere-Roll-Ascend-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Ascend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "1dd2b43b15d0b11fc0e711a968de3c5d43af7ea645afdc9014c22fa41c97100f",
@@ -280,7 +280,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Sphere-Roll-Descend-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Descend-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "d63dc1b8e75aba0a22ea7045002ebfc47a57ff381905c23c11e6e84090a2a0cd",
@@ -312,7 +312,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Sphere-Roll-Wave-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Sphere-Roll-Wave-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "fd2ff9b15446db0149999937dae6e6adb265d3fbf2635854a352880e47636bb6",
@@ -344,11 +344,44 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Box-Projectile-Flat-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Box-Projectile-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "b5a871aaaf2196c61e57df03ec50509e126d91500c2ca49f82a839a04636e555",
       "simulation.mp4": "de573409d35a52146a4998f920df84e001dc9df255e802dfa9b50e23940217bd"
+    }
+  },
+  {
+    "id": "freefall_flat",
+    "title": "Particle free-fall on flat ground",
+    "description": "An unconfined 0.48 \u00d7 0.48 \u00d7 0.48 m 3D sand block (3,375 particles, 176.9 kg) is released 0.20 m above open flat ground (z = \u22120.30 m) and collapses under gravity without retaining walls or a rigid object.",
+    "motion": "freefall",
+    "terrain": "flat",
+    "family": "freefall",
+    "path": "runs/freefall_flat",
+    "dataset_url": null,
+    "duration": 6.0,
+    "particles": 3375,
+    "controller": "Unconfined 3D sand block drop under gravity (no rigid object, no retaining walls)",
+    "control_hz": 200,
+    "bed": [
+      0.48,
+      0.48,
+      0.48
+    ],
+    "particle_initialization": {
+      "distribution": "Uniform coordinate jitter, truncated to the initial block bottom",
+      "max_offset_per_axis_m": 0.0064,
+      "seed": 42
+    },
+    "wall_top_z_m": null,
+    "policy": null,
+    "command": "uv run python -m examples.particle_nerd_benchmark.learning.collect_freefall --output /tmp/freefall_flat",
+    "date": "2026-11-12",
+    "artifacts": {
+      "trajectory.h5": "e52352259aeb9c0db04aec6e7f8448ddcec1aeb41135c7a3500c8f0e2ff587fc",
+      "simulation.mp4": "8f4e76e99715fe6fbbae5bc0cf1c5c3da783a68cf8d4f2d74b8e96042a713c2f",
+      "video.mp4": "8f4e76e99715fe6fbbae5bc0cf1c5c3da783a68cf8d4f2d74b8e96042a713c2f"
     }
   },
   {
@@ -376,7 +409,7 @@
     },
     "wall_top_z_m": 0.039999999999999994,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Franka-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Franka-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "d75665a94fe69c20997d5ea1b86268863699d25dde3d80a61710f44006aaf92e",
@@ -408,7 +441,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": null,
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-Go2-Crawl-Flat-v0 --duration 6 --viz newton_gl --real-time",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-Go2-Crawl-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "e076fe21cb1fa345a4bb695caede62cf8d8c1b374c22969da1ea3be55279ab54",
@@ -440,7 +473,7 @@
     },
     "wall_top_z_m": 0.2,
     "policy": "jqur5jhm \u00b7 iteration 19,999",
-    "command": "uv run isaaclab -p scripts/reinforcement_learning/play.py --task IsaacBench-MPM-G1-Walk-Flat-v0 --duration 6 --viz newton_gl --real-time --checkpoint /path/to/jqur5jhm/model_19999.pt",
+    "command": "uv run isaaclab play --task IsaacBench-MPM-G1-Walk-Flat-v0 --duration 6 --viz newton_gl --real-time --checkpoint /home/jkamohara/isaac/particle_nerd/Particle_NeRD_benchmark/benchmark_environment/checkpoints/jqur5jhm/model_19999.pt",
     "date": "2026-11-09",
     "artifacts": {
       "trajectory.h5": "0b5a4a20ad09917baeb12ee4036af2f3c6f541c313e8abb2462f436890168ce6",

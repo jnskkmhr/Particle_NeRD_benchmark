@@ -25,6 +25,7 @@ TITLES = {
     "circle": "Box circling",
     "rolling": "Sphere rolling",
     "projectile": "Shallow box projectile",
+    "freefall": "Particle free-fall on flat ground",
     "franka": "Franka sand pushing",
     "quadruped": "Go2 crawl (leg IK)",
     "g1": "G1 walking (RL)",
@@ -35,6 +36,7 @@ TASK_NAMES = {
     "circle": "Box-Circle",
     "rolling": "Sphere-Roll",
     "projectile": "Box-Projectile",
+    "freefall": "Particle-Freefall",
     "franka": "Franka-Push",
     "quadruped": "Go2-Crawl",
     "g1": "G1-Walk",
@@ -50,6 +52,11 @@ DESCRIPTIONS = {
     "projectile": (
         "A 2 kg shallow box (0.26 × 0.18 × 0.05 m) is released after one second with velocity (1, 0, 0.4) "
         "m/s and angular velocity (0, 1, 0) rad/s. Its subsequent motion is dynamic."
+    ),
+    "freefall": (
+        "An unconfined 0.48 × 0.48 × 0.48 m 3D sand block (3,375 particles, 176.9 kg) is released "
+        "0.20 m above open flat ground (z = −0.30 m) and collapses under gravity without retaining walls "
+        "or a rigid object."
     ),
     "franka": (
         "A fixed-base Franka arm uses damped least-squares IK and joint drives to push its closed gripper "
@@ -100,10 +107,7 @@ def publish(runs, output, checkpoint=None, release_url=None):
             shutil.copytree(run, destination)
         motion = metadata["motion"]
         task = f"IsaacBench-MPM-{TASK_NAMES[motion]}-{metadata['terrain'].title()}-v0"
-        command = (
-            "uv run isaaclab -p scripts/reinforcement_learning/play.py "
-            f"--task {task} --duration {metadata['duration_s']:g} --viz newton_gl --real-time"
-        )
+        command = f"uv run isaaclab play --task {task} --duration {metadata['duration_s']:g} --viz newton_gl --real-time"
         if motion == "g1":
             command += " --checkpoint " + str(
                 checkpoint or metadata["policy_checkpoint"]
@@ -117,7 +121,7 @@ def publish(runs, output, checkpoint=None, release_url=None):
                 "terrain": metadata["terrain"],
                 "family": "robot"
                 if motion in ("g1", "franka", "quadruped")
-                else "object",
+                else ("freefall" if motion == "freefall" else "object"),
                 "path": "runs/" + run.name,
                 "dataset_url": f"{release_url}/{run.name}-trajectory.h5"
                 if release_url

@@ -296,6 +296,30 @@
         "minimum_base_up_z": 0.9854561686515808
       },
       "passed": true
+    },
+    "freefall_flat": {
+      "checks": {
+        "finite_saved_forces": true,
+        "particles_below_tray_floor": 0,
+        "particles_below_tray_floor_pass": true,
+        "material_contact_present": true,
+        "initial_and_final_particle_counts_match": true,
+        "video_matches_recorded_states": true
+      },
+      "measurements": {
+        "max_particle_displacement_m": 1.012392282485962,
+        "mean_particle_displacement_m": 0.5053319334983826,
+        "initial_z_com_above_floor_m": 0.44007328152656555,
+        "final_z_com_above_floor_m": 0.02353297919034958,
+        "initial_r_95_m": 0.290204793214798,
+        "final_r_95_m": 0.8357995748519897,
+        "static_weight_N": 1735.8520320000002,
+        "reacting_body_names": [
+          "/World/envs/env_0/Floor/Shape"
+        ],
+        "peak_total_material_force_N": 10581.9619140625
+      },
+      "passed": true
     }
   },
   "initialization_checks": {
@@ -379,6 +403,12 @@
     },
     "rolling-descend": {
       "maximum_initial_coordinate_offset_m": 0.006399922072887421,
+      "particle_mass_preserved": true,
+      "initial_velocity_preserved": true,
+      "other_recorded_physics_and_controller_settings_preserved": true
+    },
+    "freefall_flat": {
+      "maximum_initial_coordinate_offset_m": 0.00639970600605011,
       "particle_mass_preserved": true,
       "initial_velocity_preserved": true,
       "other_recorded_physics_and_controller_settings_preserved": true
