@@ -56,9 +56,9 @@ PLOTS = {
     ),
     "test_particle_errors_freefall": (
         "1c",
-        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=8)",
+        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=40)",
         (
-            "Unconfined 3D mid-air sand blocks/columns dropped onto open flat ground (no retaining box walls and no rigid object; n=8 held-out test trajectories). "
+            "Unconfined 3D mid-air sand blocks/columns dropped onto open flat ground (no retaining box walls and no rigid object; n=40 held-out test trajectories). "
             "Top row: whole-bed position RMSE; bottom row: moving-particles position RMSE (>0.01 m/s)."
         ),
     ),
@@ -81,9 +81,9 @@ PLOTS = {
     ),
     "test_surface_errors_freefall": (
         "2c",
-        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=8)",
+        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=40)",
         (
-            "Symmetric sand-surface distance (mean and 95th-percentile on a 0.02 m grid) for unconfined 3D sand blocks/columns dropped onto open flat ground (n=8)."
+            "Symmetric sand-surface distance (mean and 95th-percentile on a 0.02 m grid) for unconfined 3D sand blocks/columns dropped onto open flat ground (n=40)."
         ),
     ),
     "test_material_distribution": (
@@ -104,9 +104,9 @@ PLOTS = {
     ),
     "test_material_distribution_freefall": (
         "3c",
-        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=8)",
+        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=40)",
         (
-            "Time-mean and terminal-state material-mass discrepancy and total represented mass for unconfined 3D sand blocks/columns dropped onto open flat ground (n=8)."
+            "Time-mean and terminal-state material-mass discrepancy and total represented mass for unconfined 3D sand blocks/columns dropped onto open flat ground (n=40)."
         ),
     ),
     "test_velocity_energy": (
@@ -127,9 +127,9 @@ PLOTS = {
     ),
     "test_velocity_energy_freefall": (
         "4c",
-        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=8)",
+        "Group C — Unconfined sand free-fall on flat ground (no rigid object, n=40)",
         (
-            "Velocity-field RMSE, reference-mass coverage, and particle kinetic energy for unconfined 3D sand blocks/columns dropped onto open flat ground (n=8)."
+            "Velocity-field RMSE, reference-mass coverage, and particle kinetic energy for unconfined 3D sand blocks/columns dropped onto open flat ground (n=40)."
         ),
     ),
     "reference_force_errors": (
@@ -545,7 +545,7 @@ def generate(root):
             axes_f[0].set_title("Time-mean (0–6 s)", pad=14)
             axes_f[1].set_title("Terminal state (6 s)", pad=14)
         fig_f.suptitle(
-            "Group C: Unconfined Sand Free-Fall Motion on Flat Ground (No Rigid Object, n=8)",
+            "Group C: Unconfined Sand Free-Fall Motion on Flat Ground (No Rigid Object, n=40)",
             fontsize=11,
             fontweight="bold",
             y=0.97,

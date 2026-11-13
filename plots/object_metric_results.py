@@ -43,7 +43,7 @@ def metric_results(report, section):
         "Results are presented in three separate plot groups: "
         "<strong>(a) By interacting object</strong> (Box, Sphere, Cylinder; n=20 per object), "
         "<strong>(b) By object motion</strong> (Box, Sphere, and Cylinder plotted separately for each of the 4 Kinematic motions [n=3 per shape] and 4 Dynamic motions [n=2 per shape]), and "
-        "<strong>(c) Unconfined sand free-fall on flat ground</strong> (no rigid object, n=8).</p>"
+        "<strong>(c) Unconfined sand free-fall on flat ground</strong> (no rigid object, n=40).</p>"
     )
     groups = (
         (

@@ -1,7 +1,7 @@
 {
   "box-fixed-hold": {
     "episode": "box-fixed-hold",
-    "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
+    "checkpoint_sha256": "8e121c133605aae9e5d9d7d735637e4633df4a43413bb750651942b8733c9d52",
     "reference_sha256": "fd3d28d445803085c6f82d063872badc5b2f6434fe458d728238e582b83e3312",
     "prediction_sha256": "0b37e7f61dc05912a07bc60f38cab17487e87f227dc832e0b7a1c90630cbb808",
     "definition": "Each method is compared to its own state at the shared 3 s anchor; neither state is reset.",
@@ -106,7 +106,7 @@
   },
   "sphere-fixed-hold": {
     "episode": "sphere-fixed-hold",
-    "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
+    "checkpoint_sha256": "8e121c133605aae9e5d9d7d735637e4633df4a43413bb750651942b8733c9d52",
     "reference_sha256": "7a85835b4cf0986a63a750b2dcef8ff9c325e653c4f39b965864ca6a3bee652f",
     "prediction_sha256": "0a5243642ff1cbfadc50d0ace93b1f0e1948d0e80be60406e86ec2bf7352df3d",
     "definition": "Each method is compared to its own state at the shared 3 s anchor; neither state is reset.",
@@ -211,7 +211,7 @@
   },
   "cylinder-fixed-hold": {
     "episode": "cylinder-fixed-hold",
-    "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
+    "checkpoint_sha256": "8e121c133605aae9e5d9d7d735637e4633df4a43413bb750651942b8733c9d52",
     "reference_sha256": "4b5c8019693d61e201a76c2c3bee4a16f88d3388b204ff31652a78ae5fa52e94",
     "prediction_sha256": "3fc53fe5b7c958d14ccf1f676006d166f98e48f2f8ffdcf5bc7b5fe9d29ba4c3",
     "definition": "Each method is compared to its own state at the shared 3 s anchor; neither state is reset.",

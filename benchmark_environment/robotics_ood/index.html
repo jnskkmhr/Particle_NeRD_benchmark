@@ -43,28 +43,28 @@
           <td>$1.2 \times 1.0 \times 0.25\text{ m}$ · $9{,}176$ particles</td>
           <td><code>panda_hand</code> (capsule), <code>panda_leftfinger</code>, <code>panda_rightfinger</code> (3)</td>
           <td><strong>17.99 mm / 27.63 mm</strong></td>
-          <td><strong>14.48 mm / 25.22 mm</strong></td>
+          <td><strong>20.69 mm / 36.21 mm</strong></td>
         </tr>
         <tr>
           <td><strong>Unitree Go2 Quadruped</strong> (<code>quadruped-flat</code>)</td>
           <td>$2.0 \times 1.2 \times 0.12\text{ m}$ · $9{,}176$ particles</td>
           <td><code>FL_foot</code>, <code>FR_foot</code>, <code>RL_foot</code>, <code>RR_foot</code> spheres (4)</td>
           <td><strong>9.98 mm / 17.91 mm</strong></td>
-          <td><strong>11.96 mm / 22.80 mm</strong></td>
+          <td><strong>17.61 mm / 36.02 mm</strong></td>
         </tr>
         <tr>
           <td><strong>Unitree G1 Humanoid</strong> (<code>g1-flat</code>)</td>
           <td>$3.6 \times 1.6 \times 0.30\text{ m}$ · $50{,}400$ particles</td>
           <td><code>left_ankle_roll_link</code>, <code>right_ankle_roll_link</code> boxes (2)</td>
           <td><strong>19.99 mm / 32.42 mm</strong></td>
-          <td><strong>19.90 mm / 32.14 mm</strong></td>
+          <td><strong>22.54 mm / 38.63 mm</strong></td>
         </tr>
       </tbody>
     </table>
   </div>
   <figure class="result-figure">
     <div class="plot-scroll" tabindex="0"><a href="robotics_ood_and_stress_summary.png"><img src="robotics_ood_and_stress_summary.png" alt="Particle-NeRD deviatoric stress fields on Franka, Go2, and G1, rollout RMSE, and G1 pelvis height comparison" loading="lazy" style="width:100%;height:auto"></a></div>
-    <figcaption><strong>Figure 1:</strong> Top row (a–c): <strong>Particle-NeRD</strong> predicted deviatoric shear stress $\|\boldsymbol{\tau}_i\|$ and peak compressive pressure $p_i$ beneath the active robot contact links on Franka ($t=3.5\text{ s}$), Unitree Go2 ($t=3.5\text{ s}$), and Unitree G1 ($t=3.5\text{ s}$, $50{,}400$ particles). Bottom row: (d) $6.0\text{ s}$ open-loop mean RMSE comparing <strong>Particle-World</strong> and <strong>Particle-NeRD</strong>; (e) closed-loop coupled Unitree G1 pelvis height $z(t)$ and mean vertical sand support $\bar{F}_z$ comparing <strong>Implicit MPM</strong> ($\bar{F}_z = 328.8\text{ N}$), <strong>Particle-World</strong> ($\bar{F}_z = 327.5\text{ N}$), and <strong>Particle-NeRD</strong> ($\bar{F}_z = 327.2\text{ N}$). <a href="results.json">Download full numerical metrics (JSON)</a>.</figcaption>
+    <figcaption><strong>Figure 1:</strong> Top row (a–c): <strong>Particle-NeRD</strong> predicted deviatoric shear stress $\|\boldsymbol{\tau}_i\|$ and peak compressive pressure $p_i$ beneath the active robot contact links on Franka ($t=3.5\text{ s}$), Unitree Go2 ($t=3.5\text{ s}$), and Unitree G1 ($t=3.5\text{ s}$, $50{,}400$ particles). Bottom row: (d) $6.0\text{ s}$ open-loop mean RMSE comparing <strong>Particle-World</strong> and <strong>Particle-NeRD</strong>; (e) closed-loop coupled Unitree G1 pelvis height $z(t)$ and mean vertical sand support $\bar{F}_z$ comparing <strong>Implicit MPM</strong> ($\bar{F}_z = 328.8\text{ N}$), <strong>Particle-World</strong> ($\bar{F}_z = 327.5\text{ N}$), and <strong>Particle-NeRD</strong> ($\bar{F}_z = 328.7\text{ N}$).</figcaption>
   </figure>
 </section>
 
@@ -96,14 +96,14 @@
           <td>Forward base displacement $\Delta x$ / Min base height $z_{\min}$</td>
           <td>$+0.159\text{ m}$ / $0.193\text{ m}$ (Pass)</td>
           <td><strong>$+0.164\text{ m}$ / $0.193\text{ m}$ (Pass)</strong></td>
-          <td><strong>$+0.165\text{ m}$ / $0.193\text{ m}$ (Pass)</strong></td>
+          <td><strong>$+0.162\text{ m}$ / $0.193\text{ m}$ (Pass)</strong></td>
         </tr>
         <tr>
           <td><strong>Unitree G1 Humanoid ($50{,}400$ pts)</strong></td>
           <td>Forward displacement $\Delta x$ / Min pelvis height $z_{\min}$ / Mean $\bar{F}_z$</td>
           <td>$+1.500\text{ m}$ / $0.662\text{ m}$ / $328.8\text{ N}$</td>
           <td><strong>$+2.033\text{ m}$ / $0.696\text{ m}$ / $327.5\text{ N}$</strong></td>
-          <td><strong>$+1.956\text{ m}$ / $0.678\text{ m}$ / $327.2\text{ N}$</strong></td>
+          <td><strong>$+2.087\text{ m}$ / $0.700\text{ m}$ / $328.7\text{ N}$</strong></td>
         </tr>
       </tbody>
     </table>
@@ -127,7 +127,7 @@
     <video controls playsinline preload="metadata" poster="quadruped_comparison_poster.jpg" style="display:block;width:100%;height:auto">
       <source src="quadruped_comparison.mp4" type="video/mp4">
     </video>
-    <figcaption><strong>Video 2:</strong> Closed-loop coupled Unitree Go2 free-base crawl ($9{,}176$ particles, $2.0 \times 1.2 \times 0.12\text{ m}$ bed). Left: <strong>Implicit MPM</strong> ($\Delta x = +0.159\text{ m}$). Center: <strong>Particle-World</strong> ($\Delta x = +0.164\text{ m}$). Right: <strong>Particle-NeRD</strong> ($\Delta x = +0.165\text{ m}$).</figcaption>
+    <figcaption><strong>Video 2:</strong> Closed-loop coupled Unitree Go2 free-base crawl ($9{,}176$ particles, $2.0 \times 1.2 \times 0.12\text{ m}$ bed). Left: <strong>Implicit MPM</strong> ($\Delta x = +0.159\text{ m}$). Center: <strong>Particle-World</strong> ($\Delta x = +0.164\text{ m}$). Right: <strong>Particle-NeRD</strong> ($\Delta x = +0.162\text{ m}$).</figcaption>
   </figure>
 
   <h3>Unitree G1 Humanoid: closed-loop RL walking on $50{,}400$ sand particles ($6.0\text{ s}$, $50\text{ fps}$)</h3>
@@ -135,7 +135,7 @@
     <video controls playsinline preload="metadata" poster="g1_comparison_poster.jpg" style="display:block;width:100%;height:auto">
       <source src="g1_comparison.mp4" type="video/mp4">
     </video>
-    <figcaption><strong>Video 3:</strong> Closed-loop coupled Unitree G1 29-DOF humanoid walking with MPM-trained RL policy <code>jqur5jhm/model_19999.pt</code> ($50{,}400$ particles, $3.6 \times 1.6 \times 0.30\text{ m}$ bed). Left: <strong>Implicit MPM</strong> ($\bar{F}_z = 328.8\text{ N}$). Center: <strong>Particle-World</strong> ($\bar{F}_z = 327.5\text{ N}$). Right: <strong>Particle-NeRD</strong> ($\bar{F}_z = 327.2\text{ N}$).</figcaption>
+    <figcaption><strong>Video 3:</strong> Closed-loop coupled Unitree G1 29-DOF humanoid walking with MPM-trained RL policy <code>jqur5jhm/model_19999.pt</code> ($50{,}400$ particles, $3.6 \times 1.6 \times 0.30\text{ m}$ bed). Left: <strong>Implicit MPM</strong> ($\bar{F}_z = 328.8\text{ N}$). Center: <strong>Particle-World</strong> ($\bar{F}_z = 327.5\text{ N}$). Right: <strong>Particle-NeRD</strong> ($\bar{F}_z = 328.7\text{ N}$).</figcaption>
   </figure>
 </section>
 </main>
