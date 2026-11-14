@@ -15,7 +15,8 @@
   <p>Shared object-trained models (<strong>Particle-World</strong> and <strong>Particle-NeRD</strong>) evaluated zero-shot against <strong>Implicit MPM</strong> on multi-link articulated robots: Franka Emika Panda continuous sand plowing, Unitree Go2 quadruped crawling, and Unitree G1 29-DOF humanoid walking on $50{,}400$ particles.</p>
   <nav aria-label="Report sections" style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap">
     <a href="#ood-rollout">1. Open-loop 6.0 s robotics rollout accuracy</a>
-    <a href="#coupled-robotics">2. Closed-loop coupled robot simulations</a>
+    <a href="#ood-surface-error">2. Sand-surface error (0.02 m grid)</a>
+    <a href="#coupled-robotics">3. Closed-loop coupled robot simulations</a>
     <a href="../stress_estimation/">Continuum stress &amp; RFT estimation ↗</a>
     <a href="../particle_nerd_local/">Particle-NeRD object report ↗</a>
     <a href="../particle_world/">Particle-World object report ↗</a>
@@ -27,14 +28,16 @@
   <p>Both <strong>Particle-World</strong> and <strong>Particle-NeRD</strong> were trained <strong>exclusively on single rigid objects</strong> (Box, Sphere, Cylinder in a $2.0 \times 1.2 \times 0.30\text{ m}$ tray with $20{,}646$ particles) and evaluated zero-shot over full $6.0\text{ s}$ ($1{,}200$-step) open-loop rollouts on three unseen robotics benchmarks with different tray dimensions, particle counts, and multi-body articulated contact links:</p>
   <div class="table-wrap">
     <table>
-      <caption>Table 1: Zero-shot $6.0\text{ s}$ ($1{,}200$-step) open-loop rollout RMSE on out-of-distribution robotics benchmarks.</caption>
+      <caption>Table 1: Zero-shot $6.0\text{ s}$ ($1{,}200$-step) open-loop particle-position RMSE and $0.02\text{ m}$-grid symmetric sand-surface distance on out-of-distribution robotics benchmarks.</caption>
       <thead>
         <tr>
           <th scope="col">Benchmark case</th>
           <th scope="col">Tray dimensions &amp; particles</th>
           <th scope="col">Interacting robot links</th>
-          <th scope="col">Particle-World<br>(Mean / Final RMSE)</th>
-          <th scope="col">Particle-NeRD<br>(Mean / Final RMSE)</th>
+          <th scope="col">Particle-World<br>Pos RMSE (Mean / End)</th>
+          <th scope="col">Particle-NeRD<br>Pos RMSE (Mean / End)</th>
+          <th scope="col">Particle-World<br>Surface Mean (Mean / End)</th>
+          <th scope="col">Particle-NeRD<br>Surface Mean (Mean / End)</th>
         </tr>
       </thead>
       <tbody>
@@ -42,22 +45,28 @@
           <td><strong>Franka Emika Panda</strong> (<code>franka-flat</code>, continuous $t=0\text{–}6\text{ s}$ S-sweep)</td>
           <td>$1.2 \times 1.0 \times 0.25\text{ m}$ · $9{,}176$ particles</td>
           <td><code>panda_hand</code> (capsule), <code>panda_leftfinger</code>, <code>panda_rightfinger</code> (3)</td>
-          <td><strong>17.99 mm / 27.63 mm</strong></td>
+          <td>17.99 mm / 27.63 mm</td>
           <td><strong>14.60 mm / 24.08 mm</strong></td>
+          <td>5.44 mm / 7.22 mm</td>
+          <td><strong>3.43 mm / 6.19 mm</strong></td>
         </tr>
         <tr>
           <td><strong>Unitree Go2 Quadruped</strong> (<code>quadruped-flat</code>)</td>
           <td>$2.0 \times 1.2 \times 0.12\text{ m}$ · $9{,}176$ particles</td>
           <td><code>FL_foot</code>, <code>FR_foot</code>, <code>RL_foot</code>, <code>RR_foot</code> spheres (4)</td>
           <td><strong>9.98 mm / 17.91 mm</strong></td>
-          <td><strong>12.23 mm / 25.74 mm</strong></td>
+          <td>12.23 mm / 25.74 mm</td>
+          <td><strong>5.15 mm / 10.17 mm</strong></td>
+          <td>8.18 mm / 18.04 mm</td>
         </tr>
         <tr>
           <td><strong>Unitree G1 Humanoid</strong> (<code>g1-flat</code>)</td>
           <td>$3.6 \times 1.6 \times 0.30\text{ m}$ · $50{,}400$ particles</td>
           <td><code>left_ankle_roll_link</code>, <code>right_ankle_roll_link</code> boxes (2)</td>
-          <td><strong>19.99 mm / 32.42 mm</strong></td>
+          <td>19.99 mm / 32.42 mm</td>
           <td><strong>17.56 mm / 24.82 mm</strong></td>
+          <td>7.10 mm / 14.39 mm</td>
+          <td><strong>2.76 mm / 5.30 mm</strong></td>
         </tr>
       </tbody>
     </table>
@@ -68,12 +77,94 @@
   </figure>
 </section>
 
+<section class="report-section" id="ood-surface-error">
+  <h2>2. Sand-surface error by robot ($0.02\text{ m}$ measurement grid)</h2>
+  <p><a href="https://github.com/jnskkmhr/Particle_NeRD_benchmark/blob/main/metrics/README.md#2-sand-surface-error">Definition in metrics/README.md</a> · Following the exact surface reconstruction protocol in the <a href="../particle_nerd_local/index.html#test_surface_errors">elementary object benchmark</a>, the mean and 95th-percentile symmetric surface distance measure the reconstructed sand free surface on a shared $0.02\text{ m}$ measurement grid ($\sigma = 0.032\text{ m}$ Gaussian kernel, $\rho_{\text{iso}} = 800\text{ kg/m}^3$ marching-cubes isosurface, $4{,}096$ area-weighted surface samples per direction) every $0.20\text{ s}$ ($30$ evaluation frames across $0\text{–}6\text{ s}$).</p>
+  <div class="table-wrap">
+    <table>
+      <caption>Table 2: Symmetric sand-surface distance (mean and 95th-percentile on a $0.02\text{ m}$ measurement grid) for each robot across $0\text{–}6\text{ s}$ ($n=30$ frames at $0.20\text{ s}$ intervals).</caption>
+      <thead>
+        <tr>
+          <th scope="col">Robot benchmark</th>
+          <th scope="col">Method</th>
+          <th scope="col">Mean surface distance<br>Time-mean ($0\text{–}6\text{ s}$)</th>
+          <th scope="col">Mean surface distance<br>Terminal ($6\text{ s}$)</th>
+          <th scope="col">95th-percentile surface distance<br>Time-mean ($0\text{–}6\text{ s}$)</th>
+          <th scope="col">95th-percentile surface distance<br>Terminal ($6\text{ s}$)</th>
+          <th scope="col">Grid mass discrepancy<br>(Time-mean / Terminal)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2"><strong>Franka Emika Panda</strong><br>(<code>franka-flat</code>, $N=9{,}176$)</td>
+          <td>Particle-World</td>
+          <td>$5.44 \pm 1.10\text{ mm}$</td>
+          <td>$7.22\text{ mm}$</td>
+          <td>$16.95 \pm 0.92\text{ mm}$</td>
+          <td>$18.48\text{ mm}$</td>
+          <td>$0.440$ / $0.453$</td>
+        </tr>
+        <tr>
+          <td><strong>Particle-NeRD</strong></td>
+          <td><strong>$3.43 \pm 1.26\text{ mm}$</strong></td>
+          <td><strong>$6.19\text{ mm}$</strong></td>
+          <td><strong>$11.63 \pm 1.36\text{ mm}$</strong></td>
+          <td><strong>$14.49\text{ mm}$</strong></td>
+          <td><strong>$0.425$ / $0.450$</strong></td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>Unitree Go2 Quadruped</strong><br>(<code>quadruped-flat</code>, $N=9{,}176$)</td>
+          <td>Particle-World</td>
+          <td><strong>$5.15 \pm 2.59\text{ mm}$</strong></td>
+          <td><strong>$10.17\text{ mm}$</strong></td>
+          <td><strong>$10.70 \pm 2.35\text{ mm}$</strong></td>
+          <td><strong>$16.46\text{ mm}$</strong></td>
+          <td><strong>$0.228$ / $0.273$</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Particle-NeRD</strong></td>
+          <td>$8.18 \pm 5.11\text{ mm}$</td>
+          <td>$18.04\text{ mm}$</td>
+          <td>$15.64 \pm 6.97\text{ mm}$</td>
+          <td>$29.80\text{ mm}$</td>
+          <td>$0.270$ / $0.371$</td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>Unitree G1 Humanoid</strong><br>(<code>g1-flat</code>, $N=50{,}400$)</td>
+          <td>Particle-World</td>
+          <td>$7.10 \pm 4.14\text{ mm}$</td>
+          <td>$14.39\text{ mm}$</td>
+          <td>$14.74 \pm 6.59\text{ mm}$</td>
+          <td>$27.89\text{ mm}$</td>
+          <td>$0.456$ / $0.517$</td>
+        </tr>
+        <tr>
+          <td><strong>Particle-NeRD</strong></td>
+          <td><strong>$2.76 \pm 1.11\text{ mm}$</strong></td>
+          <td><strong>$5.30\text{ mm}$</strong></td>
+          <td><strong>$11.97 \pm 2.12\text{ mm}$</strong></td>
+          <td><strong>$13.59\text{ mm}$</strong></td>
+          <td><strong>$0.422$ / $0.440$</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <figure class="result-figure" id="robotics_surface_errors">
+    <div class="plot-scroll" tabindex="0"><a href="robotics_surface_errors.png"><img src="robotics_surface_errors.svg" alt="Symmetric sand-surface distance (mean and 95th-percentile on a 0.02 m measurement grid) for Franka Emika Panda, Unitree Go2 Quadruped, and Unitree G1 Humanoid" loading="lazy" style="width:100%;height:auto"></a></div>
+    <figcaption><strong>Figure 2a:</strong> Symmetric sand-surface distance on a $0.02\text{ m}$ measurement grid across the three out-of-distribution robots (Franka Emika Panda, Unitree Go2 Quadruped, and Unitree G1 Humanoid). Top row: mean symmetric surface distance for time-mean ($0\text{–}6\text{ s}$, with $\pm 1\text{ SD}$ error bars and $n=30$ sample frames overlaid) and terminal state ($6\text{ s}$). Bottom row: 95th-percentile symmetric surface distance for time-mean ($0\text{–}6\text{ s}$) and terminal state ($6\text{ s}$).</figcaption>
+  </figure>
+  <figure class="result-figure" id="robotics_surface_timeseries">
+    <div class="plot-scroll" tabindex="0"><a href="robotics_surface_timeseries.png"><img src="robotics_surface_timeseries.svg" alt="Time-series evolution of mean and 95th-percentile symmetric sand-surface distance from 0 to 6 s for Franka, Go2, and G1" loading="lazy" style="width:100%;height:auto"></a></div>
+    <figcaption><strong>Figure 2b:</strong> Per-robot time-series evolution ($0\text{–}6\text{ s}$ sampled every $0.20\text{ s}$) of mean symmetric surface distance (top row) and 95th-percentile symmetric surface distance (bottom row) comparing <strong>Particle-World</strong> and <strong>Particle-NeRD</strong> against the <strong>Implicit MPM</strong> reference surface.</figcaption>
+  </figure>
+</section>
+
 <section class="report-section" id="coupled-robotics">
-  <h2>2. Closed-loop two-way coupled robot-in-the-loop simulations</h2>
+  <h2>3. Closed-loop two-way coupled robot-in-the-loop simulations</h2>
   <p>In closed-loop coupled simulation, MJWarp integrates the articulated robot dynamics and controllers (Franka damped least-squares IK with gravity compensation starting immersed in the sand at $t = 0\text{ s}$ and sweeping a continuous S-curve through $t = 6.0\text{ s}$; Unitree Go2 free-base crawl controller; and Unitree G1 closed-loop MPM-trained RL policy <code>jqur5jhm/model_19999.pt</code>) while exchanging lagged $200\text{ Hz}$ contact reaction wrenches with <strong>Particle-World</strong> and <strong>Particle-NeRD</strong>.</p>
   <div class="table-wrap">
     <table>
-      <caption>Table 2: Closed-loop two-way coupled robot-in-the-loop simulation metrics over $6.0\text{ s}$ ($1{,}200$ steps at $200\text{ Hz}$).</caption>
+      <caption>Table 3: Closed-loop two-way coupled robot-in-the-loop simulation metrics over $6.0\text{ s}$ ($1{,}200$ steps at $200\text{ Hz}$).</caption>
       <thead>
         <tr>
           <th scope="col">Task</th>

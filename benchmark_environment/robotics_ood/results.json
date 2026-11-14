@@ -7,7 +7,15 @@
       "surface_mean_rmse_mm": 32.48872207926092,
       "ms_per_step": 6.058568004203901,
       "mean_pressure_pa": 0.0,
-      "mean_deviatoric_pa": 0.0
+      "mean_deviatoric_pa": 0.0,
+      "surface_mean_mm_time_mean": 5.441801777940949,
+      "surface_mean_mm_std": 1.1040274176216047,
+      "surface_mean_mm_end": 7.216558606210158,
+      "surface_p95_mm_time_mean": 16.954352626399004,
+      "surface_p95_mm_std": 0.9180617638708818,
+      "surface_p95_mm_end": 18.483448125379144,
+      "mass_discrepancy_time_mean": 0.4812083434907766,
+      "mass_discrepancy_end": 0.6514074910189566
     },
     "particle_nerd_local_3": {
       "steps": 1198,
@@ -16,7 +24,15 @@
       "surface_mean_rmse_mm": 27.824770135304366,
       "ms_per_step": 6.926630333863597,
       "mean_pressure_pa": 2231.9886428756586,
-      "mean_deviatoric_pa": 0.0
+      "mean_deviatoric_pa": 0.0,
+      "surface_mean_mm_time_mean": 3.4259598063426413,
+      "surface_mean_mm_std": 1.2622878429306368,
+      "surface_mean_mm_end": 6.194867891258548,
+      "surface_p95_mm_time_mean": 11.625721449382608,
+      "surface_p95_mm_std": 1.364007860671893,
+      "surface_p95_mm_end": 14.493294843290732,
+      "mass_discrepancy_time_mean": 0.29864359916178423,
+      "mass_discrepancy_end": 0.47807255170637025
     },
     "particle_nerd": {
       "steps": 1198,
@@ -52,7 +68,15 @@
       "surface_mean_rmse_mm": 9.345071650071315,
       "ms_per_step": 5.849230716172886,
       "mean_pressure_pa": 0.0,
-      "mean_deviatoric_pa": 0.0
+      "mean_deviatoric_pa": 0.0,
+      "surface_mean_mm_time_mean": 5.147768104277129,
+      "surface_mean_mm_std": 2.594805296752077,
+      "surface_mean_mm_end": 10.173504530046959,
+      "surface_p95_mm_time_mean": 10.703103616792513,
+      "surface_p95_mm_std": 2.3469861077333194,
+      "surface_p95_mm_end": 16.45505408387785,
+      "mass_discrepancy_time_mean": 0.4976435371584177,
+      "mass_discrepancy_end": 0.807544488931178
     },
     "particle_nerd_local_3": {
       "steps": 1198,
@@ -61,7 +85,15 @@
       "surface_mean_rmse_mm": 17.69179715907733,
       "ms_per_step": 7.4605846017457615,
       "mean_pressure_pa": 1194.5826509249628,
-      "mean_deviatoric_pa": 0.0
+      "mean_deviatoric_pa": 0.0,
+      "surface_mean_mm_time_mean": 8.184260124977015,
+      "surface_mean_mm_std": 5.112158386516991,
+      "surface_mean_mm_end": 18.039482426384954,
+      "surface_p95_mm_time_mean": 15.636449298349552,
+      "surface_p95_mm_std": 6.968406991587651,
+      "surface_p95_mm_end": 29.803148527701655,
+      "mass_discrepancy_time_mean": 0.5165350455979918,
+      "mass_discrepancy_end": 0.8672495516213429
     },
     "particle_nerd": {
       "steps": 1198,
@@ -115,7 +147,15 @@
       "surface_mean_rmse_mm": 35.83161856400748,
       "ms_per_step": 7.981511545002162,
       "mean_pressure_pa": 0.0,
-      "mean_deviatoric_pa": 0.0
+      "mean_deviatoric_pa": 0.0,
+      "surface_mean_mm_time_mean": 7.099684641981467,
+      "surface_mean_mm_std": 4.138054211620386,
+      "surface_mean_mm_end": 14.388898733503545,
+      "surface_p95_mm_time_mean": 14.73626941376728,
+      "surface_p95_mm_std": 6.589643138837552,
+      "surface_p95_mm_end": 27.886034381784423,
+      "mass_discrepancy_time_mean": 0.480783740283891,
+      "mass_discrepancy_end": 0.7536257023535119
     },
     "particle_nerd_local_3": {
       "steps": 1198,
@@ -124,7 +164,15 @@
       "surface_mean_rmse_mm": 34.221472536209035,
       "ms_per_step": 13.031775205285726,
       "mean_pressure_pa": 2708.0458570680953,
-      "mean_deviatoric_pa": 0.0
+      "mean_deviatoric_pa": 0.0,
+      "surface_mean_mm_time_mean": 2.7624292357204054,
+      "surface_mean_mm_std": 1.1140469794013166,
+      "surface_mean_mm_end": 5.303094863103239,
+      "surface_p95_mm_time_mean": 11.970914685191337,
+      "surface_p95_mm_std": 2.115737117262787,
+      "surface_p95_mm_end": 13.593783917822535,
+      "mass_discrepancy_time_mean": 0.2058562101097616,
+      "mass_discrepancy_end": 0.39852629637602505
     },
     "particle_nerd": {
       "steps": 1198,
