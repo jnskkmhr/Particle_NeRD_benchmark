@@ -1,5 +1,5 @@
 {
-  "checkpoint_sha256": "26993ab280670a8acc4cd8727214e546613f2249622479209b6a1d7e5e240d27",
+  "checkpoint_sha256": "fb443cbd06b4e9d300d8e35be132b0793d1a984538b20e8598ec80613d81a3b6",
   "dataset_splits": {
     "train": 800,
     "validation": 100,
@@ -752,31 +752,20 @@
     }
   },
   "evaluated_training_state": {
-    "checkpoint_step": 11000,
-    "checkpoint_training_horizon": 32,
-    "selected_validation": {
-      "validation_loss": 17.909028487900894,
-      "position_rmse_mm": 12.629361595426287,
-      "frozen_baseline_rmse_mm": 33.99793226236389,
-      "validation_trajectories": 21,
-      "validation_windows": 42,
-      "horizon": 200,
-      "step": 6000,
-      "elapsed_s": 10910.496616220102,
-      "gpu_peak_allocated_bytes": 10935878656
-    },
-    "training_step_at_snapshot": 11000,
+    "checkpoint_step": 12000,
+    "checkpoint_training_horizon": 100,
+    "training_step_at_snapshot": 12000,
     "planned_updates": 12000,
-    "training_complete": false,
+    "training_complete": true,
     "snapshot": {
       "schema": "particle_nerd_object_evaluation_snapshot_v1",
-      "checkpoint_sha256": "26993ab280670a8acc4cd8727214e546613f2249622479209b6a1d7e5e240d27",
-      "checkpoint_step": 11000,
-      "training_step_at_snapshot": 11000,
-      "training_complete": false,
-      "selection": "heuristic-free ParticleNeRD-Local checkpoint evaluated on 100 held-out trajectories",
-      "source_workflow": "particle-nerd-local-combined-1000-train-7",
-      "snapshot_utc": "2026-11-13T07:35:00Z"
+      "checkpoint_sha256": "fb443cbd06b4e9d300d8e35be132b0793d1a984538b20e8598ec80613d81a3b6",
+      "checkpoint_step": 12000,
+      "training_step_at_snapshot": 12000,
+      "training_complete": true,
+      "selection": "full 12,000-step from-scratch heuristic-free ParticleNeRD-Local checkpoint evaluated on 100 held-out trajectories",
+      "source_workflow": "particle-nerd-local-combined-1000-train-8",
+      "snapshot_utc": "2026-11-14T12:34:00Z"
     }
   }
 }

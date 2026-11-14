@@ -2,20 +2,20 @@
   "franka-flat": {
     "particle_world": {
       "steps": 1198,
-      "mean_rmse_mm": 17.994949810617356,
-      "final_rmse_mm": 27.630605697631836,
-      "surface_mean_rmse_mm": 32.496596246509995,
-      "ms_per_step": 6.295414191094664,
+      "mean_rmse_mm": 17.986438140621367,
+      "final_rmse_mm": 27.622211456298828,
+      "surface_mean_rmse_mm": 32.48872207926092,
+      "ms_per_step": 6.058568004203901,
       "mean_pressure_pa": 0.0,
       "mean_deviatoric_pa": 0.0
     },
     "particle_nerd_local_3": {
       "steps": 1198,
-      "mean_rmse_mm": 14.844123894637933,
-      "final_rmse_mm": 25.548452377319336,
-      "surface_mean_rmse_mm": 22.629675828231395,
-      "ms_per_step": 7.247508307981098,
-      "mean_pressure_pa": 2089.3742055240177,
+      "mean_rmse_mm": 14.597101035843508,
+      "final_rmse_mm": 24.07586097717285,
+      "surface_mean_rmse_mm": 27.824770135304366,
+      "ms_per_step": 6.926630333863597,
+      "mean_pressure_pa": 2231.9886428756586,
       "mean_deviatoric_pa": 0.0
     },
     "particle_nerd": {
@@ -23,7 +23,7 @@
       "mean_rmse_mm": 48.9945999407808,
       "final_rmse_mm": 74.65443420410156,
       "surface_mean_rmse_mm": 66.93139324535014,
-      "ms_per_step": 2.344590208675084
+      "ms_per_step": 2.3016069298773343
     },
     "coupled_particle_world": {
       "motion": "franka",
@@ -56,11 +56,11 @@
     },
     "particle_nerd_local_3": {
       "steps": 1198,
-      "mean_rmse_mm": 18.231325516847267,
-      "final_rmse_mm": 37.78627395629883,
-      "surface_mean_rmse_mm": 22.868404114037403,
-      "ms_per_step": 7.208240505028827,
-      "mean_pressure_pa": 1452.6042812646729,
+      "mean_rmse_mm": 12.229674059729744,
+      "final_rmse_mm": 25.744083404541016,
+      "surface_mean_rmse_mm": 17.69179715907733,
+      "ms_per_step": 7.4605846017457615,
+      "mean_pressure_pa": 1194.5826509249628,
       "mean_deviatoric_pa": 0.0
     },
     "particle_nerd": {
@@ -119,11 +119,11 @@
     },
     "particle_nerd_local_3": {
       "steps": 1198,
-      "mean_rmse_mm": 17.47129151406068,
-      "final_rmse_mm": 24.869365692138672,
-      "surface_mean_rmse_mm": 34.045770224345496,
-      "ms_per_step": 12.999016608602098,
-      "mean_pressure_pa": 2675.8575757365793,
+      "mean_rmse_mm": 17.559066597490457,
+      "final_rmse_mm": 24.82379722595215,
+      "surface_mean_rmse_mm": 34.221472536209035,
+      "ms_per_step": 13.031775205285726,
+      "mean_pressure_pa": 2708.0458570680953,
       "mean_deviatoric_pa": 0.0
     },
     "particle_nerd": {
