@@ -1,8 +1,10 @@
 {
-  "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
+  "episode_id": "box-static-support",
+  "checkpoint_sha256": "1d1575feba95f7f0363672185f4fd8c53aac86e65556f226aa60197658846dd7",
+  "renderer_sha256": "391443cdbc10b33ead69250cd118c78b244aebf0ece4f9304a09134450b53ad3",
   "reference_sha256": "2301c18571400a9fc3bf9b1901fa5cddbbd4b3faea4bfa46d2d0f86d960e034f",
-  "prediction_sha256": "81f2b1de1bfd16d44efbea91f9571d632228db483d97effd8ebff57be95eb28d",
-  "video_sha256": "51379047f4f99f77b46702cd1b410023cb5dca553b769efa72cbc155ed9a5567",
+  "prediction_sha256": "2e93f42413d12027d690337a6f6b65c6651e9dfd711584532aa7ea152f508b97",
+  "video_sha256": "501e7bc0829b398f3437c0d56d11dbf5d2673b88090abf4ba7b46e34b762444a",
   "fps": 50,
   "native_dt_s": 0.005,
   "state_indices": [

@@ -6,4 +6,4 @@
 
 """Register the benchmark task families without loading simulation configs."""
 
-from . import cube, robot, sphere  # noqa: F401
+from . import cube, cylinder, robot, sphere  # noqa: F401

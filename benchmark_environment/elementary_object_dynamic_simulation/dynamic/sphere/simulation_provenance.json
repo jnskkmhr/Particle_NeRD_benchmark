@@ -21,14 +21,14 @@
     "speed": 0.36858149071730745,
     "spin": 2.166146395185698
   },
-  "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
+  "checkpoint_sha256": "1d1575feba95f7f0363672185f4fd8c53aac86e65556f226aa60197658846dd7",
   "reference_sha256": "267d6c700cd2299b2bde1e8617822d6b4f8766ad5bd0ca7cd991ccaa7d2d58cb",
-  "prediction_sha256": "bb8de8ba0b13fc02c94360f5108888b0b50aac1865219e34fcfc4c0223b3c42e",
+  "prediction_sha256": "7b7c0702b337281a321442a8a52c0486a8caa157a544a06da70d2a16115443be",
   "native_dt_s": 0.005,
   "expected_steps": 4000,
   "completed_steps": 4000,
   "failure": null,
-  "elapsed_s": 55.033736735000275,
+  "elapsed_s": 93.42490210395772,
   "mode": "Fully dynamic object and recurrent neural particles with lagged estimated force/torque feedback",
   "feedback_enabled": true,
   "active_selection": "auto",
@@ -96,7 +96,7 @@
   },
   "network_source_sha256": {
     "features.py": "696d6752c2ee974e865ce179f39a3f9bfc8874c783bcd76f9b9081952079342e",
-    "model.py": "a70ecc5f0a773b7a6fb89ee8ee99685c4315e24e9989d39687b2456db80ce39d"
+    "model.py": "0933bc0e237c64f80b4cdc65584788a93a8f8b8a98692d1cc9dbe7a97306083b"
   },
   "versions": {
     "torch": "2.11.0+cu130",
@@ -106,7 +106,7 @@
   },
   "gpu": "NVIDIA GeForce RTX 5090",
   "implementation_source_sha256": {
-    "closed_loop.py": "bd93fe4e219f567aa9030ad8fdbabe7c793dec7e2c790567451ab7057802b39a",
+    "closed_loop.py": "ff0afd5ef638cf5b1e22b910ed61d0c0a46793fe273ffb1c56344a541047efe2",
     "forces.py": "4b7df74b033e41c581b671ba3c2a28dc336ee03d1393a1ada1a20502b0e3f654",
     "estimator.py": "221e4bf1ac4147133d6579b1f3e8547ce56778433b9fa0af9a121fcdcdcb5db4"
   }

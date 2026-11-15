@@ -1,4 +1,4 @@
-window.BENCHMARK_ENV_CATALOG = [
+const BENCHMARK_CASES = [
   {
     "id": "horizontal-flat",
     "title": "Horizontal box push",
@@ -419,20 +419,20 @@ window.BENCHMARK_ENV_CATALOG = [
   {
     "id": "quadruped-flat",
     "title": "Go2 crawl (leg IK)",
-    "description": "A freely balancing Unitree Go2 follows a slow crawl with leg IK and PD drives. The 0.12 m sand layer lies on a rigid tray; feet may also contact its floor. No base pose or external support wrench is prescribed.",
+    "description": "A freely balancing Unitree Go2 follows a slow crawl with leg IK and PD drives on a 2.0 \u00d7 1.2 \u00d7 0.30 m sand bed (20,646 particles). No base pose or external support wrench is prescribed.",
     "motion": "quadruped",
     "terrain": "flat",
     "family": "robot",
     "path": "runs/quadruped-flat",
     "dataset_url": null,
     "duration": 6.0,
-    "particles": 9176,
+    "particles": 20646,
     "controller": "Go2 free-base crawl with leg IK and PD joint drives",
     "control_hz": 200,
     "bed": [
       2.0,
       1.2,
-      0.12
+      0.3
     ],
     "particle_initialization": {
       "distribution": "Uniform coordinate jitter, truncated to the initial bed",
@@ -444,8 +444,8 @@ window.BENCHMARK_ENV_CATALOG = [
     "command": "uv run isaaclab play --task IsaacBench-MPM-Go2-Crawl-Flat-v0 --duration 6 --viz newton_gl --real-time",
     "date": "2026-11-09",
     "artifacts": {
-      "trajectory.h5": "e076fe21cb1fa345a4bb695caede62cf8d8c1b374c22969da1ea3be55279ab54",
-      "simulation.mp4": "4cae681033ef01ae365df2e9f36fd3b92edbac42b0b0c60ea66cd8fcfd8891c6"
+      "trajectory.h5": "1b5395c284b093a14e1d213a47f86a38ad310d8631bb4821c8458a0f11716b00",
+      "simulation.mp4": "87cbab6d9121e3acc6ed1fae55a8ee1fee14f5bff4da4a0eff5cdc63f77b2352"
     }
   },
   {

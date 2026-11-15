@@ -1,8 +1,10 @@
 {
-  "checkpoint_sha256": "ede105296473849fec9087d185f68fc93bcfed689b840a9e4a1d1b34dd467e69",
+  "episode_id": "sphere-static-support",
+  "checkpoint_sha256": "1d1575feba95f7f0363672185f4fd8c53aac86e65556f226aa60197658846dd7",
+  "renderer_sha256": "391443cdbc10b33ead69250cd118c78b244aebf0ece4f9304a09134450b53ad3",
   "reference_sha256": "267d6c700cd2299b2bde1e8617822d6b4f8766ad5bd0ca7cd991ccaa7d2d58cb",
-  "prediction_sha256": "bb8de8ba0b13fc02c94360f5108888b0b50aac1865219e34fcfc4c0223b3c42e",
-  "video_sha256": "2154371a707af3aaadc5bb43ca105d0532a2b5f92f9c06223e55391aa87b8478",
+  "prediction_sha256": "7b7c0702b337281a321442a8a52c0486a8caa157a544a06da70d2a16115443be",
+  "video_sha256": "411809e6878dbf04f63eaa6ebd3270f278f869285fd8e7e04374a44cf0e71ec9",
   "fps": 50,
   "native_dt_s": 0.005,
   "state_indices": [

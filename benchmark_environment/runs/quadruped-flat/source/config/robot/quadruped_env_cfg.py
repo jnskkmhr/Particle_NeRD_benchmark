@@ -34,3 +34,7 @@ class QuadrupedEnvCfg(ManagerBasedRLEnvCfg):
         use_newton_actuators=True,
         physics=physics_cfg([r"/World/envs/env_.*/Robot"], [r"/World/envs/env_.*/Robot/.*foot"]),
     )
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.sim.physics.default_shape_cfg.margin = 0.045

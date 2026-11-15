@@ -64,9 +64,8 @@ DESCRIPTIONS = {
         "The dataset stores the achieved motion."
     ),
     "quadruped": (
-        "A freely balancing Unitree Go2 follows a slow crawl with leg IK and PD drives. The 0.12 m sand "
-        "layer lies on a rigid tray; feet may also contact its floor. No base pose or external support "
-        "wrench is prescribed."
+        "A freely balancing Unitree Go2 follows a slow crawl with leg IK and PD drives on a 2.0 × 1.2 × 0.30 m "
+        "sand bed (20,646 particles). No base pose or external support wrench is prescribed."
     ),
     "g1": (
         "The MPM-trained G1 policy jqur5jhm (iteration 19,999) controls the humanoid at 50 Hz, with a 0.35 "
