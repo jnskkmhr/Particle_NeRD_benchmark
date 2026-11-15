@@ -19,7 +19,7 @@
       <caption>Table 1: Out-of-distribution articulated robotics experiment.</caption>
       <thead><tr><th scope="col">Item</th><th scope="col">Condition</th></tr></thead>
       <tbody>
-        <tr><td>Articulated robots</td><td>Franka Emika Panda (3 interacting gripper links: <code>panda_hand</code> capsule, <code>panda_leftfinger</code>, <code>panda_rightfinger</code> boxes); Unitree Go2 Quadruped (4 spherical feet: <code>FL_foot</code>, <code>FR_foot</code>, <code>RL_foot</code>, <code>RR_foot</code>); Unitree G1 29-DOF Humanoid (2 box feet: <code>left_ankle_roll_link</code>, <code>right_ankle_roll_link</code>).</td></tr>
+        <tr><td>Articulated robots</td><td>Franka Emika Panda with welded end-effector box paddle (<code>Paddle</code>: 0.14 × 0.18 × 0.12 m welded to <code>panda_hand</code>); Unitree Go2 Quadruped (4 spherical feet: <code>FL_foot</code>, <code>FR_foot</code>, <code>RL_foot</code>, <code>RR_foot</code>); Unitree G1 29-DOF Humanoid (2 box feet: <code>left_ankle_roll_link</code>, <code>right_ankle_roll_link</code>).</td></tr>
         <tr><td>Coordinates</td><td>Shared world coordinates; z points upward, gravity is (0, 0, −9.81) m/s². The nominal initial sand fill level is z = 0 m.</td></tr>
         <tr><td>Sand beds and resolution</td><td>Franka: 1.2 × 1.0 × 0.25 m flat bed (9,176 particles); Unitree Go2: 2.0 × 1.2 × 0.30 m flat bed (20,646 particles); Unitree G1: 3.6 × 1.6 × 0.30 m flat bed (50,400 particles). MPM grid 0.04 m; particle spacing 0.032 m, radius 0.016 m.</td></tr>
         <tr><td>Material</td><td>Density 1,600 kg/m³, Young’s modulus 10¹⁵ Pa, Poisson ratio 0.3, material friction 0.48, yield pressure 10¹⁵ Pa; collider friction 1.0.</td></tr>
@@ -69,11 +69,11 @@
       <tbody>
         <tr>
           <td><strong>Franka Emika Panda</strong> (<code>franka-flat</code>, N=9,176)</td>
-          <td><strong>14.60 ± 6.03 mm</strong></td>
-          <td><strong>24.08 mm</strong></td>
-          <td>16.54 mm / 29.20 mm</td>
-          <td>88.24 mm / 157.15 mm</td>
-          <td>19.02 mm / 28.37 mm</td>
+          <td><strong>14.60 ± 5.00 mm</strong></td>
+          <td><strong>20.65 mm</strong></td>
+          <td>15.72 mm / 24.17 mm</td>
+          <td>51.78 mm / 71.58 mm</td>
+          <td>18.89 mm / 26.12 mm</td>
         </tr>
         <tr>
           <td><strong>Unitree Go2 Quadruped</strong> (<code>quadruped-flat</code>, N=20,646)</td>
@@ -119,10 +119,10 @@
       <tbody>
         <tr>
           <td><strong>Franka Emika Panda</strong> (<code>franka-flat</code>, N=9,176)</td>
-          <td><strong>3.43 ± 1.26 mm</strong></td>
-          <td><strong>6.19 mm</strong></td>
-          <td><strong>11.63 ± 1.36 mm</strong></td>
-          <td><strong>14.49 mm</strong></td>
+          <td><strong>4.54 ± 0.79 mm</strong></td>
+          <td><strong>6.11 mm</strong></td>
+          <td><strong>16.48 ± 0.97 mm</strong></td>
+          <td><strong>14.84 mm</strong></td>
         </tr>
         <tr>
           <td><strong>Unitree Go2 Quadruped</strong> (<code>quadruped-flat</code>, N=20,646)</td>
@@ -166,10 +166,10 @@
       <tbody>
         <tr>
           <td><strong>Franka Emika Panda</strong> (<code>franka-flat</code>, N=9,176)</td>
-          <td><strong>0.0062 ± 0.0024 m/s</strong> / 0.0037 m/s</td>
-          <td><strong>0.982</strong> / 0.965</td>
-          <td>0.0223 J / 0.0001 J</td>
-          <td><strong>0.0046 J / 0.0035 J</strong></td>
+          <td><strong>0.0053 ± 0.0015 m/s</strong> / 0.0050 m/s</td>
+          <td><strong>0.983</strong> / 0.966</td>
+          <td>0.0110 J / 0.0062 J</td>
+          <td><strong>0.0033 J / 0.0040 J</strong></td>
         </tr>
         <tr>
           <td><strong>Unitree Go2 Quadruped</strong> (<code>quadruped-flat</code>, N=20,646)</td>

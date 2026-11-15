@@ -8,5 +8,5 @@ from particle_nerd_benchmark.core.physics import physics_cfg
 
 def franka_physics_cfg():
     return physics_cfg(
-        [r"/World/envs/env_.*/Robot"], [r"/World/envs/env_.*/Robot/.*panda_(hand|leftfinger|rightfinger)"]
+        [r"/World/envs/env_.*/Robot"], [r"/World/envs/env_.*/Robot/.*Paddle"]
     )

@@ -59,9 +59,9 @@ DESCRIPTIONS = {
         "or a rigid object."
     ),
     "franka": (
-        "A fixed-base Franka arm uses damped least-squares IK and joint drives to push its closed gripper "
-        "through the sand. The walls end 4 cm above the initial sand surface to clear the arm. "
-        "The dataset stores the achieved motion."
+        "A fixed-base Franka arm uses damped least-squares IK and joint drives to push a welded "
+        "0.14 × 0.18 × 0.12 m box paddle through the sand. The walls end 4 cm above the initial sand "
+        "surface to clear the arm. The dataset stores the achieved motion."
     ),
     "quadruped": (
         "A freely balancing Unitree Go2 follows a slow crawl with leg IK and PD drives on a 2.0 × 1.2 × 0.30 m "

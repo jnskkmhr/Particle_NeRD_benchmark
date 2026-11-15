@@ -387,7 +387,7 @@ const BENCHMARK_CASES = [
   {
     "id": "franka-flat",
     "title": "Franka sand pushing",
-    "description": "A fixed-base Franka arm uses damped least-squares IK and joint drives to push its closed gripper through the sand. The walls end 4 cm above the initial sand surface to clear the arm. The dataset stores the achieved motion.",
+    "description": "A fixed-base Franka arm uses damped least-squares IK and joint drives to push a welded 0.14 \u00d7 0.18 \u00d7 0.12 m box paddle through the sand. The walls end 4 cm above the initial sand surface to clear the arm. The dataset stores the achieved motion.",
     "motion": "franka",
     "terrain": "flat",
     "family": "robot",
@@ -410,10 +410,10 @@ const BENCHMARK_CASES = [
     "wall_top_z_m": 0.039999999999999994,
     "policy": null,
     "command": "uv run isaaclab play --task IsaacBench-MPM-Franka-Push-Flat-v0 --duration 6 --viz newton_gl --real-time",
-    "date": "2026-11-09",
+    "date": "2026-11-14",
     "artifacts": {
-      "trajectory.h5": "d75665a94fe69c20997d5ea1b86268863699d25dde3d80a61710f44006aaf92e",
-      "simulation.mp4": "ff35bac2c4a4d406d7e39973d7f52c85b4503511cc4be52c7bfed6a7b84ae2f1"
+      "trajectory.h5": "14617e79abb719165be87092257127ef0d85a752b950febb673a7939fe7e4dbd",
+      "simulation.mp4": "406b272b1dcb725c155141a9db229d618de04a99555730b51450c74a03e921e9"
     }
   },
   {

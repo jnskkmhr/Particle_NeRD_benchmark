@@ -9,14 +9,12 @@
     "video_matches_recorded_states": true
   },
   "measurements": {
-    "max_particle_displacement_m": 0.1512487232685089,
-    "mean_particle_displacement_m": 0.007027718238532543,
+    "max_particle_displacement_m": 0.19413889944553375,
+    "mean_particle_displacement_m": 0.012677304446697235,
     "reacting_body_names": [
-      "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand",
-      "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_leftfinger",
-      "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_rightfinger"
+      "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/Paddle"
     ],
-    "peak_total_material_force_N": 164.7262725830078,
+    "peak_total_material_force_N": 385.1006164550781,
     "maximum_robot_tray_contacts": 0,
     "samples_with_robot_tray_contacts": 0
   },

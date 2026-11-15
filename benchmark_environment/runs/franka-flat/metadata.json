@@ -1,6 +1,7 @@
 {
   "motion": "franka",
   "terrain": "flat",
+  "geometry": "box",
   "solver": "Implicit MPM",
   "physics_dt_s": 0.005,
   "video_fps": 50,
@@ -40,7 +41,7 @@
     "cloning_contexts": null,
     "prim_path": "{ENV_REGEX_NS}/Robot",
     "spawn": {
-      "func": "isaaclab.sim.spawners.from_files.from_files:spawn_from_usd",
+      "func": "particle_nerd_benchmark.config.robot.env_cfg.scene_cfg:_spawn_franka_with_paddle",
       "visible": true,
       "semantic_tags": null,
       "copy_from_source": true,
@@ -95,7 +96,14 @@
       "fix_root_link": null,
       "fixed_tendons_props": null,
       "spatial_tendons_props": null,
-      "joint_drive_props": null,
+      "joint_drive_props": [
+        {
+          "func": "isaaclab_newton.sim.schemas:apply_mujoco_joint",
+          "actuatorgravcomp": true,
+          "_usd_applied_schema": "MjcJointAPI",
+          "_usd_namespace": "mjc"
+        }
+      ],
       "joint_drive_props_create_if_missing": false,
       "ensure_drives_exist": false,
       "visual_material_path": "material",
@@ -105,16 +113,118 @@
       "physics_material": null,
       "usd_path": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Robots/FrankaEmika/franka_panda.usda",
       "variants": {
-        "Physics": "mujoco",
-        "Colliders": "primitives"
+        "Physics": "mujoco"
       },
-      "make_uninstanceable": false
+      "make_uninstanceable": false,
+      "paddle_offset": [
+        0.0,
+        0.0,
+        0.105
+      ],
+      "paddle": {
+        "func": "particle_nerd_benchmark.config.robot.env_cfg.scene_cfg:_spawn_fixed_paddle",
+        "visible": true,
+        "semantic_tags": null,
+        "copy_from_source": true,
+        "spawn_path": null,
+        "mass_props": {
+          "func": "isaaclab.sim.schemas:apply_namespaced",
+          "mass": 0.5,
+          "density": null,
+          "_usd_applied_schema": null,
+          "_usd_namespace": "physics"
+        },
+        "mass_props_create_if_missing": false,
+        "rigid_props": {
+          "func": "isaaclab.sim.schemas:apply_namespaced",
+          "rigid_body_enabled": true,
+          "kinematic_enabled": null,
+          "_usd_applied_schema": null,
+          "_usd_namespace": "physics"
+        },
+        "collision_props": [
+          {
+            "func": "isaaclab.sim.schemas:apply_namespaced",
+            "collision_enabled": true,
+            "_usd_applied_schema": null,
+            "_usd_namespace": "physics"
+          },
+          {
+            "func": "isaaclab.sim.schemas:apply_namespaced",
+            "contact_margin": 0.016,
+            "contact_gap": 0.0,
+            "_usd_applied_schema": "NewtonCollisionAPI",
+            "_usd_namespace": "newton"
+          }
+        ],
+        "mesh_collision_props": null,
+        "activate_contact_sensors": false,
+        "visual_material_path": "material",
+        "visual_material": null,
+        "physics_material_path": "material",
+        "physics_material": {
+          "func": "isaaclab.sim.spawners.materials.physics_materials:spawn_rigid_body_material",
+          "static_friction": 1.0,
+          "dynamic_friction": 1.0,
+          "restitution": 0.0,
+          "density": null,
+          "_usd_applied_schema": null,
+          "_usd_field_exceptions": {},
+          "_usd_namespace": "physics"
+        },
+        "size": [
+          0.14,
+          0.18,
+          0.12
+        ]
+      },
+      "paddle_visual": {
+        "func": "isaaclab.sim.spawners.shapes.shapes:spawn_cuboid",
+        "visible": true,
+        "semantic_tags": null,
+        "copy_from_source": true,
+        "spawn_path": null,
+        "mass_props": null,
+        "mass_props_create_if_missing": false,
+        "rigid_props": null,
+        "collision_props": null,
+        "mesh_collision_props": null,
+        "activate_contact_sensors": false,
+        "visual_material_path": "material",
+        "visual_material": {
+          "func": "isaaclab.sim.spawners.materials.visual_materials:spawn_preview_surface",
+          "visible": true,
+          "semantic_tags": null,
+          "copy_from_source": true,
+          "spawn_path": null,
+          "diffuse_color": [
+            0.18,
+            0.45,
+            0.82
+          ],
+          "emissive_color": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "roughness": 0.35,
+          "metallic": 0.25,
+          "opacity": 1.0
+        },
+        "physics_material_path": "material",
+        "physics_material": null,
+        "size": [
+          0.14,
+          0.18,
+          0.12
+        ]
+      }
     },
     "init_state": {
       "pos": [
-        -0.85,
+        -0.72,
         0.0,
-        0.1
+        0.05
       ],
       "rot": [
         0.0,
@@ -133,13 +243,13 @@
         0.0
       ],
       "joint_pos": {
-        "panda_joint1": 0.0,
-        "panda_joint2": -0.5,
-        "panda_joint3": 0.0,
-        "panda_joint4": -2.0,
-        "panda_joint5": 0.0,
-        "panda_joint6": 1.5,
-        "panda_joint7": 0.7854,
+        "panda_joint1": -0.5303,
+        "panda_joint2": 0.7779,
+        "panda_joint3": 0.0045,
+        "panda_joint4": -2.3577,
+        "panda_joint5": -0.1167,
+        "panda_joint6": 2.8139,
+        "panda_joint7": 0.3748,
         "panda_finger_joint.*": 0.0
       },
       "joint_vel": {
@@ -162,18 +272,15 @@
         ],
         "actuator_effort_limit": null,
         "actuator_velocity_limit": null,
-        "joint_effort_limit": {
-          "panda_joint[1-4]": 87.0,
-          "panda_joint[5-7]": 12.0
-        },
+        "joint_effort_limit": 200.0,
         "joint_velocity_limit": {
           "panda_joint[1-4]": 20.0,
           "panda_joint[5-7]": 25.0
         },
         "effort_limit_sim": null,
         "velocity_limit_sim": null,
-        "stiffness": 800.0,
-        "damping": 60.0,
+        "stiffness": 1600.0,
+        "damping": 80.0,
         "armature": null,
         "friction": null,
         "dynamic_friction": null,
@@ -325,7 +432,7 @@
           "source": "rigid",
           "destination": "sand",
           "bodies": [
-            "/World/envs/env_.*/Robot/.*panda_(hand|leftfinger|rightfinger)"
+            "/World/envs/env_.*/Robot/.*Paddle"
           ],
           "particles": [],
           "mode": "lagged",
@@ -367,27 +474,45 @@
   "control_dt_s": 0.005,
   "source_files": {
     "__init__.py": "a1427923f4f9338b68f9b5e18609bdffaea80e19398316c8de1956e2222db106",
+    "learning/forces.py": "4b7df74b033e41c581b671ba3c2a28dc336ee03d1393a1ada1a20502b0e3f654",
+    "learning/collect_freefall.py": "3f6f5ffe009cb77c0393d5fb813cad4ac4bef7d436caecb63db046f376702360",
+    "learning/summarize.py": "309fad6fdde3c9c8e066a77823d73bad63073421f0823d74a00f8ce00396c46f",
+    "learning/evaluate.py": "20157fccf30b40ac72df9837a1b83c7d960425564ff0d2c416a91eae6519cfbc",
+    "learning/metrics.py": "2624b91b052c667151c31871630bd1152b3f3b2bf6fa9ba55eb8855ec4082bd1",
+    "learning/network.py": "3f1f5b1179545327450565826672b3859fba033da30fc09d89420c0cd4a5d590",
+    "learning/__init__.py": "a2fff6ad25a0a691beade311d19d338c500a4a549577df0dfd2e7c0f57dad487",
+    "learning/consistency.py": "c9b10182d8e358d191ca0fb576659bb1a2114d4e339be24e0ed970e4c109a15b",
+    "learning/closed_loop.py": "ff0afd5ef638cf5b1e22b910ed61d0c0a46793fe273ffb1c56344a541047efe2",
+    "learning/train.py": "b793b515d6019b302ae1a2a86daa5d6e35afa7750260aae9c9c4145aeade283e",
+    "learning/verify.py": "89bd31c6501dd46f0863bd449f8b9c7df170fe6eb557135e3c95bbf42d903324",
+    "learning/protocol.py": "0d44950e155198d7ed51286f87b5e19b01dfde02ac7ef67b82fb78b0e41d19d9",
+    "learning/collect.py": "d67da6c781bd5fe4717f46a53734d4a4b341f0202d462c8f8aaf996e6ab30afa",
+    "learning/video.py": "1fccb8d5c54ce8dcfbd41162a50bcbcc742efc0f7792266af99e5bd79b3c8993",
+    "learning/data.py": "9b25e81c3727b55de862fdd4e416f59b3fbf7512677f72cd87ace8453c950d9e",
+    "learning/plot.py": "910d0053869db31d806f6c4001ae66c20a0b282e50d61b66a799cc53264ae212",
     "core/recording.py": "5b334f87709ed31271aa59f8ba95e67d988fdaeed6dc6547085c1d2374a51ba1",
-    "core/case_config.py": "5e6857cbf86939acdeccbfd14890751cecd14d960bf9ba819fd9fd7ca0f47286",
+    "core/case_config.py": "3fdc900a03166a53f7cbd054126c5f6263291a18db095a9518f1657c5592c70f",
     "core/evaluate.py": "fe910ce532c9457a8c4feaf967c2d5e1bacef89d393ebcbad027201242e04c6c",
     "core/play.py": "9347956dbb206a21bd8336a5c90edd9e70ac560f543d8a4cd5762b8a39157e8b",
     "core/__init__.py": "a1427923f4f9338b68f9b5e18609bdffaea80e19398316c8de1956e2222db106",
     "core/run_suite.py": "b70352068092497d25cf47bdd02db91cd26e1ec2337fb22df1fca9b7badddd37",
-    "core/terrain.py": "9c9d363a3fbdea7628eae45cdbe813be0ad029e2fdd41030b5ee1f1796d768c5",
-    "core/run.py": "42b04016feeeb3b4b706b7f9413aa757625c1e7f1dc1b50175985f11f0b7d1fc",
+    "core/terrain.py": "50ef9593c2cea4ab286957943ed7bc0567fca7f198244ae34dfa84c3ea048d7e",
+    "core/run.py": "29e43cd5cd6f3771d61fe3b19c11c386e0ab1405a5da2e13163795eb17ee2809",
     "core/provenance.py": "2864eba152c654fb5d019f365e3e3583a2adf42d67ca8ad6e3457ba5959a45c6",
     "core/motions.py": "b7a7d762154a14daeb2a9da7f5a353f8556a220b117a7972b411146fc5d58a83",
     "core/quadruped_controller.py": "60e1f5e38f1ed9da4730078c2e1e136d0c8025647876f0c33814bcb27c2706c5",
     "core/physics.py": "c3bae97a0c7e11bb4fd0c947ac84bb8eea92eed38a1920ec284417f923afa73b",
-    "config/__init__.py": "864b3c88f6245c9ae51d652a0c337f29e9e2f03494eaa8cf2dd07bd421770d82",
+    "config/__init__.py": "44338e2d411f628d9ab1bb324ab95289301937e97182d6e12a192262b34ebe8d",
     "core/mdp/actions.py": "86da11850e45ce378dd531e7127abf125c9472b36410808f4af53185117d5ee8",
     "core/mdp/events.py": "eab8828a8157d15638aa6c5705c090d1019b4f0fb3a2847ac6bddbf69904a901",
     "core/mdp/observations.py": "a0f9d29aa4522d56fa811347111dec9817435a7920e8b5c3253d4c2e4552209d",
     "core/mdp/__init__.py": "a1427923f4f9338b68f9b5e18609bdffaea80e19398316c8de1956e2222db106",
     "config/sphere/sphere_env_cfg.py": "1db988f8ebf0c37b9dec0d15fd776bd7f77c0f2af5eaa5ed320ec7062c101b2b",
     "config/sphere/__init__.py": "4f8fd60b8b8f0651ecab1d2c6a715599c14486a3857bdc4f6b7852c9c6ad35a7",
+    "config/cylinder/cylinder_env_cfg.py": "1db988f8ebf0c37b9dec0d15fd776bd7f77c0f2af5eaa5ed320ec7062c101b2b",
+    "config/cylinder/__init__.py": "76d803b5a9f6250a663ea467f3e894361427feb08bfa032a05e4399739e61982",
     "config/robot/g1_env_cfg.py": "4cd733596a840183a39baf15f40f3bd8b9b2f8e45121a252762216251cc7a24f",
-    "config/robot/quadruped_env_cfg.py": "3ea5e3dceb2695e169fa144d90832b598299658c57d06900ad4d3c7699e5d6d3",
+    "config/robot/quadruped_env_cfg.py": "5349f679e691508e8ff326dbc1e03ab83b07ac53eccc4ba312ae739acb4fde8a",
     "config/robot/__init__.py": "1a095ed32635837a57b77decb2ecc5279d324db5c6515705cc2fcb9f2f2a5341",
     "config/robot/franka_env_cfg.py": "ab3712dc1c2d60ae33e556fb85d5b437b57d7dd2506fe44313c7ec308a38672c",
     "config/cube/__init__.py": "f12b43ce22abd83fe46e3c01f211c6610e07c335646f53075195fa160cf4830e",
@@ -398,7 +523,13 @@
     "config/sphere/env_cfg/event_cfg.py": "8f1f8e244f297028162814375632c88125f453af56a380ac9c33143752298d79",
     "config/sphere/env_cfg/__init__.py": "a1427923f4f9338b68f9b5e18609bdffaea80e19398316c8de1956e2222db106",
     "config/sphere/env_cfg/scene_cfg.py": "6e4384ee60eb8a6fad822eea020f3740b2cf8c254b3ab36c1c7b9adc44f9ea61",
-    "config/robot/env_cfg/physics_cfg.py": "ea982f6d631ff9b20dfd398c1c243328e44b75f747228b76a4975d02107f67f8",
+    "config/cylinder/env_cfg/physics_cfg.py": "fc52b13501d63fb849a63d5e9a3bb49a4a73270459535c442392a6b87c903b56",
+    "config/cylinder/env_cfg/action_cfg.py": "3e518c942bee1ed3dcd4d23d002b5d74e325d56eb9ad404ce4de54ab054fe698",
+    "config/cylinder/env_cfg/observation_cfg.py": "cca19c3390a9971c9c07456fabe57844f0f8427ef6f27478326a832644792f30",
+    "config/cylinder/env_cfg/event_cfg.py": "8f1f8e244f297028162814375632c88125f453af56a380ac9c33143752298d79",
+    "config/cylinder/env_cfg/__init__.py": "a2fff6ad25a0a691beade311d19d338c500a4a549577df0dfd2e7c0f57dad487",
+    "config/cylinder/env_cfg/scene_cfg.py": "0ca64b89bfe55cfef57c826acc2f3fe8632ddbac6910e09457328e05f68fe22e",
+    "config/robot/env_cfg/physics_cfg.py": "5365a6fb1ca27ea16f99dadb4789bf673b8c8c57f224ea44ebe71d6f5643f3e5",
     "config/robot/env_cfg/action_cfg.py": "ad645b086d67d4da8878b55a89d0ce951b490d63d021c2e6f22ebe8bda783904",
     "config/robot/env_cfg/g1_observation_cfg.py": "5f4ebe0d7bef0ce8b408c9de997663fad6c0e02dfca8259135c973dd6df90f8d",
     "config/robot/env_cfg/observation_cfg.py": "63089a00a1b43f74d8c03036300b466a19092c8c2fe4f576b494e50301e96498",
@@ -406,9 +537,9 @@
     "config/robot/env_cfg/g1_action_cfg.py": "92b54ff0bc17cc7bb73725b54e70f0f854dc11ecedb39594d0cc914eeab9e2ad",
     "config/robot/env_cfg/__init__.py": "a1427923f4f9338b68f9b5e18609bdffaea80e19398316c8de1956e2222db106",
     "config/robot/env_cfg/g1_scene_cfg.py": "7a57f399e0ebfc395c788d2ba54412703d9f3f5ad9263d6e11439ea8d540a4d7",
-    "config/robot/env_cfg/scene_cfg.py": "4c4a32f492e3468aa6a976a0f78679ae1ea4efb2af82d307daaff1712df1f508",
+    "config/robot/env_cfg/scene_cfg.py": "0526e768bbaa6b8ba1b6e8592fd9467e3caa4ec4a29996a3d0095d2590c1892b",
     "config/robot/env_cfg/quadruped_action_cfg.py": "eb52e3308f3f83c73a1e922c6997a29afd8b2217cae20340509f33e8b3178828",
-    "config/robot/env_cfg/quadruped_scene_cfg.py": "522af01d7feb975332142ac7ea8f6d2451bdb14d5d03a8dbe0f9fe01deb2a472",
+    "config/robot/env_cfg/quadruped_scene_cfg.py": "47d6f0e199c758debc7a9e837f487f7579f259ab70e09391ca6ff05f3296fee0",
     "config/cube/env_cfg/physics_cfg.py": "fc52b13501d63fb849a63d5e9a3bb49a4a73270459535c442392a6b87c903b56",
     "config/cube/env_cfg/action_cfg.py": "3e518c942bee1ed3dcd4d23d002b5d74e325d56eb9ad404ce4de54ab054fe698",
     "config/cube/env_cfg/observation_cfg.py": "cca19c3390a9971c9c07456fabe57844f0f8427ef6f27478326a832644792f30",
@@ -416,7 +547,7 @@
     "config/cube/env_cfg/__init__.py": "a1427923f4f9338b68f9b5e18609bdffaea80e19398316c8de1956e2222db106",
     "config/cube/env_cfg/scene_cfg.py": "0e0d6081907b5139e4cbc5cdcf3f13ca5fd0f579f11ac60ecce87ac0a7e96d46"
   },
-  "command": "/tmp/check_franka_tray_contacts.py --motion franka --terrain flat --duration 6 --output /tmp/nerd-benchmark-jitter/franka-flat",
+  "command": "/home/jkamohara/isaac/IsaacLab-particle-nerd/examples/particle_nerd_benchmark/core/run.py --motion franka --terrain flat --duration 6.0 --video --output /tmp/franka_paddle_mpm",
   "status": "complete",
   "particle_count": 9176,
   "body_names": [
@@ -429,6 +560,7 @@
     "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6",
     "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7",
     "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand",
+    "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/Paddle",
     "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_leftfinger",
     "/World/envs/env_0/Robot/Geometry/panda_link0/panda_link1/panda_link2/panda_link3/panda_link4/panda_link5/panda_link6/panda_link7/panda_hand/panda_rightfinger"
   ],
@@ -734,11 +866,11 @@
     1196,
     1200
   ],
-  "collection_wall_seconds": 26.50172688497696,
+  "collection_wall_seconds": 40.849523340002634,
   "timing_scope": "Collection includes state downloads and video encoding; not solver performance",
   "recorded_physics_steps": 1200,
   "artifacts": {
-    "trajectory.h5": "d75665a94fe69c20997d5ea1b86268863699d25dde3d80a61710f44006aaf92e",
-    "simulation.mp4": "ff35bac2c4a4d406d7e39973d7f52c85b4503511cc4be52c7bfed6a7b84ae2f1"
+    "trajectory.h5": "14617e79abb719165be87092257127ef0d85a752b950febb673a7939fe7e4dbd",
+    "simulation.mp4": "406b272b1dcb725c155141a9db229d618de04a99555730b51450c74a03e921e9"
   }
 }

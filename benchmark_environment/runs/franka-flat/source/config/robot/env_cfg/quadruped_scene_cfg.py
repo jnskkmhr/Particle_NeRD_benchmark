@@ -21,7 +21,7 @@ class QuadrupedSceneCfg(InteractiveSceneCfg):
     robot = replace(UNITREE_GO2_CFG, prim_path="{ENV_REGEX_NS}/Robot")
     robot.spawn.activate_contact_sensors = False
     robot.spawn.collision_props = {r"/.*foot/.*": [NewtonCollisionCfg(contact_margin=0.02, contact_gap=0.0)]}
-    robot.init_state.pos = (-0.35, 0.0, 0.40)
+    robot.init_state.pos = (-0.35, 0.0, 0.34)
     robot.actuators = {
         "legs": ImplicitActuatorCfg(
             joint_names_expr=[".*"],
@@ -33,4 +33,4 @@ class QuadrupedSceneCfg(InteractiveSceneCfg):
     }
 
     def __post_init__(self):
-        configure_terrain(self, "flat", (2.0, 1.2, 0.12))
+        configure_terrain(self, "flat", (2.0, 1.2, 0.30))
