@@ -14,10 +14,10 @@ trajectories</strong> (sand blocks and columns released onto flat ground, with n
 this page (Franka, Go2, G1) are not part of the set. The split is fixed by trajectory ID: 800 train, 100 validation and
 100 test.</p>
 <p>One command records the whole set: the object trajectories, then the free-fall trajectories, then a check of the
-complete set. From the repository root, with the output directory and the number of GPUs to use:</p>
-<pre>bash examples/particle_nerd_benchmark/learning/collect_dataset.sh /path/to/dataset 4     # about 135 GB</pre>
+complete set. From the repository root, give the output directory and the number of GPUs to use (<code>--num_gpu</code>, default 1):</p>
+<pre>bash examples/particle_nerd_benchmark/learning/collect_dataset.sh --output /path/to/dataset --num_gpu 4     # about 135 GB</pre>
 <p>On OSMO a single command submits the same collection and writes directly to a private bucket:</p>
-<pre>bash examples/particle_nerd_benchmark/learning/osmo/collect_all.sh swift://PRIVATE_BUCKET/particle-nerd-object-benchmark --pool POOL</pre>
+<pre>bash examples/particle_nerd_benchmark/learning/osmo/collect_all.sh --output swift://PRIVATE_BUCKET/particle-nerd-object-benchmark --pool POOL</pre>
 <p>The set covers a flat sand bed only. Prescribed motions are horizontal push, vertical intrusion, circling and holding;
 free bodies are dropped, slid, thrown or tumbled. The terrain variants (ascend, descend, wave), the sphere rolling and the
 shallow projectile cases in the gallery below are separate reference cases and are not part of this set. The collected set
