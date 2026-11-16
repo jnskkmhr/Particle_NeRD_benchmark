@@ -5,7 +5,7 @@
 <body class="benchmark-report benchmark-gallery"><header><a class="brand" href="../">Particle NeRD / Benchmarks</a><span class="archive">Particle NeRD Local · Closed-loop evaluation · 15 November 2026</span></header>
 <main><section class="report-heading"><p class="eyebrow">PARTICLE NERD MODEL · BOX · SPHERE · CYLINDER</p><h1>Closed-loop comparison with implicit MPM.</h1>
 <p>The same objects, motions and sand bed are simulated twice: once with implicit MPM and once with the Particle NeRD Local model coupled to the same rigid-body solver. Each case has a simulation video, a plot video and a surface-distance heat-map video.</p>
-<nav aria-label="Page sections"><a href="#protocol">Protocol</a><a href="#gallery">Browse cases</a><a href="#summary-section">Summary table</a><a href="#findings">Findings</a></nav></section>
+<nav aria-label="Page sections"><a href="#protocol">Protocol</a><a href="#gallery">Browse cases</a><a href="#summary-section">Summary table</a><a href="#findings">Findings</a><a href="#interpretation">Interpretation</a></nav></section>
 
 <section class="report-section" id="protocol"><h2>1. Protocol</h2>
 <p><strong>Model.</strong> <code>particle_nerd_local</code>, checkpoint <code>fb443cbd06b4e9d3…</code> (training step 12,000), trained on 800 object and free-fall trajectories. No retraining or tuning was done for these runs.</p>
@@ -30,5 +30,19 @@
 <p><strong>Driven motions (push, circle, stamp).</strong> The sand yields under Particle NeRD in all three shapes, with a trench and a berm in front of the object. Compared with MPM, the NeRD surface is disturbed more: by about 19–28 % in RMS height change for the straight push, 16–25 % for the circle, and 1.7–2.3 times as much for stamping.</p>
 <p><strong>Free drop.</strong> With nothing holding the object, it comes to rest near the surface in MPM and sinks through the bed in Particle NeRD (final height 16–19 cm below the MPM object). The crater keeps deepening for the whole run. The model supports a falling object much less than MPM does.</p>
 <p><strong>Tossed sand blocks.</strong> Dropped blocks spread almost identically in the two simulators. Tossed blocks do not: in free flight MPM keeps the 1.0 m/s sideways speed, while the NeRD cloud's sideways speed falls to nearly zero within 0.2 s, before anything touches it. The training free-fall data contain vertical drops only, and the cause has not been isolated.</p>
-<p class="caption">These are observations from single runs. The causes are not yet established, and no model changes have been made.</p></section></main>
+<p class="caption">These are observations from single runs. The causes are not yet established, and no model changes have been made.</p></section>
+<section class="report-section" id="interpretation"><h2>5. Working interpretation (not yet tested)</h2>
+<p>This section records the current reading of the results. It is a hypothesis to be tested, not a conclusion.</p>
+<p><strong>Reading.</strong> This version of Particle NeRD still does not predict vertical (z) particle motion accurately enough, and it does not produce enough contact force to support the object. The model predicts the particles under the object continuing to fall toward the bottom of the bed. The analytical contact estimator builds its force from those predicted particle velocities, so it then behaves as if the material were very soft. The model therefore fails at the particle–collider interaction itself.</p>
+<p><strong>What the free-drop runs measure.</strong> Particles that start within 8 cm of the surface under the object's final footprint, mean vertical displacement at the end of the run, and the layer next to the tray floor (initial z &lt; −0.25 m):</p>
+<div class="table-wrap"><table><thead><tr><th>Object</th><th>Under the object, NeRD [mm]</th><th>Under the object, MPM [mm]</th><th>Layer next to the floor, NeRD [mm]</th><th>Layer next to the floor, MPM [mm]</th></tr></thead><tbody>
+<tr><td>Box</td><td>−76.8</td><td>−2.9</td><td>−4.2</td><td>−0.1</td></tr>
+<tr><td>Sphere</td><td>−64.2</td><td>−4.0</td><td>−4.4</td><td>−0.1</td></tr>
+<tr><td>Cylinder</td><td>−80.1</td><td>−3.6</td><td>−4.3</td><td>−0.1</td></tr></tbody></table></div>
+<p>In MPM the particles under the object settle within the first 0.8 s and then stay. In Particle NeRD they are still moving down at the end (box: −49 mm at 0.8 s, −69 mm at 1.6 s, −77 mm at the end), and the whole column compresses, including the layer next to the floor. This matches the first two steps of the reading. It was not measured here whether the contact estimator returns a low force; the force estimate was not logged in these runs.</p>
+<p><strong>Two candidate causes.</strong></p>
+<ul><li><em>Feature aggregation.</em> The local particle and boundary aggregation may not register the collider's presence strongly enough for particles under a heavy object, so the network does not see the contact that should stop them.</li>
+<li><em>Global token prediction.</em> The Transolver's global slice tokens may fail to carry the load from the object down through the bed, so the stop signal is not distributed to the particles below the contact.</li></ul>
+<p class="caption">Neither candidate has been isolated. A test that separates them would compare predicted vertical particle velocity under a held, static object against MPM while switching off one pathway at a time.</p></section>
+</main>
 <footer class="site-footer"><span class="footer-brand">Particle NeRD</span><span>Particle NeRD Local · Closed-loop evaluation · 11/15/2026</span></footer></body></html>
