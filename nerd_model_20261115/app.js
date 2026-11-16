@@ -25,7 +25,7 @@ function choose(id) {
   const c = CASES.find(x => x.id === id); if (!c) return; current = id; history.replaceState(null, "", "#" + id);
   $("category").textContent = c.family === "object" ? `${c.shape.toUpperCase()} · CLOSED LOOP` : `${c.shape.toUpperCase()} OF SAND · FLAT GROUND`;
   $("title").textContent = c.title; $("description").textContent = c.description;
-  setVideo($("v-plot"), c, "plot"); setVideo($("v-dist"), c, "surface_distance"); $("v-ke").src = `${c.id}/kinetic_energy.png`;
+  setVideo($("v-plot"), c, "plot"); setVideo($("v-dist"), c, "surface_distance"); $("v-ke").src = `${c.id}/kinetic_energy.png?v=2`;
   const hasSim = c.sim; $("sim-screen").hidden = !hasSim; $("v-sim").hidden = !hasSim;
   if (hasSim) setVideo($("v-sim"), c, "simulation"); else { $("v-sim").removeAttribute("src"); }
   $("sim-note").textContent = "Isaac Lab viewer recording. Left: Particle NeRD. Right: MPM.";
