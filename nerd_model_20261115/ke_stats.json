@@ -1,0 +1,110 @@
+{
+ "box-push": {
+  "ke_int_nerd": 1.0448046476207673,
+  "ke_int_mpm": 1.24007354905305,
+  "ke_peak_nerd": 3.067918062210083,
+  "ke_peak_mpm": 1.7639638185501099
+ },
+ "box-circle": {
+  "ke_int_nerd": 4.402351201083512,
+  "ke_int_mpm": 7.77191704114317,
+  "ke_peak_nerd": 4.568784236907959,
+  "ke_peak_mpm": 4.749364376068115
+ },
+ "box-stamp": {
+  "ke_int_nerd": 0.05540603899862617,
+  "ke_int_mpm": 0.0025258618325460706,
+  "ke_peak_nerd": 0.1851891279220581,
+  "ke_peak_mpm": 0.02065613679587841
+ },
+ "box-drop": {
+  "ke_int_nerd": 0.09825699120759963,
+  "ke_int_mpm": 0.013540004686801688,
+  "ke_peak_nerd": 0.4407978951931,
+  "ke_peak_mpm": 0.4846649467945099
+ },
+ "sphere-push": {
+  "ke_int_nerd": 0.6997730296710507,
+  "ke_int_mpm": 0.8463499184072136,
+  "ke_peak_nerd": 1.423311710357666,
+  "ke_peak_mpm": 1.5467097759246826
+ },
+ "sphere-circle": {
+  "ke_int_nerd": 2.1747915217326956,
+  "ke_int_mpm": 3.456194871384068,
+  "ke_peak_nerd": 1.7745543718338013,
+  "ke_peak_mpm": 1.982669472694397
+ },
+ "sphere-stamp": {
+  "ke_int_nerd": 0.03404816210735589,
+  "ke_int_mpm": 0.007693473453400657,
+  "ke_peak_nerd": 0.06436393409967422,
+  "ke_peak_mpm": 0.055660270154476166
+ },
+ "sphere-drop": {
+  "ke_int_nerd": 0.09399451285600663,
+  "ke_int_mpm": 0.016826077751466068,
+  "ke_peak_nerd": 0.21766695380210876,
+  "ke_peak_mpm": 0.6497545838356018
+ },
+ "cylinder-push": {
+  "ke_int_nerd": 0.8786695763655007,
+  "ke_int_mpm": 1.2505683157214662,
+  "ke_peak_nerd": 2.0508246421813965,
+  "ke_peak_mpm": 1.3300881385803223
+ },
+ "cylinder-circle": {
+  "ke_int_nerd": 3.2061451189499346,
+  "ke_int_mpm": 5.837783798215678,
+  "ke_peak_nerd": 3.647212505340576,
+  "ke_peak_mpm": 3.2639639377593994
+ },
+ "cylinder-stamp": {
+  "ke_int_nerd": 0.05492288478650152,
+  "ke_int_mpm": 0.004543965695775113,
+  "ke_peak_nerd": 0.22851745784282684,
+  "ke_peak_mpm": 0.02322649024426937
+ },
+ "cylinder-drop": {
+  "ke_int_nerd": 0.12314056130126119,
+  "ke_int_mpm": 0.016465156199410552,
+  "ke_peak_nerd": 0.29876384139060974,
+  "ke_peak_mpm": 0.6276161074638367
+ },
+ "toss-cube-drop": {
+  "ke_int_nerd": 28.7169693880582,
+  "ke_int_mpm": 29.157762881557648,
+  "ke_peak_nerd": 127.65576934814453,
+  "ke_peak_mpm": 133.98121643066406
+ },
+ "toss-cube-throw": {
+  "ke_int_nerd": 29.876026612196878,
+  "ke_int_mpm": 45.91730912209565,
+  "ke_peak_nerd": 123.44581604003906,
+  "ke_peak_mpm": 192.3358917236328
+ },
+ "toss-sphere-drop": {
+  "ke_int_nerd": 17.63682791015235,
+  "ke_int_mpm": 17.907844921449495,
+  "ke_peak_nerd": 86.76970672607422,
+  "ke_peak_mpm": 94.52757263183594
+ },
+ "toss-sphere-throw": {
+  "ke_int_nerd": 18.168635184014132,
+  "ke_int_mpm": 28.32443008281113,
+  "ke_peak_nerd": 85.63617706298828,
+  "ke_peak_mpm": 123.3258285522461
+ },
+ "toss-cylinder-drop": {
+  "ke_int_nerd": 23.932391307961517,
+  "ke_int_mpm": 24.53333359651406,
+  "ke_peak_nerd": 106.51564025878906,
+  "ke_peak_mpm": 111.91413879394531
+ },
+ "toss-cylinder-throw": {
+  "ke_int_nerd": 25.02586095132363,
+  "ke_int_mpm": 38.51088351421118,
+  "ke_peak_nerd": 102.59207916259766,
+  "ke_peak_mpm": 160.26861572265625
+ }
+}

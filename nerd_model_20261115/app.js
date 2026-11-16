@@ -15,6 +15,8 @@ function statsRows(c) {
   rows.push(["Surface distance, mean at end", `${s.dist_mean.toFixed(1)} mm`]);
   rows.push(["Surface distance, mean over time", `${s.dist_time.toFixed(1)} mm`]);
   rows.push(["Surface distance, 95th percentile at end", `${s.dist_p95.toFixed(1)} mm`]);
+  rows.push(["Kinetic energy integrated over time, NeRD / MPM", `${s.ke_int_nerd.toFixed(3)} J·s / ${s.ke_int_mpm.toFixed(3)} J·s`]);
+  rows.push(["Peak kinetic energy, NeRD / MPM", `${s.ke_peak_nerd.toFixed(3)} J / ${s.ke_peak_mpm.toFixed(3)} J`]);
   rows.push(["Duration", `${c.duration} s`]);
   return rows;
 }
@@ -23,10 +25,13 @@ function choose(id) {
   const c = CASES.find(x => x.id === id); if (!c) return; current = id; history.replaceState(null, "", "#" + id);
   $("category").textContent = c.family === "object" ? `${c.shape.toUpperCase()} · CLOSED LOOP` : `${c.shape.toUpperCase()} OF SAND · FLAT GROUND`;
   $("title").textContent = c.title; $("description").textContent = c.description;
-  setVideo($("v-plot"), c, "plot"); setVideo($("v-dist"), c, "surface_distance");
+  setVideo($("v-plot"), c, "plot"); setVideo($("v-dist"), c, "surface_distance"); $("v-ke").src = `${c.id}/kinetic_energy.png`;
   const hasSim = c.sim; $("sim-screen").hidden = !hasSim; $("v-sim").hidden = !hasSim;
   if (hasSim) setVideo($("v-sim"), c, "simulation"); else { $("v-sim").removeAttribute("src"); }
-  $("sim-note").textContent = hasSim ? "Isaac Lab viewer recording. Left: Particle NeRD. Right: MPM." : "No Isaac Lab scene exists for sand-only tosses, so there is no viewer recording for this case.";
+  $("sim-note").textContent = "Isaac Lab viewer recording. Left: Particle NeRD. Right: MPM.";
+  $("plot-note").textContent = c.family === "object"
+    ? "Left: Particle NeRD. Right: MPM. Top: side slab of particles, coloured by displacement from the start of the motion. Bottom: change in surface height, top view."
+    : "Left: Particle NeRD. Right: MPM. Top: side view of all particles. Bottom: top view of all particles. Both coloured by height.";
   $("stats").replaceChildren(...statsRows(c).map(([a, b]) => row(a, b)));
   for (const b of $("cases").children) b.setAttribute("aria-pressed", String(b.dataset.id === id));
 }
@@ -42,8 +47,8 @@ fetch("cases.json").then(r => r.json()).then(data => {
   for (const c of CASES) {
     const tr = document.createElement("tr"), s = c.stats;
     const cells = c.family === "object"
-      ? [c.title, `${f(s.z_nerd)} / ${f(s.z_mpm)}`, `${s.rms_nerd.toFixed(1)} / ${s.rms_mpm.toFixed(1)}`, s.dist_mean.toFixed(1), s.dist_time.toFixed(1)]
-      : [c.title + " · " + c.motion.split(" (")[0], `${f(s.com_nerd, 2)} / ${f(s.com_mpm, 2)}`, `${s.spread_nerd.toFixed(3)} / ${s.spread_mpm.toFixed(3)}`, s.dist_mean.toFixed(1), s.dist_time.toFixed(1)];
+      ? [c.title, `${f(s.z_nerd)} / ${f(s.z_mpm)}`, `${s.rms_nerd.toFixed(1)} / ${s.rms_mpm.toFixed(1)}`, s.dist_mean.toFixed(1), s.dist_time.toFixed(1), `${s.ke_int_nerd.toFixed(3)} / ${s.ke_int_mpm.toFixed(3)}`]
+      : [c.title + " · " + c.motion.split(" (")[0], `${f(s.com_nerd, 2)} / ${f(s.com_mpm, 2)}`, `${s.spread_nerd.toFixed(3)} / ${s.spread_mpm.toFixed(3)}`, s.dist_mean.toFixed(1), s.dist_time.toFixed(1), `${s.ke_int_nerd.toFixed(3)} / ${s.ke_int_mpm.toFixed(3)}`];
     for (const t of cells) { const td = document.createElement("td"); td.textContent = t; tr.append(td); }
     const td = tr.firstChild; const a = document.createElement("a"); a.href = "#" + c.id; a.textContent = td.textContent; a.onclick = e => { e.preventDefault(); $("family").value = ""; $("search").value = ""; filter(); choose(c.id); document.querySelector(".workspace").scrollIntoView({ behavior: "smooth" }); }; td.replaceChildren(a);
     (c.family === "object" ? $("summary") : $("summary-toss")).append(tr);

@@ -15,7 +15,11 @@
    "rms_mpm": 42.9,
    "dist_mean": 11.229494384184175,
    "dist_time": 8.350207969120282,
-   "dist_p95": 33.685824688781864
+   "dist_p95": 33.685824688781864,
+   "ke_int_nerd": 1.0448046476207673,
+   "ke_int_mpm": 1.24007354905305,
+   "ke_peak_nerd": 3.067918062210083,
+   "ke_peak_mpm": 1.7639638185501099
   }
  },
  {
@@ -34,7 +38,11 @@
    "rms_mpm": 37.7,
    "dist_mean": 12.77301262448455,
    "dist_time": 9.39837497542661,
-   "dist_p95": 30.336225967547183
+   "dist_p95": 30.336225967547183,
+   "ke_int_nerd": 4.402351201083512,
+   "ke_int_mpm": 7.77191704114317,
+   "ke_peak_nerd": 4.568784236907959,
+   "ke_peak_mpm": 4.749364376068115
   }
  },
  {
@@ -53,7 +61,11 @@
    "rms_mpm": 12.1,
    "dist_mean": 8.641112307949816,
    "dist_time": 6.91656035203269,
-   "dist_p95": 19.762280089296645
+   "dist_p95": 19.762280089296645,
+   "ke_int_nerd": 0.05540603899862617,
+   "ke_int_mpm": 0.0025258618325460706,
+   "ke_peak_nerd": 0.1851891279220581,
+   "ke_peak_mpm": 0.02065613679587841
   }
  },
  {
@@ -72,7 +84,11 @@
    "rms_mpm": 15.3,
    "dist_mean": 20.2029820123444,
    "dist_time": 14.232831291498236,
-   "dist_p95": 47.86355543862308
+   "dist_p95": 47.86355543862308,
+   "ke_int_nerd": 0.09825699120759963,
+   "ke_int_mpm": 0.013540004686801688,
+   "ke_peak_nerd": 0.4407978951931,
+   "ke_peak_mpm": 0.4846649467945099
   }
  },
  {
@@ -91,7 +107,11 @@
    "rms_mpm": 36.8,
    "dist_mean": 8.054218113958711,
    "dist_time": 6.659742488502637,
-   "dist_p95": 23.817780129204454
+   "dist_p95": 23.817780129204454,
+   "ke_int_nerd": 0.6997730296710507,
+   "ke_int_mpm": 0.8463499184072136,
+   "ke_peak_nerd": 1.423311710357666,
+   "ke_peak_mpm": 1.5467097759246826
   }
  },
  {
@@ -110,7 +130,11 @@
    "rms_mpm": 28.2,
    "dist_mean": 7.677268377957246,
    "dist_time": 6.979450193024678,
-   "dist_p95": 18.21639447534117
+   "dist_p95": 18.21639447534117,
+   "ke_int_nerd": 2.1747915217326956,
+   "ke_int_mpm": 3.456194871384068,
+   "ke_peak_nerd": 1.7745543718338013,
+   "ke_peak_mpm": 1.982669472694397
   }
  },
  {
@@ -129,7 +153,11 @@
    "rms_mpm": 13.6,
    "dist_mean": 6.429686252439151,
    "dist_time": 5.665564533641205,
-   "dist_p95": 16.767412948506532
+   "dist_p95": 16.767412948506532,
+   "ke_int_nerd": 0.03404816210735589,
+   "ke_int_mpm": 0.007693473453400657,
+   "ke_peak_nerd": 0.06436393409967422,
+   "ke_peak_mpm": 0.055660270154476166
   }
  },
  {
@@ -148,7 +176,11 @@
    "rms_mpm": 12.8,
    "dist_mean": 20.35118205862524,
    "dist_time": 14.011232762194958,
-   "dist_p95": 35.49780503672327
+   "dist_p95": 35.49780503672327,
+   "ke_int_nerd": 0.09399451285600663,
+   "ke_int_mpm": 0.016826077751466068,
+   "ke_peak_nerd": 0.21766695380210876,
+   "ke_peak_mpm": 0.6497545838356018
   }
  },
  {
@@ -167,7 +199,11 @@
    "rms_mpm": 46.0,
    "dist_mean": 11.179633085980358,
    "dist_time": 8.665348394158867,
-   "dist_p95": 28.71346663704075
+   "dist_p95": 28.71346663704075,
+   "ke_int_nerd": 0.8786695763655007,
+   "ke_int_mpm": 1.2505683157214662,
+   "ke_peak_nerd": 2.0508246421813965,
+   "ke_peak_mpm": 1.3300881385803223
   }
  },
  {
@@ -186,7 +222,11 @@
    "rms_mpm": 33.8,
    "dist_mean": 12.673121986824313,
    "dist_time": 9.641325542939343,
-   "dist_p95": 28.22819845633938
+   "dist_p95": 28.22819845633938,
+   "ke_int_nerd": 3.2061451189499346,
+   "ke_int_mpm": 5.837783798215678,
+   "ke_peak_nerd": 3.647212505340576,
+   "ke_peak_mpm": 3.2639639377593994
   }
  },
  {
@@ -205,7 +245,11 @@
    "rms_mpm": 14.1,
    "dist_mean": 9.24184899174341,
    "dist_time": 7.3664586884289065,
-   "dist_p95": 14.864583134562409
+   "dist_p95": 14.864583134562409,
+   "ke_int_nerd": 0.05492288478650152,
+   "ke_int_mpm": 0.004543965695775113,
+   "ke_peak_nerd": 0.22851745784282684,
+   "ke_peak_mpm": 0.02322649024426937
   }
  },
  {
@@ -224,7 +268,11 @@
    "rms_mpm": 14.8,
    "dist_mean": 20.8252039989301,
    "dist_time": 14.532936212402122,
-   "dist_p95": 45.927306250903705
+   "dist_p95": 45.927306250903705,
+   "ke_int_nerd": 0.12314056130126119,
+   "ke_int_mpm": 0.016465156199410552,
+   "ke_peak_nerd": 0.29876384139060974,
+   "ke_peak_mpm": 0.6276161074638367
   }
  },
  {
@@ -235,7 +283,7 @@
   "motion": "Dropped (no initial velocity)",
   "description": "A 0.40 m cube of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
   "duration": 6.0,
-  "sim": false,
+  "sim": true,
   "stats": {
    "com_nerd": -0.0,
    "com_mpm": -0.0,
@@ -243,7 +291,11 @@
    "spread_mpm": 0.362,
    "dist_mean": 6.2693696828374526,
    "dist_time": 6.354727194757463,
-   "dist_p95": 14.607028366197515
+   "dist_p95": 14.607028366197515,
+   "ke_int_nerd": 28.7169693880582,
+   "ke_int_mpm": 29.157762881557648,
+   "ke_peak_nerd": 127.65576934814453,
+   "ke_peak_mpm": 133.98121643066406
   }
  },
  {
@@ -254,7 +306,7 @@
   "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
   "description": "A 0.40 m cube of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
   "duration": 6.0,
-  "sim": false,
+  "sim": true,
   "stats": {
    "com_nerd": -0.09,
    "com_mpm": 0.26,
@@ -262,7 +314,11 @@
    "spread_mpm": 0.383,
    "dist_mean": 52.68592139965939,
    "dist_time": 53.78046625214825,
-   "dist_p95": 157.46570309153358
+   "dist_p95": 157.46570309153358,
+   "ke_int_nerd": 29.876026612196878,
+   "ke_int_mpm": 45.91730912209565,
+   "ke_peak_nerd": 123.44581604003906,
+   "ke_peak_mpm": 192.3358917236328
   }
  },
  {
@@ -273,7 +329,7 @@
   "motion": "Dropped (no initial velocity)",
   "description": "A 0.40 m sphere of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
   "duration": 6.0,
-  "sim": false,
+  "sim": true,
   "stats": {
    "com_nerd": -0.0,
    "com_mpm": -0.0,
@@ -281,7 +337,11 @@
    "spread_mpm": 0.309,
    "dist_mean": 5.169639649806895,
    "dist_time": 5.653770638671073,
-   "dist_p95": 13.779511228203216
+   "dist_p95": 13.779511228203216,
+   "ke_int_nerd": 17.63682791015235,
+   "ke_int_mpm": 17.907844921449495,
+   "ke_peak_nerd": 86.76970672607422,
+   "ke_peak_mpm": 94.52757263183594
   }
  },
  {
@@ -292,7 +352,7 @@
   "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
   "description": "A 0.40 m sphere of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
   "duration": 6.0,
-  "sim": false,
+  "sim": true,
   "stats": {
    "com_nerd": -0.09,
    "com_mpm": 0.26,
@@ -300,7 +360,11 @@
    "spread_mpm": 0.337,
    "dist_mean": 60.54259704872587,
    "dist_time": 63.090927401437696,
-   "dist_p95": 153.3455734922262
+   "dist_p95": 153.3455734922262,
+   "ke_int_nerd": 18.168635184014132,
+   "ke_int_mpm": 28.32443008281113,
+   "ke_peak_nerd": 85.63617706298828,
+   "ke_peak_mpm": 123.3258285522461
   }
  },
  {
@@ -311,7 +375,7 @@
   "motion": "Dropped (no initial velocity)",
   "description": "A 0.40 m cylinder of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
   "duration": 6.0,
-  "sim": false,
+  "sim": true,
   "stats": {
    "com_nerd": -0.0,
    "com_mpm": -0.0,
@@ -319,7 +383,11 @@
    "spread_mpm": 0.342,
    "dist_mean": 5.171858320567243,
    "dist_time": 4.993201236653627,
-   "dist_p95": 11.972667329717076
+   "dist_p95": 11.972667329717076,
+   "ke_int_nerd": 23.932391307961517,
+   "ke_int_mpm": 24.53333359651406,
+   "ke_peak_nerd": 106.51564025878906,
+   "ke_peak_mpm": 111.91413879394531
   }
  },
  {
@@ -330,7 +398,7 @@
   "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
   "description": "A 0.40 m cylinder of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
   "duration": 6.0,
-  "sim": false,
+  "sim": true,
   "stats": {
    "com_nerd": -0.09,
    "com_mpm": 0.26,
@@ -338,7 +406,11 @@
    "spread_mpm": 0.363,
    "dist_mean": 56.45445089638126,
    "dist_time": 56.70656965546255,
-   "dist_p95": 153.9146690591307
+   "dist_p95": 153.9146690591307,
+   "ke_int_nerd": 25.02586095132363,
+   "ke_int_mpm": 38.51088351421118,
+   "ke_peak_nerd": 102.59207916259766,
+   "ke_peak_mpm": 160.26861572265625
   }
  }
 ]
