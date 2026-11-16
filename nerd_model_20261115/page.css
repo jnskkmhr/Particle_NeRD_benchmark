@@ -1,0 +1,4 @@
+.screen.wide { aspect-ratio: auto; }
+.screen.wide video { height: auto; }
+.table-wrap { overflow-x: auto; margin-bottom: 28px; }
+.table-wrap td, .table-wrap th { font-size: 15px; }

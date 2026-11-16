@@ -1,0 +1,344 @@
+[
+ {
+  "id": "box-push",
+  "family": "object",
+  "title": "Box \u00b7 Straight push",
+  "shape": "Box",
+  "motion": "Straight push",
+  "description": "The object is lowered into the settled bed, then dragged 0.9 m along +x over 2 s by a PD-controlled force and torque on its centre of mass. The sand's reaction acts back on the body.",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.032,
+   "z_mpm": -0.025,
+   "rms_nerd": 54.9,
+   "rms_mpm": 42.9,
+   "dist_mean": 11.229494384184175,
+   "dist_time": 8.350207969120282,
+   "dist_p95": 33.685824688781864
+  }
+ },
+ {
+  "id": "box-circle",
+  "family": "object",
+  "title": "Box \u00b7 Circular push",
+  "shape": "Box",
+  "motion": "Circular push",
+  "description": "The object is lowered onto a circle of radius 0.30 m and driven around it at about 0.94 m/s for 2.4 s (1.2 laps) by the same PD controller.",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.024,
+   "z_mpm": -0.017,
+   "rms_nerd": 43.7,
+   "rms_mpm": 37.7,
+   "dist_mean": 12.77301262448455,
+   "dist_time": 9.39837497542661,
+   "dist_p95": 30.336225967547183
+  }
+ },
+ {
+  "id": "box-stamp",
+  "family": "object",
+  "title": "Box \u00b7 Stamping (up and down)",
+  "shape": "Box",
+  "motion": "Stamping (up and down)",
+  "description": "The object is driven vertically at 2 Hz with a 12 cm stroke at a fixed position, to mimic a legged robot stamping. The lowest object-centre height is -0.03 m (-0.01 m for the sphere).",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.02,
+   "z_mpm": 0.018,
+   "rms_nerd": 28.0,
+   "rms_mpm": 12.1,
+   "dist_mean": 8.641112307949816,
+   "dist_time": 6.91656035203269,
+   "dist_p95": 19.762280089296645
+  }
+ },
+ {
+  "id": "box-drop",
+  "family": "object",
+  "title": "Box \u00b7 Free drop and throw",
+  "shape": "Box",
+  "motion": "Free drop and throw",
+  "description": "The object hovers 0.40 m above the settled bed for 3 s, then is released with an impulse of about 1 m/s along +x. After release no controller acts: free body dynamics under gravity and sand contact for 3 s.",
+  "duration": 3.0,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.133,
+   "z_mpm": 0.024,
+   "rms_nerd": 47.5,
+   "rms_mpm": 15.3,
+   "dist_mean": 20.2029820123444,
+   "dist_time": 14.232831291498236,
+   "dist_p95": 47.86355543862308
+  }
+ },
+ {
+  "id": "sphere-push",
+  "family": "object",
+  "title": "Sphere \u00b7 Straight push",
+  "shape": "Sphere",
+  "motion": "Straight push",
+  "description": "The object is lowered into the settled bed, then dragged 0.9 m along +x over 2 s by a PD-controlled force and torque on its centre of mass. The sand's reaction acts back on the body.",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.0,
+   "z_mpm": 0.004,
+   "rms_nerd": 47.1,
+   "rms_mpm": 36.8,
+   "dist_mean": 8.054218113958711,
+   "dist_time": 6.659742488502637,
+   "dist_p95": 23.817780129204454
+  }
+ },
+ {
+  "id": "sphere-circle",
+  "family": "object",
+  "title": "Sphere \u00b7 Circular push",
+  "shape": "Sphere",
+  "motion": "Circular push",
+  "description": "The object is lowered onto a circle of radius 0.30 m and driven around it at about 0.94 m/s for 2.4 s (1.2 laps) by the same PD controller.",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.005,
+   "z_mpm": 0.002,
+   "rms_nerd": 35.2,
+   "rms_mpm": 28.2,
+   "dist_mean": 7.677268377957246,
+   "dist_time": 6.979450193024678,
+   "dist_p95": 18.21639447534117
+  }
+ },
+ {
+  "id": "sphere-stamp",
+  "family": "object",
+  "title": "Sphere \u00b7 Stamping (up and down)",
+  "shape": "Sphere",
+  "motion": "Stamping (up and down)",
+  "description": "The object is driven vertically at 2 Hz with a 12 cm stroke at a fixed position, to mimic a legged robot stamping. The lowest object-centre height is -0.03 m (-0.01 m for the sphere).",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.002,
+   "z_mpm": 0.015,
+   "rms_nerd": 22.7,
+   "rms_mpm": 13.6,
+   "dist_mean": 6.429686252439151,
+   "dist_time": 5.665564533641205,
+   "dist_p95": 16.767412948506532
+  }
+ },
+ {
+  "id": "sphere-drop",
+  "family": "object",
+  "title": "Sphere \u00b7 Free drop and throw",
+  "shape": "Sphere",
+  "motion": "Free drop and throw",
+  "description": "The object hovers 0.40 m above the settled bed for 3 s, then is released with an impulse of about 1 m/s along +x. After release no controller acts: free body dynamics under gravity and sand contact for 3 s.",
+  "duration": 3.0,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.14,
+   "z_mpm": 0.033,
+   "rms_nerd": 44.2,
+   "rms_mpm": 12.8,
+   "dist_mean": 20.35118205862524,
+   "dist_time": 14.011232762194958,
+   "dist_p95": 35.49780503672327
+  }
+ },
+ {
+  "id": "cylinder-push",
+  "family": "object",
+  "title": "Cylinder \u00b7 Straight push",
+  "shape": "Cylinder",
+  "motion": "Straight push",
+  "description": "The object is lowered into the settled bed, then dragged 0.9 m along +x over 2 s by a PD-controlled force and torque on its centre of mass. The sand's reaction acts back on the body.",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.022,
+   "z_mpm": -0.027,
+   "rms_nerd": 54.9,
+   "rms_mpm": 46.0,
+   "dist_mean": 11.179633085980358,
+   "dist_time": 8.665348394158867,
+   "dist_p95": 28.71346663704075
+  }
+ },
+ {
+  "id": "cylinder-circle",
+  "family": "object",
+  "title": "Cylinder \u00b7 Circular push",
+  "shape": "Cylinder",
+  "motion": "Circular push",
+  "description": "The object is lowered onto a circle of radius 0.30 m and driven around it at about 0.94 m/s for 2.4 s (1.2 laps) by the same PD controller.",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.027,
+   "z_mpm": -0.022,
+   "rms_nerd": 40.6,
+   "rms_mpm": 33.8,
+   "dist_mean": 12.673121986824313,
+   "dist_time": 9.641325542939343,
+   "dist_p95": 28.22819845633938
+  }
+ },
+ {
+  "id": "cylinder-stamp",
+  "family": "object",
+  "title": "Cylinder \u00b7 Stamping (up and down)",
+  "shape": "Cylinder",
+  "motion": "Stamping (up and down)",
+  "description": "The object is driven vertically at 2 Hz with a 12 cm stroke at a fixed position, to mimic a legged robot stamping. The lowest object-centre height is -0.03 m (-0.01 m for the sphere).",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.023,
+   "z_mpm": 0.008,
+   "rms_nerd": 28.6,
+   "rms_mpm": 14.1,
+   "dist_mean": 9.24184899174341,
+   "dist_time": 7.3664586884289065,
+   "dist_p95": 14.864583134562409
+  }
+ },
+ {
+  "id": "cylinder-drop",
+  "family": "object",
+  "title": "Cylinder \u00b7 Free drop and throw",
+  "shape": "Cylinder",
+  "motion": "Free drop and throw",
+  "description": "The object hovers 0.40 m above the settled bed for 3 s, then is released with an impulse of about 1 m/s along +x. After release no controller acts: free body dynamics under gravity and sand contact for 3 s.",
+  "duration": 3.0,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.166,
+   "z_mpm": 0.027,
+   "rms_nerd": 48.1,
+   "rms_mpm": 14.8,
+   "dist_mean": 20.8252039989301,
+   "dist_time": 14.532936212402122,
+   "dist_p95": 45.927306250903705
+  }
+ },
+ {
+  "id": "toss-cube-drop",
+  "family": "toss",
+  "title": "Cube of sand \u00b7 Drop",
+  "shape": "Cube",
+  "motion": "Dropped (no initial velocity)",
+  "description": "A 0.40 m cube of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
+  "duration": 6.0,
+  "sim": false,
+  "stats": {
+   "com_nerd": -0.0,
+   "com_mpm": -0.0,
+   "spread_nerd": 0.364,
+   "spread_mpm": 0.362,
+   "dist_mean": 6.2693696828374526,
+   "dist_time": 6.354727194757463,
+   "dist_p95": 14.607028366197515
+  }
+ },
+ {
+  "id": "toss-cube-throw",
+  "family": "toss",
+  "title": "Cube of sand \u00b7 Throw",
+  "shape": "Cube",
+  "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
+  "description": "A 0.40 m cube of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
+  "duration": 6.0,
+  "sim": false,
+  "stats": {
+   "com_nerd": -0.09,
+   "com_mpm": 0.26,
+   "spread_nerd": 0.365,
+   "spread_mpm": 0.383,
+   "dist_mean": 52.68592139965939,
+   "dist_time": 53.78046625214825,
+   "dist_p95": 157.46570309153358
+  }
+ },
+ {
+  "id": "toss-sphere-drop",
+  "family": "toss",
+  "title": "Sphere of sand \u00b7 Drop",
+  "shape": "Sphere",
+  "motion": "Dropped (no initial velocity)",
+  "description": "A 0.40 m sphere of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
+  "duration": 6.0,
+  "sim": false,
+  "stats": {
+   "com_nerd": -0.0,
+   "com_mpm": -0.0,
+   "spread_nerd": 0.313,
+   "spread_mpm": 0.309,
+   "dist_mean": 5.169639649806895,
+   "dist_time": 5.653770638671073,
+   "dist_p95": 13.779511228203216
+  }
+ },
+ {
+  "id": "toss-sphere-throw",
+  "family": "toss",
+  "title": "Sphere of sand \u00b7 Throw",
+  "shape": "Sphere",
+  "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
+  "description": "A 0.40 m sphere of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
+  "duration": 6.0,
+  "sim": false,
+  "stats": {
+   "com_nerd": -0.09,
+   "com_mpm": 0.26,
+   "spread_nerd": 0.312,
+   "spread_mpm": 0.337,
+   "dist_mean": 60.54259704872587,
+   "dist_time": 63.090927401437696,
+   "dist_p95": 153.3455734922262
+  }
+ },
+ {
+  "id": "toss-cylinder-drop",
+  "family": "toss",
+  "title": "Cylinder of sand \u00b7 Drop",
+  "shape": "Cylinder",
+  "motion": "Dropped (no initial velocity)",
+  "description": "A 0.40 m cylinder of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
+  "duration": 6.0,
+  "sim": false,
+  "stats": {
+   "com_nerd": -0.0,
+   "com_mpm": -0.0,
+   "spread_nerd": 0.341,
+   "spread_mpm": 0.342,
+   "dist_mean": 5.171858320567243,
+   "dist_time": 4.993201236653627,
+   "dist_p95": 11.972667329717076
+  }
+ },
+ {
+  "id": "toss-cylinder-throw",
+  "family": "toss",
+  "title": "Cylinder of sand \u00b7 Throw",
+  "shape": "Cylinder",
+  "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
+  "description": "A 0.40 m cylinder of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Both simulators start from the same particle state; the NeRD rollout is given the true initial velocity in its position history.",
+  "duration": 6.0,
+  "sim": false,
+  "stats": {
+   "com_nerd": -0.09,
+   "com_mpm": 0.26,
+   "spread_nerd": 0.342,
+   "spread_mpm": 0.363,
+   "dist_mean": 56.45445089638126,
+   "dist_time": 56.70656965546255,
+   "dist_p95": 153.9146690591307
+  }
+ }
+]
