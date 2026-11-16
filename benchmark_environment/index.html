@@ -38,18 +38,9 @@ private bucket:</p>
 bash examples/particle_nerd_benchmark/learning/osmo/run_collection.sh $OUT --pool POOL
 bash examples/particle_nerd_benchmark/learning/osmo/run_collection.sh \
   --workflow examples/particle_nerd_benchmark/learning/osmo/collect_freefall.yaml $OUT --pool POOL</pre>
-<p><strong>Where the collected set is stored.</strong> The 1,000 trajectories used for the current model are on OSMO swift,
-under <code>swift://pdx.s8k.io/AUTH_team-isaac-sqa/isaac-sqa/jkamohara/particle-nerd-object-benchmark/</code>:</p>
-<div class="table-wrap"><table><thead><tr><th>Folder</th><th>Trajectories</th></tr></thead><tbody>
-<tr><td><code>particle-nerd-objects-600-2/sphere-prescribed/</code></td><td>120</td></tr>
-<tr><td><code>particle-nerd-objects-600-2/sphere-dynamic/</code></td><td>80</td></tr>
-<tr><td><code>particle-nerd-objects-600-2/cylinder-prescribed/</code></td><td>120</td></tr>
-<tr><td><code>particle-nerd-objects-recovery-1/box-prescribed/</code></td><td>120</td></tr>
-<tr><td><code>particle-nerd-objects-recovery-1/box-dynamic/</code></td><td>80</td></tr>
-<tr><td><code>particle-nerd-objects-recovery-1/cylinder-dynamic/</code></td><td>80</td></tr>
-<tr><td><code>particle-nerd-freefall-400-1/freefall/</code></td><td>400</td></tr></tbody></table></div>
-<p>Download a folder, or part of it, with <code>osmo data download SWIFT_URI LOCAL_DIR --regex 'box-0009\.h5|manifest'</code>.
-Training expects all seven folders under one data root. The datasets are private and are not hosted on this site.</p></section>
+<p>The collected set is private and is not hosted on this site. Training expects the six object folders
+(<code>box-prescribed</code>, <code>box-dynamic</code>, <code>sphere-prescribed</code>, <code>sphere-dynamic</code>,
+<code>cylinder-prescribed</code>, <code>cylinder-dynamic</code>) and the <code>freefall</code> folder under one data root.</p></section>
 <section class="report-section" id="protocol"><h2>2. Simulation conditions and recording</h2><p>Each clip is a fresh native implicit-MPM run.
 Particles and body states are saved at 200 Hz; video frames are captured from those same states at 50 fps.
 The first second prepares the object scenes before intrusion. Robot controllers run from reset.</p>
