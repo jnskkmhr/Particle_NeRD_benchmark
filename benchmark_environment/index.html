@@ -5,8 +5,52 @@
 <body class="benchmark-report benchmark-gallery"><header><a class="brand" href="../">Particle NeRD / Benchmarks</a><span class="archive">Native implicit MPM · Reference environments</span></header>
 <main><section class="report-heading"><p class="eyebrow">BENCHMARK ENVIRONMENTS</p><h1>Objects, terrain, and robot contacts.</h1>
 <p>Short, reproducible sand-interaction simulations built with Isaac Lab’s manager-based environments.
-Choose a motion to inspect its simulation, forces, settings, and recorded states.</p><nav aria-label="Gallery sections"><a href="#protocol">Simulation conditions</a><a href="#gallery">Browse cases</a><a href="#recorded-cases">Recorded cases</a><a href="particle_world/">Particle-World</a><a href="particle_nerd_local/">Particle-NeRD Local</a><a href="elementary_object_dynamic_simulation/">Dynamic Object Simulation</a><a href="stress_estimation/">Stress &amp; RFT estimation</a><a href="robotics_ood/">OOD Robotics</a></nav></section>
-<section class="report-section" id="protocol"><h2>1. Simulation conditions and recording</h2><p>Each clip is a fresh native implicit-MPM run.
+Choose a motion to inspect its simulation, forces, settings, and recorded states.</p><nav aria-label="Gallery sections"><a href="#collect-dataset">Collect the dataset</a><a href="#protocol">Simulation conditions</a><a href="#gallery">Browse cases</a><a href="#recorded-cases">Recorded cases</a><a href="particle_world/">Particle-World</a><a href="particle_nerd_local/">Particle-NeRD Local</a><a href="elementary_object_dynamic_simulation/">Dynamic Object Simulation</a><a href="stress_estimation/">Stress &amp; RFT estimation</a><a href="robotics_ood/">OOD Robotics</a></nav></section>
+<section class="report-section" id="collect-dataset"><h2>1. Collect the 1,000-trajectory training dataset</h2>
+<p>The Particle NeRD training set has 1,000 native implicit-MPM trajectories of 6 s, recorded at 200 Hz in the same
+sand bed and material. It has two parts: <strong>600 trajectories with elementary objects</strong> (box, sphere and
+cylinder, each with 120 prescribed-motion and 80 free-body trajectories) and <strong>400 particle free-fall
+trajectories</strong> (sand blocks and columns released onto flat ground, with no rigid object). The robot cases on
+this page (Franka, Go2, G1) are not part of the set. The split is fixed by trajectory ID: 800 train, 100 validation and
+100 test.</p>
+<p>Each part runs in its own process on its own GPU. From the repository root:</p>
+<pre>export PYTHONPATH=$PWD/examples
+OUT=/path/to/dataset            # about 135 GB; each object trajectory is about 220 MB
+
+# 600 object trajectories: six independent jobs, one GPU each
+for shape in box sphere cylinder; do
+  for mode in prescribed dynamic; do
+    uv run --no-sync python -m particle_nerd_benchmark.learning.collect \
+      --shape "$shape" --mode "$mode" --output "$OUT/$shape-$mode" --device cuda:0
+  done
+done
+
+# 400 particle free-fall trajectories, sharded over the GPUs of one node
+uv run --no-sync torchrun --standalone --nproc_per_node=4 \
+  --module particle_nerd_benchmark.learning.collect_freefall --output "$OUT/freefall"
+
+# Check the complete set and write its audit
+uv run --no-sync python -m particle_nerd_benchmark.learning.verify --data "$OUT" --output "$OUT/data_audit.json"</pre>
+<p><code>examples/particle_nerd_benchmark/learning/collect_dataset.sh OUTPUT_DIR [NUM_GPUS]</code> runs the same steps.
+On OSMO the six object jobs run in parallel and the free-fall set uses four 4-GPU shards, both writing directly to a
+private bucket:</p>
+<pre>OUT=swift://PRIVATE_BUCKET/particle-nerd-object-benchmark
+bash examples/particle_nerd_benchmark/learning/osmo/run_collection.sh $OUT --pool POOL
+bash examples/particle_nerd_benchmark/learning/osmo/run_collection.sh \
+  --workflow examples/particle_nerd_benchmark/learning/osmo/collect_freefall.yaml $OUT --pool POOL</pre>
+<p><strong>Where the collected set is stored.</strong> The 1,000 trajectories used for the current model are on OSMO swift,
+under <code>swift://pdx.s8k.io/AUTH_team-isaac-sqa/isaac-sqa/jkamohara/particle-nerd-object-benchmark/</code>:</p>
+<div class="table-wrap"><table><thead><tr><th>Folder</th><th>Trajectories</th></tr></thead><tbody>
+<tr><td><code>particle-nerd-objects-600-2/sphere-prescribed/</code></td><td>120</td></tr>
+<tr><td><code>particle-nerd-objects-600-2/sphere-dynamic/</code></td><td>80</td></tr>
+<tr><td><code>particle-nerd-objects-600-2/cylinder-prescribed/</code></td><td>120</td></tr>
+<tr><td><code>particle-nerd-objects-recovery-1/box-prescribed/</code></td><td>120</td></tr>
+<tr><td><code>particle-nerd-objects-recovery-1/box-dynamic/</code></td><td>80</td></tr>
+<tr><td><code>particle-nerd-objects-recovery-1/cylinder-dynamic/</code></td><td>80</td></tr>
+<tr><td><code>particle-nerd-freefall-400-1/freefall/</code></td><td>400</td></tr></tbody></table></div>
+<p>Download a folder, or part of it, with <code>osmo data download SWIFT_URI LOCAL_DIR --regex 'box-0009\.h5|manifest'</code>.
+Training expects all seven folders under one data root. The datasets are private and are not hosted on this site.</p></section>
+<section class="report-section" id="protocol"><h2>2. Simulation conditions and recording</h2><p>Each clip is a fresh native implicit-MPM run.
 Particles and body states are saved at 200 Hz; video frames are captured from those same states at 50 fps.
 The first second prepares the object scenes before intrusion. Robot controllers run from reset.</p>
 <p>The sand uses density 1,600 kg/m³, Young’s modulus 10¹⁵ Pa, Poisson’s ratio 0.3, material friction 0.48,
@@ -18,7 +62,7 @@ These are simulation parameters, not a calibration to a measured sand specimen.<
 <p>Validation checks particle containment, finite recorded states and forces, actual material contact,
 and video timestamps. Robot cases also check upright posture and forward motion.
 These reference rollouts do not measure Particle NeRD prediction accuracy or GPU scalability.</p></section>
-<section class="report-section" id="gallery"><h2>2. Benchmark cases</h2><div class="workspace"><aside><label for="family">Motion family</label><select id="family"><option value="">Every family</option>
+<section class="report-section" id="gallery"><h2>3. Benchmark cases</h2><div class="workspace"><aside><label for="family">Motion family</label><select id="family"><option value="">Every family</option>
 <option value="object">Elementary objects</option><option value="freefall">Particle free-fall</option><option value="robot">Robots</option></select>
 <label for="terrain">Terrain</label><select id="terrain"><option value="">Every terrain</option><option>flat</option><option>ascend</option><option>descend</option><option>wave</option></select>
 <label for="search">Find a case</label><input id="search" type="search" placeholder="Box, sphere, G1…">
@@ -34,5 +78,5 @@ These reference rollouts do not measure Particle NeRD prediction accuracy or GPU
 Figure 1: Sand-on-collider forces from the video’s recorded run. (a) Fx; (b) Fy; (c) Fz.
 For robot cases, forces are summed over the reacting robot links listed in the validation file. Direct rigid tray contact is excluded.</figcaption></figure>
 </section></div><p id="empty" hidden>No completed cases match these filters.</p></section>
-<section class="report-section catalog-table" id="recorded-cases"><h2>3. Recorded cases</h2><div class="table-wrap"><table><thead><tr><th>Motion</th><th>Terrain</th><th>Controller</th><th>Duration</th><th>Video / data</th></tr></thead><tbody id="summary"></tbody></table></div></section>
+<section class="report-section catalog-table" id="recorded-cases"><h2>4. Recorded cases</h2><div class="table-wrap"><table><thead><tr><th>Motion</th><th>Terrain</th><th>Controller</th><th>Duration</th><th>Video / data</th></tr></thead><tbody id="summary"></tbody></table></div></section>
 </main><footer class="site-footer"><span class="footer-brand">Particle NeRD</span><span>Native MPM reference environments · Paired videos and plots</span></footer></body></html>
