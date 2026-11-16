@@ -412,5 +412,143 @@
    "ke_peak_nerd": 102.59207916259766,
    "ke_peak_mpm": 160.26861572265625
   }
+ },
+ {
+  "id": "toss-ft-cube-drop",
+  "family": "toss_ft",
+  "title": "Cube of sand \u00b7 Drop (fine-tuned)",
+  "shape": "Cube",
+  "motion": "Dropped (no initial velocity)",
+  "description": "A 0.40 m cube of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Particle NeRD is the fine-tuned model described in section 1; both simulators start from the same particle state.",
+  "duration": 6.0,
+  "sim": true,
+  "stats": {
+   "com_nerd": 0.01,
+   "com_mpm": -0.0,
+   "spread_nerd": 0.36,
+   "spread_mpm": 0.362,
+   "dist_mean": 7.755641492985965,
+   "dist_time": 7.510278904871555,
+   "dist_p95": 16.245784194000546,
+   "ke_int_nerd": 28.5663410270949,
+   "ke_int_mpm": 29.157762881557648,
+   "ke_peak_nerd": 130.6298065185547,
+   "ke_peak_mpm": 133.98121643066406
+  }
+ },
+ {
+  "id": "toss-ft-cube-throw",
+  "family": "toss_ft",
+  "title": "Cube of sand \u00b7 Throw (fine-tuned)",
+  "shape": "Cube",
+  "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
+  "description": "A 0.40 m cube of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Particle NeRD is the fine-tuned model described in section 1; both simulators start from the same particle state.",
+  "duration": 6.0,
+  "sim": true,
+  "stats": {
+   "com_nerd": 0.25,
+   "com_mpm": 0.26,
+   "spread_nerd": 0.38,
+   "spread_mpm": 0.383,
+   "dist_mean": 6.541982525010447,
+   "dist_time": 6.520835491957462,
+   "dist_p95": 15.258051241020688,
+   "ke_int_nerd": 45.417483090453175,
+   "ke_int_mpm": 45.91730912209565,
+   "ke_peak_nerd": 177.7084503173828,
+   "ke_peak_mpm": 192.3358917236328
+  }
+ },
+ {
+  "id": "toss-ft-sphere-drop",
+  "family": "toss_ft",
+  "title": "Sphere of sand \u00b7 Drop (fine-tuned)",
+  "shape": "Sphere",
+  "motion": "Dropped (no initial velocity)",
+  "description": "A 0.40 m sphere of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Particle NeRD is the fine-tuned model described in section 1; both simulators start from the same particle state.",
+  "duration": 6.0,
+  "sim": true,
+  "stats": {
+   "com_nerd": 0.01,
+   "com_mpm": -0.0,
+   "spread_nerd": 0.308,
+   "spread_mpm": 0.309,
+   "dist_mean": 6.071580259446357,
+   "dist_time": 5.997363146518096,
+   "dist_p95": 12.387934674536433,
+   "ke_int_nerd": 17.79385763560765,
+   "ke_int_mpm": 17.907844921449495,
+   "ke_peak_nerd": 88.69487762451172,
+   "ke_peak_mpm": 94.52757263183594
+  }
+ },
+ {
+  "id": "toss-ft-sphere-throw",
+  "family": "toss_ft",
+  "title": "Sphere of sand \u00b7 Throw (fine-tuned)",
+  "shape": "Sphere",
+  "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
+  "description": "A 0.40 m sphere of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Particle NeRD is the fine-tuned model described in section 1; both simulators start from the same particle state.",
+  "duration": 6.0,
+  "sim": true,
+  "stats": {
+   "com_nerd": 0.25,
+   "com_mpm": 0.26,
+   "spread_nerd": 0.331,
+   "spread_mpm": 0.337,
+   "dist_mean": 7.473647790291613,
+   "dist_time": 7.046660286403506,
+   "dist_p95": 17.475054727508255,
+   "ke_int_nerd": 28.17269758787668,
+   "ke_int_mpm": 28.32443008281113,
+   "ke_peak_nerd": 120.17076873779297,
+   "ke_peak_mpm": 123.3258285522461
+  }
+ },
+ {
+  "id": "toss-ft-cylinder-drop",
+  "family": "toss_ft",
+  "title": "Cylinder of sand \u00b7 Drop (fine-tuned)",
+  "shape": "Cylinder",
+  "motion": "Dropped (no initial velocity)",
+  "description": "A 0.40 m cylinder of particles, released 0.20 m above open flat ground, 6 s. Dropped (no initial velocity). Particle NeRD is the fine-tuned model described in section 1; both simulators start from the same particle state.",
+  "duration": 6.0,
+  "sim": true,
+  "stats": {
+   "com_nerd": 0.01,
+   "com_mpm": -0.0,
+   "spread_nerd": 0.338,
+   "spread_mpm": 0.342,
+   "dist_mean": 6.378280333762008,
+   "dist_time": 6.243461630117688,
+   "dist_p95": 14.05704329805848,
+   "ke_int_nerd": 23.774895722495675,
+   "ke_int_mpm": 24.53333359651406,
+   "ke_peak_nerd": 109.69830322265625,
+   "ke_peak_mpm": 111.91413879394531
+  }
+ },
+ {
+  "id": "toss-ft-cylinder-throw",
+  "family": "toss_ft",
+  "title": "Cylinder of sand \u00b7 Throw (fine-tuned)",
+  "shape": "Cylinder",
+  "motion": "Tossed (1.0 m/s along +x, 0.25 m/s up)",
+  "description": "A 0.40 m cylinder of particles, released 0.20 m above open flat ground, 6 s. Tossed (1.0 m/s along +x, 0.25 m/s up). Particle NeRD is the fine-tuned model described in section 1; both simulators start from the same particle state.",
+  "duration": 6.0,
+  "sim": true,
+  "stats": {
+   "com_nerd": 0.25,
+   "com_mpm": 0.26,
+   "spread_nerd": 0.358,
+   "spread_mpm": 0.363,
+   "dist_mean": 7.295534476259398,
+   "dist_time": 6.995346870828315,
+   "dist_p95": 15.970588523314678,
+   "ke_int_nerd": 37.96966023874085,
+   "ke_int_mpm": 38.51088351421118,
+   "ke_peak_nerd": 151.45899963378906,
+   "ke_peak_mpm": 160.26861572265625
+  }
  }
 ]
