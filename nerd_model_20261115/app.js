@@ -31,7 +31,7 @@ function choose(id) {
   $("sim-note").textContent = "Isaac Lab viewer recording. Left: Particle NeRD. Right: MPM.";
   $("plot-note").textContent = c.family === "object"
     ? "Left: Particle NeRD. Right: MPM. Top: side slab of particles, coloured by displacement from the start of the motion. Bottom: change in surface height, top view."
-    : "Left: Particle NeRD. Right: MPM. Top: side view of all particles. Bottom: top view of all particles. Both coloured by height.";
+    : "Left: Particle NeRD. Right: MPM. Top: side view of all particles. Bottom: top view of all particles. Both coloured by z position.";
   $("stats").replaceChildren(...statsRows(c).map(([a, b]) => row(a, b)));
   for (const b of $("cases").children) b.setAttribute("aria-pressed", String(b.dataset.id === id));
 }
