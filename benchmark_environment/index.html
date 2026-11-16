@@ -13,32 +13,15 @@ cylinder, each with 120 prescribed-motion and 80 free-body trajectories) and <st
 trajectories</strong> (sand blocks and columns released onto flat ground, with no rigid object). The robot cases on
 this page (Franka, Go2, G1) are not part of the set. The split is fixed by trajectory ID: 800 train, 100 validation and
 100 test.</p>
-<p>Each part runs in its own process on its own GPU. From the repository root:</p>
-<pre>export PYTHONPATH=$PWD/examples
-OUT=/path/to/dataset            # about 135 GB; each object trajectory is about 220 MB
-
-# 600 object trajectories: six independent jobs, one GPU each
-for shape in box sphere cylinder; do
-  for mode in prescribed dynamic; do
-    uv run --no-sync python -m particle_nerd_benchmark.learning.collect \
-      --shape "$shape" --mode "$mode" --output "$OUT/$shape-$mode" --device cuda:0
-  done
-done
-
-# 400 particle free-fall trajectories, sharded over the GPUs of one node
-uv run --no-sync torchrun --standalone --nproc_per_node=4 \
-  --module particle_nerd_benchmark.learning.collect_freefall --output "$OUT/freefall"
-
-# Check the complete set and write its audit
-uv run --no-sync python -m particle_nerd_benchmark.learning.verify --data "$OUT" --output "$OUT/data_audit.json"</pre>
-<p><code>examples/particle_nerd_benchmark/learning/collect_dataset.sh OUTPUT_DIR [NUM_GPUS]</code> runs the same steps.
-On OSMO the six object jobs run in parallel and the free-fall set uses four 4-GPU shards, both writing directly to a
-private bucket:</p>
-<pre>OUT=swift://PRIVATE_BUCKET/particle-nerd-object-benchmark
-bash examples/particle_nerd_benchmark/learning/osmo/run_collection.sh $OUT --pool POOL
-bash examples/particle_nerd_benchmark/learning/osmo/run_collection.sh \
-  --workflow examples/particle_nerd_benchmark/learning/osmo/collect_freefall.yaml $OUT --pool POOL</pre>
-<p>The collected set is private and is not hosted on this site. Training expects the six object folders
+<p>One command records the whole set: the object trajectories, then the free-fall trajectories, then a check of the
+complete set. From the repository root, with the output directory and the number of GPUs to use:</p>
+<pre>bash examples/particle_nerd_benchmark/learning/collect_dataset.sh /path/to/dataset 4     # about 135 GB</pre>
+<p>On OSMO a single command submits the same collection and writes directly to a private bucket:</p>
+<pre>bash examples/particle_nerd_benchmark/learning/osmo/collect_all.sh swift://PRIVATE_BUCKET/particle-nerd-object-benchmark --pool POOL</pre>
+<p>The set covers a flat sand bed only. Prescribed motions are horizontal push, vertical intrusion, circling and holding;
+free bodies are dropped, slid, thrown or tumbled. The terrain variants (ascend, descend, wave), the sphere rolling and the
+shallow projectile cases in the gallery below are separate reference cases and are not part of this set. The collected set
+is private and is not hosted on this site. Training expects the six object folders
 (<code>box-prescribed</code>, <code>box-dynamic</code>, <code>sphere-prescribed</code>, <code>sphere-dynamic</code>,
 <code>cylinder-prescribed</code>, <code>cylinder-dynamic</code>) and the <code>freefall</code> folder under one data root.</p></section>
 <section class="report-section" id="protocol"><h2>2. Simulation conditions and recording</h2><p>Each clip is a fresh native implicit-MPM run.
