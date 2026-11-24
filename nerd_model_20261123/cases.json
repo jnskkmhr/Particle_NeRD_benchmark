@@ -1,0 +1,26 @@
+[
+ {
+  "id": "box-push",
+  "family": "object",
+  "title": "Box \u00b7 Straight push",
+  "shape": "Box",
+  "motion": "Straight push",
+  "description": "The object is lowered into the settled bed, then dragged 0.9 m along +x over 2 s by a PD-controlled force and torque on its centre of mass. The sand's reaction acts back on the body.",
+  "duration": 2.8,
+  "sim": true,
+  "stats": {
+   "z_nerd": -0.02774992771446705,
+   "z_mpm": -0.025589987635612488,
+   "rms_nerd": 57.02629722644974,
+   "rms_mpm": 42.254518527181695,
+   "bed_offset_start": 7.614000667857354,
+   "dist_mean": 13.39311046377157,
+   "dist_time": 11.415258216640515,
+   "dist_p95": 32.42085902637278,
+   "ke_int_nerd": 2.094501472801444,
+   "ke_int_mpm": 1.2448395539744528,
+   "ke_peak_nerd": 1.6730090379714966,
+   "ke_peak_mpm": 1.7639658451080322
+  }
+ }
+]
